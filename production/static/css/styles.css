@@ -88,21 +88,6 @@ code { padding: 0 3px 0 3px; font-family:source_code_pro; font-size:14px; }
     color:rgb(253,151,33);
 }
 
-.logo {
-    position:absolute;
-    top:0;
-    left:0;
-    background-color: #00255D;
-}
-
-.logotext {
-    font-size: 40px;
-    top:-5px;
-    margin-top:10px;
-    margin-right: 10px;
-    color:#fefefe;
-}
-
 .posts-list li {
     font-size:16px;
     line-height:1.5em;
@@ -114,4 +99,8 @@ code { padding: 0 3px 0 3px; font-family:source_code_pro; font-size:14px; }
     line-height:1.5em;
     list-style-type:none;
     font-family:source_code_pro;
+}
+
+.date {
+    color:rgb(130,130,130);
 }
