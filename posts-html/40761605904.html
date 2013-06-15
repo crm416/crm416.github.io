@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+
+<meta charset=utf-8>
+<title>Untitled</title>
+<link rel=stylesheet href=../backup.css>
+
+<body class=post>
+
+<article class=regular id=p-40761605904>
+<p class=meta><span class=date>01/17/2013 06:16:08</span>
+<a class=llink href=../posts/40761605904.html>¶</a>
+<a href=http://crm416.tumblr.com/post/40761605904 rel=canonical>●</a></p>
+<h2>True parallelism in OCaml</h2>
+<p>OCaml provides a nice <a href="http://caml.inria.fr/pub/docs/manual-ocaml-4.00/libref/Thread.html">library for multi-threading</a>. Problem is, according to my professor, under the hood, <strong>OCaml doesn&#8217;t actually employ any parallelism at all!</strong> In truth, the compiler just interleaves instructions in a way that has the same computational effect as multi-threading, barring the 2x speed-up.</p>
+<p>On the side, I&#8217;ve been working on an alternative to the small Futures module we used in class. Futures very similar to threads but safer and easier to use; the module just has a &#8220;create&#8221; method, which starts the provided function on a thread, and a &#8220;force&#8221; method, which waits for the Future to finish its computation.</p>
+<p>This alternative aims to operate at a lower level than would typically be done in OCaml and circumvent the languages lack of true multi-threading. To do so, the module runs the desired computation on a separate UNIX process using some of <a href="http://ocamlunix.forge.ocamlcore.org">these features</a>. <strong>Rather than trying to run two programs from within the same process, then, it seeks to run a single program, in two separate processes.</strong></p>
+<p>Right now, the package seems to be working, and the speed-up approaches 2x as I increase the size of the input to various functions. Still trying to work out the kinks, but I&#8217;ll try and post it to Github when it&#8217;s completed!</p>
+<p class=tags>#ocaml #parallelism #unix #processes #multithreading</p>
+</article>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<meta charset=utf-8>
+<title>Untitled</title>
+<link rel=stylesheet href=../backup.css>
+
+<body class=post>
+
+<article class=regular id=p-36215237139>
+<p class=meta><span class=date>11/21/2012 08:40:00</span>
+<a class=llink href=../posts/36215237139.html>¶</a>
+<a href=http://crm416.tumblr.com/post/36215237139 rel=canonical>●</a></p>
+<h2>NP != NOT-P</h2>
+<p><p class="MsoNormal">When I first started learning about algorithmic complexity and intractability, I remember struggling with the concept of P vs. NP (<a href="http://web.mit.edu/newsoffice/2009/explainer-pnp.html">a primer</a>). Part of this, I now realize, was due to the confusing acronyms that have been assigned to the problem: when I see P and learn that it refers to “problems solvable in polynomial time”, I immediately assume that NP must refer to <strong>non</strong>-“problems solvable in polynomial time,” i.e., problems for which a solution cannot be found in polynomial time. </p>
+<p class="MsoNormal">The thing is, that’s not actually the definition of NP: the N does not stand for <strong>not</strong>, it stands for <strong>non-deterministic</strong>. NP is not <strong>not</strong>-P; it’s <strong>non-deterministic</strong>-P.</p>
+<p class="MsoNormal">To be more specific: P is the set of problems whose solution can be <strong>found</strong> in polynomial time; NP is the set of problems whose solution can be <strong>verified </strong>in polynomial time.</p>
+<p class="MsoNormal"><u>SAT</u></p>
+<p class="MsoNormal">Lets look at these definitions in action. Take SAT, which is defined as, “given a statement in conjunctive normal form, can you find a satisfying assignment?” For example, if I give you the statement (A || B) &amp;&amp; (!C), one solution would be (A = true), (B = true), (C = false), because this assignment satisfies the statement.</p>
+<p class="MsoNormal">Now, no polynomial-time algorithm is known for finding a solution to a SAT problem. Thus, as of now, it’s unsure whether or not SAT is in P (because we don’t know how to <strong>find</strong> a problem in polynomial time). However, SAT is definitely in NP (because we know how to <strong>verify </strong>a solution in polynomial time)—I can give you an assignment, and you can plug it into the statement to see if it’s satisfied.</p>
+<p class="MsoNormal">Hopefully that makes things a little clearer.</p>
+<p class="MsoNormal"><u>P = NP?</u></p>
+<p class="MsoNormal">The P = NP? Problem is one of the Clay Mathematical Institute’s Millenium Prizes: if you solve it, you get $1,000,000 (so it must be important). The question boils down to this: are all problesm in NP also in P? I.e., for all problems whose solutions we can <strong>verify</strong> in polynomial time, does there exist a way to <strong>find</strong> a solution in polynomial time?</p>
+<p class="MsoNormal">What a lot of CS newcomers don’t see immediately is that P is <em>definitely </em>a subset of NP: any problem for which we can find a solution in polynomial time can definitely have its solution verified in polynomial time. Regardless of whether or not you think P = NP, this is true. The P = NP questions asks whether P is not just a subset of NP, but is infact <strong>the same set</strong> as NP: i.e., are all problems in NP also in P? </p>
+<p class="MsoNormal">If you think that P&#160;!= NP, then a visual representation of your belief looks something like this:</p>
+<p class="MsoNormal">                                <img src="http://media.tumblr.com/tumblr_mdujkin4yz1rzq63x.png"/></p>
+<p class="MsoNormal">Conversely, for P = NP:</p>
+<p class="MsoNormal">                                <img src="http://media.tumblr.com/tumblr_mdujkwenwP1rzq63x.png"/> </p>
+<p class="MsoNormal"><u>So which one is it?</u></p>
+<p class="MsoNormal">This is (almost indisputably) the most important open problem in computer science. If P = NP, then there would be countless problems which were once intractable, yet would now be deemed easily solvable—suddenly, all of these very, very, very difficult problems in NP that were seen as exponentially hard would be solvable in polynomial time.</p>
+<p class="MsoNormal">It’s kind of hard to believe that this could be possible. I think <a href="http://www.scottaaronson.com/blog/">Scott Aaronson</a> put it best when he said: </p>
+<blockquote>
+<p class="MsoNormal">“If P = NP, then the world would be a profoundly different place than we usually assume it to be. There would be no special value in &#8220;creative leaps,&#8221; no fundamental gap between solving a problem and recognizing the solution once it&#8217;s found. Everyone who could appreciate a symphony would be Mozart; everyone who could follow a step-by-step argument would be Gauss.”</p>
+</blockquote>
+<p class="MsoNormal">In essence, P = NP would imply that solving a problem is as easy as verifying a solution.</p>
+<p class="MsoNormal"><strong>Finding a solution to a Sodoku board would be as easy as checking that a solution is correct—that just doesn’t sound right, does it?</strong></p>
+<p class="MsoNormal">Right now, the industry leans heavily towards P&#160;!= NP, but the problem is still open and no one has come up with a sufficient proof to claim the Millenium Prize. Personally, I tend to agree with Aaronson and the like—but I’d love to be shocked.</p>
+<p class=tags>#P = NP #P != NP #complexity #theory</p>
+</article>
