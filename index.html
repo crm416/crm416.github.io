@@ -16,15 +16,16 @@
              ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
              var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
              })();
-
         </script>
     </head>
     <body>
-        <h1>Charlie Marsh</h1>
+        <center><h1>Charlie Marsh</h1></center>
         <center>
-        <div style="margin-top: -50px">
-        <h3 style="font-family:source_code_pro"><span style="color:rgb(241,39,111)">type</span> <span style="color:rgb(96,217,239)">blog</span> = Post <span style="color:rgb(241,39,111)">of</span> <span style="color:rgb(96,217,239)">string</span> | Rest <span style="color:rgb(241,39,111)">of</span> <span style="color:rgb(96,217,239)">blog</span></h3>
-        </div>
+            <div style="margin-top:-50px;padding-bottom:20px">
+                <code>
+                    <span class="code_red">type</span> <span class="code_blue">blog</span> = Post <span class="code_red">of</span> <span class="code_blue">string</span> | Rest <span class="code_red">of</span> <span class="code_blue">blog</span>
+                </code>
+            </div>
         </center>
         <center>
                 <a target="_blank" href="mailto:crmarsh@princeton.edu">Email</a>
@@ -40,14 +41,15 @@
             I'm big on functional programming, machine learning, and other fun stuff.<br />Heading into my third year at <b>Princeton University</b>.<br /><br />Check out some of my projects:
         </h2>
         <br /><br />
-        <ul class="posts-list">
-            <li>Quizzler</li>
-            <li>EveryCollegeCal</li>
-            <li>OCaml Threads</li>
-            <li>SDN Rule Optimizer for hetereogeneous hardware</li>
-            <li>A Dynamic Graphing Interface for iOS</li>
+        <ul class="match-list">
+            <li><span class="code_red">match</span> name <span class="code_red">with</span></li>
+            <li><span class="code_red">|</span> <span class="code_orange">rule-opt</span> <span class="code_red">-></span> An SDN Rule Optimizer for hetereogeneous hardware (in OCaml)</li>
+            <li><span class="code_red">|</span> <span class="code_orange">Quizzler</span> <span class="code_red">-></span> An automatic quiz-question generator (in Python)</li>
+            <li><span class="code_red">|</span> <span class="code_orange">EveryCollegeCal</span> <span class="code_red">-></span> An iPhone app for checking your undergraduate college calendar</li>
+            <li><span class="code_red">|</span> <span class="code_orange">OCaml Threads</span> <span class="code_red">-></span> A futures module for using system-level threads to simulate parallelism</li>
+            <li><span class="code_red">|</span> <span class="code_orange">Grapher</span> <span class="code_red">-></span> A module for creating dynamic graphs on iOS</li>
         </ul>
-        <br />
+        <br/>
         <h2>
             I also blog from time to time, writing about whatever interests me, theory or application:
         </h2>
