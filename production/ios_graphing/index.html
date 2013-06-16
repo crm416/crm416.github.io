@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <meta name="description" content="Adam Bard is a freelance developer living in Victoria, BC, Canada. Adam specializes in dynamic web applications using the latest technologies and methods.">
+  <meta name="viewport" content="width=device-width">
+
+  <!-- Use title if it's in the page YAML frontmatter -->
+  <title>A Dynamic Graphing Interface for iOS
+ | Charlie Marsh</title>
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Noticia+Text">
+  <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../static/css/styles.css" rel="stylesheet">
+  <link href="../static/css/skeleton.css" media="screen" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body class="index">
+  <div class="container">
+    <div id="sidebar" class="four columns">
+      <header>
+        <h1 style="font-size:50px"><a class="implicit" href="index.html">Charlie Marsh</a></h1>
+        <p><a class="implicit" target="_blank" href="../index.html">Home</a> &sdot; <a class="implicit" target="_blank" href="../about.html">About Me</a></p>
+        <h2>Programmer, student.</h2>
+        <p>I'm into functional programming,<br /> machine learning,<br /> and other fun stuff.<p>
+          <p>Find me on:</p>
+        </header>
+        <nav>
+          <ul class="posts-list">
+            <li>
+              <a class="implicit" target="_blank" href="http://www.github.com/crm416">GitHub</a>
+            </li>
+            <li>
+              <a class="implicit" target="_blank" href="http://stackoverflow.com/users/1450892/charles-marsh">StackOverflow</a>
+            </li>
+            <li>
+              <a class="implicit" target="_blank" href="http://www.quora.com/Charles-Marsh">Quora</a>
+            </li>
+            <li>
+              <a class="implicit" target="_blank" href="mailto:crmarsh@princeton.edu">Email</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <div class="four columns">&nbsp;
+      </div>
+      <div id="body" class="twelve columns">
+        <section class='thing row'>
+          <h1>A Dynamic Graphing Interface for iOS</h1>
+
+<p>This weekend was HackPrinceton, our school’s biannual hackathon run by the E Club (find out more <a href="http://hackprinceton.com" title="HackPrinceton">here</a>, including the list of <a href="http://hackprinceton.com/results/" title="HackPrinceton results">winners</a>!). Unfortunately, a commitment on Saturday precluded my full-fledged participation; however, I managed to pump out a small tool on Friday: a dynamic graphing (note: <strong>graphing</strong>, not graphical) interface for iOS.</p>
+
+<p>I’m not exactly sure how I’m going to use it, but the essence of the class is that it allows the client to create 3-D bar graphs (similar to Excel’s 3-D graphing modes) and feed the graphs data over time; as the data is received, the graphs resize themselves and adjust the axes as necessary.</p>
+
+<p>Each bar is drawn individually with the Core Graphics library: first, the bar is drawn as a rectangle and, subsequently, the darker components are drawn around the initial bar to create perspective. The most challenging aspect of the project was implementing an appropriate resizing technique: for example, if a bar grows, you can’t just increase its height—if you do, it’ll stretch out and, in particular, the pieces of the bar used to generate perspective (especially the dark bit at the very top) will get stretched out and distorted. Instead, I used dynamic resizing with cap insets, i.e., the following steps:</p>
+
+<ol>
+<li>Create the bar as a generic UIView</li>
+<li><p>Casted it to a UIImage with this code:</p>
+
+<p>UIGraphicsBeginImageContext(bar.bounds.size);
+[bar.layer renderInContext:UIGraphicsGetCurrentContext()];
+UIImage <em>viewImage = UIGraphicsGetImageFromCurrentImageContext();
+UIGraphicsEndImageContext();
+UIImage </em>barImage = [viewImage resizableImageWithCapInsets:UIEdgeInsetsMake(bar.backdrop<em>size + 5, 0, bar.backdrop</em>size + 5, 0)];</p></li>
+</ol>
+
+<p>Note above: you must ensure proper cap insets. In this case, the aim is to avoid stretching out the bar's perspective on the top and bottom; thus, we pad it with cap insets above and below—this enforces that only the middle section of the bar will be stretched out whenever the frame expands.</p>
+
+<p>Finally, after creating the correct UIImage, just put it into a UIImageView and add it as a subview. </p>
+
+<p>I’ve open-sourced the project <a href="https://github.com/crm416/iOS-Elements" title="My Github">here</a>; hopefully I’ll get around to adding line graphs and some other features—or, better yet, finding a use for the class within an application!</p>
+
+<p>Here's a demo:</p>
+
+<iframe width="400" height="300" src="http://www.youtube.com/embed/BG7eRU9of4Y?wmode=transparent&autohide=1&egm=0&hd=1&iv_load_policy=3&modestbranding=1&rel=0&showinfo=0&showsearch=0" frameborder="0" allowfullscreen></iframe>
+
+<p><p class="date">Posted on November 13, 2012.<p></p>
+
+        </section>
+      </div>
+    </div>
+
+    <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang=ml"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="/js/vendor/jquery-1.8.0.min.js"><\/script>')</script>
+    <script src="/js/all.js" type="text/javascript"></script>
+
+    <script>
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-3525624-10']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+  </body>
+  </html>

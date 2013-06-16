@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <meta name="description" content="Adam Bard is a freelance developer living in Victoria, BC, Canada. Adam specializes in dynamic web applications using the latest technologies and methods.">
+  <meta name="viewport" content="width=device-width">
+
+  <!-- Use title if it's in the page YAML frontmatter -->
+  <title>NP != NOT-P
+ | Charlie Marsh</title>
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Noticia+Text">
+  <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../static/css/styles.css" rel="stylesheet">
+  <link href="../static/css/skeleton.css" media="screen" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body class="index">
+  <div class="container">
+    <div id="sidebar" class="four columns">
+      <header>
+        <h1 style="font-size:50px"><a class="implicit" href="index.html">Charlie Marsh</a></h1>
+        <p><a class="implicit" target="_blank" href="../index.html">Home</a> &sdot; <a class="implicit" target="_blank" href="../about.html">About Me</a></p>
+        <h2>Programmer, student.</h2>
+        <p>I'm into functional programming,<br /> machine learning,<br /> and other fun stuff.<p>
+          <p>Find me on:</p>
+        </header>
+        <nav>
+          <ul class="posts-list">
+            <li>
+              <a class="implicit" target="_blank" href="http://www.github.com/crm416">GitHub</a>
+            </li>
+            <li>
+              <a class="implicit" target="_blank" href="http://stackoverflow.com/users/1450892/charles-marsh">StackOverflow</a>
+            </li>
+            <li>
+              <a class="implicit" target="_blank" href="http://www.quora.com/Charles-Marsh">Quora</a>
+            </li>
+            <li>
+              <a class="implicit" target="_blank" href="mailto:crmarsh@princeton.edu">Email</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <div class="four columns">&nbsp;
+      </div>
+      <div id="body" class="twelve columns">
+        <section class='thing row'>
+          <h1>NP != NOT-P</h1>
+
+<p>When I first started learning about algorithmic complexity and intractability, I remember struggling with the concept of P vs. NP (<a href="http://web.mit.edu/newsoffice/2009/explainer-pnp.html">a primer</a>). Part of this, I now realize, was due to the confusing acronyms that have been assigned to the problem: when I see P and learn that it refers to “problems solvable in polynomial time”, I immediately assume that NP must refer to <strong>non</strong>-“problems solvable in polynomial time,” i.e., problems for which a solution cannot be found in polynomial time. </p>
+
+<p>The thing is, that’s not actually the definition of NP: the N does not stand for <strong>not</strong>, it stands for <strong>non-deterministic</strong>. NP is not <strong>not</strong>-P; it’s <strong>non-deterministic</strong>-P.</p>
+
+<p>To be more specific: P is the set of problems whose solution can be <strong>found</strong> in polynomial time; NP is the set of problems whose solution can be <em>*verified *</em>in polynomial time.</p>
+
+<h2>SAT</h2>
+
+<p>Lets look at these definitions in action. Take SAT, which is defined as, “given a statement in conjunctive normal form, can you find a satisfying assignment?” For example, if I give you the statement (A || B) &amp;&amp; (!C), one solution would be (A = true), (B = true), (C = false), because this assignment satisfies the statement.</p>
+
+<p>Now, no polynomial-time algorithm is known for finding a solution to a SAT problem. Thus, as of now, it’s unsure whether or not SAT is in P (because we don’t know how to <strong>find</strong> a problem in polynomial time). However, SAT is definitely in NP (because we know how to <em>*verify *</em>a solution in polynomial time)—I can give you an assignment, and you can plug it into the statement to see if it’s satisfied.</p>
+
+<p>Hopefully that makes things a little clearer.</p>
+
+<h2>P = NP?</h2>
+
+<p>The P = NP? Problem is one of the Clay Mathematical Institute’s Millenium Prizes: if you solve it, you get $1,000,000 (so it must be important). The question boils down to this: are all problesm in NP also in P? I.e., for all problems whose solutions we can <strong>verify</strong> in polynomial time, does there exist a way to <strong>find</strong> a solution in polynomial time?</p>
+
+<p>What a lot of CS newcomers don’t see immediately is that P is _definitely _a subset of NP: any problem for which we can find a solution in polynomial time can definitely have its solution verified in polynomial time. Regardless of whether or not you think P = NP, this is true. The P = NP questions asks whether P is not just a subset of NP, but is infact <strong>the same set</strong> as NP: i.e., are all problems in NP also in P? </p>
+
+<p>If you think that P != NP, then a visual representation of your belief looks something like this:</p>
+
+<p><img src="http://media.tumblr.com/tumblr_mdujkin4yz1rzq63x.png" alt="" title="" /></p>
+
+<p>Conversely, for P = NP:</p>
+
+<p><img src="http://media.tumblr.com/tumblr_mdujkwenwP1rzq63x.png" alt="" title="" /> </p>
+
+<h2>So which one is it?</h2>
+
+<p>This is (almost indisputably) the most important open problem in computer science. If P = NP, then there would be countless problems which were once intractable, yet would now be deemed easily solvable—suddenly, all of these very, very, very difficult problems in NP that were seen as exponentially hard would be solvable in polynomial time.</p>
+
+<p>It’s kind of hard to believe that this could be possible. I think <a href="http://www.scottaaronson.com/blog/">Scott Aaronson</a> put it best when he said: </p>
+
+<blockquote>
+  <p>“If P = NP, then the world would be a profoundly different place than we usually assume it to be. There would be no special value in "creative leaps," no fundamental gap between solving a problem and recognizing the solution once it's found. Everyone who could appreciate a symphony would be Mozart; everyone who could follow a step-by-step argument would be Gauss.”</p>
+</blockquote>
+
+<p>In essence, P = NP would imply that solving a problem is as easy as verifying a solution.</p>
+
+<p><strong>Finding a solution to a Sodoku board would be as easy as checking that a solution is correct—that just doesn’t sound right, does it?</strong></p>
+
+<p>Right now, the industry leans heavily towards P != NP, but the problem is still open and no one has come up with a sufficient proof to claim the Millenium Prize. Personally, I tend to agree with Aaronson and the like—but I’d love to be shocked.</p>
+
+<p><p class="date">Posted on November 21, 2012.<p></p>
+
+        </section>
+      </div>
+    </div>
+
+    <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang=ml"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="/js/vendor/jquery-1.8.0.min.js"><\/script>')</script>
+    <script src="/js/all.js" type="text/javascript"></script>
+
+    <script>
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-3525624-10']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+  </body>
+  </html>

@@ -4,7 +4,6 @@ body {
     position:absolute;
     width:800px;
     top:0;
-    border-top:10px solid black;
     border-left:10px solid black;
     font-family:'Noticia Text',sans-serif;
     color:rgb(50,50,50);
