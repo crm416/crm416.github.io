@@ -11,6 +11,7 @@ I thought for a while that my poor scrolling performance was due to the cells th
 It’s very easy to add drop shadows to your views in iOS. What’s not so easy is making sure that they have good performance.
 
 Previously, I was adding a drop shadow with CALayer:
+
     disclosureIndicator.layer.shadowColor = [UIColor colorWithRed:0.2 green:0.2 blue:0.2 alpha:0.5].CGColor;
     disclosureIndicator.layer.shadowOffset = CGSizeMake(0, 1);
     disclosureIndicator.layer.shadowOpacity = 1.0;

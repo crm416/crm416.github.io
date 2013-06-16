@@ -64,18 +64,20 @@
 
 <p>It’s very easy to add drop shadows to your views in iOS. What’s not so easy is making sure that they have good performance.</p>
 
-<p>Previously, I was adding a drop shadow with CALayer:
-    disclosureIndicator.layer.shadowColor = [UIColor colorWithRed:0.2 green:0.2 blue:0.2 alpha:0.5].CGColor;
-    disclosureIndicator.layer.shadowOffset = CGSizeMake(0, 1);
-    disclosureIndicator.layer.shadowOpacity = 1.0;
-    disclosureIndicator.layer.shadowRadius = 1;
-    disclosureIndicator.layer.masksToBounds = NO;</p>
+<p>Previously, I was adding a drop shadow with CALayer:</p>
+
+<pre><code class="prettyprint lang-c">disclosureIndicator.layer.shadowColor = [UIColor colorWithRed:0.2 green:0.2 blue:0.2 alpha:0.5].CGColor;
+disclosureIndicator.layer.shadowOffset = CGSizeMake(0, 1);
+disclosureIndicator.layer.shadowOpacity = 1.0;
+disclosureIndicator.layer.shadowRadius = 1;
+disclosureIndicator.layer.masksToBounds = NO;
+</code></pre>
 
 <p>This looks great and requires minimal code but—as outlined <a href="http://markpospesel.wordpress.com/2012/04/03/on-the-importance-of-setting-shadowpath/">here</a>—there’s a huge expense associated the process, namely because you must render (offscreen) the exact shape of the view; i.e., your device will spend time figuring out if your view is circular, rectangular, hexagonal, etc.</p>
 
 <p>The fix: specify the shape of the shadow using a <strong>Bezier path</strong>. Just add this line of code (replacing withOvalInRect with the appropriate shape):</p>
 
-<pre><code class="prettyprint lang-ml">disclosureIndicator.layer.shadowPath = [UIBezierPath bezierPathWithOvalInRect:disclosureIndicator.layer.bounds].CGPath;
+<pre><code class="prettyprint lang-c">disclosureIndicator.layer.shadowPath = [UIBezierPath bezierPathWithOvalInRect:disclosureIndicator.layer.bounds].CGPath;
 </code></pre>
 
 <p>It’s a simple fix, but I can’t emphasize enough how drastically it improved my table’s scroll performance. And the reasoning behind it is simple enough: with the latter method, you save the machine having to calculate the shape of an object.</p>

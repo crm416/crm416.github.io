@@ -64,11 +64,12 @@
 <li>Create the bar as a generic UIView</li>
 <li><p>Casted it to a UIImage with this code:</p>
 
-<p>UIGraphicsBeginImageContext(bar.bounds.size);
+<pre><code class="prettyprint lang-c">UIGraphicsBeginImageContext(bar.bounds.size);
 [bar.layer renderInContext:UIGraphicsGetCurrentContext()];
-UIImage <em>viewImage = UIGraphicsGetImageFromCurrentImageContext();
+UIImage *viewImage = UIGraphicsGetImageFromCurrentImageContext();
 UIGraphicsEndImageContext();
-UIImage </em>barImage = [viewImage resizableImageWithCapInsets:UIEdgeInsetsMake(bar.backdrop<em>size + 5, 0, bar.backdrop</em>size + 5, 0)];</p></li>
+UIImage *barImage = [viewImage resizableImageWithCapInsets:UIEdgeInsetsMake(bar.backdrop_size + 5, 0, bar.backdrop_size + 5, 0)];
+</code></pre></li>
 </ol>
 
 <p>Note above: you must ensure proper cap insets. In this case, the aim is to avoid stretching out the bar's perspective on the top and bottom; thus, we pad it with cap insets above and below—this enforces that only the middle section of the bar will be stretched out whenever the frame expands.</p>
@@ -79,7 +80,7 @@ UIImage </em>barImage = [viewImage resizableImageWithCapInsets:UIEdgeInsetsMak
 
 <p>Here's a demo:</p>
 
-<iframe width="400" height="300" src="http://www.youtube.com/embed/BG7eRU9of4Y?wmode=transparent&autohide=1&egm=0&hd=1&iv_load_policy=3&modestbranding=1&rel=0&showinfo=0&showsearch=0" frameborder="0" allowfullscreen></iframe>
+<p><center><iframe width="400" height="300" src="http://www.youtube.com/embed/BG7eRU9of4Y?wmode=transparent&amp;autohide=1&amp;egm=0&amp;hd=1&amp;iv_load_policy=3&amp;modestbranding=1&amp;rel=0&amp;showinfo=0&amp;showsearch=0" frameborder="0" allowfullscreen></iframe></center></p>
 
 <p><p class="date">Posted on November 13, 2012.<p></p>
 
