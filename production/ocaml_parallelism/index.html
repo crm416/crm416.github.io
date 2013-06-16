@@ -51,7 +51,7 @@
       <div class="four columns">&nbsp;
       </div>
       <div id="body" class="twelve columns">
-        <section class='thing row'>
+        <section class='thing row' style="margin-top:-22px">
           <h1>True parallelism in OCaml</h1>
 
 <p>OCaml provides a nice <a href="http://caml.inria.fr/pub/docs/manual-ocaml-4.00/libref/Thread.html">library for multi-threading</a>. Problem is, according to my professor, under the hood, <strong>OCaml doesn't actually employ any parallelism at all!</strong> In truth, the compiler just interleaves instructions in a way that has the same computational effect as multi-threading, barring the 2x speed-up.</p>
