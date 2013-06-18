@@ -25,7 +25,7 @@
   <div class="container">
     <div id="sidebar" class="four columns" style="margin-left:-50px">
       <header>
-        <h1 style="font-size:50px"><a class="implicit" href="../index.html">Charlie Marsh</a></h1>
+        <h1 style="font-size:50px"><a class="blank" href="../index.html">Charlie Marsh</a></h1>
         <p><a class="implicit" target="_blank" href="../index.html">Home</a> &sdot; <a class="implicit" target="_blank" href="../about.html">About Me</a></p>
         <h2>Programmer, student.</h2>
         <p>I'm into functional programming,<br /> machine learning,<br /> and other fun stuff.<p>
@@ -64,7 +64,7 @@
 <li>After you've received your activation email, head to the <a href="https://console.aws.amazon.com/console/home?#">AWS management console</a>(this link requires you to be logged in to AWS). Click on the icon labelled 'EC2' (orange, below).</li>
 </ul>
 
-<p><img src="portal.png" alt="AWS Portal" align="center" width="700"></p>
+<p><center><img src="portal.png" alt="AWS Portal" align="center" width="700"></center></p>
 
 <blockquote>
   <p>For those interested, 'EC2' stands for <em>Elastic Cloud Compute</em>. The service itself allows users to rent out virtual computers on which they can boot up their own images. Basically, we're booting onto some random CPU in some Amazon-owned datacenter somewhere in America.</p>
@@ -74,7 +74,7 @@
 <li>On the next page, hit the big blue 'Launch Instance' button, as seen below.</li>
 </ul>
 
-<p><img src="launch_instance.png" alt="Launch instance" align="center"></p>
+<p><center><img src="launch_instance.png" alt="Launch instance" align="center"></center></p>
 
 <ul>
 <li>Next, we proceed with the 'Classic Wizard'. It's at this point that we have to select our disk image. Personally, I like using Ubuntu, so the rest of this tutorial will assume that you select <em>Ubuntu Server 13.04</em> (64-bit).</li>
@@ -82,13 +82,13 @@
 <li>Click through and launch your instance.</li>
 </ul>
 
-<p><img src="final.png" alt="Final configuration" align="center" width="700"></p>
+<p><center><img src="final.png" alt="Final configuration" align="center" width="700"></center></p>
 
 <ul>
 <li>Wait until your instance state goes from <em>pending</em> to <em>active</em>. For me, that took about 2-3 minutes. When you see something like this, you're golden.</li>
 </ul>
 
-<p><img src="ready.png" alt="Instance ready" align="center" width="700"></p>
+<p><center><img src="ready.png" alt="Instance ready" align="center" width="700"></center></p>
 
 <h2>Getting Onto Your Server (More Interesting Still)</h2>
 
@@ -100,7 +100,7 @@
 <li>Get your EC2 name (something of the form *.compute.amazonaws.com). It'll look like this:</li>
 </ul>
 
-<p><img src="instance_name.png" alt="Instance name" align="center"></p>
+<p><center><img src="instance_name.png" alt="Instance name" align="center"></center></p>
 
 <ul>
 <li><p>Now, we can go ahead and SSH in. Issue the <a href="http://stackoverflow.com/questions/6394762/ssh-access-to-amazon-ec2-instance#6407649">following command</a>:</p>
@@ -115,7 +115,7 @@
 <li>Success! (I hope...)</li>
 </ul>
 
-<p><img src="successful_login.png" alt="Successful login" align="center"></p>
+<p><center><img src="successful_login.png" alt="Successful login" align="center"></center></p>
 
 <h2>Configuring Your Account (Much More Interesting)</h2>
 
