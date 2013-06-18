@@ -49,7 +49,7 @@
 <p>Each bar is drawn individually with the Core Graphics library: first, the bar is drawn as a rectangle and, subsequently, the darker components are drawn around the initial bar to create perspective. The most challenging aspect of the project was implementing an appropriate resizing technique: for example, if a bar grows, you can’t just increase its height—if you do, it’ll stretch out and, in particular, the pieces of the bar used to generate perspective (especially the dark bit at the very top) will get stretched out and distorted. Instead, I used dynamic resizing with cap insets, i.e., the following steps:</p>
 
 <ol>
-<li>Create the bar as a generic UIView</li>
+<li>Create the bar as a generic UIView.</li>
 <li><p>Casted it to a UIImage with this code:</p>
 
 <pre><code class="prettyprint lang-c">UIGraphicsBeginImageContext(bar.bounds.size);
