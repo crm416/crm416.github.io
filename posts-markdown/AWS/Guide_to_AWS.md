@@ -1,6 +1,16 @@
 # The Idiotproof Guide to Setting Up Your Personal EC2 Instance
 
-## Signing Up With AWS
+I like SSHing into things. So I went ahead and setup my own AWS EC2 instance. Under the free tier, you can get good mileage out of an instance and using it to run whatever computation, etc., you might want.
+
+But it took me awhile to get the thing up and running with the workflow I wanted. Here are the things I wanted to have:
+1) Easy SSH access at the press of a button (i.e., without entering a password).
+2) Yet, safety and security from the attempted access of others.
+4) My own account on the instance (rather than, say, using *root*), with my own password.
+3) All the tools I use naturally on my local machine (wget, scp, grep, etc.).
+
+If that experience sounds good to you, keep reading. I've pulled together the assorted posts that I used to setup my EC2 instance and assembled **The Idiotproof Guide**.
+
+## Signing Up With AWS (The Boring Part)
 * Go to the [AWS signup page](https://portal.aws.amazon.com/gp/aws/developer/registration/index.html). Proceed with the signup process. Note that the information necessary to get up and running with an AWS account includes a valid credit card and a valid phone (used for verification). Have these at the ready.
 
 ## Launching Your Instance
@@ -26,8 +36,62 @@
 
 ## Getting Onto Your Server
 
-## Installing Essential Tools
+* Now that our instance is up and running, we need to make one more step before we can SSH in. That is, we need to set the file permissions of *your_keyname.pem*. To do that, use the [following command](http://stackoverflow.com/questions/1454629/aws-ssh-access-permission-denied-publickey-issue#1454647):
+        chmod 600 /path/to/your_keyname.pem
+* Now, we can go ahead and SSH in. Grab the EC2 instance name (something of the form \*.compute.amazonaws.com) and issue the [following command](http://stackoverflow.com/questions/6394762/ssh-access-to-amazon-ec2-instance#6407649):
 
-## Configuring Your Admin
+        ssh -i /path/to/your_keyname.pem ubuntu@your_instance.compute.amazonaws.com
+
+    In my case, for example, that looks like:
+        ssh -i ~/Desktop/my_key.pem ubuntu@ec2-54-218-37-172.us-west-2.compute.amazonaws.com
+* Success! (I hope...)
+
+**TODO[success]**
+
+## Configuring Your Account
+* Ideally, you want to [minimize the amount of time](http://www.howtogeek.com/124950/htg-explains-why-you-shouldnt-log-into-your-linux-system-as-root/) you're logged in as *root*, for security purposes. So next, we'll create our own account on the EC2 instance and set it up with the proper permissions. I'll be creating the account *charlie*.
+* First, we should setup password authentication so that when we add users, our instance is secure. [To do so](http://stackoverflow.com/questions/8339912/allowing-users-to-ssh-to-an-ec2-ubuntu-instance#8339975):
+        sudo vi /etc/ssh/sshd_config
+        // Change the line *PasswordAuthentication no* to *PasswordAuthentication yes*
+    Notice that we need to use *sudo*. 
+* Next, we'll add our user [as follows](http://www.edukatr.com/how-to-start-an-ec2-ubuntu-server-for-your-developer-in-6-minutes/):
+        sudo useradd -d /home/charlie -m charlie
+        sudo passwd charlie
+        // Enter password, twice
+* That's great! But *charlie* still isn't sudo. We want us to be sudo. If you don't know what that means: in short, a sudo user is able to access files reserved for admins. So to provide that, we type the following:
+        sudo visudo
+        // After line *root ALL=(ALL:ALL) ALL*, add *charlie ALL=(ALL:ALL) ALL*
+        // Note: if you don't want to be prompted to enter your password, then [use](http://www.ducea.com/2006/06/18/linux-tips-password-usage-in-sudo-passwd-nopasswd/) *charlie ALL = NOPASSWD:ALL* instead
+* At this point, **we can SSH in** as *charlie*! Lets give it a try. Before closing our current instance, lets reload the SSH file for good measure. Still as *ubuntu*, type:
+        sudo /etc/init.d/ssh restart
+        logout
+    Now back in the terminal, we can go ahead and login:
+        ssh charlie@ec2-54-218-37-172.us-west-2.compute.amazonaws.com
+        charlie@ec2-54-218-37-172.us-west-2.compute.amazonaws.com's password:
+* We're in! Last thing (for now): when I created my new user account, it didn't default to the bash shell. So I lacked tab-to-autocomplete, up-arrow-for-last-command, etc. To fix that:
+        sudo chsh -s /bin/bash
+    Logout and login. You'll know you're successful if:
+            $ // = prompt before
+            charlie@ip-172-31-23-65:~$ // = prompt after
+* We'll make this login flow much smoother in a bit, but next we'll focus on getting the tools you need to develop.
+
+## Installing Essential Tools
+* Thankfully, most of the things you need come pre-installed on Ubuntu; so this section is small. Try 'em out: ssh, scp, grep, wget, etc.
+* However, there were still some things I wanted: emacs (not sure why, but I still use it), git, make, etc. Obviously, preferences will vary from dev to dev. Here are some commands you might want to use, for your convenience:
+        sudo apt-get install emacs
+        sudo apt-get install git
+        sudo apt-get install make
+        ...
 
 ## Smoothing Out The Workflow
+* Now, I want to be able to SSH in with the click of a button. To do that, we'll: 1) remove the need for typing in your password when SSHing from your local machine, and 2) create an alias for the SSH command (and its arguments).
+* To avoid the need to enter our password, we take the following steps (on our local machine):
+    cd /Users/crmarsh/.ssh/
+    ssh-keygen
+    // Assume key is named 'id_rsa' (the default). Feel free to choose otherwise. No need for a passphrase.
+
+
+* To [create the alias](http://askubuntu.com/questions/17536/how-do-i-create-a-permanent-bash-alias#17538), go to your bash_profile (emacs ~/.bash_profile) or wherever you configure your local bash settings. Add the following two lines (with your arguments substituted):
+        export AWS='ec2-54-245-139-10.us-west-2.compute.amazonaws.com'
+        alias aws='ssh -i ~/Desktop/crm_key.pem crmarsh@$AWS'
+    Why both? Well, if you ever need the address of your instance (it comes in handy), you can just type 'echo $AWS'. And when you want to login, you can just type 'aws' on its own. Try it for yourself.
