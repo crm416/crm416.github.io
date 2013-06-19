@@ -80,7 +80,7 @@ As an example usage of how you would arrange your folder hierarchy in Eclipse:
 *   Create a COS 326 folder and place a1 inside of it.
 *   Launch eclipse and select COS 326 as your workspace. Type: “command+N –> OCaml –> OCaml Empty Makefile Project”, and all your stuff should be there with the correct perspective activated, as below.
 
-![image](http://media.tumblr.com/dcbeeca9a13838be696dcf7b7d04289f/tumblr_inline_mnklabyhIE1qz4rgp.png)
+<img src="http://media.tumblr.com/dcbeeca9a13838be696dcf7b7d04289f/tumblr_inline_mnklabyhIE1qz4rgp.png" class="center">
 
 One issue: the default behavior of Eclipse (with OcaIDE) is to try and re-build every time you save. This gives you error messages like this:
 

@@ -8,7 +8,7 @@ The difference between SDNs and traditional networks lies in the positioning and
 
 Here's a visual interpretation of an SDN:
 
-<center>![](http://media.tumblr.com/3acf47a5e76ec9ea710cd1abb36fdb4f/tumblr_inline_mis96lTFmK1qz4rgp.png)</center>
+<img class="center" src="http://media.tumblr.com/3acf47a5e76ec9ea710cd1abb36fdb4f/tumblr_inline_mis96lTFmK1qz4rgp.png">
 
 There are a ton of potential advantages to this type of networking. To give you a taste: say you’re trying to figure out how to get from New York to Miami. With traditional networks, you’re stuck on the ground in a swamp, asking nearby travellers if they can lend you some information. With SDNs, you’re looking down at the world from a high level, as if you have the world mapped out—finding a path is trivial.
 

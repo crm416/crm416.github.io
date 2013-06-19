@@ -4,26 +4,26 @@
         <title>Home | Charlie Marsh</title>
         <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans">
         <link href="static/css/bootstrap.min.css" rel="stylesheet">
+        <link href="static/css/skeleton.css" rel="stylesheet">
         <link href="static/css/styles.css" rel="stylesheet">
-        <script type="text/javascript">
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-            var _gaq = _gaq || [];
-            _gaq.push(['_setAccount', 'UA-3539301-14']);
-            _gaq.push(['_trackPageview']);
-
-            (function() {
-             var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-             ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-             var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-             })();
+          ga('create', 'UA-36552582-2', 'princeton.edu');
+          ga('send', 'pageview');
         </script>
+        <meta name="google-site-verification" content="iul3H5ZITxqslm5FziPEHDeZpOazVvzXxqpK_VHo_Gg"/>
     </head>
-    <body>
+    <body class="index">
+        <div class="container">
         <center><h1 style="font-size:100px">Charlie Marsh</h1></center>
         <center>
             <div style="margin-top:-50px;padding-bottom:20px">
                 <code style="font-size:18px">
-                    <span class="code_red">type</span> <span class="code_blue">blog</span> = Post <span class="code_red">of</span> (<span class="code_blue">string</span> <span class="code_red">*</span> <span class="code_blue">blog</span>) | Meta <span class="code_red">of</span> (<span class="code_blue">home</span> <span class="code_red">*</span> <span class="code_blue">about</span>)
+                    <span class="code_red">type</span> <span class="code_blue">blog</span> = Post <span class="code_red">of</span> (<span class="code_blue">string</span> <span class="code_red">*</span> <span class="code_blue">blog</span>) | Meta <span class="code_red">of</span> (<a class="implicit" href="/~crmarsh/"><span class="code_blue">home</span></a> <span class="code_red">*</span> <a class="implicit" href="about.html"><span class="code_blue">about</span></a>)
                 </code>
             </div>
         </center>
@@ -34,7 +34,7 @@
                 &sdot;
                 <a class="implicit" target="_blank" href="http://stackoverflow.com/users/1450892/charles-marsh">StackOverflow</a>
                 &sdot;
-                <a class="implicit" target="_blank" href="about.html">About Me</a>
+                <a class="implicit" href="about.html">About Me</a>
         </center>
         <hr />
         <h2>
@@ -47,13 +47,13 @@
 
             <li><a class="blank" href="https://github.com/crm416/quizzler"><span class="code_red">|</span> <span class="code_orange">Quizzler</span> <span class="code_red">-></span> </a><a class="implicit" href="https://github.com/crm416/quizzler">An automatic quiz-question generator (in Python)</a></li>
 
-            <li><a class="blank" href="wikipedia/index.html"><span class="code_red">|</span> <span class="code_orange">wikipedia.py</span> <span class="code_red">-></span> </a><a class="implicit" href="wikipedia/index.html">A Wikipedia API for humans (in Python)</a></li>
+            <li><a class="blank" href="wikipedia/"><span class="code_red">|</span> <span class="code_orange">wikipedia.py</span> <span class="code_red">-></span> </a><a class="implicit" href="wikipedia/">A Wikipedia API for humans (in Python)</a></li>
 
             <li><a class="blank" href="https://itunes.apple.com/us/app/everycollegecal/id554462715?mt=8"><span class="code_red">|</span> <span class="code_orange">EveryCollegeCal</span> <span class="code_red">-></span> </a><a class="implicit" href="https://itunes.apple.com/us/app/everycollegecal/id554462715?mt=8">An iPhone app for tracking undergraduate college calendars</a></li>
 
-            <li><a class="blank" href="ocaml_parallelism/index.html"><span class="code_red">|</span> <span class="code_orange">OCaml Threads</span> <span class="code_red">-></span> </a><a class="implicit" href="ocaml_parallelism/index.html">A threading module for exploiting parallelism in OCaml</a></li>
+            <li><a class="blank" href="ocaml_parallelism/"><span class="code_red">|</span> <span class="code_orange">OCaml Threads</span> <span class="code_red">-></span> </a><a class="implicit" href="ocaml_parallelism/">A threading module for exploiting parallelism in OCaml</a></li>
 
-            <li><a class="blank" href="ios_graphing/index.html"><span class="code_red">|</span> <span class="code_orange">Grapher</span> <span class="code_red">-></span> </a><a class="implicit" href="ios_graphing/index.html">An interface for creating dynamic graphs on iOS</a></li>
+            <li><a class="blank" href="ios_graphing/"><span class="code_red">|</span> <span class="code_orange">Grapher</span> <span class="code_red">-></span> </a><a class="implicit" href="ios_graphing/">An interface for creating dynamic graphs on iOS</a></li>
         </ul>
         <br/>
         <h2>
@@ -61,20 +61,21 @@
         </h2>
         <br /><br />
         <ul class="posts-list" style="margin-top:-50px">
-            <li><a class="implicit" href="intro_to_ocaml/index.html">An Introduction to OCaml</a></li>
-            <li><a class="implicit" href="intro_to_sdn/index.html">An Introduction to Software Defined Networking (SDN)</a></li>
-            <li><a class="implicit" href="prefix_vs_ternary/index.html">Prefix vs. Ternary Rules in SDN</a></li>
-            <li><a class="implicit" href="ocaml_dev_environment/index.html">Setting Up an OCaml Development Environment on Mac OS X</a></li>
-            <li><a class="implicit" href="streams/index.html">A Primer on Streams and Lazy Computation</a></li>
-            <li><a class="implicit" href="binomial_heaps/index.html">Binomial Heaps: Merge Better</a></li>
-            <li><a class="implicit" href="ios_performance/index.html">Performance Improvements in iOS</a></li>
-            <li><a class="implicit" href="programming_languages/index.html">Programming Languages and the Solutions they Suggest</a></li>
-            <li><a class="implicit" href="np_vs_not_p/index.html">NP != NOT P</a></li>
+            <li><a class="implicit" href="intro_to_ocaml/">An Introduction to OCaml</a></li>
+            <li><a class="implicit" href="intro_to_sdn/">An Introduction to Software Defined Networking (SDN)</a></li>
+            <li><a class="implicit" href="prefix_vs_ternary/">Prefix vs. Ternary Rules in SDN</a></li>
+            <li><a class="implicit" href="ocaml_dev_environment/">Setting Up an OCaml Development Environment on Mac OS X</a></li>
+            <li><a class="implicit" href="streams/">A Primer on Streams and Lazy Computation</a></li>
+            <li><a class="implicit" href="binomial_heaps/">Binomial Heaps: Merge Better</a></li>
+            <li><a class="implicit" href="ios_performance/">Performance Improvements in iOS</a></li>
+            <li><a class="implicit" href="programming_languages/">Programming Languages and the Solutions they Suggest</a></li>
+            <li><a class="implicit" href="np_vs_not_p/">NP != NOT P</a></li>
         </ul>
         <br /><br />
         <hr />
         <center>
                 &copy; 2013 Charles Marsh
         </center>
+    </div>
     </body>
 </html>

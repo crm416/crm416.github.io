@@ -6,7 +6,7 @@ The other day I was introduced to a really cool data structure: the binomial hea
 
 This table sums it up nicely:
 
-![](http://media.tumblr.com/tumblr_mcxor7lB9f1rzq63x.png)
+<img class="center" src="http://media.tumblr.com/tumblr_mcxor7lB9f1rzq63x.png">
 
 In short: **with a binomial heap, you earn faster merging, but give up the O(1) find-min of a binary heap**.
 
@@ -22,7 +22,7 @@ Thus:
 
 Here's a visual representation:
 
-![](http://media.tumblr.com/tumblr_mcxot8jU371rzq63x.png)
+<img class="center" src="http://media.tumblr.com/tumblr_mcxot8jU371rzq63x.png">
 
 The great thing about a binomial tree is that we can merge two binomial trees of the same degree in constant time to produce a binomial tree of degree one higher! This is relatively straightforward when viewed in the context of the list above: if we have two trees of degree 2, we can just connect them and call it a tree of degree 3.
 

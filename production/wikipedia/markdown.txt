@@ -38,7 +38,7 @@ Where *cleanWikiSection* is reponsible for removing extraneous information from 
 
 In some cases, *wikipedia.py* also uses BeautifulSoup to explore the target page. For example, say we want to extract information from the table below (again, from Michael Jordan's Wikipedia page.)
 
-<center><img src="table.png" alt="Michael Jordan" align="center"></center>
+<img src="table.png" alt="Michael Jordan" class="center">
 
 We do some fairly low-level searching in the table to check every row and extract information based on the row's content formatting. At this point, *wikipedia.py* can extract rows with one-to-one (e.g., "Nationality: American") and one-to-many (e.g., "Career highlights and awards: 6x NBA Champion...") formats.
 

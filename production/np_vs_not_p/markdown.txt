@@ -22,11 +22,11 @@ What a lot of CS newcomers don’t see immediately is that P is _definitely _a s
 
 If you think that P != NP, then a visual representation of your belief looks something like this:
 
-![](http://media.tumblr.com/tumblr_mdujkin4yz1rzq63x.png)
+<img class="center" src="http://media.tumblr.com/tumblr_mdujkin4yz1rzq63x.png">
 
 Conversely, for P = NP:
 
-![](http://media.tumblr.com/tumblr_mdujkwenwP1rzq63x.png) 
+<img class="center" src="http://media.tumblr.com/tumblr_mdujkwenwP1rzq63x.png">
 
 ## So which one is it?
 
