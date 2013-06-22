@@ -14,7 +14,7 @@ If that experience sounds good to you, keep reading. I've pulled together the as
 * Go to the [AWS signup page](https://portal.aws.amazon.com/gp/aws/developer/registration/index.html). Proceed with the signup process. Note that the information necessary to get up and running with an AWS account includes a valid **credit card** and a **valid phone** (used for verification). Have these at the ready.
 
 ## Launching Your Instance (Slightly More Interesting)
-* After you've received your activation email, head to the [AWS management console](https://console.aws.amazon.com/console/home?#)(this link requires you to be logged in to AWS). Click on the icon labelled 'EC2' (orange, below).
+* After you've received your activation email, head to the [AWS management console](https://console.aws.amazon.com/console/home?#) (this link requires you to be logged in to AWS). Click on the icon labelled 'EC2' (orange, below).
 
 <img src="portal.png" alt="AWS Portal" class="center" width="700">
 
@@ -66,7 +66,7 @@ If that experience sounds good to you, keep reading. I've pulled together the as
         sudo useradd -d /home/charlie -m charlie
         sudo passwd charlie
         # Enter password, twice
-* That's great! But *charlie* still isn't sudo. We want us to be sudo. If you don't know what that means: in short, a sudo user is able to access files reserved for admins. So to provide that, we type the following:
+* That's great! But *charlie* still isn't sudo. If you don't know what that means: in short, a sudo user is able to access files reserved for admins. We want our account to have these admin privileges. So to provide that, we type the following (still on *ubuntu*):
 
         sudo visudo
         # After line "root ALL=(ALL:ALL) ALL", add "charlie ALL=(ALL:ALL) ALL"
@@ -127,3 +127,5 @@ If that experience sounds good to you, keep reading. I've pulled together the as
         sudo apt-get install git
         sudo apt-get install make
         ...
+
+<p class="date">Posted on June 19, 2013.</p>

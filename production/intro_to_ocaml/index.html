@@ -12,14 +12,21 @@
   <meta name="viewport" content="width=device-width">
 
   <!-- Use title if it's in the page YAML frontmatter -->
-  <title>An Introduction to OCaml
+  <title>First Thoughts on OCaml
  | Charlie Marsh</title>
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans">
-  <link href="../static/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Source+Code+Pro">
   <link href="../static/css/base.css" rel="stylesheet" type="text/css" />
   <link href="../static/css/styles.css" rel="stylesheet" type="text/css" />
   <link href="../static/css/layout.css" rel="stylesheet" type="text/css" />
   <link href="../static/css/skeleton.css" media="screen" rel="stylesheet" type="text/css" />
+  <style>
+    .darken {
+    }
+    .darken:hover {
+      opacity:.6;
+    }
+  </style>
   <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -42,16 +49,18 @@
         <p>I'm into functional programming,<br /> machine learning,<br /> and other fun stuff.<p>
           <p>Find me on:</p>
         </header>
-        <a href="mailto:crmarsh@princeton.edu"><img class="blank" src="../static/img/email.png"></a>
-        <a href="http://www.github.com/crm416"><img class="blank" src="../static/img/github.png"></a>
-        <a href="http://stackoverflow.com/users/1450892/charles-marsh"><img class="blank" src="../static/img/stackoverflow.png"></a>
-        <a href="uk.linkedin.com/in/marshcharles"><img class="blank" src="../static/img/linkedin.png"></a>
+        <a class="darken" href="mailto:crmarsh@princeton.edu"><img class="blank" src="../static/img/email.png"></a>
+        <a class="darken" href="http://www.github.com/crm416"><img class="blank" src="../static/img/github.png"></a>
+        <a class="darken" href="http://stackoverflow.com/users/1450892/charles-marsh"><img class="blank" src="../static/img/stackoverflow.png"></a>
+        <a class="darken" href="uk.linkedin.com/in/marshcharles"><img class="blank" src="../static/img/linkedin.png"></a>
       </div>
       <div class="four columns">&nbsp;
       </div>
       <div id="body" class="twelve columns">
         <section class='thing row' style="margin-top:-22px">
-          <h1>An Introduction to OCaml</h1>
+          <h1>First Thoughts on OCaml</h1>
+
+<p style="color:rgb(130,130,130)">N.B.: I wrote this post a few weeks after first using OCaml. Before that, 90% of my programing had been in Java. Looking back on these notes, perhaps a more accurate title would be "First Thoughts on a Functional Language After Only Knowing OOP", or something along those lines. But for posterity, I'll leave it as-is.</p>
 
 <p>I’ve been learning to program in OCaml for one of my courses this semester (<a href="http://www.cs.princeton.edu/~dpw/courses/cos326-12/info.php" title="COS 326">COS 326: Functional Programming</a>) and I can't remember the last time I was this excited about anything CS-related. Learning to program functionally is like learning to program all over again.</p>
 
@@ -59,7 +68,21 @@
 
 <h2>Type definitions</h2>
 
-<p>OCaml makes unbelievably easy to define new types. Take, for example, the construction of a module to solve SAT problems using statements in conjunctive normal form. In Java, you would need to create a class ‘clause’, which has a private class ‘literal’, which might have a private class ‘symbol’—oh, and then you’d need to create a class CNF which has, as one of its fields, an array of clauses. I can see this boiling down to roughly 30 lines of code just for outlining your type definitions. In OCaml, we can cover all of this ground with:</p>
+<p>OCaml makes it unbelievably easy to define new types. As a simple example, say we're making a phone book and we need to define a type for entries in said book. For each entry, we'd want a <em>first name</em>, a <em>last name</em>, and a <em>phone number</em>. For demonstration's sake, lets say we also want an <em>age</em>. All of this would be pretty straightforward in OCaml:</p>
+
+<pre><code class="prettyprint lang-ml">type first_name = string
+type last_name = string
+type full_name = first_name * last_name
+type age = int
+type phone_number = string
+type entry = full_name * age * phone_number
+</code></pre>
+
+<p>The '*' operator allosw us to create tuples. So 'int * int' indicates a tuple of two integers. Also note that we can use our types when defining types later on (e.g., 'full<em>name = first</em>name * last_name').</p>
+
+<p>Most of what’s happening here can be read out-loud: a 'first_name' is just a string; a 'name' is just a first name and a last name; an 'age' is just an integer; and a phone book entry just brings these things together. Brilliant.</p>
+
+<p>As an example from one of my <a href="https://github.com/crm416/OCaml-SAT-Solvers" title="SAT Solvers">recent projects</a>, what about the construction of a module to solve <a href="http://en.wikipedia.org/wiki/Boolean_satisfiability_problem">SAT problems</a> using statements in <a href="http://en.wikipedia.org/wiki/Conjunctive_normal_form">conjunctive normal form</a>. In Java, you would need to create a class ‘clause’, which has a private class ‘literal’, which might have a private class ‘symbol’—oh, and then you’d need to create a class CNF which has, as one of its fields, an array of clauses. I can see this boiling down to roughly 30 lines of code just for outlining your type definitions. In OCaml, we can cover all of this ground with:</p>
 
 <pre><code class="prettyprint lang-ml">type symbol = string
 type literal = symbol * bool
@@ -67,14 +90,14 @@ type clause = literal list
 type cnf = clause list
 </code></pre>
 
-<p>Most of what’s happening here can be read out-loud: a ‘symbol’ is just a string; a literal is just a ‘symbol’ and a Boolean (i.e., negated or not); a clause is just a list of literals; and a CNF is just a list of clauses. Brilliant. (See <a href="https://github.com/crm416/OCaml-SAT-Solvers" title="SAT Solvers">here</a> for some work I did on OCaml SAT solvers.)</p>
+<p>Again: easy to follow.</p>
 
-<p>Better yet, <strong>we can define a binary tree in one line</strong>:</p>
+<p>Better yet, we can define types recursively. This lets us <strong>can define a binary tree in one line of code</strong>:</p>
 
 <pre><code class="prettyprint lang-ml">type tree = Leaf | Node of int *  tree * tree
 </code></pre>
 
-<p>This is saying that a tree is either a leaf, or a node with some value and two subtrees. That is the entire definition.</p>
+<p>This is saying that a tree is either a leaf, or a node with some value and two subtrees. That is the entire definition. Again, brilliant.</p>
 
 <h2>Generics</h2>
 

@@ -15,11 +15,18 @@
   <title>The Idiot-Proof Guide to Setting Up Your Personal EC2 Instance
  | Charlie Marsh</title>
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans">
-  <link href="../static/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Source+Code+Pro">
   <link href="../static/css/base.css" rel="stylesheet" type="text/css" />
   <link href="../static/css/styles.css" rel="stylesheet" type="text/css" />
   <link href="../static/css/layout.css" rel="stylesheet" type="text/css" />
   <link href="../static/css/skeleton.css" media="screen" rel="stylesheet" type="text/css" />
+  <style>
+    .darken {
+    }
+    .darken:hover {
+      opacity:.6;
+    }
+  </style>
   <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -42,10 +49,10 @@
         <p>I'm into functional programming,<br /> machine learning,<br /> and other fun stuff.<p>
           <p>Find me on:</p>
         </header>
-        <a href="mailto:crmarsh@princeton.edu"><img class="blank" src="../static/img/email.png"></a>
-        <a href="http://www.github.com/crm416"><img class="blank" src="../static/img/github.png"></a>
-        <a href="http://stackoverflow.com/users/1450892/charles-marsh"><img class="blank" src="../static/img/stackoverflow.png"></a>
-        <a href="uk.linkedin.com/in/marshcharles"><img class="blank" src="../static/img/linkedin.png"></a>
+        <a class="darken" href="mailto:crmarsh@princeton.edu"><img class="blank" src="../static/img/email.png"></a>
+        <a class="darken" href="http://www.github.com/crm416"><img class="blank" src="../static/img/github.png"></a>
+        <a class="darken" href="http://stackoverflow.com/users/1450892/charles-marsh"><img class="blank" src="../static/img/stackoverflow.png"></a>
+        <a class="darken" href="uk.linkedin.com/in/marshcharles"><img class="blank" src="../static/img/linkedin.png"></a>
       </div>
       <div class="four columns">&nbsp;
       </div>
@@ -72,7 +79,7 @@
 <h2>Launching Your Instance (Slightly More Interesting)</h2>
 
 <ul>
-<li>After you've received your activation email, head to the <a href="https://console.aws.amazon.com/console/home?#">AWS management console</a>(this link requires you to be logged in to AWS). Click on the icon labelled 'EC2' (orange, below).</li>
+<li>After you've received your activation email, head to the <a href="https://console.aws.amazon.com/console/home?#">AWS management console</a> (this link requires you to be logged in to AWS). Click on the icon labelled 'EC2' (orange, below).</li>
 </ul>
 
 <p><img src="portal.png" alt="AWS Portal" class="center" width="700"></p>
@@ -145,7 +152,7 @@
 sudo passwd charlie
 # Enter password, twice
 </code></pre></li>
-<li><p>That's great! But <em>charlie</em> still isn't sudo. We want us to be sudo. If you don't know what that means: in short, a sudo user is able to access files reserved for admins. So to provide that, we type the following:</p>
+<li><p>That's great! But <em>charlie</em> still isn't sudo. If you don't know what that means: in short, a sudo user is able to access files reserved for admins. We want our account to have these admin privileges. So to provide that, we type the following (still on <em>ubuntu</em>):</p>
 
 <pre><code class="prettyprint lang-bsh">sudo visudo
 # After line "root ALL=(ALL:ALL) ALL", add "charlie ALL=(ALL:ALL) ALL"
@@ -229,6 +236,8 @@ sudo apt-get install make
 ...
 </code></pre></li>
 </ul>
+
+<p class="date">Posted on June 19, 2013.</p>
 
         </section>
       </div>

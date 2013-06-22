@@ -10,9 +10,12 @@
     }
     table td {
       vertical-align:top;
-      padding:2px;
     }
-
+  }
+  .darken {
+  }
+  .darken:hover {
+    opacity:.6;
   }
   </style>
 
@@ -26,7 +29,7 @@
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>About Me | Charlie Marsh</title>
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans">
-  <link href="static/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Source+Code+Pro">
   <link href="static/css/base.css" rel="stylesheet" type="text/css" />
   <link href="static/css/styles.css" rel="stylesheet" type="text/css" />
   <link href="static/css/layout.css" rel="stylesheet" type="text/css" />
@@ -53,10 +56,10 @@
         <p>I'm into functional programming,<br /> machine learning,<br /> and other fun stuff.<p>
           <p>Find me on:</p>
         </header>
-        <a href="mailto:crmarsh@princeton.edu"><img class="blank" src="static/img/email.png"></a>
-        <a href="http://www.github.com/crm416"><img class="blank" src="static/img/github.png"></a>
-        <a href="http://stackoverflow.com/users/1450892/charles-marsh"><img class="blank" src="static/img/stackoverflow.png"></a>
-        <a href="uk.linkedin.com/in/marshcharles"><img class="blank" src="static/img/linkedin.png"></a>
+        <a class="darken" href="mailto:crmarsh@princeton.edu"><img class="blank" src="static/img/email.png"></a>
+        <a class="darken" href="http://www.github.com/crm416"><img class="blank" src="static/img/github.png"></a>
+        <a class="darken" href="http://stackoverflow.com/users/1450892/charles-marsh"><img class="blank" src="static/img/stackoverflow.png"></a>
+        <a class="darken" href="uk.linkedin.com/in/marshcharles"><img class="blank" src="static/img/linkedin.png"></a>
       </div>
       <div class="four columns">&nbsp;
       </div>
@@ -64,10 +67,10 @@
       </div>
       <div id="body" class="twelve columns">
         <h2>About Me</h2>
-        I'm a Junior at Princeton University majoring in Computer Science. I'm also a huge nerd. I love CS, both in theory and application; you can usually find me with my head stuck in a research paper.<br /> More personally, I lived in London, England for the 10 years preceeding my time at university. That means I'm both British and American; but no, I do not have a British accent.
+        I'm a Junior at Princeton University majoring in Computer Science. I'm also a huge nerd. I love CS, both in theory and application; you can usually find me with my head stuck in a research paper.<br /> More personally, I've lived in London, England for the last 13 years (although I've mostly been at university in New Jersey for the last two). That means I'm both British and American; but no, I do not have a British accent.
         <h2>Where I've Worked</h2>
         <section class='thing row'>
-          <table >
+          <table style="border-collapse:separate; border-spacing:10px">
           <tr>
             <td rowspan="2" align="center"> <img src="static/img/Microsoft_logo.png" alt="Microsoft" align="middle"></td>
             <td style="font-weight:bold">Microsoft</td>

@@ -1,4 +1,6 @@
-# An Introduction to OCaml
+# First Thoughts on OCaml
+
+<p style="color:rgb(130,130,130)">N.B.: I wrote this post a few weeks after first using OCaml. Before that, 90% of my programing had been in Java. Looking back on these notes, perhaps a more accurate title would be "First Thoughts on a Functional Language After Only Knowing OOP", or something along those lines. But for posterity, I'll leave it as-is.</p>
 
 I’ve been learning to program in OCaml for one of my courses this semester ([COS 326: Functional Programming](http://www.cs.princeton.edu/~dpw/courses/cos326-12/info.php "COS 326")) and I can't remember the last time I was this excited about anything CS-related. Learning to program functionally is like learning to program all over again.
 
@@ -6,20 +8,33 @@ In this post, I’m going to touch on some of the features that make OCaml beaut
 
 ## Type definitions
 
-OCaml makes unbelievably easy to define new types. Take, for example, the construction of a module to solve SAT problems using statements in conjunctive normal form. In Java, you would need to create a class ‘clause’, which has a private class ‘literal’, which might have a private class ‘symbol’—oh, and then you’d need to create a class CNF which has, as one of its fields, an array of clauses. I can see this boiling down to roughly 30 lines of code just for outlining your type definitions. In OCaml, we can cover all of this ground with:
+OCaml makes it unbelievably easy to define new types. As a simple example, say we're making a phone book and we need to define a type for entries in said book. For each entry, we'd want a *first name*, a *last name*, and a *phone number*. For demonstration's sake, lets say we also want an *age*. All of this would be pretty straightforward in OCaml:
+
+    type first_name = string
+    type last_name = string
+    type full_name = first_name * last_name
+    type age = int
+    type phone_number = string
+    type entry = full_name * age * phone_number
+
+The '\*' operator allosw us to create tuples. So 'int \* int' indicates a tuple of two integers. Also note that we can use our types when defining types later on (e.g., 'full_name = first_name \* last_name').
+
+Most of what’s happening here can be read out-loud: a 'first_name' is just a string; a 'name' is just a first name and a last name; an 'age' is just an integer; and a phone book entry just brings these things together. Brilliant.
+
+As an example from one of my [recent projects](https://github.com/crm416/OCaml-SAT-Solvers "SAT Solvers"), what about the construction of a module to solve [SAT problems](http://en.wikipedia.org/wiki/Boolean_satisfiability_problem) using statements in [conjunctive normal form](http://en.wikipedia.org/wiki/Conjunctive_normal_form). In Java, you would need to create a class ‘clause’, which has a private class ‘literal’, which might have a private class ‘symbol’—oh, and then you’d need to create a class CNF which has, as one of its fields, an array of clauses. I can see this boiling down to roughly 30 lines of code just for outlining your type definitions. In OCaml, we can cover all of this ground with:
 
     type symbol = string
     type literal = symbol * bool
     type clause = literal list
     type cnf = clause list
 
-Most of what’s happening here can be read out-loud: a ‘symbol’ is just a string; a literal is just a ‘symbol’ and a Boolean (i.e., negated or not); a clause is just a list of literals; and a CNF is just a list of clauses. Brilliant. (See [here](https://github.com/crm416/OCaml-SAT-Solvers "SAT Solvers") for some work I did on OCaml SAT solvers.)
+Again: easy to follow.
 
-Better yet, **we can define a binary tree in one line**:
+Better yet, we can define types recursively. This lets us **can define a binary tree in one line of code**:
 
     type tree = Leaf | Node of int *  tree * tree
 
-This is saying that a tree is either a leaf, or a node with some value and two subtrees. That is the entire definition.
+This is saying that a tree is either a leaf, or a node with some value and two subtrees. That is the entire definition. Again, brilliant.
 
 ## Generics
 
