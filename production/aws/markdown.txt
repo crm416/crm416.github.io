@@ -3,10 +3,11 @@
 I like SSHing into things. So I went ahead and setup my own AWS EC2 instance. Under the free tier, you can get good mileage out of an instance and use it to do whatever you please.
 
 But it took me awhile to get the thing up and running properly. Here are the things I wanted to have:
-1) Easy SSH access at the press of a button (i.e., without entering a password).
-2) Yet, safety and security from the attempted access of others (i.e., using RSA keys).
-4) My own account on the instance (rather than, say, using *root*).
-3) All the tools I use naturally on my local machine.
+
+1. Easy SSH access at the press of a button (i.e., without entering a password).
+2. Yet, safety and security from the attempted access of others (i.e., using RSA keys).
+3. My own account on the instance (rather than, say, using *root*).
+4. All the tools I use naturally on my local machine.
 
 If that experience sounds good to you, keep reading. I've pulled together the assorted posts that I used to setup my EC2 instance and assembled **The Idiot-Proof Guide**.
 
