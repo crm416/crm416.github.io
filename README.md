@@ -1,6 +1,6 @@
 # type blog
 
-Personal blog of Charlie Marsh. Deployed @ [princeton.edu/~crmarsh](princeton.edu/~crmarsh).
+Personal blog of Charlie Marsh. Deployed @ [princeton.edu/~crmarsh](http://www.princeton.edu/~crmarsh).
 
 # Technologies I've Used
 
