@@ -1,9 +1,11 @@
 import subprocess
+import yaml
+
+LANG_INDEX = "scripts/lang-index.yml"
 
 script = """
 for f in */*/index.html
 do
-    echo $f
     perl -pi -e 's/\<code\>/\<code\ class="prettyprint lang-%s"\>/' $f
 done
 """
@@ -14,14 +16,14 @@ perl -pi -e 's/\<code\ class="prettyprint lang-%s"\>/\<code\ class="prettyprint 
 
 
 def main():
-    f = "scripts/lang-index"
-    text = open(f, "r").read()
-    info = text.split('\n')
+    f = open(LANG_INDEX)
+    langIndex = yaml.load(f)
+    f.close()
+
     # handle default processing
-    default = info[0].split(', ')[1]
+    default = langIndex['default']
     subprocess.call(['sh', '-c', script % default])
-    for e in info[1:]:
-        t, l = e.split(', ')[0], e.split(', ')[1]
-        subprocess.call(['sh', '-c', subscript % (default, l, t)])
+    for e in langIndex['other']:
+        subprocess.call(['sh', '-c', subscript % (default, e['lang'], e['filename'])])
 
 main()
