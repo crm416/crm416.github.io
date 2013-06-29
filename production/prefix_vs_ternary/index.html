@@ -47,7 +47,7 @@
         </div>
         <div class="span2 visible-phone">
           <div>
-            <p style="font-size:25px"><a class="blank" href="/~crmarsh/">Charlie Marsh</a>  <div style="margin-top:-10px"><code class="custom"><span class="code_red">type</span> <span class="code_blue">blog</span></code></div></p>
+            <p style="font-size:25px"><a class="blank" href="/~crmarsh/">Charlie Marsh</a>  <div style="margin-top:-10px"><code class="prettyprint" class="custom"><span class="code_red">type</span> <span class="code_blue">blog</span></code></div></p>
           </div>
           <hr />
         </div>
@@ -56,7 +56,7 @@
 
 <p>As part of my independent work (described in my last post), I’ve been looking at the different types of pattern matching that’s permitted in flow tables for network switches. If you recall, the flow tables operate by matching packet fields on different patterns and performing the action associated with the matching pattern. The actions typically look like: DROP, FORWARD to port (n), etc. Here’s a sample table:</p>
 
-<pre><code class="prettyprint lang-ml">[01**] -&gt; DROP
+<pre><code class="prettyprint">[01**] -&gt; DROP
 [001*] -&gt; FWD
 [0***] -&gt; DROP
 [1***] -&gt; FWD

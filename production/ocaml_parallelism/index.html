@@ -47,7 +47,7 @@
         </div>
         <div class="span2 visible-phone">
           <div>
-            <p style="font-size:25px"><a class="blank" href="/~crmarsh/">Charlie Marsh</a>  <div style="margin-top:-10px"><code class="custom"><span class="code_red">type</span> <span class="code_blue">blog</span></code></div></p>
+            <p style="font-size:25px"><a class="blank" href="/~crmarsh/">Charlie Marsh</a>  <div style="margin-top:-10px"><code class="prettyprint" class="custom"><span class="code_red">type</span> <span class="code_blue">blog</span></code></div></p>
           </div>
           <hr />
         </div>
@@ -66,7 +66,9 @@
 
 <p>One difficulty that I encountered along the way was preserving type-safety. To transfer information from the forked thread to the main thread (i.e., to return the result of the Future's computation), I use the <a href="http://caml.inria.fr/pub/docs/manual-ocaml/libref/Marshal.html">Marshal module</a>, which allows you to encode arbitrary data structures as sequences of bytes. However, the documentation includes the following, essential warning: <strong>Warning: marshaling is currently not type-safe</strong>. In reality, if you're trying to Marshall some expression <em>e</em> of type <em>'a</em>, you need to somehow pass type <em>'a</em> to the output function. That is, the Marshal module needs to know the output type of the data it's trying to decode. To handle that, I had to strictly enforce the type of the output computation as follows:</p>
 
-<pre><code class="prettyprint lang-ml">let future (f:'a -&gt; 'b) (x:'a) : 'b future =
+<!--?prettify lang=ml?-->
+
+<pre><code>let future (f:'a -&gt; 'b) (x:'a) : 'b future =
 ...
     let result : 'b = Marshal.from_channel (in_channel_of_descr fd_in) in
     ...

@@ -47,7 +47,7 @@
         </div>
         <div class="span2 visible-phone">
           <div>
-            <p style="font-size:25px"><a class="blank" href="/~crmarsh/">Charlie Marsh</a>  <div style="margin-top:-10px"><code class="custom"><span class="code_red">type</span> <span class="code_blue">blog</span></code></div></p>
+            <p style="font-size:25px"><a class="blank" href="/~crmarsh/">Charlie Marsh</a>  <div style="margin-top:-10px"><code class="prettyprint" class="custom"><span class="code_red">type</span> <span class="code_blue">blog</span></code></div></p>
           </div>
           <hr />
         </div>
@@ -80,7 +80,7 @@
 <li>If you’re lucky, one of the methods listed on the <a href="http://opam.ocamlpro.com/doc/Quick_Install.html">OPAM site</a> may work for you. This includes installation via homebrew and MacPorts, but I had seemingly random, trivial bugs that caused most of these methods to fail for me.</li>
 <li><p>With that in mind, I ran the following code from the <a href="http://ocaml.org/install.html">OCaml installation page</a>:</p>
 
-<pre><code class="prettyprint lang-ml">$ wget http://www.ocamlpro.com/pub/opam_installer.sh
+<pre><code class="prettyprint">$ wget http://www.ocamlpro.com/pub/opam_installer.sh
 $ sh ./opam_installer.sh /usr/local/bin
 </code></pre></li>
 <li><p>Warning: this takes a <strong>really</strong> long time—much longer than the above method because it has to download a bunch of libraries and dependencies.</p></li>
@@ -89,7 +89,9 @@ $ sh ./opam_installer.sh /usr/local/bin
 
 <p>To make sure that you’ve installed the language properly, open up your Bash terminal and type ‘ocaml’. You should see the toplevel initialize, like this:</p>
 
-<pre><code class="prettyprint lang-ml">        OCaml version 4.00.1
+<!--?prettify lang=ml?-->
+
+<pre><code>        OCaml version 4.00.1
 # let x = 2 in
   let y = 3 in
   x+y;;
@@ -110,13 +112,13 @@ $ sh ./opam_installer.sh /usr/local/bin
 <li>Open your terminal and type: ‘open ~’</li>
 <li><p>Download and unzip <a href="https://forge.ocamlcore.org/frs/download.php/514/tuareg-2.0.4.tgz">Tuareg 2.0.4</a> and <a href="https://forge.ocamlcore.org/frs/download.php/516/tuareg-caml-mode.tar.gz">Tuareg Mode</a> (downloads are hyperlinked). Move them into your home (~) directory. These instructions can be found <a href="http://cs51.seas.harvard.edu/ocaml-install.html#tuareg">here</a>. Alternatively, you can use wget (<a href="http://osxdaily.com/2012/05/22/install-wget-mac-os-x/">good instructions for downloading wget</a>, if you don’t have MacPorts or homebrew):</p>
 
-<pre><code class="prettyprint lang-ml">$ wget https://forge.ocamlcore.org/frs/download.php/516/tuareg-caml-mode.tar.gz
+<pre><code class="prettyprint">$ wget https://forge.ocamlcore.org/frs/download.php/516/tuareg-caml-mode.tar.gz
 $ wget https://forge.ocamlcore.org/frs/download.php/514/tuareg-2.0.4.tgz
 </code></pre></li>
 <li><p>Open Emacs. Type: 'Ctrl+X Ctrl+F .emacs', which should open (or create) your .emacs file (located at ~/.emacs).</p></li>
 <li><p>Paste the following code into your .emacs file:</p>
 
-<pre><code class="prettyprint lang-ml">(add-to-list 'load-path "~/tuareg-caml-mode")
+<pre><code class="prettyprint">(add-to-list 'load-path "~/tuareg-caml-mode")
 (add-to-list 'load-path "~/tuareg-2.0.4")
 (setq auto-mode-alist (cons '("\\.ml\\w?" . tuareg-mode) auto-mode-alist))
 (autoload 'tuareg-mode "tuareg" "Major mode for editing Caml code" t)
@@ -152,7 +154,7 @@ $ wget https://forge.ocamlcore.org/frs/download.php/514/tuareg-2.0.4.tgz
 
 <p>One issue: the default behavior of Eclipse (with OcaIDE) is to try and re-build every time you save. This gives you error messages like this:</p>
 
-<pre><code class="prettyprint lang-ml">$ ocamlc -o a1 [a1.ml](http://a1.ml/)
+<pre><code class="prettyprint">$ ocamlc -o a1 [a1.ml](http://a1.ml/)
 $ make: ocamlc: No such file or directory
 $ make: *** [a1] Error 1
 </code></pre>

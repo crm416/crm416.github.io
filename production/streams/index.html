@@ -47,7 +47,7 @@
         </div>
         <div class="span2 visible-phone">
           <div>
-            <p style="font-size:25px"><a class="blank" href="/~crmarsh/">Charlie Marsh</a>  <div style="margin-top:-10px"><code class="custom"><span class="code_red">type</span> <span class="code_blue">blog</span></code></div></p>
+            <p style="font-size:25px"><a class="blank" href="/~crmarsh/">Charlie Marsh</a>  <div style="margin-top:-10px"><code class="prettyprint" class="custom"><span class="code_red">type</span> <span class="code_blue">blog</span></code></div></p>
           </div>
           <hr />
         </div>
@@ -101,12 +101,16 @@
 
 <p>Then, our code looks like:</p>
 
-<pre><code class="prettyprint lang-ml">let rec s = (1, map (fun x -&gt; x * 2) s)
+<!--?prettify lang=ml?-->
+
+<pre><code>let rec s = (1, map (fun x -&gt; x * 2) s)
 </code></pre>
 
 <p>Oops—this code will run into an infinite loop, as s will be recursively recomputed with no termination. This is exactly the problem we described above; lets fix it with lazy computation:</p>
 
-<pre><code class="prettyprint lang-ml">let rec s = (1, lazy (map (fun x -&gt; x * 2) s))
+<!--?prettify lang=ml?-->
+
+<pre><code>let rec s = (1, lazy (map (fun x -&gt; x * 2) s))
 </code></pre>
 
 <p>Now, we don’t have to perform any computation at all! The stream is simply initialized with no further actions. Yet, if we request the nth element, the stream will perform all the necessary computation and return the element as desired.</p>

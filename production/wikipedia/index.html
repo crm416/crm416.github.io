@@ -47,7 +47,7 @@
         </div>
         <div class="span2 visible-phone">
           <div>
-            <p style="font-size:25px"><a class="blank" href="/~crmarsh/">Charlie Marsh</a>  <div style="margin-top:-10px"><code class="custom"><span class="code_red">type</span> <span class="code_blue">blog</span></code></div></p>
+            <p style="font-size:25px"><a class="blank" href="/~crmarsh/">Charlie Marsh</a>  <div style="margin-top:-10px"><code class="prettyprint" class="custom"><span class="code_red">type</span> <span class="code_blue">blog</span></code></div></p>
           </div>
           <hr />
         </div>
@@ -70,7 +70,7 @@
 
 <p>For example, here's the beginning of the JSON response for <a href="http://en.wikipedia.org/wiki/Michael_Jordan">Michael Jordan's Wikipedia page</a>:</p>
 
-<pre><code class="prettyprint lang-ml">[
+<pre><code class="prettyprint">[
     [
         "parse",
         {
@@ -87,7 +87,7 @@
 
 <p>The methods in <em>wikipedia.py</em> are designed to extract the information (i.e., the "<em>" field above) and parse the HTML, with some help from the *HTMLParser</em> library. In the above case, our method looks something like this:</p>
 
-<pre><code class="prettyprint lang-ml">return cleanHTMLSection(cleanWikiSection(json_response[0][1][u'text'][u'*']))
+<pre><code class="prettyprint">return cleanHTMLSection(cleanWikiSection(json_response[0][1][u'text'][u'*']))
 </code></pre>
 
 <p>Where <em>cleanWikiSection</em> is reponsible for removing extraneous information from the page itself, and <em>cleanHTMLSection</em> is responsible for converting the HTML to plaintext.</p>
@@ -102,7 +102,7 @@
 
 <p>The output for MJ's table is as follows:</p>
 
-<pre><code class="prettyprint lang-ml">[('Born', 'February 17, 1963'), ('Nationality', 'American'), ('Listed height', '6ft6in'), ('Listed weight', '216lb'), ('High school', 'Emsley A. Laney'), ('College', 'North Carolina'), ('NBA Draft', '1984 / Round: 1 / Pick: 3rd overall'), ...]
+<pre><code class="prettyprint">[('Born', 'February 17, 1963'), ('Nationality', 'American'), ('Listed height', '6ft6in'), ('Listed weight', '216lb'), ('High school', 'Emsley A. Laney'), ('College', 'North Carolina'), ('NBA Draft', '1984 / Round: 1 / Pick: 3rd overall'), ...]
 </code></pre>
 
 <h2>In Conclusion</h2>

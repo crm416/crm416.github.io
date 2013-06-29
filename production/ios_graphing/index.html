@@ -47,7 +47,7 @@
         </div>
         <div class="span2 visible-phone">
           <div>
-            <p style="font-size:25px"><a class="blank" href="/~crmarsh/">Charlie Marsh</a>  <div style="margin-top:-10px"><code class="custom"><span class="code_red">type</span> <span class="code_blue">blog</span></code></div></p>
+            <p style="font-size:25px"><a class="blank" href="/~crmarsh/">Charlie Marsh</a>  <div style="margin-top:-10px"><code class="prettyprint" class="custom"><span class="code_red">type</span> <span class="code_blue">blog</span></code></div></p>
           </div>
           <hr />
         </div>
@@ -64,7 +64,7 @@
 <li>Create the bar as a generic UIView.</li>
 <li><p>Casted it to a UIImage with this code:</p>
 
-<pre><code class="prettyprint lang-c">UIGraphicsBeginImageContext(bar.bounds.size);
+<pre><code class="prettyprint">UIGraphicsBeginImageContext(bar.bounds.size);
 [bar.layer renderInContext:UIGraphicsGetCurrentContext()];
 UIImage *viewImage = UIGraphicsGetImageFromCurrentImageContext();
 UIGraphicsEndImageContext();

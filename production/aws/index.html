@@ -47,7 +47,7 @@
         </div>
         <div class="span2 visible-phone">
           <div>
-            <p style="font-size:25px"><a class="blank" href="/~crmarsh/">Charlie Marsh</a>  <div style="margin-top:-10px"><code class="custom"><span class="code_red">type</span> <span class="code_blue">blog</span></code></div></p>
+            <p style="font-size:25px"><a class="blank" href="/~crmarsh/">Charlie Marsh</a>  <div style="margin-top:-10px"><code class="prettyprint" class="custom"><span class="code_red">type</span> <span class="code_blue">blog</span></code></div></p>
           </div>
           <hr />
         </div>
@@ -110,7 +110,7 @@
 <ul>
 <li><p>Now that our instance is up and running, we need to make one more step before we can SSH in. That is, we need to set the file permissions of <em>your_keyname.pem</em>. To do that, use the <a href="http://stackoverflow.com/questions/1454629/aws-ssh-access-permission-denied-publickey-issue#1454647">following command</a>:</p>
 
-<pre><code class="prettyprint lang-bsh">chmod 600 /path/to/your_keyname.pem
+<pre><code class="prettyprint">chmod 600 /path/to/your_keyname.pem
 </code></pre></li>
 <li>Get your EC2 name (something of the form *.compute.amazonaws.com). It'll look like this:</li>
 </ul>
@@ -120,12 +120,12 @@
 <ul>
 <li><p>Now, we can go ahead and SSH in. Issue the <a href="http://stackoverflow.com/questions/6394762/ssh-access-to-amazon-ec2-instance#6407649">following command</a>:</p>
 
-<pre><code class="prettyprint lang-bsh">ssh -i /path/to/your_keyname.pem ubuntu@your_instance.compute.amazonaws.com
+<pre><code class="prettyprint">ssh -i /path/to/your_keyname.pem ubuntu@your_instance.compute.amazonaws.com
 </code></pre>
 
 <p>In my case, for example, that looks like:</p>
 
-<pre><code class="prettyprint lang-bsh">ssh -i ~/Desktop/my_key.pem ubuntu@ec2-54-218-37-172.us-west-2.compute.amazonaws.com
+<pre><code class="prettyprint">ssh -i ~/Desktop/my_key.pem ubuntu@ec2-54-218-37-172.us-west-2.compute.amazonaws.com
 </code></pre></li>
 <li>Success! (I hope...)</li>
 </ul>
@@ -138,43 +138,43 @@
 <li>Ideally, you want to <a href="http://www.howtogeek.com/124950/htg-explains-why-you-shouldnt-log-into-your-linux-system-as-root/">minimize the amount of time</a> you're logged in as <em>root</em>, for security purposes. So next, we'll create our own account on the EC2 instance and set it up with the proper permissions. I'll be creating the account <em>charlie</em>.</li>
 <li><p>First, we should setup password authentication so that when we add users, our instance is secure. <a href="http://stackoverflow.com/questions/8339912/allowing-users-to-ssh-to-an-ec2-ubuntu-instance#8339975">To do so</a>:</p>
 
-<pre><code class="prettyprint lang-bsh">sudo vi /etc/ssh/sshd_config
+<pre><code class="prettyprint">sudo vi /etc/ssh/sshd_config
 # Change the line "PasswordAuthentication no" to "PasswordAuthentication yes"
 </code></pre>
 
 <p>Notice that we need to use <em>sudo</em>.</p></li>
 <li><p>Next, we'll add our user <a href="http://www.edukatr.com/how-to-start-an-ec2-ubuntu-server-for-your-developer-in-6-minutes/">as follows</a>:</p>
 
-<pre><code class="prettyprint lang-bsh">sudo useradd -d /home/charlie -m charlie
+<pre><code class="prettyprint">sudo useradd -d /home/charlie -m charlie
 sudo passwd charlie
 # Enter password, twice
 </code></pre></li>
 <li><p>That's great! But <em>charlie</em> still isn't sudo. If you don't know what that means: in short, a sudo user is able to access files reserved for admins. We want our account to have these admin privileges. So to provide that, we type the following (still on <em>ubuntu</em>):</p>
 
-<pre><code class="prettyprint lang-bsh">sudo visudo
+<pre><code class="prettyprint">sudo visudo
 # After line "root ALL=(ALL:ALL) ALL", add "charlie ALL=(ALL:ALL) ALL"
 </code></pre>
 
 <p>Note: if you don't want to be prompted to enter your password, then <a href="http://www.ducea.com/2006/06/18/linux-tips-password-usage-in-sudo-passwd-nopasswd/">use</a> "charlie ALL = NOPASSWD:ALL" instead.</p></li>
 <li><p>At this point, <strong>we can SSH in</strong> as <em>charlie</em>! Lets give it a try. Before closing our current instance, lets reload the SSH file for good measure. Still as <em>ubuntu</em>, type:</p>
 
-<pre><code class="prettyprint lang-bsh">sudo /etc/init.d/ssh restart
+<pre><code class="prettyprint">sudo /etc/init.d/ssh restart
 logout
 </code></pre>
 
 <p>Now back in the terminal, we can go ahead and login:</p>
 
-<pre><code class="prettyprint lang-bsh">ssh charlie@ec2-54-218-37-172.us-west-2.compute.amazonaws.com
+<pre><code class="prettyprint">ssh charlie@ec2-54-218-37-172.us-west-2.compute.amazonaws.com
 # charlie@ec2-54-218-37-172.us-west-2.compute.amazonaws.com's password:
 </code></pre></li>
 <li><p>We're in! Last thing (for now): when I created my new user account, it didn't default to the bash shell. So I lacked tab-to-autocomplete, up-arrow-for-last-command, etc. To fix that:</p>
 
-<pre><code class="prettyprint lang-bsh">sudo chsh -s /bin/bash
+<pre><code class="prettyprint">sudo chsh -s /bin/bash
 </code></pre>
 
 <p>Logout and login. You'll know you're successful if you see:</p>
 
-<pre><code class="prettyprint lang-bsh">charlie@ip-172-31-23-65:~$
+<pre><code class="prettyprint">charlie@ip-172-31-23-65:~$
 </code></pre></li>
 <li>Now we'll make this login flow much smoother.</li>
 </ul>
@@ -185,19 +185,19 @@ logout
 <li>Now, I want to be able to SSH in with the click of a button. To do that, we'll: 1) remove the need for typing in your password when SSHing from your local machine, and 2) create an alias for the SSH command (and its arguments).</li>
 <li><p>To avoid the need to enter our password, we need to take some careful steps and create a <a href="http://blakesmith.me/2010/02/08/understanding-public-key-private-key-concepts.html">public-private key pair</a>. If you already have a private key that you want to use, continue to the next step. Otherwise, we first create a private-public key pair on our local machine in ~/.ssh:</p>
 
-<pre><code class="prettyprint lang-bsh">cd /Users/crmarsh/.ssh/
+<pre><code class="prettyprint">cd /Users/crmarsh/.ssh/
 ssh-keygen -t rsa
 # Name your key. Add a password, if you want.
 </code></pre>
 
 <p>If you didn't use the default key name, you need to <a href="https://wiki.hpcc.msu.edu/display/hpccdocs/Adding+a+Private+Key+to+Your+Mac+OSX+Keychain">add the private key</a> (the version <em>without</em> the .pub extension) to your keychain as follows:</p>
 
-<pre><code class="prettyprint lang-bsh">ssh-add -K keyname
+<pre><code class="prettyprint">ssh-add -K keyname
 </code></pre>
 
 <p>Next, we need to move the <strong>public</strong> key to our server. Note that I'm assuming this is still your fresh EC2 instance; it <em>should</em> still be okay if you have an existing setup, but I can't make any promises. We proceed <a href="http://www.linuxproblem.org/art_9.html">as follows</a>:</p>
 
-<pre><code class="prettyprint lang-bsh">scp keyname.pub charlie@ec2-54-218-37-172.us-west-2.compute.amazonaws.com:
+<pre><code class="prettyprint">scp keyname.pub charlie@ec2-54-218-37-172.us-west-2.compute.amazonaws.com:
 # SSH in
 ssh charlie@ec2-54-218-37-172.us-west-2.compute.amazonaws.com
 # Add key to list of authorized keys
@@ -213,7 +213,7 @@ rm keyname.pub
 <p>Logout, and you should be able to SSH in without having to enter your password.</p></li>
 <li><p>To <a href="http://askubuntu.com/questions/17536/how-do-i-create-a-permanent-bash-alias#17538">create the alias</a>, go to your bash<em>profile (emacs ~/.bash</em>profile) or wherever you configure your local bash settings. Add the following two lines (with your arguments substituted):</p>
 
-<pre><code class="prettyprint lang-bsh">export AWS='ec2-54-245-139-10.us-west-2.compute.amazonaws.com'
+<pre><code class="prettyprint">export AWS='ec2-54-245-139-10.us-west-2.compute.amazonaws.com'
 alias aws='ssh -i ~/Desktop/crm_key.pem crmarsh@$AWS'
 </code></pre>
 
@@ -227,7 +227,7 @@ alias aws='ssh -i ~/Desktop/crm_key.pem crmarsh@$AWS'
 <li>Thankfully, most of the things you need come pre-installed on Ubuntu; so this section is small. Try 'em out: ssh, scp, grep, wget, etc.</li>
 <li><p>However, there were still some things I wanted: emacs (not sure why, but I still use it), git, make, etc. Obviously, preferences will vary from dev to dev. Here are some commands you might want to use, for your convenience:</p>
 
-<pre><code class="prettyprint lang-bsh">sudo apt-get install emacs
+<pre><code class="prettyprint">sudo apt-get install emacs
 sudo apt-get install git
 sudo apt-get install make
 ...

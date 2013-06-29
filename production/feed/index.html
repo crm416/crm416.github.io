@@ -12,8 +12,7 @@
   <meta name="viewport" content="width=device-width">
 
   <!-- Use title if it's in the page YAML frontmatter -->
-  <title>First Thoughts on OCaml
- | Charlie Marsh</title>
+  <title>{{ title }} | Charlie Marsh</title>
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans">
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Source+Code+Pro">
   <link href="../static/css/combined.css" rel="stylesheet" type="text/css" />
@@ -23,6 +22,7 @@
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
   ga('create', 'UA-36552582-2', 'princeton.edu');
   ga('send', 'pageview');
   </script>
@@ -47,7 +47,7 @@
         </div>
         <div class="span2 visible-phone">
           <div>
-            <p style="font-size:25px"><a class="blank" href="/~crmarsh/">Charlie Marsh</a>  <div style="margin-top:-10px"><code class="prettyprint" class="custom"><span class="code_red">type</span> <span class="code_blue">blog</span></code></div></p>
+            <p style="font-size:25px"><a class="blank" href="/~crmarsh/">Charlie Marsh</a>  <div style="margin-top:-10px"><code class="custom"><span class="code_red">type</span> <span class="code_blue">blog</span></code></div></p>
           </div>
           <hr />
         </div>
@@ -74,13 +74,11 @@ type phone_number = string
 type entry = full_name * age * phone_number
 </code></pre>
 
-<p>The '*' operator allosw us to create tuples. So 'int * int' indicates a tuple of two integers. Also note that we can use our types when defining types later on (e.g., 'full_name = first_name * last_name').</p>
+<p>The '*' operator allosw us to create tuples. So 'int * int' indicates a tuple of two integers. Also note that we can use our types when defining types later on (e.g., 'full<em>name = first</em>name * last_name').</p>
 
 <p>Most of what’s happening here can be read out-loud: a 'first_name' is just a string; a 'name' is just a first name and a last name; an 'age' is just an integer; and a phone book entry just brings these things together. Brilliant.</p>
 
 <p>As an example from one of my <a href="https://github.com/crm416/OCaml-SAT-Solvers" title="SAT Solvers">recent projects</a>, what about the construction of a module to solve <a href="http://en.wikipedia.org/wiki/Boolean_satisfiability_problem">SAT problems</a> using statements in <a href="http://en.wikipedia.org/wiki/Conjunctive_normal_form">conjunctive normal form</a>. In Java, you would need to create a class ‘clause’, which has a private class ‘literal’, which might have a private class ‘symbol’—oh, and then you’d need to create a class CNF which has, as one of its fields, an array of clauses. I can see this boiling down to roughly 30 lines of code just for outlining your type definitions. In OCaml, we can cover all of this ground with:</p>
-
-<!--?prettify lang=ml?-->
 
 <pre><code>type symbol = string
 type literal = symbol * bool
@@ -92,8 +90,6 @@ type cnf = clause list
 
 <p>Better yet, we can define types recursively. This lets us <strong>can define a binary tree in one line of code</strong>:</p>
 
-<!--?prettify lang=ml?-->
-
 <pre><code>type tree = Leaf | Node of int *  tree * tree
 </code></pre>
 
@@ -102,8 +98,6 @@ type cnf = clause list
 <h2>Generics</h2>
 
 <p>We can make our tree generic with:</p>
-
-<!--?prettify lang=ml?-->
 
 <pre><code>type ‘a tree = Leaf | Node of ‘a * ‘a tree * ‘a tree
 </code></pre>
@@ -129,8 +123,6 @@ or
 
 <p>An example that really instilled in me an appreciation for OCaml came when attempting to check whether two lists are of equal length. The function looks like this: </p>
 
-<!--?prettify lang=ml?-->
-
 <pre><code>let equal_length l1 l2 : bool =
    match (l1, l2) with
         ([], []) -&gt; true
@@ -145,8 +137,6 @@ or
 
 <p>OCaml is constantly training you to think recursively, like with the above. I can’t recall a single instance in which I’ve used a for-loop; instead, OCaml provides you with an awesome framework for exercising induction—indeed, in most cases, you’ll recur on the naturally recursive data structures that OCaml provides you with. For example, consider summing a tree of integers using the Tree definition above.</p>
 
-<!--?prettify lang=ml?-->
-
 <pre><code>let sum tree =
   match tree with
       Leaf -&gt; 0
@@ -159,18 +149,6 @@ or
 
 <p>This post ignores a lot of the best or most powerful features of OCaml, but it’s dragged on a little long, so I’ll stop here. For those interested, check out: proving program correctness (according to my professor: conquerable by college students in OCaml, but “still the subject of current research” in Java), currying functions, and pattern matching.</p>
 
-          <p class="date">Posted on October 31, 2012.<p>
-          <div id="disqus_thread"></div>
-          <script type="text/javascript">
-          var disqus_shortname = 'crmarsh416';
-          (function() {
-            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-          })();
-          </script>
-          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-          <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
         </div>
       </div>
     </div>
