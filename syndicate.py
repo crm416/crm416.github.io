@@ -55,6 +55,9 @@ if args.minify:
     combined_css = open(combined_css_path, "w+")
     combined_css.write(minifed_css)
 
+# aggregate posts for feed
+allPosts = []
+
 # generate blog posts
 for file_path in csv_files:
 
@@ -79,6 +82,7 @@ for file_path in csv_files:
         date = datetime.date(int(m.group(1)), int(m.group(2)), int(m.group(3)))
         fdate = date.strftime("%B %-d, %Y")
     else:
+        date = datetime.date.min
         fdate = ""
 
     # run the converter and output to a temp.txt
@@ -100,6 +104,7 @@ for file_path in csv_files:
         # need to do two passes b/c possible negative lookbehind solution requires fixed-length regex
         productionHTML = productionHTML.replace('<code', '<code class="prettyprint"')
         productionHTML = re.sub(r'(\<\!--\?prettify(.*)\?--\>\n\n\<pre.*\>)<code class="prettyprint"', r'\1<code', productionHTML)
+    allPosts.append((date, productionHTML))
 
     # write that production output to index.html in original directory
     productionFile = open(directory+"/index.html", "w")
@@ -107,4 +112,14 @@ for file_path in csv_files:
 
 if os.path.exists("temp.txt"):
     os.system("rm temp.txt")
+
+if os.path.exists("feed.html"):
+    # sort posts by date and concatenate HTML
+    allPosts.sort(reverse=True)
+    allHTML = map(lambda (x, y): y, allPosts)
+    totalHTML = ''.join(allHTML)
+    # create feed file
+    feedFile = open("production/feed/index.html", "w")
+    feedFile.write(totalHTML)
+
 print "Production complete."
