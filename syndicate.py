@@ -21,6 +21,14 @@ FILENAME_MATCH = "markdown.txt"
 FILENAME_DATE = re.compile(r'([0-9]{4})-([0-9]{1,2})-([0-9]{1,2})\.(md|txt|markdown|mdown)$')
 CSS_DIRECTORY = ROOT_DIRECTORY + "/production/static/css/"
 
+# for share buttons
+ROOT_URL = "http://www.princeton.edu/~crmarsh/"
+def buttonHTML(title, URL):
+    twitter = '<a class="btn btn-primary" href="http://twitter.com/intent/tweet?url=%s&text=%s&via=crm416">Tweet</a>' % (URL, title)
+    facebook = '<a class="btn btn-primary" href="http://facebook.com/sharer.php?u=%s">Like</a>' % URL
+    google = '<a class="btn btn-primary" href="https://plus.google.com/share?url=http%%3A%%2F%%2F%s">+1</a>' % URL[7:]
+    return twitter + ' | ' + facebook + ' | ' + google
+
 
 # a list of all the files in ROOT_DIRECTORY that match FILENAME_MATCH
 def post_filter(path, name):
@@ -104,6 +112,10 @@ for file_path in csv_files:
         # need to do two passes b/c possible negative lookbehind solution requires fixed-length regex
         productionHTML = productionHTML.replace('<code', '<code class="prettyprint"')
         productionHTML = re.sub(r'(\<\!--\?prettify(.*)\?--\>\n\n\<pre.*\>)<code class="prettyprint"', r'\1<code', productionHTML)
+    # social sharing buttons
+    buttons = buttonHTML(title, ROOT_URL + file_path.split("/")[-2])
+    productionHTML = productionHTML.replace('%s</h1>' % title.rstrip(), '%s</h1>\n%s' % (title.rstrip(), buttons))
+
     allPosts.append((date, productionHTML))
 
     # write that production output to index.html in original directory
