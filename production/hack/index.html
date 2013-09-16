@@ -12,7 +12,7 @@
   <meta name="viewport" content="width=device-width">
 
   <!-- Use title if it's in the page YAML frontmatter -->
-  <title>A Dynamic Graphing Interface for iOS
+  <title>Quizzler
  | Charlie Marsh</title>
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans">
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Source+Code+Pro">
@@ -52,39 +52,44 @@
           <hr />
         </div>
         <div class="span9 offset1">
-          <h1>A Dynamic Graphing Interface for iOS</h1>
-<a class="btn btn-primary" href="http://twitter.com/intent/tweet?url=http://www.princeton.edu/~crmarsh/ios_graphing&text=A Dynamic Graphing Interface for iOS
-&via=crm416">Tweet</a> | <a class="btn btn-primary" href="http://facebook.com/sharer.php?u=http://www.princeton.edu/~crmarsh/ios_graphing">Like</a> | <a class="btn btn-primary" href="https://plus.google.com/share?url=http%3A%2F%2Fwww.princeton.edu/~crmarsh/ios_graphing">+1</a>
+          <h1>Quizzler</h1>
+<a class="btn btn-primary" href="http://twitter.com/intent/tweet?url=http://www.princeton.edu/~crmarsh/hack&text=Quizzler
+&via=crm416">Tweet</a> | <a class="btn btn-primary" href="http://facebook.com/sharer.php?u=http://www.princeton.edu/~crmarsh/hack">Like</a> | <a class="btn btn-primary" href="https://plus.google.com/share?url=http%3A%2F%2Fwww.princeton.edu/~crmarsh/hack">+1</a>
 
-<p>This weekend was HackPrinceton, our school’s biannual hackathon run by the E Club (find out more <a href="http://hackprinceton.com" title="HackPrinceton">here</a>, including the list of <a href="http://hackprinceton.com/results/" title="HackPrinceton results">winners</a>!). Unfortunately, a commitment on Saturday precluded my full-fledged participation; however, I managed to pump out a small tool on Friday: a dynamic graphing (note: <strong>graphing</strong>, not graphical) interface for iOS.</p>
+<p style="color:rgb(130,130,130)">Update: Quizzler was built as my entry into the Facebook Summer of Hack Hackathon in August 2013 and was selected as the winning hack. Thanks to Facebook for hosting a great event.</p>
 
-<p>I’m not exactly sure how I’m going to use it, but the essence of the class is that it allows the client to create 3-D bar graphs (similar to Excel’s 3-D graphing modes) and feed the graphs data over time; as the data is received, the graphs resize themselves and adjust the axes as necessary.</p>
+<p>After playing a number of poorly-made iPhone quiz games, I decided to roll my own. But I didn't want to spend time creating my own corpus of questions. Thus, Quizzler was born, an attempt to build an iPhone quiz app that generates its own questions.</p>
 
-<p>Each bar is drawn individually with the Core Graphics library: first, the bar is drawn as a rectangle and, subsequently, the darker components are drawn around the initial bar to create perspective. The most challenging aspect of the project was implementing an appropriate resizing technique: for example, if a bar grows, you can’t just increase its height—if you do, it’ll stretch out and, in particular, the pieces of the bar used to generate perspective (especially the dark bit at the very top) will get stretched out and distorted. Instead, I used dynamic resizing with cap insets, i.e., the following steps:</p>
+<p><img src="../static/img/hack_home.png" alt="Quizzler Homescreen" class="center" width="315"></p>
+
+<p><em>Credit to <a href="http://dribbble.com/hrtislove">Karen Dessire</a> for the <a href="http://dribbble.com/shots/921928-Playing-With-Science?list=users">Playing With Science</a> icons on the home screen!</em></p>
+
+<p>The technical challenges around such a goal are numerous:</p>
 
 <ol>
-<li>Create the bar as a generic UIView.</li>
-<li><p>Casted it to a UIImage with this code:</p>
-
-<pre><code class="prettyprint">UIGraphicsBeginImageContext(bar.bounds.size);
-[bar.layer renderInContext:UIGraphicsGetCurrentContext()];
-UIImage *viewImage = UIGraphicsGetImageFromCurrentImageContext();
-UIGraphicsEndImageContext();
-UIImage *barImage = [viewImage resizableImageWithCapInsets:UIEdgeInsetsMake(bar.backdrop_size + 5, 0, bar.backdrop_size + 5, 0)];
-</code></pre></li>
+<li>Identify factual statements that could be morphed into good questions.</li>
+<li>Identify keywords in those statements that could be considered an 'answer'.</li>
+<li>Identify replacement keywords that fix into the same context (as suggested answers).</li>
 </ol>
 
-<p>Note above: you must ensure proper cap insets. In this case, the aim is to avoid stretching out the bar's perspective on the top and bottom; thus, we pad it with cap insets above and below—this enforces that only the middle section of the bar will be stretched out whenever the frame expands.</p>
+<p>On the practical level, Quizzler allows users to specify any (reasonable) topic and iterate through questions relevant to that topic. Users can then re-play and attempt more questions for the same topic, or switch topics at any time.</p>
 
-<p>Finally, after creating the correct UIImage, just put it into a UIImageView and add it as a subview. </p>
+<p>In terms of technical complexity, Quizzler consists of two major components:</p>
 
-<p>I’ve open-sourced the project <a href="https://github.com/crm416/iOS-Elements" title="My Github">here</a>; hopefully I’ll get around to adding line graphs and some other features—or, better yet, finding a use for the class within an application!</p>
+<ol>
+<li>A Django server, hosted on Heroku, that handles requests for a given topic (with some associated parameters, e.g., number of questions desired). This server hosts all the code to perform NLP on information drawn from the semantics of the web.</li>
+<li>An iOS app, meant as a user-facing portal to the Django server.</li>
+</ol>
 
-<p>Here's a demo:</p>
+<p>Here's the app in action:</p>
 
-<p><center><iframe width="400" height="300" src="http://www.youtube.com/embed/BG7eRU9of4Y?wmode=transparent&amp;autohide=1&amp;egm=0&amp;hd=1&amp;iv_load_policy=3&amp;modestbranding=1&amp;rel=0&amp;showinfo=0&amp;showsearch=0" frameborder="0" allowfullscreen></iframe></center></p>
+<p><img src="../static/img/hack_demo.png" alt="Quizzler In Action" class="center" width="315"></p>
 
-          <p class="date">Posted on November 13, 2012.<p>
+<p>And, at the end of the session, here's the results screen:</p>
+
+<p><img src="../static/img/hack_results.png" alt="Quizzler Results" class="center" width="315"></p>
+
+          <p class="date">Posted on August 4, 2013.<p>
           <div id="disqus_thread"></div>
           <script type="text/javascript">
           var disqus_shortname = 'crmarsh416';
