@@ -42,5 +42,10 @@ migrate
 echo "Pushing to server"
 scp -r production/* crmarsh@nobel.princeton.edu:public_html/
 
+echo "Pushing to GitHub"
+git add *
+git commit -m "Blog update $1"
+git push
+
 echo "Reverting to local static content"
 unmigrate
