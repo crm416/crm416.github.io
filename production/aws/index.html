@@ -16,7 +16,7 @@
  | Charlie Marsh</title>
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans">
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Source+Code+Pro">
-  <link href="http://crmarsh416.appspot.com/css/combined.css" rel="stylesheet" type="text/css" />
+  <link href="../static/css/combined.css" rel="stylesheet" type="text/css" />
   <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang=ml"></script>
   <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -81,7 +81,7 @@
 <li>After you've received your activation email, head to the <a href="https://console.aws.amazon.com/console/home?#">AWS management console</a> (this link requires you to be logged in to AWS). Click on the icon labelled 'EC2' (orange, below).</li>
 </ul>
 
-<p><img src="http://crmarsh416.appspot.com/img/aws_portal.png" alt="AWS Portal" class="center" width="700"></p>
+<p><img src="../static/img/aws_portal.png" alt="AWS Portal" class="center" width="700"></p>
 
 <blockquote>
   <p>For those interested, 'EC2' stands for <em>Elastic Cloud Compute</em>. The service itself allows users to rent out virtual computers on which they can boot up their own images. Basically, we're booting onto some random CPU in some Amazon-owned datacenter somewhere in America.</p>
@@ -91,7 +91,7 @@
 <li>On the next page, hit the big blue 'Launch Instance' button, as seen below.</li>
 </ul>
 
-<p><img src="http://crmarsh416.appspot.com/img/aws_launch_instance.png" alt="Launch instance" class="center"></p>
+<p><img src="../static/img/aws_launch_instance.png" alt="Launch instance" class="center"></p>
 
 <ul>
 <li>Next, we proceed with the 'Classic Wizard'. It's at this point that we have to select our disk image. Personally, I like using Ubuntu, so the rest of this tutorial will assume that you select <em>Ubuntu Server 13.04</em> (64-bit).</li>
@@ -99,13 +99,13 @@
 <li>Click through and launch your instance.</li>
 </ul>
 
-<p><img src="http://crmarsh416.appspot.com/img/aws_final.png" alt="Final configuration" class="center" width="700"></p>
+<p><img src="../static/img/aws_final.png" alt="Final configuration" class="center" width="700"></p>
 
 <ul>
 <li>Wait until your instance state goes from <em>pending</em> to <em>active</em>. For me, that took about 2-3 minutes. When you see something like this, you're golden.</li>
 </ul>
 
-<p><img src="http://crmarsh416.appspot.com/img/aws_ready.png" alt="Instance ready" class="center" width="700"></p>
+<p><img src="../static/img/aws_ready.png" alt="Instance ready" class="center" width="700"></p>
 
 <h2>Getting Onto Your Server (More Interesting Still)</h2>
 
@@ -117,7 +117,7 @@
 <li>Get your EC2 name (something of the form *.compute.amazonaws.com). It'll look like this:</li>
 </ul>
 
-<p><img src="http://crmarsh416.appspot.com/img/aws_instance_name.png" alt="Instance name" class="center"></p>
+<p><img src="../static/img/aws_instance_name.png" alt="Instance name" class="center"></p>
 
 <ul>
 <li><p>Now, we can go ahead and SSH in. Issue the <a href="http://stackoverflow.com/questions/6394762/ssh-access-to-amazon-ec2-instance#6407649">following command</a>:</p>
@@ -132,7 +132,7 @@
 <li>Success! (I hope...)</li>
 </ul>
 
-<p><img src="http://crmarsh416.appspot.com/img/aws_successful_login.png" class="center" alt="Successful login"></p>
+<p><img src="../static/img/aws_successful_login.png" class="center" alt="Successful login"></p>
 
 <h2>Configuring Your Account (Much More Interesting)</h2>
 
