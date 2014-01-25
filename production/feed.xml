@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+
+<channel>
+  <atom:link href="http://www.princeton.edu/~crmarsh/feed.xml" rel="self" type="application/rss+xml" />
+  <title>Charles Marsh's Blog</title>
+  <link>http://www.princeton.edu/~crmarsh</link>
+  <description>Articles and thoughts on programming and computer science</description>
+  <language>en-us</language>
+  <item>
+    <title>PhantomJS: Common Gotchas for Beginners</title>
+    <link>http://www.princeton.edu/~crmarsh/phantomjs/index.html</link>
+    <description>Over the summer, I had a pet project involving browser automation with PhantomJS. My experience was mixed, and in this post, I'd like to go through some of the common gotchas and things I wish I'd known beforehand.</description>
+    <guid>http://www.princeton.edu/~crmarsh/phantomjs/index.html</guid>
+  </item>
+</channel>
+</rss>

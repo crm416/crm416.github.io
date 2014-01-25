@@ -125,13 +125,13 @@ for file_path in csv_files:
 if os.path.exists("temp.txt"):
     os.system("rm temp.txt")
 
-if os.path.exists("feed.html"):
+if os.path.exists("all.html"):
     # sort posts by date and concatenate HTML
     allPosts.sort(reverse=True)
     allHTML = map(lambda (x, y): y, allPosts)
     totalHTML = ''.join(allHTML)
     # create feed file
-    feedFile = open("production/feed/index.html", "w")
+    feedFile = open("production/all/index.html", "w")
     feedFile.write(totalHTML)
 
 print "Production complete."

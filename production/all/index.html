@@ -1,0 +1,2287 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <meta name="description" content="Charlie Marsh is a programmer and student at Princeton University with major interests in functional programming and machine learning.">
+  <meta name="viewport" content="width=device-width">
+
+  <!-- Use title if it's in the page YAML frontmatter -->
+  <title>What's Your Favorite Flavor (of JavaScript)?
+ | Charlie Marsh</title>
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans">
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Source+Code+Pro">
+  <link href="http://crmarsh416.appspot.com/css/combined.css" rel="stylesheet" type="text/css" />
+  <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang=ml"></script>
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-36552582-2', 'princeton.edu');
+  ga('send', 'pageview');
+  </script>
+</head>
+
+<body class="index">
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="span2 hidden-phone"></div>
+      <div class="span2 hidden-phone" style="position:fixed">
+        <header>
+          <h1 style="font-size:50px"><a class="blank" href="/~crmarsh/">Charlie<br />Marsh</a></h1>
+          <p><a class="implicit" href="/~crmarsh/">Home</a> &sdot; <a class="implicit" href="../Charles_Marsh_CV.pdf">CV</a>&sdot; <a class="implicit" href="../about.html">About</a></p>
+          <h2>Programmer,<br />student.</h2>
+          <p>I'm into functional<br />programming,<br />machine learning,<br /> and other fun stuff.<p>
+          <p>Find me on:</p>
+          </header>
+          <a href="mailto:crmarsh@princeton.edu" class="nav email"></a>
+          <a href="http://www.github.com/crm416" class="nav github"></a>
+          <a href="http://stackoverflow.com/users/1450892/charles-marsh" class="nav stackoverflow"></a>
+          <a href="http://uk.linkedin.com/in/marshcharles" class="nav linkedin"></a>
+        </div>
+        <div class="span2 visible-phone">
+          <div>
+            <p style="font-size:25px"><a class="blank" href="/~crmarsh/">Charlie Marsh</a>  <div style="margin-top:-10px"><code class="prettyprint" class="custom"><span class="code_red">type</span> <span class="code_blue">blog</span></code></div></p>
+          </div>
+          <hr />
+        </div>
+        <div class="span9 offset1">
+          <h1>What's Your Favorite Flavor (of JavaScript)?</h1>
+<a class="btn btn-primary" href="http://twitter.com/intent/tweet?url=http://www.princeton.edu/~crmarsh/compiling_to_js&text=What's Your Favorite Flavor (of JavaScript)?
+&via=crm416">Tweet</a> | <a class="btn btn-primary" href="http://facebook.com/sharer.php?u=http://www.princeton.edu/~crmarsh/compiling_to_js">Like</a> | <a class="btn btn-primary" href="https://plus.google.com/share?url=http%3A%2F%2Fwww.princeton.edu/~crmarsh/compiling_to_js">+1</a>
+
+<p>It seems like all the cool languages these days are compiling to JavaScript. (<em>I joke, but replace 'cool' with 'relevant' and you might have a reasonable heuristic for evaluating the modernity of a programming language.</em>) <a href="https://github.com/jashkenas">Jeremy Ashkenas</a> (CoffeeScript creator) has a great <a href="https://github.com/jashkenas/coffee-script/wiki/List-of-languages-that-compile-to-JS">list</a> of what seems like hundreds of languages, each of which helps prove my point.</p>
+
+<p>Why is this all-the-rage, you ask?</p>
+
+<p>Firstly, in my opinion, when we say that a language compiles to JavaScript, we could really be talking about two different approaches:</p>
+
+<ol>
+<li><p><strong>Long-standing languages (e.g., Python) that can compile down into JavaScript using a tool devoted to that very task (e.g., <a href="https://github.com/jashkenas/coffee-script/wiki/List-of-languages-that-compile-to-JS#python">these</a> Python-to-JS compilers)</strong>. In this case, the tool has been created not to explicitly replace JavaScript per se, but rather to allow programmers to write more of their code in a single language. (<em>Note: these libraries are often used because developers want to avoid using JavaScript due to personal dislike. In that way, you could say that these tools do replace JavaScript. But they weren't built with that as the primary goal.</em>)</p></li>
+<li><p><strong>Languages whose <em>sole purpose</em> is to <em>compile to JavaScript</em> (e.g., <a href="http://www.typescriptlang.org">TypeScript</a>)</strong>. These languages came long after JavaScript, and only exist because of it. They don't really have their own VMs, etc.: they can only be run by compiling to JavaScript. <strong>In this case, the language has been created because developers have qualms with Javascript</strong>. And in some ways, these could be seen as higher-level languages: they claim to have some improvement of JavaScript and then compile down to it. I'll call these <strong>*Scripts</strong>.</p></li>
+</ol>
+
+<p>Each of these variants were conceived by different creators with different goals in mind. They offer their own strengths, their own weaknesses, their own biases, their own opinions, and so forth. (<em>Note: in most of these languages, you could include valid JavaScript in your source code without any problems.</em>)</p>
+
+<p>In this post, I'd like to give readers some insight into why they might choose one of these languages over (1) JavaScript, and (2) the other *Scripts in contention.</p>
+
+<h1>CoffeeScript</h1>
+
+<p>I see <a href="http://coffeescript.org">CoffeeScript</a> as the poster child of the *Scripts. Really, CoffeeScript aims to make your code more concise and more readable. The syntax doesn't use any of the '{' and '(' and ';' that plague JavaScript code, instead opting to use whitespace (a lá Python). Again, similar to Python, it's got great comprehensions that require 10x more JavaScript code to implement.</p>
+
+<p>Here's an example of these list comprehensions:</p>
+
+<pre><code class="prettyprint">even_nums = (i for i in [0..10] when i % 2 == 0)
+odd_nums = (i for i in [0..10] when i not in even_nums)
+
+console.log even_nums # prints '0, 2, 4, 6, 8'
+console.log odd_nums # prints '1, 3, 5, 7, 9'
+</code></pre>
+
+<p>If this doesn't look impressive on its own, check out the corresponding JavaScript:</p>
+
+<pre><code class="prettyprint">(function() {
+  var even_nums, i, odd_nums,
+    __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i &lt; l; i++) { if (i in this &amp;&amp; this[i] === item) return i; } return -1; };
+
+  even_nums = (function() {
+    var _i, _results;
+    _results = [];
+    for (i = _i = 1; _i &lt;= 10; i = ++_i) {
+      if (i % 2 === 0) {
+        _results.push(i);
+      }
+    }
+    return _results;
+  })();
+
+  odd_nums = (function() {
+    var _i, _results;
+    _results = [];
+    for (i = _i = 1; _i &lt;= 10; i = ++_i) {
+      if (__indexOf.call(even_nums, i) &lt; 0) {
+        _results.push(i);
+      }
+    }
+    return _results;
+  })();
+
+  console.log(even_nums);
+
+  console.log(odd_nums);
+
+}).call(this);
+</code></pre>
+
+<p>Why use CoffeeScript? It's just a pleasure. The syntax takes away the worst parts of JavaScript. The language appears more functional and less disgusting.</p>
+
+<h1>TypeScript</h1>
+
+<p><a href="http://www.typescriptlang.org">TypeScript</a> is a Microsoft project that aims to add http://crmarsh416.appspot.com typing and a better module and interface system to JavaScript. Essentially, you can define classes and interfaces (very easily) and then enforce type safety at compile time, saving you tens of hours of awful JavaScript debugging.</p>
+
+<p>One might claim that <strong>CoffeeScript : Python :: TypeScript : OCaml</strong>.</p>
+
+<p>Lets see this type safety in action:</p>
+
+<pre><code class="prettyprint">interface Point {
+    x: number;
+    y: number;
+}
+
+/* Calculate a Point's distance from the origin. */
+function distance(a: Point): number {
+    var squared_distance: number = a.x*a.x + a.y*a.y;
+    return Math.sqrt(squared_distance);
+}
+
+var not_point: number = 15;
+distance(not_point);
+// type error: parameter does not match any signature of call target
+
+var point: Point = {
+    x: 3,
+    y: 4
+};
+distance(point);
+// success! returns '5'
+
+var bad_point: Point = {
+    x: 3
+};
+// type error: missing property 'y' from type Point
+</code></pre>
+
+<p>TypeScript also amplifies some of the functional flavor of JavaScript (albeit, less-so than CoffeeScript), mainly by adding the 'Fat Arrow' <code class="prettyprint">(arg) =&gt; { // use arg }</code> lambdas. For example:</p>
+
+<pre><code class="prettyprint">document.addEventListener(myevent, (e) =&gt; {
+    // Handle the event...
+})
+</code></pre>
+
+<p>(<em>Note: the 'Fat Arrow' is part of <a href="http://wiki.ecmascript.org/doku.php?id=harmony:arrow_function_syntax">ECMAScript 6 specification</a> and thus will eventually be supported by all JavaScript engines. <a href="http://robcee.net/2013/fat-arrow-functions-in-javascript/">Firefox</a> already supports it.</em>)</p>
+
+<p>So, why use TypeScript? If you're a fan of type safety and a http://crmarsh416.appspot.com type system, it's a no-brainer. And for large projects, it can be a life-saver. At the same time, it retains some of JavaScript's verbosity. You do end up with plenty of <code class="prettyprint">})})};</code>-style code. In the end, it's a matter of preference.</p>
+
+<h1>LiveScript</h1>
+
+<p><a href="http://livescript.net">LiveScript</a> is even <em>more</em> functional than CoffeeScript. To keep the analogies going, we might say that <strong>CoffeeScript : Python :: TypeScript : OCaml :: LiveScript : Haskell</strong>, or something like that.</p>
+
+<p>As in CoffeeScript, LiveScript uses whitespace and newlines as delimiters, rather than the brackets of JavaScript.</p>
+
+<p>I actually see LiveScript and CoffeeScript as a bit of a toss-up. If you're <em>really</em> into functional programming, you might prefer LiveScript. For example, one differentiating factor: LiveScript allows for <a href="http://en.wikipedia.org/wiki/Currying">function currying</a> (i.e., partial application of functions). Watch us define the <code class="prettyprint">increment</code> function as adding one:</p>
+
+<pre><code class="prettyprint">add = (x, y) --&gt; x + y
+add 11, 9       #=&gt; 20
+increment = add 1
+increment 11    #=&gt; 12
+</code></pre>
+
+<p>In general, LiveScript has a strong functional lean. If that's for you, check it out.</p>
+
+<h1>RedScript</h1>
+
+<p><a href="http://redscript.org">RedScript</a> appeared on HackerNews recently, and although certainly has reached widespread adoption, I've included it here because I think it's a good example of how people are developing different 'flavors' of JavaScript.</p>
+
+<p>At its core, RedScript wants to be a Ruby-flavored JavaScript. This makes it very easy to extend our analogy! <strong>CoffeeScript : Python :: TypeScript : OCaml :: LiveScript : Haskell :: RedScript : Ruby</strong>. For example, here's some valid RedScript that strongly resembles Ruby:</p>
+
+<pre><code class="prettyprint">for i in 0..5
+  puts i
+end
+</code></pre>
+
+<p>Actually, I lied: this not only "strongly resembles" Ruby—it <em>is</em> <a href="http://www.tutorialspoint.com/ruby/ruby_loops.htm">valid</a> Ruby.</p>
+
+<p>If you're a Rubyist, try RedScript. It's as simple as that.</p>
+
+<h1>Conclusion</h1>
+
+<p>The languages described here are just a subset of the compile-to-JS family. But even with these four examples, we see:</p>
+
+<ul>
+<li>Function currying</li>
+<li>Static typing/type safety</li>
+<li>Whitespace vs. bracket delimiting</li>
+</ul>
+
+<p>… and more.</p>
+
+<p>JavaScript is a cool language. I love the community and I enjoy using it. But the development of these higher-level languages is cool too. If anything, they further emphasize the importance and relevance of JavaScript: without JavaScript, these languages would cease to run.</p>
+
+          <p class="date">Posted on September 19, 2013.<p>
+          <div id="disqus_thread"></div>
+          <script type="text/javascript">
+          var disqus_shortname = 'crmarsh416';
+          (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </div>
+      </div>
+    </div>
+  </body>
+  </html><!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <meta name="description" content="Charlie Marsh is a programmer and student at Princeton University with major interests in functional programming and machine learning.">
+  <meta name="viewport" content="width=device-width">
+
+  <!-- Use title if it's in the page YAML frontmatter -->
+  <title>PhantomJS: Common Gotchas for Beginners
+ | Charlie Marsh</title>
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans">
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Source+Code+Pro">
+  <link href="http://crmarsh416.appspot.com/css/combined.css" rel="stylesheet" type="text/css" />
+  <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang=ml"></script>
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-36552582-2', 'princeton.edu');
+  ga('send', 'pageview');
+  </script>
+</head>
+
+<body class="index">
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="span2 hidden-phone"></div>
+      <div class="span2 hidden-phone" style="position:fixed">
+        <header>
+          <h1 style="font-size:50px"><a class="blank" href="/~crmarsh/">Charlie<br />Marsh</a></h1>
+          <p><a class="implicit" href="/~crmarsh/">Home</a> &sdot; <a class="implicit" href="../Charles_Marsh_CV.pdf">CV</a>&sdot; <a class="implicit" href="../about.html">About</a></p>
+          <h2>Programmer,<br />student.</h2>
+          <p>I'm into functional<br />programming,<br />machine learning,<br /> and other fun stuff.<p>
+          <p>Find me on:</p>
+          </header>
+          <a href="mailto:crmarsh@princeton.edu" class="nav email"></a>
+          <a href="http://www.github.com/crm416" class="nav github"></a>
+          <a href="http://stackoverflow.com/users/1450892/charles-marsh" class="nav stackoverflow"></a>
+          <a href="http://uk.linkedin.com/in/marshcharles" class="nav linkedin"></a>
+        </div>
+        <div class="span2 visible-phone">
+          <div>
+            <p style="font-size:25px"><a class="blank" href="/~crmarsh/">Charlie Marsh</a>  <div style="margin-top:-10px"><code class="prettyprint" class="custom"><span class="code_red">type</span> <span class="code_blue">blog</span></code></div></p>
+          </div>
+          <hr />
+        </div>
+        <div class="span9 offset1">
+          <h1>PhantomJS: Common Gotchas for Beginners</h1>
+<a class="btn btn-primary" href="http://twitter.com/intent/tweet?url=http://www.princeton.edu/~crmarsh/phantomjs&text=PhantomJS: Common Gotchas for Beginners
+&via=crm416">Tweet</a> | <a class="btn btn-primary" href="http://facebook.com/sharer.php?u=http://www.princeton.edu/~crmarsh/phantomjs">Like</a> | <a class="btn btn-primary" href="https://plus.google.com/share?url=http%3A%2F%2Fwww.princeton.edu/~crmarsh/phantomjs">+1</a>
+
+<p>Over the summer, I had a pet project to automate <a href="https://github.com/geuis/helium-css">Helium.js</a>, a tool for identifying unused style elements in your CSS. Currently, in order to generate a Helium report, you need to add some JavaScript to your webpage, open up your web browser, navigate to the page, and click some buttons.</p>
+
+<p>My goal was to automate the process using a headless browser <em>(that is, a browser that runs without a GUI, allowing you to navigate the web and interact with web pages from your terminal)</em>. In this case, I chose to use <a href="http://phantomjs.org">PhantomJS</a>, a tool designed designed precisely for this use-case.</p>
+
+<p><em>(Note: the aforementioned project is still under active development and not yet available on GitHub.)</em></p>
+
+<p>I had a mixed experience. Headless browsing is notoriously difficult to debug, and this case was no different: errors were tough to reproduce, results were inconsistent, and producing informative output was challenging.</p>
+
+<p>Once I got past the initial difficulties, however, PhantomJS was actually a pretty powerful tool—hats off to the creators, as always.</p>
+
+<p>In this post, I'd like to describe some of the common "gotchas" that I've found associated with PhantomJS (I call them "common" due to: 1. my own experience, and 2. finding similar questions/issues documented on StackOverflow), along with their solutions.</p>
+
+<p><em>Note: that PhantomJS is often used in tandem with <a href="http://casperjs.org">CasperJS</a>; it's possible that some of what follows is made easier with Casper, namely, navigating webpages. But I think these gotchas are still valid, even in the face of Casper.</em></p>
+
+<h2>Code Context</h2>
+
+<p>Perhaps the first gotcha is that there are really two contexts in your PhantomJS program: firstly, the PhantomJS program itself; secondly, the webpage open in your headless browser, i.e., access to the DOM. (This is important for subsequent gotchas.)</p>
+
+<p>What's the difference? Well, the PhantomJS code you write is used to control your browser automation at a high level. Think of it as the user of your browser. It can open up a webpage, save things to the filesystem, etc. However, any JavaScript that's executed in the actual webpage (i.e., interacting with the DOM) is a whole world of its own. In this sense, the PhantomJS program is <a href="https://github.com/ariya/phantomjs/wiki/Quick-Start#code-evaluation">"sandboxed"</a>.</p>
+
+<p>A litmus test: if you're using jQuery, you're in the latter context.</p>
+
+<h2>Page.evaluate</h2>
+
+<p>With that in mind, one of the first questions that I asked myself, when using PhantomJS: "How can I execute JavaScript <em>on</em> the given webpage itself?" In other words, I wanted to somehow mess around with the webpage using jQuery, and I couldn't figure out how to actually execute code in the context of the page.</p>
+
+<p>The <a href="https://github.com/ariya/phantomjs/wiki/Quick-Start#code-evaluation">solution</a>: <code class="prettyprint">page.evaluate</code> (where <code class="prettyprint">page</code> is the variable representing the current page "open" in your headless browser).</p>
+
+<p><code class="prettyprint">page.evaluate</code> takes, as argument, a function to-be executed in the context of the webpage. This is incredibly useful. Further, <code class="prettyprint">page.evaluate</code> can return a result from the webpage back to your PhantomJS program. Say, for example, that you'd like to grab the text of an element on the current page with ID "foo":</p>
+
+<pre><code class="prettyprint">var foo = page.evaluate({
+    return $("#foo").text;
+})
+</code></pre>
+
+<p>You could then use <code class="prettyprint">foo</code> in your PhantomJS program, successfully extracting the value from the webpage. <em>Note: return values are limited to simple objects, rather than, say, functions.</em></p>
+
+<h2>IncludeJs and InjectJs</h2>
+
+<p>Actually, the code snippet above might not work as expected. I'll repeat it here for clarity:</p>
+
+<pre><code class="prettyprint">var foo = page.evaluate({
+    return $("#foo").text;
+})
+</code></pre>
+
+<p>The problem? The active webpage might not have jQuery loaded.</p>
+
+<p>Luckily, you can use PhantomJS to inject/include JavaScript files in the current webpage using two functions: <code class="prettyprint">page.injectJs</code> and <code class="prettyprint">page.includeJs</code>. The difference between the two is quite nuanced. There's a good discussion <a href="https://groups.google.com/forum/#!topic/phantomjs/G4xcnSLrMw8">here</a> for those interested, but essentially, <code class="prettyprint">page.injectJs</code> pauses execution until the script is loaded, while <code class="prettyprint">page.includeJs</code> loads the script like any other. <em>Note: both accept callbacks.</em></p>
+
+<p>Here's the revised code (credit to the <a href="https://github.com/ariya/phantomjs/wiki/Page-Automation">PhantomJS docs</a>):</p>
+
+<pre><code class="prettyprint">page.includeJs("http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js", function() {
+    var foo = page.evaluate({
+        return $("#foo").text;
+    });
+    // do what you gotta do with 'foo'
+    // ...
+});
+</code></pre>
+
+<h2>Console.logging from your web browser</h2>
+
+<p>Similarly, I was often frustrated by the inability to display information logged by my webpage. Recall the split between the context of your PhantomJS program and the webpage open in your headless browser. Well, if you type <code class="prettyprint">console.log("Hello, World!")</code> in your PhantomJS program, that will be printed to your terminal. If, however, your webpage tries to log the same message, it will pass by unnoticed! So if your webpage prints a bunch of traces to the console, you'll never see 'em.</p>
+
+<p>Specifically, <strong>the following code does nothing</strong> because "Hello, World!" is printed in the context of the browser:</p>
+
+<pre><code class="prettyprint">page.evaluate({
+    console.log("Hello, World!")
+})
+</code></pre>
+
+<p>So, what if you want to log messages to your terminal from within your webpage? The trick is to use the <code class="prettyprint">page.onConsoleMessage</code> event and echo any messages printed in the browser out to your terminal. Try this:</p>
+
+<pre><code class="prettyprint">page.onConsoleMessage = function(msg){
+    console.log(msg);
+};
+</code></pre>
+
+<p>For more, see my <a href="http://stackoverflow.com/questions/18115888/phantomjs-not-returning-results/18131369#18131369">StackOverflow answer</a>.</p>
+
+<h2>waitFor.js</h2>
+
+<p>PhantomJS beginners constantly ask how they can wait for something to appear on their webpage before acting. For example, maybe they want a banner to appear and then extract some text from it. Say "#foo" is now a div that loads a few seconds after the page has appeared. If you simply use the following code, you'll get unexpected results, as the banner may not be loaded at the time of query:</p>
+
+<pre><code class="prettyprint">var page = require('webpage').create();
+page.open('http://www.sample.com', function() {
+    var foo = page.evaluate(function() {
+        return $("#foo").text;
+    });
+    // ...
+    phantom.exit();
+});
+</code></pre>
+
+<p>Instead, you should use <a href="https://github.com/ariya/phantomjs/blob/master/examples/waitfor.js">waitFor.js</a>, a nice JavaScript snippet provided by the PhantomJS guys. This function is pretty simple, but very, very useful. Essentially, it queries the page every few seconds (the exact interval is an optional parameter), executing a user-specified function when a certain condition has been met. Expanding on the previous example, our code might look like the following (excluding the lengthy definition of <a href="https://github.com/ariya/phantomjs/blob/master/examples/waitfor.js">waitFor</a>):</p>
+
+<pre><code class="prettyprint">var page = require('webpage').create();
+page.open('http://www.sample.com', function() {
+    waitFor(function() {
+            // Check in the page if a specific element is now visible
+            return page.evaluate(function() {
+                return $("#foo").is(":visible");
+            });
+        }, function() {
+           var foo = page.evaluate(function() {
+                return $("#foo").text;
+            });
+            // ...
+            phantom.exit();
+        });   
+    });
+});
+</code></pre>
+
+<h2>Going Forward</h2>
+
+<p>There's a lot more to PhantomJS than I've managed to go through in this post. And I'm personally excited to check out CasperJS at some point in the future, which seems great as well (in particular, for unit testing). But hopefully the tips and gotchas described in this post can be helpful for beginners.</p>
+
+          <p class="date">Posted on September 13, 2013.<p>
+          <div id="disqus_thread"></div>
+          <script type="text/javascript">
+          var disqus_shortname = 'crmarsh416';
+          (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </div>
+      </div>
+    </div>
+  </body>
+  </html><!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <meta name="description" content="Charlie Marsh is a programmer and student at Princeton University with major interests in functional programming and machine learning.">
+  <meta name="viewport" content="width=device-width">
+
+  <!-- Use title if it's in the page YAML frontmatter -->
+  <title>Quizzler
+ | Charlie Marsh</title>
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans">
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Source+Code+Pro">
+  <link href="http://crmarsh416.appspot.com/css/combined.css" rel="stylesheet" type="text/css" />
+  <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang=ml"></script>
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-36552582-2', 'princeton.edu');
+  ga('send', 'pageview');
+  </script>
+</head>
+
+<body class="index">
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="span2 hidden-phone"></div>
+      <div class="span2 hidden-phone" style="position:fixed">
+        <header>
+          <h1 style="font-size:50px"><a class="blank" href="/~crmarsh/">Charlie<br />Marsh</a></h1>
+          <p><a class="implicit" href="/~crmarsh/">Home</a> &sdot; <a class="implicit" href="../Charles_Marsh_CV.pdf">CV</a>&sdot; <a class="implicit" href="../about.html">About</a></p>
+          <h2>Programmer,<br />student.</h2>
+          <p>I'm into functional<br />programming,<br />machine learning,<br /> and other fun stuff.<p>
+          <p>Find me on:</p>
+          </header>
+          <a href="mailto:crmarsh@princeton.edu" class="nav email"></a>
+          <a href="http://www.github.com/crm416" class="nav github"></a>
+          <a href="http://stackoverflow.com/users/1450892/charles-marsh" class="nav stackoverflow"></a>
+          <a href="http://uk.linkedin.com/in/marshcharles" class="nav linkedin"></a>
+        </div>
+        <div class="span2 visible-phone">
+          <div>
+            <p style="font-size:25px"><a class="blank" href="/~crmarsh/">Charlie Marsh</a>  <div style="margin-top:-10px"><code class="prettyprint" class="custom"><span class="code_red">type</span> <span class="code_blue">blog</span></code></div></p>
+          </div>
+          <hr />
+        </div>
+        <div class="span9 offset1">
+          <h1>Quizzler</h1>
+<a class="btn btn-primary" href="http://twitter.com/intent/tweet?url=http://www.princeton.edu/~crmarsh/hack&text=Quizzler
+&via=crm416">Tweet</a> | <a class="btn btn-primary" href="http://facebook.com/sharer.php?u=http://www.princeton.edu/~crmarsh/hack">Like</a> | <a class="btn btn-primary" href="https://plus.google.com/share?url=http%3A%2F%2Fwww.princeton.edu/~crmarsh/hack">+1</a>
+
+<p style="color:rgb(130,130,130)">Update: Quizzler was built as my entry into the Facebook Summer of Hack Hackathon in August 2013 and was selected as the winning hack. Thanks to Facebook for hosting a great event.</p>
+
+<p>After playing a number of poorly-made iPhone quiz games, I decided to roll my own. But I didn't want to spend time creating my own corpus of questions. Thus, Quizzler was born, an attempt to build an iPhone quiz app that generates its own questions.</p>
+
+<p><img src="http://crmarsh416.appspot.com/img/hack_home.png" alt="Quizzler Homescreen" class="center" width="315"></p>
+
+<p><em>Credit to <a href="http://dribbble.com/hrtislove">Karen Dessire</a> for the <a href="http://dribbble.com/shots/921928-Playing-With-Science?list=users">Playing With Science</a> icons on the home screen!</em></p>
+
+<p>The technical challenges around such a goal are numerous:</p>
+
+<ol>
+<li>Identify factual statements that could be morphed into good questions.</li>
+<li>Identify keywords in those statements that could be considered an 'answer'.</li>
+<li>Identify replacement keywords that fix into the same context (as suggested answers).</li>
+</ol>
+
+<p>On the practical level, Quizzler allows users to specify any (reasonable) topic and iterate through questions relevant to that topic. Users can then re-play and attempt more questions for the same topic, or switch topics at any time.</p>
+
+<p>In terms of technical complexity, Quizzler consists of two major components:</p>
+
+<ol>
+<li>A Django server, hosted on Heroku, that handles requests for a given topic (with some associated parameters, e.g., number of questions desired). This server hosts all the code to perform NLP on information drawn from the semantics of the web.</li>
+<li>An iOS app, meant as a user-facing portal to the Django server.</li>
+</ol>
+
+<p>Here's the app in action:</p>
+
+<p><img src="http://crmarsh416.appspot.com/img/hack_demo.png" alt="Quizzler In Action" class="center" width="315"></p>
+
+<p>And, at the end of the session, here's the results screen:</p>
+
+<p><img src="http://crmarsh416.appspot.com/img/hack_results.png" alt="Quizzler Results" class="center" width="315"></p>
+
+          <p class="date">Posted on August 4, 2013.<p>
+          <div id="disqus_thread"></div>
+          <script type="text/javascript">
+          var disqus_shortname = 'crmarsh416';
+          (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </div>
+      </div>
+    </div>
+  </body>
+  </html><!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <meta name="description" content="Charlie Marsh is a programmer and student at Princeton University with major interests in functional programming and machine learning.">
+  <meta name="viewport" content="width=device-width">
+
+  <!-- Use title if it's in the page YAML frontmatter -->
+  <title>The Idiot-Proof Guide to Setting Up Your Personal EC2 Instance
+ | Charlie Marsh</title>
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans">
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Source+Code+Pro">
+  <link href="http://crmarsh416.appspot.com/css/combined.css" rel="stylesheet" type="text/css" />
+  <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang=ml"></script>
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-36552582-2', 'princeton.edu');
+  ga('send', 'pageview');
+  </script>
+</head>
+
+<body class="index">
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="span2 hidden-phone"></div>
+      <div class="span2 hidden-phone" style="position:fixed">
+        <header>
+          <h1 style="font-size:50px"><a class="blank" href="/~crmarsh/">Charlie<br />Marsh</a></h1>
+          <p><a class="implicit" href="/~crmarsh/">Home</a> &sdot; <a class="implicit" href="../Charles_Marsh_CV.pdf">CV</a>&sdot; <a class="implicit" href="../about.html">About</a></p>
+          <h2>Programmer,<br />student.</h2>
+          <p>I'm into functional<br />programming,<br />machine learning,<br /> and other fun stuff.<p>
+          <p>Find me on:</p>
+          </header>
+          <a href="mailto:crmarsh@princeton.edu" class="nav email"></a>
+          <a href="http://www.github.com/crm416" class="nav github"></a>
+          <a href="http://stackoverflow.com/users/1450892/charles-marsh" class="nav stackoverflow"></a>
+          <a href="http://uk.linkedin.com/in/marshcharles" class="nav linkedin"></a>
+        </div>
+        <div class="span2 visible-phone">
+          <div>
+            <p style="font-size:25px"><a class="blank" href="/~crmarsh/">Charlie Marsh</a>  <div style="margin-top:-10px"><code class="prettyprint" class="custom"><span class="code_red">type</span> <span class="code_blue">blog</span></code></div></p>
+          </div>
+          <hr />
+        </div>
+        <div class="span9 offset1">
+          <h1>The Idiot-Proof Guide to Setting Up Your Personal EC2 Instance</h1>
+<a class="btn btn-primary" href="http://twitter.com/intent/tweet?url=http://www.princeton.edu/~crmarsh/aws&text=The Idiot-Proof Guide to Setting Up Your Personal EC2 Instance
+&via=crm416">Tweet</a> | <a class="btn btn-primary" href="http://facebook.com/sharer.php?u=http://www.princeton.edu/~crmarsh/aws">Like</a> | <a class="btn btn-primary" href="https://plus.google.com/share?url=http%3A%2F%2Fwww.princeton.edu/~crmarsh/aws">+1</a>
+
+<p>I like SSHing into things. So I went ahead and setup my own AWS EC2 instance. Under the free tier, you can get good mileage out of an instance and use it to do whatever you please.</p>
+
+<p>But it took me awhile to get the thing up and running properly. Here are the things I wanted to have:</p>
+
+<ol>
+<li>Easy SSH access at the press of a button (i.e., without entering a password).</li>
+<li>Yet, safety and security from the attempted access of others (i.e., using RSA keys).</li>
+<li>My own account on the instance (rather than, say, using <em>root</em>).</li>
+<li>All the tools I use naturally on my local machine.</li>
+</ol>
+
+<p>If that experience sounds good to you, keep reading. I've pulled together the assorted posts that I used to setup my EC2 instance and assembled <strong>The Idiot-Proof Guide</strong>.</p>
+
+<h2>Signing Up With AWS (The Boring Part)</h2>
+
+<ul>
+<li>Go to the <a href="https://portal.aws.amazon.com/gp/aws/developer/registration/index.html">AWS signup page</a>. Proceed with the signup process. Note that the information necessary to get up and running with an AWS account includes a valid <strong>credit card</strong> and a <strong>valid phone</strong> (used for verification). Have these at the ready.</li>
+</ul>
+
+<h2>Launching Your Instance (Slightly More Interesting)</h2>
+
+<ul>
+<li>After you've received your activation email, head to the <a href="https://console.aws.amazon.com/console/home?#">AWS management console</a> (this link requires you to be logged in to AWS). Click on the icon labelled 'EC2' (orange, below).</li>
+</ul>
+
+<p><img src="http://crmarsh416.appspot.com/img/aws_portal.png" alt="AWS Portal" class="center" width="700"></p>
+
+<blockquote>
+  <p>For those interested, 'EC2' stands for <em>Elastic Cloud Compute</em>. The service itself allows users to rent out virtual computers on which they can boot up their own images. Basically, we're booting onto some random CPU in some Amazon-owned datacenter somewhere in America.</p>
+</blockquote>
+
+<ul>
+<li>On the next page, hit the big blue 'Launch Instance' button, as seen below.</li>
+</ul>
+
+<p><img src="http://crmarsh416.appspot.com/img/aws_launch_instance.png" alt="Launch instance" class="center"></p>
+
+<ul>
+<li>Next, we proceed with the 'Classic Wizard'. It's at this point that we have to select our disk image. Personally, I like using Ubuntu, so the rest of this tutorial will assume that you select <em>Ubuntu Server 13.04</em> (64-bit).</li>
+<li>Click-through (accepting the default settings) until you get to the 'Create a Key Pair' tab. You can read more about public/private key pairs <a href="http://en.wikipedia.org/wiki/Public-key_cryptography">here</a>. Basically, Amazon will give you a <em>your_keyname.pem</em> file which will allow you to SSH into your server. Name it whatever you want and save it locally.</li>
+<li>Click through and launch your instance.</li>
+</ul>
+
+<p><img src="http://crmarsh416.appspot.com/img/aws_final.png" alt="Final configuration" class="center" width="700"></p>
+
+<ul>
+<li>Wait until your instance state goes from <em>pending</em> to <em>active</em>. For me, that took about 2-3 minutes. When you see something like this, you're golden.</li>
+</ul>
+
+<p><img src="http://crmarsh416.appspot.com/img/aws_ready.png" alt="Instance ready" class="center" width="700"></p>
+
+<h2>Getting Onto Your Server (More Interesting Still)</h2>
+
+<ul>
+<li><p>Now that our instance is up and running, we need to make one more step before we can SSH in. That is, we need to set the file permissions of <em>your_keyname.pem</em>. To do that, use the <a href="http://stackoverflow.com/questions/1454629/aws-ssh-access-permission-denied-publickey-issue#1454647">following command</a>:</p>
+
+<pre><code class="prettyprint">chmod 600 /path/to/your_keyname.pem
+</code></pre></li>
+<li>Get your EC2 name (something of the form *.compute.amazonaws.com). It'll look like this:</li>
+</ul>
+
+<p><img src="http://crmarsh416.appspot.com/img/aws_instance_name.png" alt="Instance name" class="center"></p>
+
+<ul>
+<li><p>Now, we can go ahead and SSH in. Issue the <a href="http://stackoverflow.com/questions/6394762/ssh-access-to-amazon-ec2-instance#6407649">following command</a>:</p>
+
+<pre><code class="prettyprint">ssh -i /path/to/your_keyname.pem ubuntu@your_instance.compute.amazonaws.com
+</code></pre>
+
+<p>In my case, for example, that looks like:</p>
+
+<pre><code class="prettyprint">ssh -i ~/Desktop/my_key.pem ubuntu@ec2-54-218-37-172.us-west-2.compute.amazonaws.com
+</code></pre></li>
+<li>Success! (I hope...)</li>
+</ul>
+
+<p><img src="http://crmarsh416.appspot.com/img/aws_successful_login.png" class="center" alt="Successful login"></p>
+
+<h2>Configuring Your Account (Much More Interesting)</h2>
+
+<ul>
+<li>Ideally, you want to <a href="http://www.howtogeek.com/124950/htg-explains-why-you-shouldnt-log-into-your-linux-system-as-root/">minimize the amount of time</a> you're logged in as <em>root</em>, for security purposes. So next, we'll create our own account on the EC2 instance and set it up with the proper permissions. I'll be creating the account <em>charlie</em>.</li>
+<li><p>First, we should setup password authentication so that when we add users, our instance is secure. <a href="http://stackoverflow.com/questions/8339912/allowing-users-to-ssh-to-an-ec2-ubuntu-instance#8339975">To do so</a>:</p>
+
+<pre><code class="prettyprint">sudo vi /etc/ssh/sshd_config
+# Change the line "PasswordAuthentication no" to "PasswordAuthentication yes"
+</code></pre>
+
+<p>Notice that we need to use <em>sudo</em>.</p></li>
+<li><p>Next, we'll add our user <a href="http://www.edukatr.com/how-to-start-an-ec2-ubuntu-server-for-your-developer-in-6-minutes/">as follows</a>:</p>
+
+<pre><code class="prettyprint">sudo useradd -d /home/charlie -m charlie
+sudo passwd charlie
+# Enter password, twice
+</code></pre></li>
+<li><p>That's great! But <em>charlie</em> still isn't sudo. If you don't know what that means: in short, a sudo user is able to access files reserved for admins. We want our account to have these admin privileges. So to provide that, we type the following (still on <em>ubuntu</em>):</p>
+
+<pre><code class="prettyprint">sudo visudo
+# After line "root ALL=(ALL:ALL) ALL", add "charlie ALL=(ALL:ALL) ALL"
+</code></pre>
+
+<p>Note: if you don't want to be prompted to enter your password, then <a href="http://www.ducea.com/2006/06/18/linux-tips-password-usage-in-sudo-passwd-nopasswd/">use</a> "charlie ALL = NOPASSWD:ALL" instead.</p></li>
+<li><p>At this point, <strong>we can SSH in</strong> as <em>charlie</em>! Lets give it a try. Before closing our current instance, lets reload the SSH file for good measure. Still as <em>ubuntu</em>, type:</p>
+
+<pre><code class="prettyprint">sudo /etc/init.d/ssh restart
+logout
+</code></pre>
+
+<p>Now back in the terminal, we can go ahead and login:</p>
+
+<pre><code class="prettyprint">ssh charlie@ec2-54-218-37-172.us-west-2.compute.amazonaws.com
+# charlie@ec2-54-218-37-172.us-west-2.compute.amazonaws.com's password:
+</code></pre></li>
+<li><p>We're in! Last thing (for now): when I created my new user account, it didn't default to the bash shell. So I lacked tab-to-autocomplete, up-arrow-for-last-command, etc. To fix that:</p>
+
+<pre><code class="prettyprint">sudo chsh -s /bin/bash
+</code></pre>
+
+<p>Logout and login. You'll know you're successful if you see:</p>
+
+<pre><code class="prettyprint">charlie@ip-172-31-23-65:~$
+</code></pre></li>
+<li>Now we'll make this login flow much smoother.</li>
+</ul>
+
+<h2>Smoothing Out The Workflow (Much, Much More Interesting)</h2>
+
+<ul>
+<li>Now, I want to be able to SSH in with the click of a button. To do that, we'll: 1) remove the need for typing in your password when SSHing from your local machine, and 2) create an alias for the SSH command (and its arguments).</li>
+<li><p>To avoid the need to enter our password, we need to take some careful steps and create a <a href="http://blakesmith.me/2010/02/08/understanding-public-key-private-key-concepts.html">public-private key pair</a>. If you already have a private key that you want to use, continue to the next step. Otherwise, we first create a private-public key pair on our local machine in ~/.ssh:</p>
+
+<pre><code class="prettyprint">cd /Users/crmarsh/.ssh/
+ssh-keygen -t rsa
+# Name your key. Add a password, if you want.
+</code></pre>
+
+<p>If you didn't use the default key name, you need to <a href="https://wiki.hpcc.msu.edu/display/hpccdocs/Adding+a+Private+Key+to+Your+Mac+OSX+Keychain">add the private key</a> (the version <em>without</em> the .pub extension) to your keychain as follows:</p>
+
+<pre><code class="prettyprint">ssh-add -K keyname
+</code></pre>
+
+<p>Next, we need to move the <strong>public</strong> key to our server. Note that I'm assuming this is still your fresh EC2 instance; it <em>should</em> still be okay if you have an existing setup, but I can't make any promises. We proceed <a href="http://www.linuxproblem.org/art_9.html">as follows</a>:</p>
+
+<pre><code class="prettyprint">scp keyname.pub charlie@ec2-54-218-37-172.us-west-2.compute.amazonaws.com:
+# SSH in
+ssh charlie@ec2-54-218-37-172.us-west-2.compute.amazonaws.com
+# Add key to list of authorized keys
+mkdir .ssh
+touch .ssh/authorized_keys
+cat keyname.pub &gt;&gt; .ssh/authorized_keys
+# Set permissions
+chmod 700 .ssh
+chmod 0640 .ssh/authorized_keys
+rm keyname.pub
+</code></pre>
+
+<p>Logout, and you should be able to SSH in without having to enter your password.</p></li>
+<li><p>To <a href="http://askubuntu.com/questions/17536/how-do-i-create-a-permanent-bash-alias#17538">create the alias</a>, go to your bash<em>profile (emacs ~/.bash</em>profile) or wherever you configure your local bash settings. Add the following two lines (with your arguments substituted):</p>
+
+<pre><code class="prettyprint">export AWS='ec2-54-245-139-10.us-west-2.compute.amazonaws.com'
+alias aws='ssh -i ~/Desktop/crm_key.pem crmarsh@$AWS'
+</code></pre>
+
+<p>Why both? Well, if you ever need the address of your instance (it comes in handy), you can just type 'echo $AWS'. And when you want to login, you can just type 'aws' on its own. Try it for yourself.</p></li>
+<li>As a final note: if you're like me and you love Sublime Text, I highly recommend using <a href="http://wbond.net/sublime_packages/sftp">Sublime SFTP</a>. It lets you edit files on your remote server using Sublime Text over SFTP.</li>
+</ul>
+
+<h2>Installing Essential Tools</h2>
+
+<ul>
+<li>Thankfully, most of the things you need come pre-installed on Ubuntu; so this section is small. Try 'em out: ssh, scp, grep, wget, etc.</li>
+<li><p>However, there were still some things I wanted: emacs (not sure why, but I still use it), git, make, etc. Obviously, preferences will vary from dev to dev. Here are some commands you might want to use, for your convenience:</p>
+
+<pre><code class="prettyprint">sudo apt-get install emacs
+sudo apt-get install git
+sudo apt-get install make
+...
+</code></pre></li>
+</ul>
+
+          <p class="date">Posted on June 19, 2013.<p>
+          <div id="disqus_thread"></div>
+          <script type="text/javascript">
+          var disqus_shortname = 'crmarsh416';
+          (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </div>
+      </div>
+    </div>
+  </body>
+  </html><!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <meta name="description" content="Charlie Marsh is a programmer and student at Princeton University with major interests in functional programming and machine learning.">
+  <meta name="viewport" content="width=device-width">
+
+  <!-- Use title if it's in the page YAML frontmatter -->
+  <title>A Human-Friendly API for Wikipedia
+ | Charlie Marsh</title>
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans">
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Source+Code+Pro">
+  <link href="http://crmarsh416.appspot.com/css/combined.css" rel="stylesheet" type="text/css" />
+  <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang=ml"></script>
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-36552582-2', 'princeton.edu');
+  ga('send', 'pageview');
+  </script>
+</head>
+
+<body class="index">
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="span2 hidden-phone"></div>
+      <div class="span2 hidden-phone" style="position:fixed">
+        <header>
+          <h1 style="font-size:50px"><a class="blank" href="/~crmarsh/">Charlie<br />Marsh</a></h1>
+          <p><a class="implicit" href="/~crmarsh/">Home</a> &sdot; <a class="implicit" href="../Charles_Marsh_CV.pdf">CV</a>&sdot; <a class="implicit" href="../about.html">About</a></p>
+          <h2>Programmer,<br />student.</h2>
+          <p>I'm into functional<br />programming,<br />machine learning,<br /> and other fun stuff.<p>
+          <p>Find me on:</p>
+          </header>
+          <a href="mailto:crmarsh@princeton.edu" class="nav email"></a>
+          <a href="http://www.github.com/crm416" class="nav github"></a>
+          <a href="http://stackoverflow.com/users/1450892/charles-marsh" class="nav stackoverflow"></a>
+          <a href="http://uk.linkedin.com/in/marshcharles" class="nav linkedin"></a>
+        </div>
+        <div class="span2 visible-phone">
+          <div>
+            <p style="font-size:25px"><a class="blank" href="/~crmarsh/">Charlie Marsh</a>  <div style="margin-top:-10px"><code class="prettyprint" class="custom"><span class="code_red">type</span> <span class="code_blue">blog</span></code></div></p>
+          </div>
+          <hr />
+        </div>
+        <div class="span9 offset1">
+          <h1>A Human-Friendly API for Wikipedia</h1>
+<a class="btn btn-primary" href="http://twitter.com/intent/tweet?url=http://www.princeton.edu/~crmarsh/wikipedia&text=A Human-Friendly API for Wikipedia
+&via=crm416">Tweet</a> | <a class="btn btn-primary" href="http://facebook.com/sharer.php?u=http://www.princeton.edu/~crmarsh/wikipedia">Like</a> | <a class="btn btn-primary" href="https://plus.google.com/share?url=http%3A%2F%2Fwww.princeton.edu/~crmarsh/wikipedia">+1</a>
+
+<p><strong>Motivation:</strong> There's a lot of information on Wikipedia, and people want to use it. Sometimes, these people are programmers; and sometimes, their customers aren't computers.</p>
+
+<p>I needed to parse some information from Wikipedia programatically and present it in a human-readable format, i.e., for clients. I found that a bunch of other people had similar issues (e.g., <a href="http://stackoverflow.com/questions/120061/fetch-a-wikipedia-article-with-python?lq=1">here</a> and <a href="http://stackoverflow.com/questions/4452102/how-to-get-plain-text-out-of-wikipedia?rq=1">here</a>), so I've <a href="https://github.com/crm416/quizzler/blob/master/src/wiki.py">open-sourced my solution</a>.</p>
+
+<blockquote>
+  <p>Note that this module is currently housed within a larger project; I'll be writing more on that later.</p>
+</blockquote>
+
+<h2>How It Works</h2>
+
+<p>To start, we need to understand the current Wikipedia API, the so-called <em>MediaWiki API</em>. The <a href="http://www.mediawiki.org/wiki/API:Main_page">documentation</a> is fairly comprehensive, although it's not easy to find what you're looking for in those dense pages.</p>
+
+<p>The MediaWiki API returns a JSON (or XML, etc.) response with the information you've queried. But the response is pretty cryptic: to get the <em>actual</em> information you're looking for, you need to access the proper keys and work some other magic.</p>
+
+<p>For example, here's the beginning of the JSON response for <a href="http://en.wikipedia.org/wiki/Michael_Jordan">Michael Jordan's Wikipedia page</a>:</p>
+
+<pre><code class="prettyprint">[
+    [
+        "parse",
+        {
+            "text": {
+                "*": "&lt;div class=\"dablink\"&gt;For other people named Michael Jordan, see &lt;a href=\"/wiki/Michael_Jordan_(disambiguation)\" title=\"Michael Jordan (disambiguation)\"&gt;Michael Jordan (disambiguation)&lt;/a&gt;.&lt;/div&gt;\n&lt;div class=\"metadata topicon nopopups\"..."
+            },
+            "title": "Michael Jordan"
+        }
+    ]
+]
+</code></pre>
+
+<p>Note that the text itself is also still in HTML.</p>
+
+<p>The methods in <em>wikipedia.py</em> are designed to extract the information (i.e., the "<em>" field above) and parse the HTML, with some help from the *HTMLParser</em> library. In the above case, our method looks something like this:</p>
+
+<pre><code class="prettyprint">return cleanHTMLSection(cleanWikiSection(json_response[0][1][u'text'][u'*']))
+</code></pre>
+
+<p>Where <em>cleanWikiSection</em> is reponsible for removing extraneous information from the page itself, and <em>cleanHTMLSection</em> is responsible for converting the HTML to plaintext.</p>
+
+<h2>BeautifulSoup: Traversing the Parse Tree</h2>
+
+<p>In some cases, <em>wikipedia.py</em> also uses BeautifulSoup to explore the target page. For example, say we want to extract information from the table below (again, from Michael Jordan's Wikipedia page.)</p>
+
+<p><img src="http://crmarsh416.appspot.com/img/wikipedia_table.png" alt="Michael Jordan" class="center"></p>
+
+<p>We do some fairly low-level searching in the table to check every row and extract information based on the row's content formatting. At this point, <em>wikipedia.py</em> can extract rows with one-to-one (e.g., "Nationality: American") and one-to-many (e.g., "Career highlights and awards: 6x NBA Champion...") formats.</p>
+
+<p>The output for MJ's table is as follows:</p>
+
+<pre><code class="prettyprint">[('Born', 'February 17, 1963'), ('Nationality', 'American'), ('Listed height', '6ft6in'), ('Listed weight', '216lb'), ('High school', 'Emsley A. Laney'), ('College', 'North Carolina'), ('NBA Draft', '1984 / Round: 1 / Pick: 3rd overall'), ...]
+</code></pre>
+
+<h2>In Conclusion</h2>
+
+<p>Feel free to fork, comment, criticise, or (best of all) get in touch. This was created as a sub-project and is by no means perfect, but I certainly hope it can be useful to some.</p>
+
+          <p class="date">Posted on June 16, 2013.<p>
+          <div id="disqus_thread"></div>
+          <script type="text/javascript">
+          var disqus_shortname = 'crmarsh416';
+          (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </div>
+      </div>
+    </div>
+  </body>
+  </html><!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <meta name="description" content="Charlie Marsh is a programmer and student at Princeton University with major interests in functional programming and machine learning.">
+  <meta name="viewport" content="width=device-width">
+
+  <!-- Use title if it's in the page YAML frontmatter -->
+  <title>Setting Up Your OCaml Development Environment on OS X
+ | Charlie Marsh</title>
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans">
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Source+Code+Pro">
+  <link href="http://crmarsh416.appspot.com/css/combined.css" rel="stylesheet" type="text/css" />
+  <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang=ml"></script>
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-36552582-2', 'princeton.edu');
+  ga('send', 'pageview');
+  </script>
+</head>
+
+<body class="index">
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="span2 hidden-phone"></div>
+      <div class="span2 hidden-phone" style="position:fixed">
+        <header>
+          <h1 style="font-size:50px"><a class="blank" href="/~crmarsh/">Charlie<br />Marsh</a></h1>
+          <p><a class="implicit" href="/~crmarsh/">Home</a> &sdot; <a class="implicit" href="../Charles_Marsh_CV.pdf">CV</a>&sdot; <a class="implicit" href="../about.html">About</a></p>
+          <h2>Programmer,<br />student.</h2>
+          <p>I'm into functional<br />programming,<br />machine learning,<br /> and other fun stuff.<p>
+          <p>Find me on:</p>
+          </header>
+          <a href="mailto:crmarsh@princeton.edu" class="nav email"></a>
+          <a href="http://www.github.com/crm416" class="nav github"></a>
+          <a href="http://stackoverflow.com/users/1450892/charles-marsh" class="nav stackoverflow"></a>
+          <a href="http://uk.linkedin.com/in/marshcharles" class="nav linkedin"></a>
+        </div>
+        <div class="span2 visible-phone">
+          <div>
+            <p style="font-size:25px"><a class="blank" href="/~crmarsh/">Charlie Marsh</a>  <div style="margin-top:-10px"><code class="prettyprint" class="custom"><span class="code_red">type</span> <span class="code_blue">blog</span></code></div></p>
+          </div>
+          <hr />
+        </div>
+        <div class="span9 offset1">
+          <h1>Setting Up Your OCaml Development Environment on OS X</h1>
+<a class="btn btn-primary" href="http://twitter.com/intent/tweet?url=http://www.princeton.edu/~crmarsh/ocaml_dev_environment&text=Setting Up Your OCaml Development Environment on OS X
+&via=crm416">Tweet</a> | <a class="btn btn-primary" href="http://facebook.com/sharer.php?u=http://www.princeton.edu/~crmarsh/ocaml_dev_environment">Like</a> | <a class="btn btn-primary" href="https://plus.google.com/share?url=http%3A%2F%2Fwww.princeton.edu/~crmarsh/ocaml_dev_environment">+1</a>
+
+<p>Last fall, I began exploring the subject of functional programming as part of <a href="http://www.cs.princeton.edu/~dpw/">Professor David Walker’s</a> <a href="http://www.cs.princeton.edu/~dpw/courses/cos326-12/info.php">COS 326 at Princeton</a>. Throughout the course, we did all of our programing in OCaml. I also spent the past spring using OCaml for my CS Independent Work. So in total, I’ve spent a reasonable amount of time around the language, and I think it’s fantastic: it’s got a great module system, plenty of useful open source tools, etc.</p>
+
+<p>But OCaml isn’t <em>that</em> widely used. And as a result, there aren’t very many good write-ups out there for setting up an OCaml development environment.</p>
+
+<blockquote>
+  <p>In this post, I’ll provide a couple of choices for setting up such an environment when developing on a Mac.</p>
+</blockquote>
+
+<h2>Getting the OCaml Source Code</h2>
+
+<p>To start, there are a few ways to get the actual source code for the OCaml language.</p>
+
+<p>If you’re just doing <strong>low-key development</strong>, download the source code as follows:</p>
+
+<ul>
+<li>Go to the <a href="http://ocaml.org/releases/">OCaml releases page</a>.</li>
+<li>Select the precompiled Mac binary.</li>
+<li>Follow the instructions for installation, and you're done—super simple, and fast.</li>
+</ul>
+
+<p>If you’re doing any <strong>significant development (i.e., large-scale projects)</strong>, you will eventually need external packages. With that in mind, you’ll want to get the OCaml source code as part of the OCaml Package Manager (OPAM) download. OPAM, as it sounds, is a fantastic OCaml package manager, which can be acquired as follows:</p>
+
+<ul>
+<li>If you’re lucky, one of the methods listed on the <a href="http://opam.ocamlpro.com/doc/Quick_Install.html">OPAM site</a> may work for you. This includes installation via homebrew and MacPorts, but I had seemingly random, trivial bugs that caused most of these methods to fail for me.</li>
+<li><p>With that in mind, I ran the following code from the <a href="http://ocaml.org/install.html">OCaml installation page</a>:</p>
+
+<pre><code class="prettyprint">$ wget http://www.ocamlpro.com/pub/opam_installer.sh
+$ sh ./opam_installer.sh /usr/local/bin
+</code></pre></li>
+<li><p>Warning: this takes a <strong>really</strong> long time—much longer than the above method because it has to download a bunch of libraries and dependencies.</p></li>
+<li>Additionally, if you want to take this route, you’ll need to update your BASH path: ‘export PATH=$PATH:~/.opam/4.00.1/bin’ (or wherever you want your .opam folder located).</li>
+</ul>
+
+<p>To make sure that you’ve installed the language properly, open up your Bash terminal and type ‘ocaml’. You should see the toplevel initialize, like this:</p>
+
+<!--?prettify lang=ml?-->
+
+<pre><code>        OCaml version 4.00.1
+# let x = 2 in
+  let y = 3 in
+  x+y;;
+- : int = 5
+#
+</code></pre>
+
+<h2>Setting Up Your Development Environment</h2>
+
+<p>Next, you’ll want a high-quality editor that’s well integrated with the OCaml language. I’ve played around with three different editors/environments, all of which have had their pros and cons. Anyway, the process for setting up such environments is as follows:</p>
+
+<h3>Emacs (with Tuareg Mode)</h3>
+
+<p>Professor Walker was a big fan of playing around in the OCaml toplevel within the IDE. That is, loading your current module into the OCaml toplevel and playing around without having to leave the text editor. To do that, you need Tuareg mode. Follow these instructions:</p>
+
+<ul>
+<li>Download the Emacs application for Mac <a href="http://emacsformacosx.com">here</a>.</li>
+<li>Open your terminal and type: ‘open ~’</li>
+<li><p>Download and unzip <a href="https://forge.ocamlcore.org/frs/download.php/514/tuareg-2.0.4.tgz">Tuareg 2.0.4</a> and <a href="https://forge.ocamlcore.org/frs/download.php/516/tuareg-caml-mode.tar.gz">Tuareg Mode</a> (downloads are hyperlinked). Move them into your home (~) directory. These instructions can be found <a href="http://cs51.seas.harvard.edu/ocaml-install.html#tuareg">here</a>. Alternatively, you can use wget (<a href="http://osxdaily.com/2012/05/22/install-wget-mac-os-x/">good instructions for downloading wget</a>, if you don’t have MacPorts or homebrew):</p>
+
+<pre><code class="prettyprint">$ wget https://forge.ocamlcore.org/frs/download.php/516/tuareg-caml-mode.tar.gz
+$ wget https://forge.ocamlcore.org/frs/download.php/514/tuareg-2.0.4.tgz
+</code></pre></li>
+<li><p>Open Emacs. Type: 'Ctrl+X Ctrl+F .emacs', which should open (or create) your .emacs file (located at ~/.emacs).</p></li>
+<li><p>Paste the following code into your .emacs file:</p>
+
+<pre><code class="prettyprint">(add-to-list 'load-path "~/tuareg-caml-mode")
+(add-to-list 'load-path "~/tuareg-2.0.4")
+(setq auto-mode-alist (cons '("\\.ml\\w?" . tuareg-mode) auto-mode-alist))
+(autoload 'tuareg-mode "tuareg" "Major mode for editing Caml code" t)
+(autoload 'camldebug "camldebug" "Run the Caml debugger" t)
+</code></pre></li>
+</ul>
+
+<p>Restart Emacs and Tuareg mode should be up and running. There are a number of useful commands for opening up the OCaml toplevel—<a href="http://www.ocamlpro.com/files/tuareg-mode.pdf">here’s</a> a good cheat sheet.</p>
+
+<h3>Eclipse (with OcaIDE)</h3>
+
+<p>OcaIDE is an Ocaml plugin for Eclipse. It works reasonably well, with auto-completion across packages and all those cute tricks. Here are some step-by-step instructions for setting it up:</p>
+
+<ul>
+<li>Download <em>Eclipse IDE for Java and DSL Developers</em> or <em>Eclipse Classic</em> from <a href="http://www.eclipse.org/downloads/">this link</a>.</li>
+<li>If you have any experience installing Eclipse plugins this shouldn’t be too hard. You can get the information from <a href="http://www.algo-prog.info/ocaide/install.php">here</a>, but it boils down to the following:</li>
+<li>Open your version of Eclipse.</li>
+<li>Go to: Help -> Install New Software.</li>
+<li>Hit add and enter 'OcaIDE' for name and <a href="http://www.algo-prog.info/ocaide/"><a href="http://www.algo-prog.info/ocaide/">http://www.algo-prog.info/ocaide/</a></a> for URL.</li>
+<li>Click through the licensing agreement and unsigned content warnings, as one does.</li>
+<li>Restart Eclipse.</li>
+</ul>
+
+<p>As an example usage of how you would arrange your folder hierarchy in Eclipse:</p>
+
+<ul>
+<li>Download a sample project, e.g., <a href="http://www.cs.princeton.edu/~dpw/courses/cos326-12/ass/a1.tgz">a1 (download)</a>.</li>
+<li>Create a COS 326 folder and place a1 inside of it.</li>
+<li>Launch eclipse and select COS 326 as your workspace. Type: “command+N –> OCaml –> OCaml Empty Makefile Project”, and all your stuff should be there with the correct perspective activated, as below.</li>
+</ul>
+
+<p><img src="http://media.tumblr.com/dcbeeca9a13838be696dcf7b7d04289f/tumblr_inline_mnklabyhIE1qz4rgp.png" class="center"></p>
+
+<p>One issue: the default behavior of Eclipse (with OcaIDE) is to try and re-build every time you save. This gives you error messages like this:</p>
+
+<pre><code class="prettyprint">$ ocamlc -o a1 [a1.ml](http://a1.ml/)
+$ make: ocamlc: No such file or directory
+$ make: *** [a1] Error 1
+</code></pre>
+
+<p>which I’ve struggled to clean up. It also lags your computer for a few seconds.</p>
+
+<p>I find this incredibly annoying, and, to be honest, it doesn't make sense to me that you would want your project to make every time you save: making can be very expensive, and a save isnt really an analogous operation. So I usually disable this feature and handle all my building on my own (i.e., from within my Bash shell). To do so, control-click on <em>a1</em> (or whatever your project is); click 'Properties –> Builders’ and then uncheck ‘OCaml Makefile Builder’ and hit ‘Ok’.</p>
+
+<blockquote>
+  <p>NOTE: if you're using OPAM, then you'll have to go to properties (CTRL+,) –> OcaIDE –> Paths. Then, go to ~/.opam/4.00.1/bin, type 'pwd' (you need the full path, rather than '~') and paste the whole path into the ‘OCaml Binaries Directory’ field. Hit apply.</p>
+</blockquote>
+
+<h3>Sublime Text</h3>
+
+<p>Sublime Text is great. It’s quick, sexy, and lightweight, with plenty of room for customization. There’s an unlimited free trial available <a href="http://www.sublimetext.com/2">here</a>. It doesn’t have any particular integration with OCaml (although it does provide correct syntax highlighting for your .ml and .mli files), but there’s a fantastic setup tutorial available <a href="http://blog.alexmaccaw.com/sublime-text">here</a> that describes how to get started and recommends some baseline packages.</p>
+
+<h2>In Conclusion</h2>
+
+<p>OCaml is a great language, and I wish it were more widely proliferated. Hopefully, this post will help you get developing as quickly as possible—if anything is unclear, just email me at <a href="mailto:crmarsh@princeton.edu">crmarsh@princeton.edu</a> and I’ll do my best to help you debug.</p>
+
+          <p class="date">Posted on May 29, 2013.<p>
+          <div id="disqus_thread"></div>
+          <script type="text/javascript">
+          var disqus_shortname = 'crmarsh416';
+          (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </div>
+      </div>
+    </div>
+  </body>
+  </html><!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <meta name="description" content="Charlie Marsh is a programmer and student at Princeton University with major interests in functional programming and machine learning.">
+  <meta name="viewport" content="width=device-width">
+
+  <!-- Use title if it's in the page YAML frontmatter -->
+  <title>Kernighan: programming languages and the solutions they suggest
+ | Charlie Marsh</title>
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans">
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Source+Code+Pro">
+  <link href="http://crmarsh416.appspot.com/css/combined.css" rel="stylesheet" type="text/css" />
+  <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang=ml"></script>
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-36552582-2', 'princeton.edu');
+  ga('send', 'pageview');
+  </script>
+</head>
+
+<body class="index">
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="span2 hidden-phone"></div>
+      <div class="span2 hidden-phone" style="position:fixed">
+        <header>
+          <h1 style="font-size:50px"><a class="blank" href="/~crmarsh/">Charlie<br />Marsh</a></h1>
+          <p><a class="implicit" href="/~crmarsh/">Home</a> &sdot; <a class="implicit" href="../Charles_Marsh_CV.pdf">CV</a>&sdot; <a class="implicit" href="../about.html">About</a></p>
+          <h2>Programmer,<br />student.</h2>
+          <p>I'm into functional<br />programming,<br />machine learning,<br /> and other fun stuff.<p>
+          <p>Find me on:</p>
+          </header>
+          <a href="mailto:crmarsh@princeton.edu" class="nav email"></a>
+          <a href="http://www.github.com/crm416" class="nav github"></a>
+          <a href="http://stackoverflow.com/users/1450892/charles-marsh" class="nav stackoverflow"></a>
+          <a href="http://uk.linkedin.com/in/marshcharles" class="nav linkedin"></a>
+        </div>
+        <div class="span2 visible-phone">
+          <div>
+            <p style="font-size:25px"><a class="blank" href="/~crmarsh/">Charlie Marsh</a>  <div style="margin-top:-10px"><code class="prettyprint" class="custom"><span class="code_red">type</span> <span class="code_blue">blog</span></code></div></p>
+          </div>
+          <hr />
+        </div>
+        <div class="span9 offset1">
+          <h1>Kernighan: programming languages and the solutions they suggest</h1>
+<a class="btn btn-primary" href="http://twitter.com/intent/tweet?url=http://www.princeton.edu/~crmarsh/programming_languages&text=Kernighan: programming languages and the solutions they suggest
+&via=crm416">Tweet</a> | <a class="btn btn-primary" href="http://facebook.com/sharer.php?u=http://www.princeton.edu/~crmarsh/programming_languages">Like</a> | <a class="btn btn-primary" href="https://plus.google.com/share?url=http%3A%2F%2Fwww.princeton.edu/~crmarsh/programming_languages">+1</a>
+
+<p>I’m in Brian Kernighan’s Advanced Programming Techniques class at Princeton (COS 333). He’s a brilliant guy with an absurdly rich history in the field of programming. One of my favorite aspects of his lectures is that he constantly drops in little anecdotes from throughout his career (From today’s class: “Oh, I remember when I got Bjarne [Stroustrup] to let me override the comma operator in C++; I’m probably the only person that’s ever used that feature” (there are some juicier tales involving duping governmental figures of significant authority and limited computer skills, but such stories best not leave the classroom)). </p>
+
+<p>In particular, I love hearing his impressions on the development of programming languages and paradigms. He’s been here since (almost) the start of it all, and his opinions are fantastic.</p>
+
+<p>One that particularly stuck with me (from a few weeks back) was when he brought up what’s known as the Sapir-Whorf hypothesis, which roughly suggests that language shapes the way we think and what we think about (disclaimer: I am no linguistics expert).</p>
+
+<p>Kernighan applied this idea to programming languages, suggesting that they influence the way we try to solve problems. And although we can ‘fake’ certain paradigms in any given programming language, it just wouldn’t be natural to do so.</p>
+
+<p>For example, he noted that early Fortran didn’t support recursion; you could “fake it” if you really wanted to (I’m assuming, by converting from a tail-recursive solution to an imperative loop), but it just wouldn’t be an intuitive first approach. Similarly, C doesn’t really provide great object support; you can ‘fake’ objects if you’re so-inclined, but if you had never used OOP before, the language wouldn’t inspire you to take such an approach.</p>
+
+<p>This really resonated with me. I see posts on HN all the time about how ‘C is a functional language’ or ‘C is an OO language’—but in truth, it’s not. We’ve just made it so now that our problem-solving skills have adapted to functional/OOP solutions.</p>
+
+          <p class="date">Posted on April 9, 2013.<p>
+          <div id="disqus_thread"></div>
+          <script type="text/javascript">
+          var disqus_shortname = 'crmarsh416';
+          (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </div>
+      </div>
+    </div>
+  </body>
+  </html><!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <meta name="description" content="Charlie Marsh is a programmer and student at Princeton University with major interests in functional programming and machine learning.">
+  <meta name="viewport" content="width=device-width">
+
+  <!-- Use title if it's in the page YAML frontmatter -->
+  <title>Prefix-based vs. Ternary Predicate Matching
+ | Charlie Marsh</title>
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans">
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Source+Code+Pro">
+  <link href="http://crmarsh416.appspot.com/css/combined.css" rel="stylesheet" type="text/css" />
+  <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang=ml"></script>
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-36552582-2', 'princeton.edu');
+  ga('send', 'pageview');
+  </script>
+</head>
+
+<body class="index">
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="span2 hidden-phone"></div>
+      <div class="span2 hidden-phone" style="position:fixed">
+        <header>
+          <h1 style="font-size:50px"><a class="blank" href="/~crmarsh/">Charlie<br />Marsh</a></h1>
+          <p><a class="implicit" href="/~crmarsh/">Home</a> &sdot; <a class="implicit" href="../Charles_Marsh_CV.pdf">CV</a>&sdot; <a class="implicit" href="../about.html">About</a></p>
+          <h2>Programmer,<br />student.</h2>
+          <p>I'm into functional<br />programming,<br />machine learning,<br /> and other fun stuff.<p>
+          <p>Find me on:</p>
+          </header>
+          <a href="mailto:crmarsh@princeton.edu" class="nav email"></a>
+          <a href="http://www.github.com/crm416" class="nav github"></a>
+          <a href="http://stackoverflow.com/users/1450892/charles-marsh" class="nav stackoverflow"></a>
+          <a href="http://uk.linkedin.com/in/marshcharles" class="nav linkedin"></a>
+        </div>
+        <div class="span2 visible-phone">
+          <div>
+            <p style="font-size:25px"><a class="blank" href="/~crmarsh/">Charlie Marsh</a>  <div style="margin-top:-10px"><code class="prettyprint" class="custom"><span class="code_red">type</span> <span class="code_blue">blog</span></code></div></p>
+          </div>
+          <hr />
+        </div>
+        <div class="span9 offset1">
+          <h1>Prefix-based vs. Ternary Predicate Matching</h1>
+<a class="btn btn-primary" href="http://twitter.com/intent/tweet?url=http://www.princeton.edu/~crmarsh/prefix_vs_ternary&text=Prefix-based vs. Ternary Predicate Matching
+&via=crm416">Tweet</a> | <a class="btn btn-primary" href="http://facebook.com/sharer.php?u=http://www.princeton.edu/~crmarsh/prefix_vs_ternary">Like</a> | <a class="btn btn-primary" href="https://plus.google.com/share?url=http%3A%2F%2Fwww.princeton.edu/~crmarsh/prefix_vs_ternary">+1</a>
+
+<p>As part of my independent work (described in my last post), I’ve been looking at the different types of pattern matching that’s permitted in flow tables for network switches. If you recall, the flow tables operate by matching packet fields on different patterns and performing the action associated with the matching pattern. The actions typically look like: DROP, FORWARD to port (n), etc. Here’s a sample table:</p>
+
+<pre><code class="prettyprint">[01**] -&gt; DROP
+[001*] -&gt; FWD
+[0***] -&gt; DROP
+[1***] -&gt; FWD
+</code></pre>
+
+<p>In general, the patterns come in one of four varieties:</p>
+
+<ul>
+<li><strong>Exact</strong>: Self-explanatory. The packet header needs to match the predicate exactly. </li>
+<li><strong>Range</strong>: In this case, the packet header must lie in some range, e.g. [0,100] would match any packet header with a value between 0 and 100.</li>
+<li><strong>Prefix-based</strong>: These predicates are trailed by wildcard characters ‘*’, which indicate that you need to match exactly up until the ‘*’, after which you can have whatever you like. For example: if your pattern is ‘10**’, then this would match ‘1000’, ‘1011’, ‘1010’, and ‘1001’.</li>
+<li><strong>Ternary</strong>: In this case, you can have ‘*’ wildcards at <em>any</em> position. For example: if your pattern is ‘1*01’, then this would match ‘1101’ and ‘1001’.</li>
+</ul>
+
+<p>I’ve been focusing on the last two variants, which are closely related. In fact, I want to talk about two algorithms for compressing rules tables with these predicate formats, both of which must be credited to Alex Liu at the University of Michigan.</p>
+
+<h2>The Dynamic Approach</h2>
+
+<p>We’re going to focus on a single dimension (i.e., matching on a single field). This problem has been solved for the prefix-based case. The algorithm takes a dynamic programming approach, defining the concept of <em>consistency</em>: a rule table is <em>consistent</em> on a predicate <em>P</em> if, for every possible packet that matches <em>P</em>, the same rule is executed. For example, if your rule table is simply [*] -> DROP, then your table is completely consistent on ‘*’.</p>
+
+<p>From here, the algorithm starts with the predicate ‘*’. If the rule table is consistent on this predicate with action <em>A</em>, it returns a rule table with the single rule [*] -> <em>A</em>. Else, it recurs on the predicates ‘1*’ and ‘0*’, optimizing the rule table on these sub-predicates and finally combining the solutions.</p>
+
+<p>There is some care that’s needed for combining the two sub-solutions, but overall it isn’t too messy.</p>
+
+<p>For the one-dimensional case, this dynamic programming algorithm manages to minimize the size (i.e., the cost) of the rule table.</p>
+
+<h2>Bit-Weaving</h2>
+
+<p>To solve the ternary case, Liu employs some ingenuity (the inspiration for this blog post) in what he calls the Bit-Weaving Algorithm. Instead of tackling it as an entirely new problem, he manages to <strong>reduce the ternary case to the prefix-based case.</strong></p>
+
+<p>The essence of this algorithm is that he cuts up the rule table carefully and then considers it to be a matrix in which each row is a predicate and each entry <em>(i, j)</em> is the <em>j</em>th character in the <em>i</em>th predicate. With that established, he then performs some swaps in the columns in order to convert from ternary to prefix-based format. From there, he can run the dynamic programming algorithm described above and convert back to ternary format by undoing his row swaps. </p>
+
+<p>For example: if you have predicates [01*00] and [00*11], you would swap the third and last columns to get predicate [0100*] and [0011*], which are then in prefix-based format.</p>
+
+<p>The algorithm is very clever—I’m a huge fan of reducing one problem to another.</p>
+
+          <p class="date">Posted on March 11, 2013.<p>
+          <div id="disqus_thread"></div>
+          <script type="text/javascript">
+          var disqus_shortname = 'crmarsh416';
+          (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </div>
+      </div>
+    </div>
+  </body>
+  </html><!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <meta name="description" content="Charlie Marsh is a programmer and student at Princeton University with major interests in functional programming and machine learning.">
+  <meta name="viewport" content="width=device-width">
+
+  <!-- Use title if it's in the page YAML frontmatter -->
+  <title>Rule Optimization in Software-Defined Networks
+ | Charlie Marsh</title>
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans">
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Source+Code+Pro">
+  <link href="http://crmarsh416.appspot.com/css/combined.css" rel="stylesheet" type="text/css" />
+  <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang=ml"></script>
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-36552582-2', 'princeton.edu');
+  ga('send', 'pageview');
+  </script>
+</head>
+
+<body class="index">
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="span2 hidden-phone"></div>
+      <div class="span2 hidden-phone" style="position:fixed">
+        <header>
+          <h1 style="font-size:50px"><a class="blank" href="/~crmarsh/">Charlie<br />Marsh</a></h1>
+          <p><a class="implicit" href="/~crmarsh/">Home</a> &sdot; <a class="implicit" href="../Charles_Marsh_CV.pdf">CV</a>&sdot; <a class="implicit" href="../about.html">About</a></p>
+          <h2>Programmer,<br />student.</h2>
+          <p>I'm into functional<br />programming,<br />machine learning,<br /> and other fun stuff.<p>
+          <p>Find me on:</p>
+          </header>
+          <a href="mailto:crmarsh@princeton.edu" class="nav email"></a>
+          <a href="http://www.github.com/crm416" class="nav github"></a>
+          <a href="http://stackoverflow.com/users/1450892/charles-marsh" class="nav stackoverflow"></a>
+          <a href="http://uk.linkedin.com/in/marshcharles" class="nav linkedin"></a>
+        </div>
+        <div class="span2 visible-phone">
+          <div>
+            <p style="font-size:25px"><a class="blank" href="/~crmarsh/">Charlie Marsh</a>  <div style="margin-top:-10px"><code class="prettyprint" class="custom"><span class="code_red">type</span> <span class="code_blue">blog</span></code></div></p>
+          </div>
+          <hr />
+        </div>
+        <div class="span9 offset1">
+          <h1>Rule Optimization in Software-Defined Networks</h1>
+<a class="btn btn-primary" href="http://twitter.com/intent/tweet?url=http://www.princeton.edu/~crmarsh/intro_to_sdn&text=Rule Optimization in Software-Defined Networks
+&via=crm416">Tweet</a> | <a class="btn btn-primary" href="http://facebook.com/sharer.php?u=http://www.princeton.edu/~crmarsh/intro_to_sdn">Like</a> | <a class="btn btn-primary" href="https://plus.google.com/share?url=http%3A%2F%2Fwww.princeton.edu/~crmarsh/intro_to_sdn">+1</a>
+
+<p>I'm doing some independent work this semester with Professor David Walker, with whom I took functional programming last semester. My project is being implemented functionally, however the main focus is on rule optimization in network routers; specifically, routers within software-defined networks (SDNs).</p>
+
+<h2>SDNs</h2>
+
+<p>The difference between SDNs and traditional networks lies in the positioning and functionality of the control plane: typically, when you buy a bunch of routers from Cisco, they’re implemented as a control plane and a data plane, where the former decides (at a high level) where packets should go, and the latter actually processes the packets as they come in and ships them off according to the former’s directions. SDNs, on the other hand, strip away the control plane, creating a single master controller that communicates with every router, where the routers are now just data planes.</p>
+
+<p>Here's a visual interpretation of an SDN:</p>
+
+<p><img class="center" src="http://media.tumblr.com/3acf47a5e76ec9ea710cd1abb36fdb4f/tumblr_inline_mis96lTFmK1qz4rgp.png"></p>
+
+<p>There are a ton of potential advantages to this type of networking. To give you a taste: say you’re trying to figure out how to get from New York to Miami. With traditional networks, you’re stuck on the ground in a swamp, asking nearby travellers if they can lend you some information. With SDNs, you’re looking down at the world from a high level, as if you have the world mapped out—finding a path is trivial.</p>
+
+<h2>Rule Optimization</h2>
+
+<p>Each router in the network is implemented as a <em>flow table</em>, which is a set of {<em>pattern, action}</em> pairs. Each pattern matches on some field of the incoming packets and, if it finds a correct match, the action is performed (where the actions are things like <em>forward to port 5</em> or <em>drop from network</em>).</p>
+
+<p>But the pattern matching can get pretty complicated: you can match on multiple fields (for example, some routers match on <em>both</em> source IP and destination IP addresses), require multiple tables, etc.</p>
+
+<p>The hardware that implements this matching is known as TCAM. It works in parallel to perform O(1) matching, but it makes up in cost what it gives you in speed—that is, you can’t get much of it because it’s highly expensive. As a consequence, you want to use as few rules as possible in your router.</p>
+
+<h2>A Family of Algorithms</h2>
+
+<p>That’s where my work comes in: I’m trying to develop a family of algorithms that optimizes the number of rules necessary in a given flow table. Included in this family would be:</p>
+
+<ul>
+<li>Optimizing lists that match on a single field</li>
+<li>Optimizing lists that match on multiple fields</li>
+<li>Optimizing lists by breaking a single table into multiple tables</li>
+</ul>
+
+<p>These problems have been progressed to various degrees: the first is solved (and I’ve implemented the solution); the second is considered NP-complete for more than two fields, but a good approximate solution exists (which I’ve also implemented); and the third has not received much attention, which perhaps makes it the most exciting.</p>
+
+<h2>Going Forward</h2>
+
+<p>I’ve only been working on this project for a few weeks, but already it makes me more excited about the prospect of academia. The problem I’m trying to solve here is small enough that I’ve been able to gather and read all the relevant papers, with which I’m now comfortable enough to reference by author names. I’ve really dived into the task, and I’m incredibly excited to (hopefully) contribute something to the open problem.</p>
+
+<p>I’ll be posting here about my work as I progress through the semester; for reference, it all culminates in a poster session in early March.</p>
+
+          <p class="date">Posted on February 25, 2013.<p>
+          <div id="disqus_thread"></div>
+          <script type="text/javascript">
+          var disqus_shortname = 'crmarsh416';
+          (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </div>
+      </div>
+    </div>
+  </body>
+  </html><!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <meta name="description" content="Charlie Marsh is a programmer and student at Princeton University with major interests in functional programming and machine learning.">
+  <meta name="viewport" content="width=device-width">
+
+  <!-- Use title if it's in the page YAML frontmatter -->
+  <title>True parallelism in OCaml
+ | Charlie Marsh</title>
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans">
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Source+Code+Pro">
+  <link href="http://crmarsh416.appspot.com/css/combined.css" rel="stylesheet" type="text/css" />
+  <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang=ml"></script>
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-36552582-2', 'princeton.edu');
+  ga('send', 'pageview');
+  </script>
+</head>
+
+<body class="index">
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="span2 hidden-phone"></div>
+      <div class="span2 hidden-phone" style="position:fixed">
+        <header>
+          <h1 style="font-size:50px"><a class="blank" href="/~crmarsh/">Charlie<br />Marsh</a></h1>
+          <p><a class="implicit" href="/~crmarsh/">Home</a> &sdot; <a class="implicit" href="../Charles_Marsh_CV.pdf">CV</a>&sdot; <a class="implicit" href="../about.html">About</a></p>
+          <h2>Programmer,<br />student.</h2>
+          <p>I'm into functional<br />programming,<br />machine learning,<br /> and other fun stuff.<p>
+          <p>Find me on:</p>
+          </header>
+          <a href="mailto:crmarsh@princeton.edu" class="nav email"></a>
+          <a href="http://www.github.com/crm416" class="nav github"></a>
+          <a href="http://stackoverflow.com/users/1450892/charles-marsh" class="nav stackoverflow"></a>
+          <a href="http://uk.linkedin.com/in/marshcharles" class="nav linkedin"></a>
+        </div>
+        <div class="span2 visible-phone">
+          <div>
+            <p style="font-size:25px"><a class="blank" href="/~crmarsh/">Charlie Marsh</a>  <div style="margin-top:-10px"><code class="prettyprint" class="custom"><span class="code_red">type</span> <span class="code_blue">blog</span></code></div></p>
+          </div>
+          <hr />
+        </div>
+        <div class="span9 offset1">
+          <h1>True parallelism in OCaml</h1>
+<a class="btn btn-primary" href="http://twitter.com/intent/tweet?url=http://www.princeton.edu/~crmarsh/ocaml_parallelism&text=True parallelism in OCaml
+&via=crm416">Tweet</a> | <a class="btn btn-primary" href="http://facebook.com/sharer.php?u=http://www.princeton.edu/~crmarsh/ocaml_parallelism">Like</a> | <a class="btn btn-primary" href="https://plus.google.com/share?url=http%3A%2F%2Fwww.princeton.edu/~crmarsh/ocaml_parallelism">+1</a>
+
+<p>OCaml provides a nice <a href="http://caml.inria.fr/pub/docs/manual-ocaml-4.00/libref/Thread.html">library for multi-threading</a>. Problem is, according to my professor, under the hood, <strong>OCaml doesn't actually employ any parallelism at all!</strong> In truth, the compiler just interleaves instructions in a way that has the same computational effect as multi-threading, barring the 2x speed-up.</p>
+
+<p>On the side, I've been working on an alternative to the small Futures module we used in class. Futures are very similar to threads but safer and easier to use. The interface itself is composed of a <strong>create</strong> method, which takes as argument an expression to compute and performs said computation on a new thread; as well as a <strong>force</strong> method, which blocks the main thread until the Future has finished its computation.</p>
+
+<h2>Processes</h2>
+
+<p>This alternative aims to operate at a lower level than would typically be done in OCaml and circumvent the language's lack of true multi-threading. To do so, it runs the desired computation on a separate UNIX process using some of <a href="http://ocamlunix.forge.ocamlcore.org">these features</a>. <strong>Rather than trying to run two programs from within the same process, then, it seeks to run a single program, in two separate processes.</strong></p>
+
+<h2>Preserving Type Safety</h2>
+
+<p>One difficulty that I encountered along the way was preserving type-safety. To transfer information from the forked thread to the main thread (i.e., to return the result of the Future's computation), I use the <a href="http://caml.inria.fr/pub/docs/manual-ocaml/libref/Marshal.html">Marshal module</a>, which allows you to encode arbitrary data structures as sequences of bytes. However, the documentation includes the following, essential warning: <strong>Warning: marshaling is currently not type-safe</strong>. In reality, if you're trying to Marshall some expression <em>e</em> of type <em>'a</em>, you need to somehow pass type <em>'a</em> to the output function. That is, the Marshal module needs to know the output type of the data it's trying to decode. To handle that, I had to strictly enforce the type of the output computation as follows:</p>
+
+<!--?prettify lang=ml?-->
+
+<pre><code>let future (f:'a -&gt; 'b) (x:'a) : 'b future =
+...
+    let result : 'b = Marshal.from_channel (in_channel_of_descr fd_in) in
+    ...
+</code></pre>
+
+<p>Notice that type <em>'b</em>, the desired output of the function <em>f</em>, is explicitly enforced as the output of the Marshal operation.</p>
+
+<h2>Thread Pools</h2>
+
+<p>One issue: I haven't gotten around to implementing a <a href="http://en.wikipedia.org/wiki/Thread_pool_pattern">thread pool</a> for the Futures module. That is, if you run some massive computation that requires too many threads, you run into all sorts of errors. On my machine, running the <em>Mergesort</em> demo with a list of size 1000 results in a crash (this seems to be roughly the threshold).</p>
+
+<p>Besides that, the package seems to be working, and the speed-up approaches 2x as I increase the size of the input to various functions. Give it a try: all the code is on <a href="https://github.com/crm416/ocaml-futures">GitHub</a>.</p>
+
+          <p class="date">Posted on January 17, 2013.<p>
+          <div id="disqus_thread"></div>
+          <script type="text/javascript">
+          var disqus_shortname = 'crmarsh416';
+          (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </div>
+      </div>
+    </div>
+  </body>
+  </html><!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <meta name="description" content="Charlie Marsh is a programmer and student at Princeton University with major interests in functional programming and machine learning.">
+  <meta name="viewport" content="width=device-width">
+
+  <!-- Use title if it's in the page YAML frontmatter -->
+  <title>Streams and Lazy Computation
+ | Charlie Marsh</title>
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans">
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Source+Code+Pro">
+  <link href="../http://crmarsh416.appspot.com/css/combined.css" rel="stylesheet" type="text/css" />
+  <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang=ml"></script>
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-36552582-2', 'princeton.edu');
+  ga('send', 'pageview');
+  </script>
+</head>
+
+<body class="index">
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="span2 hidden-phone"></div>
+      <div class="span2 hidden-phone" style="position:fixed">
+        <header>
+          <h1 style="font-size:50px"><a class="blank" href="/~crmarsh/">Charlie<br />Marsh</a></h1>
+          <p><a class="implicit" href="/~crmarsh/">Home</a> &sdot; <a class="implicit" href="../Charles_Marsh_CV.pdf">CV</a>&sdot; <a class="implicit" href="../about.html">About</a></p>
+          <h2>Programmer,<br />student.</h2>
+          <p>I'm into functional<br />programming,<br />machine learning,<br /> and other fun stuff.<p>
+          <p>Find me on:</p>
+          </header>
+          <a href="mailto:crmarsh@princeton.edu" class="nav email"></a>
+          <a href="http://www.github.com/crm416" class="nav github"></a>
+          <a href="http://stackoverflow.com/users/1450892/charles-marsh" class="nav stackoverflow"></a>
+          <a href="http://uk.linkedin.com/in/marshcharles" class="nav linkedin"></a>
+        </div>
+        <div class="span2 visible-phone">
+          <div>
+            <p style="font-size:25px"><a class="blank" href="/~crmarsh/">Charlie Marsh</a>  <div style="margin-top:-10px"><code class="prettyprint" class="custom"><span class="code_red">type</span> <span class="code_blue">blog</span></code></div></p>
+          </div>
+          <hr />
+        </div>
+        <div class="span9 offset1">
+          <h1>Streams and Lazy Computation</h1>
+<a class="btn btn-primary" href="http://twitter.com/intent/tweet?url=http://www.princeton.edu/~crmarsh/streams&text=Streams and Lazy Computation
+&via=crm416">Tweet</a> | <a class="btn btn-primary" href="http://facebook.com/sharer.php?u=http://www.princeton.edu/~crmarsh/streams">Like</a> | <a class="btn btn-primary" href="https://plus.google.com/share?url=http%3A%2F%2Fwww.princeton.edu/~crmarsh/streams">+1</a>
+
+<p>I was recently introduced to lazy computation in the context of streams—very cool (and powerful) stuff. In this post, I&#8217;ll go through streams first, then use lazy computation to address a problem specific to the data type before closing with an example.</p>
+
+<h2>Streams</h2>
+
+<p>A stream is an infinite data type—a “stream” of values that are generated by some computation, similar to a queue except that it is by definition infinite. I found it helpful to think of a stream as a function: the nth element in the stream can be seen as f(n).</p>
+
+<p><strong>A stream can really be any set of values</strong>. You could have a stream of 1s (i.e., in which f(n) = 1 for all n) or a stream of the natural numbers (in which the first element is 1 and every element n is equal to the previous element plus 1) or a stream of primes or a stream of…</p>
+
+<p>But it’s essential that you can always get the <em>next</em> element in a stream, i.e., it is infinite.</p>
+
+<h2>Lazy computation</h2>
+
+<p>But there’s a problem: if I just define an infinite stream of natural numbers, won’t my program run till infinity, computing every natural number (an unbounded set) and placing it in the stream? In other words: <strong>how can I abstract an infinite stream without actually computing every value?</strong></p>
+
+<p>The answer: <strong>lazy (a.k.a. deferred) computation</strong>. The motivation here is that we don’t really need to compute the nth natural number until we need to use it—so why not just wait and be lazy about it?</p>
+
+<p>Lazy computation tells the compiler to put off the evaluation of some expression (or set of expressions) until it is absolutely essential that the computation be performed, at which point the computation is <strong>forced</strong>.</p>
+
+<p>In this way, we can define a stream via a function for each element and avoid actually computing every single element; but, when the element is requested, we can <em>then</em> perform the necessary computation. <strong>Thus, we avoid infinite loops and successfully implement the desired abstraction.</strong></p>
+
+<h2>An Example: powers of two</h2>
+
+<p>Consider a stream of numbers that represent all the powers of two, i.e. { 1, 2, 4, 8, 16, ... }.</p>
+
+<p>We can actually define this stream recursively: each new element of the stream is just the current stream, with every element multiplied by 2.</p>
+
+<p>Visually:</p>
+
+<ul>
+<li>{ 1, 2, 4, 8, 16, ... } = { 1, 2 • { 1, 2, 4, 8, ... }}</li>
+<li>{ 1, 2, 4, 8, 16, ... } = { 1, 2 • { 1, 2 • { 1, 2, 4, ... }}}</li>
+<li>Etc., etc.</li>
+</ul>
+
+<p>To be clear: we start with a stream with 1 as the first element; the next element is just the current stream (at this point, with a single element of 1) multiplied by 2, i.e., our new stream is {1, 2, ...}. We repeat this recursive procedure, multiplying every element of the stream by 2 for each new element generated.</p>
+
+<h2>Streams, in code</h2>
+
+<p>Lets view the above example (powers-of-two stream) in code. Assume:</p>
+
+<ul>
+<li>We have some map expression that applies a function t every element in the stream. For example, if each element of our stream s is generated by f(n), then map g s results in a steam s’ with each element generated by g(f(n)).</li>
+<li>‘a streams are represented as pairs of (‘a, ‘a stream).</li>
+</ul>
+
+<p>Then, our code looks like:</p>
+
+<!--?prettify lang=ml?-->
+
+<pre><code>let rec s = (1, map (fun x -&gt; x * 2) s)
+</code></pre>
+
+<p>Oops—this code will run into an infinite loop, as s will be recursively recomputed with no termination. This is exactly the problem we described above; lets fix it with lazy computation:</p>
+
+<!--?prettify lang=ml?-->
+
+<pre><code>let rec s = (1, lazy (map (fun x -&gt; x * 2) s))
+</code></pre>
+
+<p>Now, we don’t have to perform any computation at all! The stream is simply initialized with no further actions. Yet, if we request the nth element, the stream will perform all the necessary computation and return the element as desired.</p>
+
+          <p class="date">Posted on December 13, 2012.<p>
+          <div id="disqus_thread"></div>
+          <script type="text/javascript">
+          var disqus_shortname = 'crmarsh416';
+          (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </div>
+      </div>
+    </div>
+  </body>
+  </html><!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <meta name="description" content="Charlie Marsh is a programmer and student at Princeton University with major interests in functional programming and machine learning.">
+  <meta name="viewport" content="width=device-width">
+
+  <!-- Use title if it's in the page YAML frontmatter -->
+  <title>iOS Performance: Shadows with Bezier Paths
+ | Charlie Marsh</title>
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans">
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Source+Code+Pro">
+  <link href="http://crmarsh416.appspot.com/css/combined.css" rel="stylesheet" type="text/css" />
+  <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang=ml"></script>
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-36552582-2', 'princeton.edu');
+  ga('send', 'pageview');
+  </script>
+</head>
+
+<body class="index">
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="span2 hidden-phone"></div>
+      <div class="span2 hidden-phone" style="position:fixed">
+        <header>
+          <h1 style="font-size:50px"><a class="blank" href="/~crmarsh/">Charlie<br />Marsh</a></h1>
+          <p><a class="implicit" href="/~crmarsh/">Home</a> &sdot; <a class="implicit" href="../Charles_Marsh_CV.pdf">CV</a>&sdot; <a class="implicit" href="../about.html">About</a></p>
+          <h2>Programmer,<br />student.</h2>
+          <p>I'm into functional<br />programming,<br />machine learning,<br /> and other fun stuff.<p>
+          <p>Find me on:</p>
+          </header>
+          <a href="mailto:crmarsh@princeton.edu" class="nav email"></a>
+          <a href="http://www.github.com/crm416" class="nav github"></a>
+          <a href="http://stackoverflow.com/users/1450892/charles-marsh" class="nav stackoverflow"></a>
+          <a href="http://uk.linkedin.com/in/marshcharles" class="nav linkedin"></a>
+        </div>
+        <div class="span2 visible-phone">
+          <div>
+            <p style="font-size:25px"><a class="blank" href="/~crmarsh/">Charlie Marsh</a>  <div style="margin-top:-10px"><code class="prettyprint" class="custom"><span class="code_red">type</span> <span class="code_blue">blog</span></code></div></p>
+          </div>
+          <hr />
+        </div>
+        <div class="span9 offset1">
+          <h1>iOS Performance: Shadows with Bezier Paths</h1>
+<a class="btn btn-primary" href="http://twitter.com/intent/tweet?url=http://www.princeton.edu/~crmarsh/ios_performance&text=iOS Performance: Shadows with Bezier Paths
+&via=crm416">Tweet</a> | <a class="btn btn-primary" href="http://facebook.com/sharer.php?u=http://www.princeton.edu/~crmarsh/ios_performance">Like</a> | <a class="btn btn-primary" href="https://plus.google.com/share?url=http%3A%2F%2Fwww.princeton.edu/~crmarsh/ios_performance">+1</a>
+
+<p>I spent some time yesterday fixing some performance issues related to <a href="https://itunes.apple.com/us/app/everycollegecal/id554462715?mt=8">EveryCollegeCal</a> (my iOS app). Basically, I was seeing very slow, choppy segues between the first two views (one of which is a welcome screen, the other a table view). On top of that, the scrolling performance of the latter view was equally gross.</p>
+
+<p>In the end, the fixes were not too involved—i.e., they didn’t involve a spectacular amount of code (of course, this can’t be said of all performance issues, so I count myself lucky). And there were only two necessary changes: the choppy segues were fixed by swapping out my glossy button library, which was apparently very inefficient. But the second change demonstrates something cool about iOS performance tweaks: while they’re often subtle, the under-the-hood explanations are always logical.</p>
+
+<h2>Drop Shadows</h2>
+
+<p>I thought for a while that my poor scrolling performance was due to the cells themselves, which use resizable assets to create a gradient background. But after rolling the app with certain features of the table disabled, <strong>I figured out that the issue was caused by the drop shadow in my cells’ accessories—such a tiny detail.</strong></p>
+
+<p>It’s very easy to add drop shadows to your views in iOS. What’s not so easy is making sure that they have good performance.</p>
+
+<p>Previously, I was adding a drop shadow with CALayer:</p>
+
+<pre><code class="prettyprint">disclosureIndicator.layer.shadowColor = [UIColor colorWithRed:0.2 green:0.2 blue:0.2 alpha:0.5].CGColor;
+disclosureIndicator.layer.shadowOffset = CGSizeMake(0, 1);
+disclosureIndicator.layer.shadowOpacity = 1.0;
+disclosureIndicator.layer.shadowRadius = 1;
+disclosureIndicator.layer.masksToBounds = NO;
+</code></pre>
+
+<p>This looks great and requires minimal code but—as outlined <a href="http://markpospesel.wordpress.com/2012/04/03/on-the-importance-of-setting-shadowpath/">here</a>—there’s a huge expense associated the process, namely because you must render (offscreen) the exact shape of the view; i.e., your device will spend time figuring out if your view is circular, rectangular, hexagonal, etc.</p>
+
+<p>The fix: specify the shape of the shadow using a <strong>Bezier path</strong>. Just add this line of code (replacing withOvalInRect with the appropriate shape):</p>
+
+<pre><code class="prettyprint">disclosureIndicator.layer.shadowPath = [UIBezierPath bezierPathWithOvalInRect:disclosureIndicator.layer.bounds].CGPath;
+</code></pre>
+
+<p>It’s a simple fix, but I can’t emphasize enough how drastically it improved my table’s scroll performance. And the reasoning behind it is simple enough: with the latter method, you save the machine having to calculate the shape of an object.</p>
+
+<p>This is a great example of iOS performance tweaks: subtle, but logical.</p>
+
+          <p class="date">Posted on November 24, 2012.<p>
+          <div id="disqus_thread"></div>
+          <script type="text/javascript">
+          var disqus_shortname = 'crmarsh416';
+          (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </div>
+      </div>
+    </div>
+  </body>
+  </html><!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <meta name="description" content="Charlie Marsh is a programmer and student at Princeton University with major interests in functional programming and machine learning.">
+  <meta name="viewport" content="width=device-width">
+
+  <!-- Use title if it's in the page YAML frontmatter -->
+  <title>NP != NOT-P
+ | Charlie Marsh</title>
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans">
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Source+Code+Pro">
+  <link href="http://crmarsh416.appspot.com/css/combined.css" rel="stylesheet" type="text/css" />
+  <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang=ml"></script>
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-36552582-2', 'princeton.edu');
+  ga('send', 'pageview');
+  </script>
+</head>
+
+<body class="index">
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="span2 hidden-phone"></div>
+      <div class="span2 hidden-phone" style="position:fixed">
+        <header>
+          <h1 style="font-size:50px"><a class="blank" href="/~crmarsh/">Charlie<br />Marsh</a></h1>
+          <p><a class="implicit" href="/~crmarsh/">Home</a> &sdot; <a class="implicit" href="../Charles_Marsh_CV.pdf">CV</a>&sdot; <a class="implicit" href="../about.html">About</a></p>
+          <h2>Programmer,<br />student.</h2>
+          <p>I'm into functional<br />programming,<br />machine learning,<br /> and other fun stuff.<p>
+          <p>Find me on:</p>
+          </header>
+          <a href="mailto:crmarsh@princeton.edu" class="nav email"></a>
+          <a href="http://www.github.com/crm416" class="nav github"></a>
+          <a href="http://stackoverflow.com/users/1450892/charles-marsh" class="nav stackoverflow"></a>
+          <a href="http://uk.linkedin.com/in/marshcharles" class="nav linkedin"></a>
+        </div>
+        <div class="span2 visible-phone">
+          <div>
+            <p style="font-size:25px"><a class="blank" href="/~crmarsh/">Charlie Marsh</a>  <div style="margin-top:-10px"><code class="prettyprint" class="custom"><span class="code_red">type</span> <span class="code_blue">blog</span></code></div></p>
+          </div>
+          <hr />
+        </div>
+        <div class="span9 offset1">
+          <h1>NP != NOT-P</h1>
+<a class="btn btn-primary" href="http://twitter.com/intent/tweet?url=http://www.princeton.edu/~crmarsh/np_vs_not_p&text=NP != NOT-P
+&via=crm416">Tweet</a> | <a class="btn btn-primary" href="http://facebook.com/sharer.php?u=http://www.princeton.edu/~crmarsh/np_vs_not_p">Like</a> | <a class="btn btn-primary" href="https://plus.google.com/share?url=http%3A%2F%2Fwww.princeton.edu/~crmarsh/np_vs_not_p">+1</a>
+
+<p>When I first started learning about algorithmic complexity and intractability, I remember struggling with the concept of P vs. NP (<a href="http://web.mit.edu/newsoffice/2009/explainer-pnp.html">a primer</a>). Part of this, I now realize, was due to the confusing acronyms that have been assigned to the problem: when I see P and learn that it refers to “problems solvable in polynomial time”, I immediately assume that NP must refer to <strong>non</strong>-“problems solvable in polynomial time,” i.e., problems for which a solution cannot be found in polynomial time. </p>
+
+<p>The thing is, that’s not actually the definition of NP: the N does not stand for <strong>not</strong>, it stands for <strong>non-deterministic</strong>. NP is not <strong>not</strong>-P; it’s <strong>non-deterministic</strong>-P.</p>
+
+<p>To be more specific: P is the set of problems whose solution can be <strong>found</strong> in polynomial time; NP is the set of problems whose solution can be <em>*verified *</em>in polynomial time.</p>
+
+<h2>SAT</h2>
+
+<p>Lets look at these definitions in action. Take SAT, which is defined as, “given a statement in conjunctive normal form, can you find a satisfying assignment?” For example, if I give you the statement (A || B) &amp;&amp; (!C), one solution would be (A = true), (B = true), (C = false), because this assignment satisfies the statement.</p>
+
+<p>Now, no polynomial-time algorithm is known for finding a solution to a SAT problem. Thus, as of now, it’s unsure whether or not SAT is in P (because we don’t know how to <strong>find</strong> a problem in polynomial time). However, SAT is definitely in NP (because we know how to <em>*verify *</em>a solution in polynomial time)—I can give you an assignment, and you can plug it into the statement to see if it’s satisfied.</p>
+
+<p>Hopefully that makes things a little clearer.</p>
+
+<h2>P = NP?</h2>
+
+<p>The P = NP? Problem is one of the Clay Mathematical Institute’s Millenium Prizes: if you solve it, you get $1,000,000 (so it must be important). The question boils down to this: are all problesm in NP also in P? I.e., for all problems whose solutions we can <strong>verify</strong> in polynomial time, does there exist a way to <strong>find</strong> a solution in polynomial time?</p>
+
+<p>What a lot of CS newcomers don’t see immediately is that P is _definitely _a subset of NP: any problem for which we can find a solution in polynomial time can definitely have its solution verified in polynomial time. Regardless of whether or not you think P = NP, this is true. The P = NP questions asks whether P is not just a subset of NP, but is infact <strong>the same set</strong> as NP: i.e., are all problems in NP also in P? </p>
+
+<p>If you think that P != NP, then a visual representation of your belief looks something like this:</p>
+
+<p><img class="center" src="http://media.tumblr.com/tumblr_mdujkin4yz1rzq63x.png"></p>
+
+<p>Conversely, for P = NP:</p>
+
+<p><img class="center" src="http://media.tumblr.com/tumblr_mdujkwenwP1rzq63x.png"></p>
+
+<h2>So which one is it?</h2>
+
+<p>This is (almost indisputably) the most important open problem in computer science. If P = NP, then there would be countless problems which were once intractable, yet would now be deemed easily solvable—suddenly, all of these very, very, very difficult problems in NP that were seen as exponentially hard would be solvable in polynomial time.</p>
+
+<p>It’s kind of hard to believe that this could be possible. I think <a href="http://www.scottaaronson.com/blog/">Scott Aaronson</a> put it best when he said: </p>
+
+<blockquote>
+  <p>“If P = NP, then the world would be a profoundly different place than we usually assume it to be. There would be no special value in "creative leaps," no fundamental gap between solving a problem and recognizing the solution once it's found. Everyone who could appreciate a symphony would be Mozart; everyone who could follow a step-by-step argument would be Gauss.”</p>
+</blockquote>
+
+<p>In essence, P = NP would imply that solving a problem is as easy as verifying a solution.</p>
+
+<p><strong>Finding a solution to a Sodoku board would be as easy as checking that a solution is correct—that just doesn’t sound right, does it?</strong></p>
+
+<p>Right now, the industry leans heavily towards P != NP, but the problem is still open and no one has come up with a sufficient proof to claim the Millenium Prize. Personally, I tend to agree with Aaronson and the like—but I’d love to be shocked.</p>
+
+          <p class="date">Posted on November 21, 2012.<p>
+          <div id="disqus_thread"></div>
+          <script type="text/javascript">
+          var disqus_shortname = 'crmarsh416';
+          (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </div>
+      </div>
+    </div>
+  </body>
+  </html><!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <meta name="description" content="Charlie Marsh is a programmer and student at Princeton University with major interests in functional programming and machine learning.">
+  <meta name="viewport" content="width=device-width">
+
+  <!-- Use title if it's in the page YAML frontmatter -->
+  <title>A Dynamic Graphing Interface for iOS
+ | Charlie Marsh</title>
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans">
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Source+Code+Pro">
+  <link href="http://crmarsh416.appspot.com/css/combined.css" rel="stylesheet" type="text/css" />
+  <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang=ml"></script>
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-36552582-2', 'princeton.edu');
+  ga('send', 'pageview');
+  </script>
+</head>
+
+<body class="index">
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="span2 hidden-phone"></div>
+      <div class="span2 hidden-phone" style="position:fixed">
+        <header>
+          <h1 style="font-size:50px"><a class="blank" href="/~crmarsh/">Charlie<br />Marsh</a></h1>
+          <p><a class="implicit" href="/~crmarsh/">Home</a> &sdot; <a class="implicit" href="../Charles_Marsh_CV.pdf">CV</a>&sdot; <a class="implicit" href="../about.html">About</a></p>
+          <h2>Programmer,<br />student.</h2>
+          <p>I'm into functional<br />programming,<br />machine learning,<br /> and other fun stuff.<p>
+          <p>Find me on:</p>
+          </header>
+          <a href="mailto:crmarsh@princeton.edu" class="nav email"></a>
+          <a href="http://www.github.com/crm416" class="nav github"></a>
+          <a href="http://stackoverflow.com/users/1450892/charles-marsh" class="nav stackoverflow"></a>
+          <a href="http://uk.linkedin.com/in/marshcharles" class="nav linkedin"></a>
+        </div>
+        <div class="span2 visible-phone">
+          <div>
+            <p style="font-size:25px"><a class="blank" href="/~crmarsh/">Charlie Marsh</a>  <div style="margin-top:-10px"><code class="prettyprint" class="custom"><span class="code_red">type</span> <span class="code_blue">blog</span></code></div></p>
+          </div>
+          <hr />
+        </div>
+        <div class="span9 offset1">
+          <h1>A Dynamic Graphing Interface for iOS</h1>
+<a class="btn btn-primary" href="http://twitter.com/intent/tweet?url=http://www.princeton.edu/~crmarsh/ios_graphing&text=A Dynamic Graphing Interface for iOS
+&via=crm416">Tweet</a> | <a class="btn btn-primary" href="http://facebook.com/sharer.php?u=http://www.princeton.edu/~crmarsh/ios_graphing">Like</a> | <a class="btn btn-primary" href="https://plus.google.com/share?url=http%3A%2F%2Fwww.princeton.edu/~crmarsh/ios_graphing">+1</a>
+
+<p>This weekend was HackPrinceton, our school’s biannual hackathon run by the E Club (find out more <a href="http://hackprinceton.com" title="HackPrinceton">here</a>, including the list of <a href="http://hackprinceton.com/results/" title="HackPrinceton results">winners</a>!). Unfortunately, a commitment on Saturday precluded my full-fledged participation; however, I managed to pump out a small tool on Friday: a dynamic graphing (note: <strong>graphing</strong>, not graphical) interface for iOS.</p>
+
+<p>I’m not exactly sure how I’m going to use it, but the essence of the class is that it allows the client to create 3-D bar graphs (similar to Excel’s 3-D graphing modes) and feed the graphs data over time; as the data is received, the graphs resize themselves and adjust the axes as necessary.</p>
+
+<p>Each bar is drawn individually with the Core Graphics library: first, the bar is drawn as a rectangle and, subsequently, the darker components are drawn around the initial bar to create perspective. The most challenging aspect of the project was implementing an appropriate resizing technique: for example, if a bar grows, you can’t just increase its height—if you do, it’ll stretch out and, in particular, the pieces of the bar used to generate perspective (especially the dark bit at the very top) will get stretched out and distorted. Instead, I used dynamic resizing with cap insets, i.e., the following steps:</p>
+
+<ol>
+<li>Create the bar as a generic UIView.</li>
+<li><p>Casted it to a UIImage with this code:</p>
+
+<pre><code class="prettyprint">UIGraphicsBeginImageContext(bar.bounds.size);
+[bar.layer renderInContext:UIGraphicsGetCurrentContext()];
+UIImage *viewImage = UIGraphicsGetImageFromCurrentImageContext();
+UIGraphicsEndImageContext();
+UIImage *barImage = [viewImage resizableImageWithCapInsets:UIEdgeInsetsMake(bar.backdrop_size + 5, 0, bar.backdrop_size + 5, 0)];
+</code></pre></li>
+</ol>
+
+<p>Note above: you must ensure proper cap insets. In this case, the aim is to avoid stretching out the bar's perspective on the top and bottom; thus, we pad it with cap insets above and below—this enforces that only the middle section of the bar will be stretched out whenever the frame expands.</p>
+
+<p>Finally, after creating the correct UIImage, just put it into a UIImageView and add it as a subview. </p>
+
+<p>I’ve open-sourced the project <a href="https://github.com/crm416/iOS-Elements" title="My Github">here</a>; hopefully I’ll get around to adding line graphs and some other features—or, better yet, finding a use for the class within an application!</p>
+
+<p>Here's a demo:</p>
+
+<p><center><iframe width="400" height="300" src="http://www.youtube.com/embed/BG7eRU9of4Y?wmode=transparent&amp;autohide=1&amp;egm=0&amp;hd=1&amp;iv_load_policy=3&amp;modestbranding=1&amp;rel=0&amp;showinfo=0&amp;showsearch=0" frameborder="0" allowfullscreen></iframe></center></p>
+
+          <p class="date">Posted on November 13, 2012.<p>
+          <div id="disqus_thread"></div>
+          <script type="text/javascript">
+          var disqus_shortname = 'crmarsh416';
+          (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </div>
+      </div>
+    </div>
+  </body>
+  </html><!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <meta name="description" content="Charlie Marsh is a programmer and student at Princeton University with major interests in functional programming and machine learning.">
+  <meta name="viewport" content="width=device-width">
+
+  <!-- Use title if it's in the page YAML frontmatter -->
+  <title>Binomial Heaps: Merge Better
+ | Charlie Marsh</title>
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans">
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Source+Code+Pro">
+  <link href="http://crmarsh416.appspot.com/css/combined.css" rel="stylesheet" type="text/css" />
+  <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang=ml"></script>
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-36552582-2', 'princeton.edu');
+  ga('send', 'pageview');
+  </script>
+</head>
+
+<body class="index">
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="span2 hidden-phone"></div>
+      <div class="span2 hidden-phone" style="position:fixed">
+        <header>
+          <h1 style="font-size:50px"><a class="blank" href="/~crmarsh/">Charlie<br />Marsh</a></h1>
+          <p><a class="implicit" href="/~crmarsh/">Home</a> &sdot; <a class="implicit" href="../Charles_Marsh_CV.pdf">CV</a>&sdot; <a class="implicit" href="../about.html">About</a></p>
+          <h2>Programmer,<br />student.</h2>
+          <p>I'm into functional<br />programming,<br />machine learning,<br /> and other fun stuff.<p>
+          <p>Find me on:</p>
+          </header>
+          <a href="mailto:crmarsh@princeton.edu" class="nav email"></a>
+          <a href="http://www.github.com/crm416" class="nav github"></a>
+          <a href="http://stackoverflow.com/users/1450892/charles-marsh" class="nav stackoverflow"></a>
+          <a href="http://uk.linkedin.com/in/marshcharles" class="nav linkedin"></a>
+        </div>
+        <div class="span2 visible-phone">
+          <div>
+            <p style="font-size:25px"><a class="blank" href="/~crmarsh/">Charlie Marsh</a>  <div style="margin-top:-10px"><code class="prettyprint" class="custom"><span class="code_red">type</span> <span class="code_blue">blog</span></code></div></p>
+          </div>
+          <hr />
+        </div>
+        <div class="span9 offset1">
+          <h1>Binomial Heaps: Merge Better</h1>
+<a class="btn btn-primary" href="http://twitter.com/intent/tweet?url=http://www.princeton.edu/~crmarsh/binomial_heaps&text=Binomial Heaps: Merge Better
+&via=crm416">Tweet</a> | <a class="btn btn-primary" href="http://facebook.com/sharer.php?u=http://www.princeton.edu/~crmarsh/binomial_heaps">Like</a> | <a class="btn btn-primary" href="https://plus.google.com/share?url=http%3A%2F%2Fwww.princeton.edu/~crmarsh/binomial_heaps">+1</a>
+
+<h2>Merge Better</h2>
+
+<p>The other day I was introduced to a really cool data structure: the binomial heap. You might be familiar with binary heaps, which use a binary tree to keep items in heap order (if not, try <strong>here</strong>); but binomial heaps are a little more obscure. As you would expect, they too retain heap order and are often used in implementing priority queues. However, the advantage of a binomial heap is that it supports <strong>Log N merging</strong> given two binomial heaps.</p>
+
+<p>This table sums it up nicely:</p>
+
+<p><img class="center" src="http://media.tumblr.com/tumblr_mcxor7lB9f1rzq63x.png"></p>
+
+<p>In short: <strong>with a binomial heap, you earn faster merging, but give up the O(1) find-min of a binary heap</strong>.</p>
+
+<h2>How It Works: Binomial Trees</h2>
+
+<p>A binomial <em>heap</em> is made up of a list of binomial <em>trees</em>, so we’ll first discuss the latter structure, which I find to be the particularly ingenious component. A binomial tree is a recursive data structure: a tree of degree zero is just a single node and a tree of degree k is two trees of degree k-1, connected.</p>
+
+<p>Thus:</p>
+
+<ul>
+<li><span>A tree of degree 1 is just two nodes, i.e., two trees of degree 0.</span></li>
+<li><span>A tree of degree 2 is four nodes, i.e., two trees of degree 1 (or two trees of two trees of degree zero = four nodes).</span></li>
+<li><span>A tree of degree 3…</span></li>
+</ul>
+
+<p>Here's a visual representation:</p>
+
+<p><img class="center" src="http://media.tumblr.com/tumblr_mcxot8jU371rzq63x.png"></p>
+
+<p>The great thing about a binomial tree is that we can merge two binomial trees of the same degree in constant time to produce a binomial tree of degree one higher! This is relatively straightforward when viewed in the context of the list above: if we have two trees of degree 2, we can just connect them and call it a tree of degree 3.</p>
+
+<h2>So What’s a Binomial Heap?</h2>
+
+<p>As stated above, a binomial heap is just a list of binomial trees. How many binomial trees, you ask? Well, assume we have n items; recall that any decimal number n can be expressed with a unique binary representation; note that a binomial tree of degree k has 2^k items; thus, for a binomial heap with n items, we can use a binomial tree of degree k for every position in n’s binary representation in which we see a 1 (rather than a 0). That was kind of verbose, so here’s an example:</p>
+
+<p>If we have a heap with 13 items, we can express this in binary as 1101. This would translate to a binary tree of degree 3, a tree of degree 2, and a tree of degree 0 (with 2^3 + 2^2 + 2^0 = 8 + 4 + 1 items respectively = 13 total items).</p>
+
+<h2>Merging With Binomial Heaps</h2>
+
+<p>We can use the binary analogy to explain the Log N merge operation as well. Merging two binomial heaps is really just binary addition: for each digit i, if both heaps have a tree of degree i, then we merge them and carry-over the resulting tree of degree i + 1, carrying this process through. Since each merge is constant, and heaps of N items have at most Log N binary digits, we’re performing Log N constant-time tree merges for our heap merge—this gives us the Log N merge operation we were looking for.</p>
+
+<h2>Beyond merging: insert, find-min, etc.</h2>
+
+<p>The other operations are not too difficult to surmise. To insert, we can just merge two heaps: the original heap into which we want to insert, and a heap of a single item (the item we want to insert). Since merge is Log N, insert will be Log N as well.</p>
+
+<p>Find-min is the operation in which a binomial heap loses out to a binary heap. Our heap of N items can have at most Log N binary trees. Each of these trees individually is heap-ordered, but we have no guarantee on the ordering of the trees themselves with respect to each other.</p>
+
+<p>For example: we might have one tree whose root element is 5 and every element below the root is &lt; 5; and we might have another tree whose root element is 100 and every element below the root is > 100. These are valid to have in the same heap—but we have no way of knowing which tree’s root is the minimum until we’ve assessed all Log N trees that compose the heap. Therefore, we need to look at Log N items before we can return a min.</p>
+
+<h2>Conclusion</h2>
+
+<p>This really just skims the surface of binomial heaps—there’s still delete-min, decrease-key, etc. I’m in the process of writing an OCaml implementation of the data structure, and I’ll post here when it’s completed.</p>
+
+<p>By the way, the diagrams above were drawn from <a href="http://www.cs.princeton.edu/~wayne/cs423/lectures/heaps-4up.pdf" title="Binomial Heaps">this presentation</a> (Princeton CS 423), which is definitely worth looking through if you need some solid visual enforcement.</p>
+
+          <p class="date">Posted on November 3, 2012.<p>
+          <div id="disqus_thread"></div>
+          <script type="text/javascript">
+          var disqus_shortname = 'crmarsh416';
+          (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </div>
+      </div>
+    </div>
+  </body>
+  </html><!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <meta name="description" content="Charlie Marsh is a programmer and student at Princeton University with major interests in functional programming and machine learning.">
+  <meta name="viewport" content="width=device-width">
+
+  <!-- Use title if it's in the page YAML frontmatter -->
+  <title>First Thoughts on OCaml
+ | Charlie Marsh</title>
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans">
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Source+Code+Pro">
+  <link href="http://crmarsh416.appspot.com/css/combined.css" rel="stylesheet" type="text/css" />
+  <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang=ml"></script>
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-36552582-2', 'princeton.edu');
+  ga('send', 'pageview');
+  </script>
+</head>
+
+<body class="index">
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="span2 hidden-phone"></div>
+      <div class="span2 hidden-phone" style="position:fixed">
+        <header>
+          <h1 style="font-size:50px"><a class="blank" href="/~crmarsh/">Charlie<br />Marsh</a></h1>
+          <p><a class="implicit" href="/~crmarsh/">Home</a> &sdot; <a class="implicit" href="../Charles_Marsh_CV.pdf">CV</a>&sdot; <a class="implicit" href="../about.html">About</a></p>
+          <h2>Programmer,<br />student.</h2>
+          <p>I'm into functional<br />programming,<br />machine learning,<br /> and other fun stuff.<p>
+          <p>Find me on:</p>
+          </header>
+          <a href="mailto:crmarsh@princeton.edu" class="nav email"></a>
+          <a href="http://www.github.com/crm416" class="nav github"></a>
+          <a href="http://stackoverflow.com/users/1450892/charles-marsh" class="nav stackoverflow"></a>
+          <a href="http://uk.linkedin.com/in/marshcharles" class="nav linkedin"></a>
+        </div>
+        <div class="span2 visible-phone">
+          <div>
+            <p style="font-size:25px"><a class="blank" href="/~crmarsh/">Charlie Marsh</a>  <div style="margin-top:-10px"><code class="prettyprint" class="custom"><span class="code_red">type</span> <span class="code_blue">blog</span></code></div></p>
+          </div>
+          <hr />
+        </div>
+        <div class="span9 offset1">
+          <h1>First Thoughts on OCaml</h1>
+<a class="btn btn-primary" href="http://twitter.com/intent/tweet?url=http://www.princeton.edu/~crmarsh/intro_to_ocaml&text=First Thoughts on OCaml
+&via=crm416">Tweet</a> | <a class="btn btn-primary" href="http://facebook.com/sharer.php?u=http://www.princeton.edu/~crmarsh/intro_to_ocaml">Like</a> | <a class="btn btn-primary" href="https://plus.google.com/share?url=http%3A%2F%2Fwww.princeton.edu/~crmarsh/intro_to_ocaml">+1</a>
+
+<p style="color:rgb(130,130,130)">N.B.: I wrote this post a few weeks after first using OCaml. Before that, 90% of my programing had been in Java. Looking back on these notes, perhaps a more accurate title would be "First Thoughts on a Functional Language After Only Knowing OOP", or something along those lines. But for posterity, I'll leave it as-is.</p>
+
+<p>I’ve been learning to program in OCaml for one of my courses this semester (<a href="http://www.cs.princeton.edu/~dpw/courses/cos326-12/info.php" title="COS 326">COS 326: Functional Programming</a>) and I can't remember the last time I was this excited about anything CS-related. Learning to program functionally is like learning to program all over again.</p>
+
+<p>In this post, I’m going to touch on some of the features that make OCaml beautiful to me. In particular, I’m going to contrast these features with their Java counterparts—I think most of the observations made will generalize to the broader question of functional vis-à-vis objective-oriented/imperative, but I’m sure there are a few outliers given any specific language. Also note that I’m sticking to the functional subset of OCaml (the language incorporates some objective-oriented and imperative features, but you can get by without using them at all if you so desire).</p>
+
+<h2>Type definitions</h2>
+
+<p>OCaml makes it unbelievably easy to define new types. As a simple example, say we're making a phone book and we need to define a type for entries in said book. For each entry, we'd want a <em>first name</em>, a <em>last name</em>, and a <em>phone number</em>. For demonstration's sake, lets say we also want an <em>age</em>. All of this would be pretty straightforward in OCaml:</p>
+
+<!--?prettify lang=ml?-->
+
+<pre><code>type first_name = string
+type last_name = string
+type full_name = first_name * last_name
+type age = int
+type phone_number = string
+type entry = full_name * age * phone_number
+</code></pre>
+
+<p>The '*' operator allosw us to create tuples. So 'int * int' indicates a tuple of two integers. Also note that we can use our types when defining types later on (e.g., 'full_name = first_name * last_name').</p>
+
+<p>Most of what’s happening here can be read out-loud: a 'first_name' is just a string; a 'name' is just a first name and a last name; an 'age' is just an integer; and a phone book entry just brings these things together. Brilliant.</p>
+
+<p>As an example from one of my <a href="https://github.com/crm416/OCaml-SAT-Solvers" title="SAT Solvers">recent projects</a>, what about the construction of a module to solve <a href="http://en.wikipedia.org/wiki/Boolean_satisfiability_problem">SAT problems</a> using statements in <a href="http://en.wikipedia.org/wiki/Conjunctive_normal_form">conjunctive normal form</a>. In Java, you would need to create a class ‘clause’, which has a private class ‘literal’, which might have a private class ‘symbol’—oh, and then you’d need to create a class CNF which has, as one of its fields, an array of clauses. I can see this boiling down to roughly 30 lines of code just for outlining your type definitions. In OCaml, we can cover all of this ground with:</p>
+
+<!--?prettify lang=ml?-->
+
+<pre><code>type symbol = string
+type literal = symbol * bool
+type clause = literal list
+type cnf = clause list
+</code></pre>
+
+<p>Again: easy to follow.</p>
+
+<p>Better yet, we can define types recursively. This lets us <strong>can define a binary tree in one line of code</strong>:</p>
+
+<!--?prettify lang=ml?-->
+
+<pre><code>type tree = Leaf | Node of int *  tree * tree
+</code></pre>
+
+<p>This is saying that a tree is either a leaf, or a node with some value and two subtrees. That is the entire definition. Again, brilliant.</p>
+
+<h2>Generics</h2>
+
+<p>We can make our tree generic with:</p>
+
+<!--?prettify lang=ml?-->
+
+<pre><code>type ‘a tree = Leaf | Node of ‘a * ‘a tree * ‘a tree
+</code></pre>
+
+<p>Think about how much time would be spent in Java handling the Integer or Object wrapper classes—all of that is ignore dwith the ‘a semantic in OCaml, which lets you fill in the type later (the type checker will still detect type mismatches! E.g., if you attempt to add a char tree as a subtree of an int tree, you will get a compile-time error). </p>
+
+<p>The handling of generic types in OCaml really couldn’t be easier.</p>
+
+<h2>Option types</h2>
+
+<p>OCaml also provides a framework for handling what in Java might be called the Null case through its option types. By specificying a variable as
+    type ‘a option
+(e.g.,
+    int option
+), that variable can then either take on the form
+    None
+or
+    Some ‘a.</p>
+
+<p>For example, if x is of type int option, then x can either be None or Some int (e.g., Some 12, Some -1, Some 0). This becomes very useful, very quickly: think about functions in which you may want to return nothing (due to some bad input) but would prefer not to throw an exception. With the option type, we’re able to avoid all the extreme dangers that you see so often in C regarding null pointers and the general disruption that null values can cause.</p>
+
+<h2>The Thought Process</h2>
+
+<p>An example that really instilled in me an appreciation for OCaml came when attempting to check whether two lists are of equal length. The function looks like this: </p>
+
+<!--?prettify lang=ml?-->
+
+<pre><code>let equal_length l1 l2 : bool =
+   match (l1, l2) with
+        ([], []) -&gt; true
+       | ([], _) -&gt; false
+       | (_, []) -&gt; false
+       | (_::tl1, _::tl2) -&gt; equal_length tl1 tl2
+</code></pre>
+
+<p>The semantics can be ignored, but the basic premise is that we continue to pull one item at a time off the two lists until they are either both empty (in which case the lengths must be equal) or one is empty and the other is not (in which case the lengths must not be equal).</p>
+
+<p>To me, this was a great example of how OCaml trains programmers to think both deeply and recursively: here, we established an invariant (“we will take one item at a time off both lists”), and from that we were able to reach conclusions given the structure of the resulting lists.</p>
+
+<p>OCaml is constantly training you to think recursively, like with the above. I can’t recall a single instance in which I’ve used a for-loop; instead, OCaml provides you with an awesome framework for exercising induction—indeed, in most cases, you’ll recur on the naturally recursive data structures that OCaml provides you with. For example, consider summing a tree of integers using the Tree definition above.</p>
+
+<!--?prettify lang=ml?-->
+
+<pre><code>let sum tree =
+  match tree with
+      Leaf -&gt; 0
+    | (value, left, right) -&gt; value + sum left + sum right
+</code></pre>
+
+<p>Here, we’re taking the sum of a node and adding it to the sum of all nodes in each of the node’s two subtrees. Recursion is awesome.</p>
+
+<h2>Conclusion</h2>
+
+<p>This post ignores a lot of the best or most powerful features of OCaml, but it’s dragged on a little long, so I’ll stop here. For those interested, check out: proving program correctness (according to my professor: conquerable by college students in OCaml, but “still the subject of current research” in Java), currying functions, and pattern matching.</p>
+
+          <p class="date">Posted on October 31, 2012.<p>
+          <div id="disqus_thread"></div>
+          <script type="text/javascript">
+          var disqus_shortname = 'crmarsh416';
+          (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </div>
+      </div>
+    </div>
+  </body>
+  </html>

@@ -133,6 +133,14 @@ img.blank {
     border:0;
 }
 
+img.icon {
+    border:0;
+}
+
+img.icon:hover {
+    opacity:0.6;
+}
+
 .center {
     display: block;
     margin-left: auto;
