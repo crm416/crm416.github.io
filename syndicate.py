@@ -1,14 +1,22 @@
-# this script converts your markdown into a production-ready web site
-
-import os, sys, argparse, re, datetime
+import os
+import sys
+import argparse
+import re
+import datetime
 
 # get optional command-line arguments
 parser = argparse.ArgumentParser("Turn Markdown files into static web sites.")
-parser.add_argument('--template', dest='template_file', metavar='template_file', nargs='?', default="post.html", help='post template file')
-parser.add_argument('--gfm', dest='gfm', action='store_const', const=True, default=False, help='activate github-flavored markdown')
-parser.add_argument('--minify', dest='minify', action='store_const', const=True, default=False, help='activate CSS minification')
-parser.add_argument('--prettify', dest='prettify', action='store_const', const=True, default=False, help='activate code syntax highlighting')
-parser.add_argument('posts', nargs='*', default=[], help='a list of posts to generate (defaults to all possible posts), specified by the name of the post\'s directory')
+parser.add_argument(
+    '--template', dest='template_file', metavar='template_file',
+    nargs='?', default="post.html", help='post template file')
+parser.add_argument('--gfm', dest='gfm', action='store_const',
+                    const=True, default=False, help='activate github-flavored markdown')
+parser.add_argument('--minify', dest='minify', action='store_const',
+                    const=True, default=False, help='activate CSS minification')
+parser.add_argument('--prettify', dest='prettify', action='store_const',
+                    const=True, default=False, help='activate code syntax highlighting')
+parser.add_argument('posts', nargs='*',
+                    default=[], help='a list of posts to generate (defaults to all possible posts), specified by the name of the post\'s directory')
 args = parser.parse_args()
 
 # gather template file HTML
@@ -18,15 +26,20 @@ templateHTML = file(args.template_file, "rb").read()
 
 ROOT_DIRECTORY = os.path.dirname(os.path.realpath(__file__))
 FILENAME_MATCH = "markdown.txt"
-FILENAME_DATE = re.compile(r'([0-9]{4})-([0-9]{1,2})-([0-9]{1,2})\.(md|txt|markdown|mdown)$')
+FILENAME_DATE = re.compile(
+    r'([0-9]{4})-([0-9]{1,2})-([0-9]{1,2})\.(md|txt|markdown|mdown)$')
 CSS_DIRECTORY = ROOT_DIRECTORY + "/production/static/css/"
 
 # for share buttons
 ROOT_URL = "http://www.princeton.edu/~crmarsh/"
+
+
 def buttonHTML(title, URL):
-    twitter = '<a class="btn btn-primary" href="http://twitter.com/intent/tweet?url=%s&text=%s&via=crm416">Tweet</a>' % (URL, title)
+    twitter = '<a class="btn btn-primary" href="http://twitter.com/intent/tweet?url=%s&text=%s&via=crm416">Tweet</a>' % (
+        URL, title)
     facebook = '<a class="btn btn-primary" href="http://facebook.com/sharer.php?u=%s">Like</a>' % URL
-    google = '<a class="btn btn-primary" href="https://plus.google.com/share?url=http%%3A%%2F%%2F%s">+1</a>' % URL[7:]
+    google = '<a class="btn btn-primary" href="https://plus.google.com/share?url=http%%3A%%2F%%2F%s">+1</a>' % URL[
+        7:]
     return twitter + ' | ' + facebook + ' | ' + google
 
 
@@ -52,7 +65,8 @@ if args.minify:
         os.remove(combined_css_path)
 
     # merge all CSS
-    css_files = [os.path.join(root, name) for root, dirs, files in os.walk(CSS_DIRECTORY) for name in files if ".css" in name]
+    css_files = [os.path.join(root, name) for root, dirs, files in os.walk(CSS_DIRECTORY)
+                 for name in files if ".css" in name]
     all_css = ''.join([open(f).read() for f in css_files])
 
     # compress CSS
@@ -106,20 +120,26 @@ for file_path in csv_files:
     if args.minify:
         # need to get relative path from HTML file to minified css
         common_prefix = os.path.commonprefix([file_path, combined_css_path])
-        relative_path = '../' + os.path.relpath(combined_css_path, common_prefix)
-        productionHTML = productionHTML.replace("{{ minified_css }}", relative_path)
+        relative_path = '../' + \
+            os.path.relpath(combined_css_path, common_prefix)
+        productionHTML = productionHTML.replace(
+            "{{ minified_css }}", relative_path)
     if args.prettify:
-        # need to do two passes b/c possible negative lookbehind solution requires fixed-length regex
-        productionHTML = productionHTML.replace('<code', '<code class="prettyprint"')
-        productionHTML = re.sub(r'(\<\!--\?prettify(.*)\?--\>\n\n\<pre.*\>)<code class="prettyprint"', r'\1<code', productionHTML)
+        # need to do two passes b/c possible negative lookbehind solution
+        # requires fixed-length regex
+        productionHTML = productionHTML.replace(
+            '<code', '<code class="prettyprint"')
+        productionHTML = re.sub(
+            r'(\<\!--\?prettify(.*)\?--\>\n\n\<pre.*\>)<code class="prettyprint"', r'\1<code', productionHTML)
     # social sharing buttons
     buttons = buttonHTML(title, ROOT_URL + file_path.split("/")[-2])
-    productionHTML = productionHTML.replace('%s</h1>' % title.rstrip(), '%s</h1>\n%s' % (title.rstrip(), buttons))
+    productionHTML = productionHTML.replace(
+        '%s</h1>' % title.rstrip(), '%s</h1>\n%s' % (title.rstrip(), buttons))
 
     allPosts.append((date, productionHTML))
 
     # write that production output to index.html in original directory
-    productionFile = open(directory+"/index.html", "w")
+    productionFile = open(directory + "/index.html", "w")
     productionFile.write(productionHTML)
 
 if os.path.exists("temp.txt"):
