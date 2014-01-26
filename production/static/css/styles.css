@@ -91,13 +91,16 @@ hr {
     width: 80%;
 }
 
+pre, code, kbd, samp, .match-list {
+    font-family: 'Source Code Pro', sans-serif;
+    border-radius:3px;
+    background-color: #F8F8F8;
+    border: 1px solid #CCC;
+}
+
 pre , code, kbd, samp {
-  color: #000;
-  font-family: 'Source Code Pro', sans-serif;
-  font-size: 0.88em;
-  border-radius:3px;
-  background-color: #F8F8F8;
-  border: 1px solid #CCC;
+    color: #000;
+    font-size: 0.88em;
 }
 pre { white-space: pre; white-space: pre-wrap; word-wrap: break-word; padding: 5px 12px}
 pre code { border: 0px !important; padding: 0}
@@ -125,16 +128,12 @@ code { padding: 0 3px 0 3px; font-size:14px}
 }
 
 .match-list {
-    border-radius:3px;
-    background-color: #F8F8F8;
-    border: 1px solid #CCC;
     padding: 0 3px 0 3px;
 }
 
 .match-list li {
-    line-height:1.5em;
+    font-size: 16px;
     list-style-type:none;
-    font-family:'Source Code Pro', sans-serif;
 }
 
 .date {
@@ -146,11 +145,7 @@ img {
     border-radius:3px;
 }
 
-img.blank {
-    border:0;
-}
-
-img.icon {
+img.blank, img.icon {
     border:0;
 }
 
