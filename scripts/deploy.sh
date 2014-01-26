@@ -33,6 +33,11 @@ unmigrate ()
     done
 }
 
+if [ $# -eq 0 ]
+  then
+    echo "Please supply a commit message"
+    exit 0
+fi
 
 echo "Creating posts"
 prepare
