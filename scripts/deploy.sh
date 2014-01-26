@@ -1,5 +1,6 @@
 prepare ()
 {
+    source env/bin/activate
     python syndicate.py --minify --prettify
 }
 
@@ -43,7 +44,7 @@ echo "Pushing to server"
 scp -r production/* crmarsh@nobel.princeton.edu:public_html/
 
 echo "Pushing to GitHub"
-git add *
+git add -A
 git commit -m "$1"
 git push
 
