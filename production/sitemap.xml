@@ -1,70 +1,93 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<!--XML Sitemap created by the unregistered version of Sitemap Automator http://www.ragesw.com-->
-	<url>
-		<loc>http://www.princeton.edu/~crmarsh</loc>
-		<lastmod>2013-06-19</lastmod>
-		<priority>1.0</priority>
-	</url>
-	<url>
-		<loc>http://www.princeton.edu/~crmarsh/about.html</loc>
-		<lastmod>2013-06-19</lastmod>
-		<priority>1.0</priority>
-	</url>
-	<url>
-		<loc>http://www.princeton.edu/~crmarsh/wikipedia/index.html</loc>
-		<lastmod>2013-06-19</lastmod>
-		<priority>0.5</priority>
-	</url>
-	<url>
-		<loc>http://www.princeton.edu/~crmarsh/ios_graphing/index.html</loc>
-		<lastmod>2013-06-19</lastmod>
-		<priority>0.5</priority>
-	</url>
-	<url>
-		<loc>http://www.princeton.edu/~crmarsh/intro_to_ocaml/index.html</loc>
-		<lastmod>2013-06-19</lastmod>
-		<priority>0.5</priority>
-	</url>
-	<url>
-		<loc>http://www.princeton.edu/~crmarsh/intro_to_sdn/index.html</loc>
-		<lastmod>2013-06-19</lastmod>
-		<priority>0.5</priority>
-	</url>
-	<url>
-		<loc>http://www.princeton.edu/~crmarsh/prefix_vs_ternary/index.html</loc>
-		<lastmod>2013-06-19</lastmod>
-		<priority>0.5</priority>
-	</url>
-	<url>
-		<loc>http://www.princeton.edu/~crmarsh/ocaml_dev_environment/index.html</loc>
-		<lastmod>2013-06-19</lastmod>
-		<priority>0.5</priority>
-	</url>
-	<url>
-		<loc>http://www.princeton.edu/~crmarsh/streams/index.html</loc>
-		<lastmod>2013-06-19</lastmod>
-		<priority>0.5</priority>
-	</url>
-	<url>
-		<loc>http://www.princeton.edu/~crmarsh/binomial_heaps/index.html</loc>
-		<lastmod>2013-06-19</lastmod>
-		<priority>0.5</priority>
-	</url>
-	<url>
-		<loc>http://www.princeton.edu/~crmarsh/ios_performance/index.html</loc>
-		<lastmod>2013-06-19</lastmod>
-		<priority>0.5</priority>
-	</url>
-	<url>
-		<loc>http://www.princeton.edu/~crmarsh/programming_languages/index.html</loc>
-		<lastmod>2013-06-19</lastmod>
-		<priority>0.5</priority>
-	</url>
-	<url>
-		<loc>http://www.princeton.edu/~crmarsh/np_vs_not_p/index.html</loc>
-		<lastmod>2013-06-19</lastmod>
-		<priority>0.5</priority>
-	</url>
-<!--XML Sitemap created by Sitemap Automator http://www.ragesw.com-->
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+<url>
+  <loc>http://www.princeton.edu/~crmarsh/</loc>
+  <lastmod>2014-01-25T10:49:26+00:00</lastmod>
+</url>
+<url>
+  <loc>http://www.princeton.edu/~crmarsh/feed/</loc>
+  <lastmod>2014-01-24T11:45:39+00:00</lastmod>
+</url>
+<url>
+  <loc>http://www.princeton.edu/~crmarsh/about.html</loc>
+  <lastmod>2014-01-25T10:49:22+00:00</lastmod>
+</url>
+<url>
+  <loc>http://www.princeton.edu/~crmarsh/Charles_Marsh_CV.pdf</loc>
+  <lastmod>2014-01-25T10:49:21+00:00</lastmod>
+</url>
+<url>
+  <loc>http://www.princeton.edu/~crmarsh/hack/</loc>
+  <lastmod>2014-01-25T10:49:26+00:00</lastmod>
+</url>
+<url>
+  <loc>http://www.princeton.edu/~crmarsh/wikipedia/</loc>
+  <lastmod>2014-01-25T10:49:48+00:00</lastmod>
+</url>
+<url>
+  <loc>http://www.princeton.edu/~crmarsh/ocaml_parallelism/</loc>
+  <lastmod>2014-01-25T10:49:30+00:00</lastmod>
+</url>
+<url>
+  <loc>http://www.princeton.edu/~crmarsh/ios_graphing/</loc>
+  <lastmod>2014-01-25T10:49:28+00:00</lastmod>
+</url>
+<url>
+  <loc>http://www.princeton.edu/~crmarsh/Charles_Marsh_Continuous_Entropy.pdf</loc>
+  <lastmod>2014-01-25T10:49:22+00:00</lastmod>
+</url>
+<url>
+  <loc>http://www.princeton.edu/~crmarsh/compiling_to_js/</loc>
+  <lastmod>2014-01-25T10:49:25+00:00</lastmod>
+</url>
+<url>
+  <loc>http://www.princeton.edu/~crmarsh/phantomjs/</loc>
+  <lastmod>2014-01-25T10:49:32+00:00</lastmod>
+</url>
+<url>
+  <loc>http://www.princeton.edu/~crmarsh/aws/</loc>
+  <lastmod>2014-01-25T10:49:23+00:00</lastmod>
+</url>
+<url>
+  <loc>http://www.princeton.edu/~crmarsh/intro_to_sdn/</loc>
+  <lastmod>2014-01-25T10:49:27+00:00</lastmod>
+</url>
+<url>
+  <loc>http://www.princeton.edu/~crmarsh/prefix_vs_ternary/</loc>
+  <lastmod>2014-01-25T10:49:33+00:00</lastmod>
+</url>
+<url>
+  <loc>http://www.princeton.edu/~crmarsh/ocaml_dev_environment/</loc>
+  <lastmod>2014-01-25T10:49:30+00:00</lastmod>
+</url>
+<url>
+  <loc>http://www.princeton.edu/~crmarsh/programming_languages/</loc>
+  <lastmod>2014-01-25T10:49:34+00:00</lastmod>
+</url>
+<url>
+  <loc>http://www.princeton.edu/~crmarsh/intro_to_ocaml/</loc>
+  <lastmod>2014-01-25T10:49:27+00:00</lastmod>
+</url>
+<url>
+  <loc>http://www.princeton.edu/~crmarsh/streams/</loc>
+  <lastmod>2014-01-25T10:49:47+00:00</lastmod>
+</url>
+<url>
+  <loc>http://www.princeton.edu/~crmarsh/binomial_heaps/</loc>
+  <lastmod>2014-01-25T10:49:24+00:00</lastmod>
+</url>
+<url>
+  <loc>http://www.princeton.edu/~crmarsh/ios_performance/</loc>
+  <lastmod>2014-01-25T10:49:28+00:00</lastmod>
+</url>
+<url>
+  <loc>http://www.princeton.edu/~crmarsh/np_vs_not_p/</loc>
+  <lastmod>2014-01-25T10:49:29+00:00</lastmod>
+</url>
 </urlset>

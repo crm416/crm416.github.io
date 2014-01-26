@@ -614,9 +614,7 @@ page.open('http://www.sample.com', function() {
 
 <p><img src="http://crmarsh416.appspot.com/img/aws_portal.png" alt="AWS Portal" class="center" width="700"></p>
 
-<blockquote>
-  <p>For those interested, 'EC2' stands for <em>Elastic Cloud Compute</em>. The service itself allows users to rent out virtual computers on which they can boot up their own images. Basically, we're booting onto some random CPU in some Amazon-owned datacenter somewhere in America.</p>
-</blockquote>
+<p><em>For those interested, 'EC2' stands for *Elastic Cloud Compute*. The service itself allows users to rent out virtual computers on which they can boot up their own images. Basically, we're booting onto some random CPU in some Amazon-owned datacenter somewhere in America.</em></p>
 
 <ul>
 <li>On the next page, hit the big blue 'Launch Instance' button, as seen below.</li>
@@ -974,9 +972,7 @@ sudo apt-get install make
 
 <p>But OCaml isn’t <em>that</em> widely used. And as a result, there aren’t very many good write-ups out there for setting up an OCaml development environment.</p>
 
-<blockquote>
-  <p>In this post, I’ll provide a couple of choices for setting up such an environment when developing on a Mac.</p>
-</blockquote>
+<p>In this post, I’ll provide a couple of choices for setting up such an environment when developing on a Mac.</p>
 
 <h2>Getting the OCaml Source Code</h2>
 
@@ -1121,7 +1117,7 @@ $ make: *** [a1] Error 1
   <meta name="viewport" content="width=device-width">
 
   <!-- Use title if it's in the page YAML frontmatter -->
-  <title>Kernighan: programming languages and the solutions they suggest
+  <title>Kernighan: Programming Languages and the Solutions They Suggest
  | Charlie Marsh</title>
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans">
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Source+Code+Pro">
@@ -1161,8 +1157,8 @@ $ make: *** [a1] Error 1
           <hr />
         </div>
         <div class="span9 offset1">
-          <h1>Kernighan: programming languages and the solutions they suggest</h1>
-<a class="btn btn-primary" href="http://twitter.com/intent/tweet?url=http://www.princeton.edu/~crmarsh/programming_languages&text=Kernighan: programming languages and the solutions they suggest
+          <h1>Kernighan: Programming Languages and the Solutions They Suggest</h1>
+<a class="btn btn-primary" href="http://twitter.com/intent/tweet?url=http://www.princeton.edu/~crmarsh/programming_languages&text=Kernighan: Programming Languages and the Solutions They Suggest
 &via=crm416">Tweet</a> | <a class="btn btn-primary" href="http://facebook.com/sharer.php?u=http://www.princeton.edu/~crmarsh/programming_languages">Like</a> | <a class="btn btn-primary" href="https://plus.google.com/share?url=http%3A%2F%2Fwww.princeton.edu/~crmarsh/programming_languages">+1</a>
 
 <p>I’m in Brian Kernighan’s Advanced Programming Techniques class at Princeton (COS 333). He’s a brilliant guy with an absurdly rich history in the field of programming. One of my favorite aspects of his lectures is that he constantly drops in little anecdotes from throughout his career (From today’s class: “Oh, I remember when I got Bjarne [Stroustrup] to let me override the comma operator in C++; I’m probably the only person that’s ever used that feature” (there are some juicier tales involving duping governmental figures of significant authority and limited computer skills, but such stories best not leave the classroom)). </p>
@@ -1432,7 +1428,7 @@ $ make: *** [a1] Error 1
   <meta name="viewport" content="width=device-width">
 
   <!-- Use title if it's in the page YAML frontmatter -->
-  <title>True parallelism in OCaml
+  <title>True Parallelism in OCaml
  | Charlie Marsh</title>
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans">
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Source+Code+Pro">
@@ -1472,8 +1468,8 @@ $ make: *** [a1] Error 1
           <hr />
         </div>
         <div class="span9 offset1">
-          <h1>True parallelism in OCaml</h1>
-<a class="btn btn-primary" href="http://twitter.com/intent/tweet?url=http://www.princeton.edu/~crmarsh/ocaml_parallelism&text=True parallelism in OCaml
+          <h1>True Parallelism in OCaml</h1>
+<a class="btn btn-primary" href="http://twitter.com/intent/tweet?url=http://www.princeton.edu/~crmarsh/ocaml_parallelism&text=True Parallelism in OCaml
 &via=crm416">Tweet</a> | <a class="btn btn-primary" href="http://facebook.com/sharer.php?u=http://www.princeton.edu/~crmarsh/ocaml_parallelism">Like</a> | <a class="btn btn-primary" href="https://plus.google.com/share?url=http%3A%2F%2Fwww.princeton.edu/~crmarsh/ocaml_parallelism">+1</a>
 
 <p>OCaml provides a nice <a href="http://caml.inria.fr/pub/docs/manual-ocaml-4.00/libref/Thread.html">library for multi-threading</a>. Problem is, according to my professor, under the hood, <strong>OCaml doesn't actually employ any parallelism at all!</strong> In truth, the compiler just interleaves instructions in a way that has the same computational effect as multi-threading, barring the 2x speed-up.</p>
@@ -2039,7 +2035,7 @@ UIImage *barImage = [viewImage resizableImageWithCapInsets:UIEdgeInsetsMake(ba
 
 <h2>Merge Better</h2>
 
-<p>The other day I was introduced to a really cool data structure: the binomial heap. You might be familiar with binary heaps, which use a binary tree to keep items in heap order (if not, try <strong>here</strong>); but binomial heaps are a little more obscure. As you would expect, they too retain heap order and are often used in implementing priority queues. However, the advantage of a binomial heap is that it supports <strong>Log N merging</strong> given two binomial heaps.</p>
+<p>The other day, I was introduced to a really cool data structure: the binomial heap. You might be familiar with <a href="http://en.wikipedia.org/wiki/Binary_heap">binary heaps</a>, which use a binary tree to keep items in heap order; but binomial heaps are a little more obscure. As you would expect, they too retain heap order and are often used in implementing priority queues. However, the advantage of a binomial heap is that it supports <strong>log(n) merging</strong> given two binomial heaps.</p>
 
 <p>This table sums it up nicely:</p>
 

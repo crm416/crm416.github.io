@@ -1,9 +1,9 @@
 .nav {
-display:block;
-height:32px;
-background-image:url(../img/sprites_all.png);
-margin-left:4px;
-float:left;
+  display:block;
+  height:32px;
+  background-image:url(../img/sprites_all.png);
+  margin-left:4px;
+  float:left
 }
 
 .email {width:32px;background-position:0px 0px;}
@@ -13,5 +13,5 @@ float:left;
 
 .email:hover {background-position:0px -32px;}
 .github:hover {background-position:-35px -32px;}
-.stackoverflow:hover  {background-position:-70px -32px;}
-.linkedin:hover  {background-position:-105px -32px;}
+.stackoverflow:hover {background-position:-70px -32px;}
+.linkedin:hover {background-position:-105px -32px;}
