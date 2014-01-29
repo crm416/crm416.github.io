@@ -112,10 +112,25 @@ for file_path in csv_files:
 
     # now read the output from temp.txt and inject into post.html
     temp_file = open("temp.txt", "rb")
-    tempHTML = temp_file.read()
 
+    # body HTML formatted first so as to be separable in feed
+    bodyHTML = temp_file.read()
+
+    if args.prettify:
+        # need to do two passes b/c possible negative lookbehind solution
+        # requires fixed-length regex
+        bodyHTML = bodyHTML.replace(
+            '<code', '<code class="prettyprint"')
+        bodyHTML = re.sub(
+            r'(\<\!--\?prettify(.*)\?--\>\n\n\<pre.*\>)<code class="prettyprint"', r'\1<code', bodyHTML)
+    # social sharing buttons
+    buttons = buttonHTML(title, ROOT_URL + file_path.split("/")[-2])
+    bodyHTML = bodyHTML.replace(
+        '%s</h1>' % title.rstrip(), '%s</h1>\n%s' % (title.rstrip(), buttons))
+
+    # replace in production HTML
     productionHTML = templateHTML.replace("{{ title }}", title)
-    productionHTML = productionHTML.replace("{{ body }}", tempHTML)
+    productionHTML = productionHTML.replace("{{ body }}", bodyHTML)
     productionHTML = productionHTML.replace("{{ date }}", fdate)
     if args.minify:
         # need to get relative path from HTML file to minified css
@@ -124,19 +139,9 @@ for file_path in csv_files:
             os.path.relpath(combined_css_path, common_prefix)
         productionHTML = productionHTML.replace(
             "{{ minified_css }}", relative_path)
-    if args.prettify:
-        # need to do two passes b/c possible negative lookbehind solution
-        # requires fixed-length regex
-        productionHTML = productionHTML.replace(
-            '<code', '<code class="prettyprint"')
-        productionHTML = re.sub(
-            r'(\<\!--\?prettify(.*)\?--\>\n\n\<pre.*\>)<code class="prettyprint"', r'\1<code', productionHTML)
-    # social sharing buttons
-    buttons = buttonHTML(title, ROOT_URL + file_path.split("/")[-2])
-    productionHTML = productionHTML.replace(
-        '%s</h1>' % title.rstrip(), '%s</h1>\n%s' % (title.rstrip(), buttons))
 
-    allPosts.append((date, productionHTML))
+    # only body goes into 'all posts'
+    allPosts.append((date, bodyHTML))
 
     # write that production output to index.html in original directory
     productionFile = open(directory + "/index.html", "w")
@@ -146,12 +151,15 @@ if os.path.exists("temp.txt"):
     os.system("rm temp.txt")
 
 if os.path.exists("all.html"):
+    templateHTML = file("all.html", "rb").read()
+
     # sort posts by date and concatenate HTML
     allPosts.sort(reverse=True)
-    allHTML = map(lambda (x, y): y, allPosts)
-    totalHTML = ''.join(allHTML)
+    allHTML = ''.join(map(lambda (x, y): y, allPosts))
+    allHTML = templateHTML.replace("{{ body }}", allHTML)
+
     # create feed file
     feedFile = open("production/all/index.html", "w")
-    feedFile.write(totalHTML)
+    feedFile.write(allHTML)
 
 print "Production complete."

@@ -44,7 +44,7 @@
         </div>
         <div class="span2 visible-phone">
           <div>
-            <p style="font-size:25px"><a class="blank" href="/~crmarsh/">Charlie Marsh</a>  <div style="margin-top:-10px"><code class="prettyprint" class="custom"><span class="code_red">type</span> <span class="code_blue">blog</span></code></div>
+            <p style="font-size:25px"><a class="blank" href="/~crmarsh/">Charlie Marsh</a>  <div style="margin-top:-10px"><code class="custom"><span class="code_red">type</span> <span class="code_blue">blog</span></code></div>
           </div>
           <hr />
         </div>
@@ -60,7 +60,7 @@
 <p>Firstly, in my opinion, when we say that a language compiles to JavaScript, we could really be talking about two different approaches:</p>
 
 <ol>
-<li><p><strong>Long-standing languages (e.g., Python) that can compile down into JavaScript using a tool devoted to that very task (e.g., <a href="https://github.com/jashkenas/coffee-script/wiki/List-of-languages-that-compile-to-JS#python">these</a> Python-to-JS compilers)</strong>. In this case, the tool has been created not to explicitly replace JavaScript per se, but rather to allow programmers to write more of their code in a single language. (<em>Note: these libraries are often used because developers want to avoid using JavaScript due to personal dislike. In that way, you could say that these tools do replace JavaScript. But they weren't built with that as the primary goal.</em>)</p></li>
+<li><p><strong>Long-standing languages (e.g., Python) that can compile down into JavaScript using a tool devoted to that very task (e.g., <a href="https://github.com/jashkenas/coffee-script/wiki/List-of-languages-that-compile-to-JS##python">these</a> Python-to-JS compilers)</strong>. In this case, the tool has been created not to explicitly replace JavaScript per se, but rather to allow programmers to write more of their code in a single language. (<em>Note: these libraries are often used because developers want to avoid using JavaScript due to personal dislike. In that way, you could say that these tools do replace JavaScript. But they weren't built with that as the primary goal.</em>)</p></li>
 <li><p><strong>Languages whose <em>sole purpose</em> is to <em>compile to JavaScript</em> (e.g., <a href="http://www.typescriptlang.org">TypeScript</a>)</strong>. These languages came long after JavaScript, and only exist because of it. They don't really have their own VMs, etc.: they can only be run by compiling to JavaScript. <strong>In this case, the language has been created because developers have qualms with Javascript</strong>. And in some ways, these could be seen as higher-level languages: they claim to have some improvement of JavaScript and then compile down to it. I'll call these <strong>*Scripts</strong>.</p></li>
 </ol>
 
@@ -68,7 +68,7 @@
 
 <p>In this post, I'd like to give readers some insight into why they might choose one of these languages over (1) JavaScript, and (2) the other *Scripts in contention.</p>
 
-<h1>CoffeeScript</h1>
+<h2>CoffeeScript</h2>
 
 <p>I see <a href="http://coffeescript.org">CoffeeScript</a> as the poster child of the *Scripts. Really, CoffeeScript aims to make your code more concise and more readable. The syntax doesn't use any of the '{' and '(' and ';' that plague JavaScript code, instead opting to use whitespace (a lá Python). Again, similar to Python, it's got great comprehensions that require 10x more JavaScript code to implement.</p>
 
@@ -77,8 +77,8 @@
 <pre><code class="prettyprint">even_nums = (i for i in [0..10] when i % 2 == 0)
 odd_nums = (i for i in [0..10] when i not in even_nums)
 
-console.log even_nums # prints '0, 2, 4, 6, 8'
-console.log odd_nums # prints '1, 3, 5, 7, 9'
+console.log even_nums ## prints '0, 2, 4, 6, 8'
+console.log odd_nums ## prints '1, 3, 5, 7, 9'
 </code></pre>
 
 <p>If this doesn't look impressive on its own, check out the corresponding JavaScript:</p>
@@ -118,7 +118,7 @@ console.log odd_nums # prints '1, 3, 5, 7, 9'
 
 <p>Why use CoffeeScript? It's just a pleasure. The syntax takes away the worst parts of JavaScript. The language appears more functional and less disgusting.</p>
 
-<h1>TypeScript</h1>
+<h2>TypeScript</h2>
 
 <p><a href="http://www.typescriptlang.org">TypeScript</a> is a Microsoft project that aims to add http://crmarsh416.appspot.com typing and a better module and interface system to JavaScript. Essentially, you can define classes and interfaces (very easily) and then enforce type safety at compile time, saving you tens of hours of awful JavaScript debugging.</p>
 
@@ -165,7 +165,7 @@ var bad_point: Point = {
 
 <p>So, why use TypeScript? If you're a fan of type safety and a http://crmarsh416.appspot.com type system, it's a no-brainer. And for large projects, it can be a life-saver. At the same time, it retains some of JavaScript's verbosity. You do end up with plenty of <code class="prettyprint">})})};</code>-style code. In the end, it's a matter of preference.</p>
 
-<h1>LiveScript</h1>
+<h2>LiveScript</h2>
 
 <p><a href="http://livescript.net">LiveScript</a> is even <em>more</em> functional than CoffeeScript. To keep the analogies going, we might say that <strong>CoffeeScript : Python :: TypeScript : OCaml :: LiveScript : Haskell</strong>, or something like that.</p>
 
@@ -174,14 +174,14 @@ var bad_point: Point = {
 <p>I actually see LiveScript and CoffeeScript as a bit of a toss-up. If you're <em>really</em> into functional programming, you might prefer LiveScript. For example, one differentiating factor: LiveScript allows for <a href="http://en.wikipedia.org/wiki/Currying">function currying</a> (i.e., partial application of functions). Watch us define the <code class="prettyprint">increment</code> function as adding one:</p>
 
 <pre><code class="prettyprint">add = (x, y) --&gt; x + y
-add 11, 9       #=&gt; 20
+add 11, 9       ##=&gt; 20
 increment = add 1
-increment 11    #=&gt; 12
+increment 11    ##=&gt; 12
 </code></pre>
 
 <p>In general, LiveScript has a strong functional lean. If that's for you, check it out.</p>
 
-<h1>RedScript</h1>
+<h2>RedScript</h2>
 
 <p><a href="http://redscript.org">RedScript</a> appeared on HackerNews recently, and although certainly has reached widespread adoption, I've included it here because I think it's a good example of how people are developing different 'flavors' of JavaScript.</p>
 
@@ -196,7 +196,7 @@ end
 
 <p>If you're a Rubyist, try RedScript. It's as simple as that.</p>
 
-<h1>Conclusion</h1>
+<h2>Conclusion</h2>
 
 <p>The languages described here are just a subset of the compile-to-JS family. But even with these four examples, we see:</p>
 
