@@ -134,9 +134,11 @@ for file_path in csv_files:
     productionHTML = productionHTML.replace("{{ date }}", fdate)
     if args.minify:
         # need to get relative path from HTML file to minified css
-        common_prefix = os.path.commonprefix([file_path, combined_css_path])
+        common_prefix = '/'.join(os.path.commonprefix([file_path, combined_css_path]).split('/')[:-1])
+        print common_prefix
         relative_path = '../' + \
             os.path.relpath(combined_css_path, common_prefix)
+        print relative_path
         productionHTML = productionHTML.replace(
             "{{ minified_css }}", relative_path)
 

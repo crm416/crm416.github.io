@@ -97,5 +97,11 @@
     <description>iOS performance optimizations are often subtle but logical. Here, I discuss a specific fix I implemented for drawing shadow paths.</description>
     <guid>http://www.princeton.edu/~crmarsh/ios_performance/</guid>
   </item>
+  <item>
+    <title>Statistics in Basketball: What's a "Good" Player?</title>
+    <link>http://www.princeton.edu/~crmarsh/statistics_in_basketball/</link>
+    <description>Bill Simmons' The Book of Basketball got me thinking: what would we want the ultimate player metric to capture?.</description>
+    <guid>http://www.princeton.edu/~crmarsh/statistics_in_basketball/</guid>
+  </item>
 </channel>
 </rss>
