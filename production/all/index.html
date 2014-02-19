@@ -468,7 +468,7 @@ end
 
 <p><code class="prettyprint">page.evaluate</code> takes, as argument, a function to-be executed in the context of the webpage. This is incredibly useful. Further, <code class="prettyprint">page.evaluate</code> can return a result from the webpage back to your PhantomJS program. Say, for example, that you'd like to grab the text of an element on the current page with ID "foo":</p>
 
-<pre><code class="prettyprint">var foo = page.evaluate({
+<pre><code class="prettyprint">var foo = page.evaluate(function() {
     return $("#foo").text;
 })
 </code></pre>
@@ -479,7 +479,7 @@ end
 
 <p>Actually, the code snippet above might not work as expected. I'll repeat it here for clarity:</p>
 
-<pre><code class="prettyprint">var foo = page.evaluate({
+<pre><code class="prettyprint">var foo = page.evaluate(function() {
     return $("#foo").text;
 })
 </code></pre>
@@ -491,7 +491,7 @@ end
 <p>Here's the revised code (credit to the <a href="https://github.com/ariya/phantomjs/wiki/Page-Automation">PhantomJS docs</a>):</p>
 
 <pre><code class="prettyprint">page.includeJs("http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js", function() {
-    var foo = page.evaluate({
+    var foo = page.evaluate(function() {
         return $("#foo").text;
     });
     // do what you gotta do with 'foo'
@@ -505,7 +505,7 @@ end
 
 <p>Specifically, <strong>the following code does nothing</strong> because "Hello, World!" is printed in the context of the browser:</p>
 
-<pre><code class="prettyprint">page.evaluate({
+<pre><code class="prettyprint">page.evaluate(function() {
     console.log("Hello, World!")
 })
 </code></pre>

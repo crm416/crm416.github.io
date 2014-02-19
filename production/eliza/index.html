@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <meta name="viewport" content="width=device-width">
+  <style type="text/css">
+    body{
+      font-family:'Open Sans',sans-serif;
+      color: #3c3c3c;
+      font-size: 100%;
+    }
+
+    .left,.left2,.right {
+      display:inline-block;
+    }
+    .left {
+      width:170px;
+      height:239px;
+      margin-right:-4px;
+    }
+
+    div>div{
+      display:block;
+      height:34px;
+    }
+    div>div>div{
+      width:30px;
+      height:30px;
+      background-color:red;
+      display:inline-block;
+      float:right;
+      margin:2px;
+    }
+    div.right>div>div{
+      float:left;
+    }
+
+    .left2{
+      width:170px;
+      height:306px;
+      margin-right:-4px;
+    }
+
+    .white {
+      background-color:white;
+    }
+
+  </style>
+  <title>Happy Birthday, Eliza!</title>
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans">
+  <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $("#slideContainer").hide();
+      $("#final").hide();
+      $("#gifts").hide();
+
+      $('div>div>div').each(function(id){
+        $(this).css({
+          position: 'relative',
+          top: '-200px',
+          opacity: 0
+        });
+        var wait = Math.floor((Math.random()*3000)+1);
+        $(this).delay(wait).animate({
+          top: '0',
+          opacity: 1
+        },1000);
+      });
+
+      $("#slideContainer").delay(4000).fadeIn("xslow");
+
+      $( "#leftPresent, #rightPresent" ).click(function() {
+        $("#slideContainer").fadeOut("slow");
+
+        $('div>div>div').each(function(id){
+          $(this).css({
+            opacity: 1
+          });
+          var wait = Math.floor((Math.random()*3000)+1);
+          $(this).delay(wait).animate({
+            opacity: 0
+          },1000);
+
+          setTimeout(function() {
+            $( "#leftPresent" ).css({display: 'none'});
+            $( "#rightPresent" ).css({display: 'none'});
+            $('#heartLeft').css({display: ''});
+            $('#heartRight').css({display: ''});
+            $('div>div>div').each(function(id){
+              $(this).css({
+                position: 'relative',
+                top: '-200px',
+                opacity: 0
+              });
+              var wait = Math.floor((Math.random()*3000)+1);
+              $(this).delay(wait).animate({
+                top: '0',
+                opacity: 1
+              }, 1500);
+
+              $( "#slide" ).text("22 is a big birthday.");
+
+            });
+          }, 4000);
+
+          setTimeout(function() {
+            $( "#slideContainer" ).fadeIn("slow");
+          }, 8000);
+
+        });
+      });
+    });
+  </script>
+</head>
+<body>
+
+    <center>
+
+      <h1 style="font-size:100px; margin-bottom:0">Happy Birthday, Eliza!</h1>
+
+      <div id='leftPresent' class='left2'>
+        <div>
+          <div class="white"></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <div>
+          <div class="white"></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <div>
+          <div class="white"></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <div>
+          <div class="white"></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <div>
+          <div class="white"></div>
+          <div class="white"></div>
+          <div class="white"></div>
+          <div class="white"></div>
+          <div class="white"></div>
+        </div>
+        <div>
+          <div class="white"></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <div>
+          <div class="white"></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <div>
+          <div class="white"></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <div>
+          <div class="white"></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+      <div id='rightPresent' class='right'>
+        <div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <div>
+          <div class="white"></div>
+          <div class="white"></div>
+          <div class="white"></div>
+          <div class="white"></div>
+        </div>
+        <div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+
+      <div id='heartLeft' class='left' style='display:none'>
+        <div style='padding-right:68px'>
+          <div></div>
+          <div></div>
+        </div>
+        <div style='padding-right:34px'>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <div>
+          <div></div>
+          <div></div>
+        </div>
+        <div>
+          <div></div>
+        </div>
+      </div>
+      <div id='heartRight' class='right' style='display:none'>
+        <div style='padding-left:34px'>
+          <div></div>
+          <div></div>
+        </div>
+        <div style=''>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <div>
+          <div></div>
+          <div></div>
+        </div>
+        <div>
+          <div></div>
+        </div>
+      </div>
+
+      <div id="slideContainer">
+        <h2 id='slide' style='padding-top:30px'>I'm a present. Open me up.</h2>
+        <ol id='gifts'>
+          <li id='gift0'><b>Celebrations</b>: here's a bottle of champagne.</li>
+          <li id='gift1'><b>Exercise</b>: 3 rides at Soul Cycle and 6 yoga lessons, on me.</li>
+          <li id='gift2'><b>Room</b>: cleaning for the rest of the semester, on me.</li>
+          <li id='gift3'><b>Employment</b>: a free website, on me (with your help).</li>
+          <li id='gift4'><b>Music</b>: access to Spotify Premium, on me.</li>
+          <li id='gift5'><b>File storage</b>: 5 GB cleared and 5 GB earned on Dropbox, on me. I won't sleep until you have 'em.</li>
+          <li id='gift6'><b>Time with me</b> (okay, they're not all positive): tickets for one dinner per week for the rest of the semester. Starting today.</li>
+          <li id='gift7'><b>Relaxation (Part I)</b>: one guaranteed weekend (of your choice) in the Hamptons and...</li>
+          <li id='gift8'><b>Relaxation (Part II)</b>: an in-house massage during that weekend, on me.</li>
+          <li id='gift9'><b>Commitment</b>: a promise to be the best boyfriend I can be during your last semester at school—on me.</li>
+        </ol>
+      </div>
+      <div id="final">
+        It's not a big present.<br>But it's 10 ways to show you I care.<br>10 ways to show you how much you mean to me.<br>And 10 ways to show you that I'd do anything for you.<br>(Maybe this website is the 11th.)
+      </div>
+      <script>
+        var text = ["I didn't have time to go buy you jewelry.", "But that's probably a good thing.", "So I got to thinking...", "About a simple question:", "How can I make you happier?", "Without further ado...", "Here are ten ways I'm going to make you happier:"];
+        var i = 0;
+
+        var triggered = false;
+        function glitter() {
+          $('#heartLeft > div > div, #heartRight > div > div').each(function(id){
+            function run(e) {
+              $(e).animate({
+                opacity: Math.random()
+              }, {
+                duration: 2000 + 3000*Math.random(),
+                queue: false,
+                complete: function () { run(e); }
+              });
+            };
+            run(this);
+          });
+        }
+
+        $('#slide').click(function(id) {
+          if (!triggered) {
+            glitter();
+            triggered = true;
+          }
+
+          if (i < text.length) {
+            function complete() {
+              $( "#slide" ).fadeIn(500);
+              $( "#slide" ).text(text[i]);
+              i++;
+            }
+            $( "#slide" ).fadeOut( 500, "linear", complete);
+          } else {
+            if (i == text.length) {
+              $( "li" ).hide()
+              $( "#gifts" ).fadeIn(1000);
+            }
+
+            if ($( "#gift".concat((i - text.length).toString()) ).length) {
+              $( "#gift".concat((i - text.length).toString()) ).fadeIn(1000);
+              i++;
+            } else {
+              $( "#final" ).fadeIn(500);
+            }
+          }
+        });
+      </script>
+    </div>
+  </center>
+</body>
