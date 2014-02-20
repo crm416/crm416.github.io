@@ -10,7 +10,7 @@
   <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
   <meta name="description" content="Charlie Marsh is a programmer and student at Princeton University with major interests in functional programming and machine learning.">
   <meta name="viewport" content="width=device-width">
-  <title>The Idiot-Proof Guide to Setting Up Your Personal EC2 Instance
+  <title>The 5-Minute Guide to a Perfect, Personal EC2 Instance
  | Charlie Marsh</title>
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans">
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Source+Code+Pro">
@@ -52,8 +52,8 @@
           <hr />
         </div>
         <div class="span9 offset1" style="padding-left:20px">
-          <h1>The Idiot-Proof Guide to Setting Up Your Personal EC2 Instance</h1>
-<a class="btn btn-primary" href="http://twitter.com/intent/tweet?url=http://www.princeton.edu/~crmarsh/aws&text=The Idiot-Proof Guide to Setting Up Your Personal EC2 Instance
+          <h1>The 5-Minute Guide to a Perfect, Personal EC2 Instance</h1>
+<a class="btn btn-primary" href="http://twitter.com/intent/tweet?url=http://www.princeton.edu/~crmarsh/aws&text=The 5-Minute Guide to a Perfect, Personal EC2 Instance
 &via=crm416">Tweet</a> | <a class="btn btn-primary" href="http://facebook.com/sharer.php?u=http://www.princeton.edu/~crmarsh/aws">Like</a> | <a class="btn btn-primary" href="https://plus.google.com/share?url=http%3A%2F%2Fwww.princeton.edu/~crmarsh/aws">+1</a>
 
 <p>I like SSHing into things. So I went ahead and setup my own AWS EC2 instance. Under the free tier, you can get good mileage out of an instance and use it to do whatever you please.</p>
@@ -75,7 +75,7 @@
 <li>Go to the <a href="https://portal.aws.amazon.com/gp/aws/developer/registration/index.html">AWS signup page</a>. Proceed with the signup process. Note that the information necessary to get up and running with an AWS account includes a valid <strong>credit card</strong> and a <strong>valid phone</strong> (used for verification). Have these at the ready.</li>
 </ul>
 
-<h2>Launching Your Instance (Slightly More Interesting)</h2>
+<h2>Launching Your Instance</h2>
 
 <ul>
 <li>After you've received your activation email, head to the <a href="https://console.aws.amazon.com/console/home?#">AWS management console</a> (this link requires you to be logged in to AWS). Click on the icon labelled 'EC2' (orange, below).</li>
@@ -105,7 +105,7 @@
 
 <p><img src="http://crmarsh416.appspot.com/img/aws_ready.png" alt="Instance ready" class="center" width="700"></p>
 
-<h2>Getting Onto Your Server (More Interesting Still)</h2>
+<h2>Getting Onto Your Server</h2>
 
 <ul>
 <li><p>Now that our instance is up and running, we need to make one more step before we can SSH in. That is, we need to set the file permissions of <em>your_keyname.pem</em>. To do that, use the <a href="http://stackoverflow.com/questions/1454629/aws-ssh-access-permission-denied-publickey-issue#1454647">following command</a>:</p>
@@ -132,7 +132,7 @@
 
 <p><img src="http://crmarsh416.appspot.com/img/aws_successful_login.png" class="center" alt="Successful login"></p>
 
-<h2>Configuring Your Account (Much More Interesting)</h2>
+<h2>Configuring Your Account</h2>
 
 <ul>
 <li>Ideally, you want to <a href="http://www.howtogeek.com/124950/htg-explains-why-you-shouldnt-log-into-your-linux-system-as-root/">minimize the amount of time</a> you're logged in as <em>root</em>, for security purposes. So next, we'll create our own account on the EC2 instance and set it up with the proper permissions. I'll be creating the account <em>charlie</em>.</li>
@@ -165,7 +165,6 @@ logout
 <p>Now back in the terminal, we can go ahead and login:</p>
 
 <pre><code class="prettyprint">ssh charlie@ec2-54-218-37-172.us-west-2.compute.amazonaws.com
-# charlie@ec2-54-218-37-172.us-west-2.compute.amazonaws.com's password:
 </code></pre></li>
 <li><p>We're in! Last thing (for now): when I created my new user account, it didn't default to the bash shell. So I lacked tab-to-autocomplete, up-arrow-for-last-command, etc. To fix that:</p>
 
@@ -175,11 +174,13 @@ logout
 <p>Logout and login. You'll know you're successful if you see:</p>
 
 <pre><code class="prettyprint">charlie@ip-172-31-23-65:~$
-</code></pre></li>
-<li>Now we'll make this login flow much smoother.</li>
+</code></pre>
+
+<p>If this method doesn't work, you can also <a href="http://askubuntu.com/questions/306137/ssh-shell-prompt-does-not-show-userhost-for-one-user#answer-306148">manually edit</a> the <em>/etc/passwd</em> file and change "/bin/sh" to "/bin/bash" for <em>charlie</em>.</p></li>
+<li><p>Now we'll make this login flow much smoother.</p></li>
 </ul>
 
-<h2>Smoothing Out The Workflow (Much, Much More Interesting)</h2>
+<h2>Smoothing Out the Workflow</h2>
 
 <ul>
 <li>Now, I want to be able to SSH in with the click of a button. To do that, we'll: 1) remove the need for typing in your password when SSHing from your local machine, and 2) create an alias for the SSH command (and its arguments).</li>
@@ -211,17 +212,17 @@ rm keyname.pub
 </code></pre>
 
 <p>Logout, and you should be able to SSH in without having to enter your password.</p></li>
-<li><p>To <a href="http://askubuntu.com/questions/17536/how-do-i-create-a-permanent-bash-alias#17538">create the alias</a>, go to your bash<em>profile (emacs ~/.bash</em>profile) or wherever you configure your local bash settings. Add the following two lines (with your arguments substituted):</p>
+<li><p>To <a href="http://askubuntu.com/questions/17536/how-do-i-create-a-permanent-bash-alias#17538">create the alias</a>, go to your bash_profile (emacs ~/.bash_profile) or wherever you configure your local bash settings. Add the following two lines (with your arguments substituted):</p>
 
 <pre><code class="prettyprint">export AWS='ec2-54-245-139-10.us-west-2.compute.amazonaws.com'
-alias aws='ssh -i ~/Desktop/crm_key.pem crmarsh@$AWS'
+alias aws='ssh crmarsh@$AWS'
 </code></pre>
 
 <p>Why both? Well, if you ever need the address of your instance (it comes in handy), you can just type 'echo $AWS'. And when you want to login, you can just type 'aws' on its own. Try it for yourself.</p></li>
 <li>As a final note: if you're like me and you love Sublime Text, I highly recommend using <a href="http://wbond.net/sublime_packages/sftp">Sublime SFTP</a>. It lets you edit files on your remote server using Sublime Text over SFTP.</li>
 </ul>
 
-<h2>Installing Essential Tools</h2>
+<h2>Appendix: Installing Essential Tools</h2>
 
 <ul>
 <li>Thankfully, most of the things you need come pre-installed on Ubuntu; so this section is small. Try 'em out: ssh, scp, grep, wget, etc.</li>
@@ -232,6 +233,7 @@ sudo apt-get install git
 sudo apt-get install make
 ...
 </code></pre></li>
+<li><p>Pro tip: installing Java.</p></li>
 </ul>
 
           <p class="date">Posted on June 19, 2013.<p>
