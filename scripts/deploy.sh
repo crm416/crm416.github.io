@@ -11,7 +11,7 @@ migrate ()
     cp -rf production/static/* app_engine/
 
     # Push live
-    appcfg.py update app_engine
+    appcfg.py --oauth2 update app_engine
 
     # Replace references in all files
     for f in production/*.html production/*/*.html
