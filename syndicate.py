@@ -3,6 +3,10 @@ import sys
 import argparse
 import re
 import datetime
+from jinja2 import Environment, FileSystemLoader
+
+reload(sys)
+sys.setdefaultencoding('utf-8')
 
 # get optional command-line arguments
 parser = argparse.ArgumentParser("Turn Markdown files into static web sites.")
@@ -18,9 +22,6 @@ parser.add_argument('--prettify', dest='prettify', action='store_const',
 parser.add_argument('posts', nargs='*',
                     default=[], help='a list of posts to generate (defaults to all possible posts), specified by the name of the post\'s directory')
 args = parser.parse_args()
-
-# gather template file HTML
-templateHTML = file(args.template_file, "rb").read()
 
 # iterate over all markdown files in this directory and subdirectories
 
@@ -92,11 +93,33 @@ for file_path in csv_files:
 
     sys.stdout.flush()
 
-    # extract the title from the markdown
     with open(file_path, 'r') as f:
-        title = f.readline()
-    while title[0] == "#" or title[0] == " ":
-        title = title[1:]
+        results = re.findall(r'\|\s*(.*):\s*"(.*)"\n', f.read())
+        meta = {}
+        for (x, y) in results:
+            meta[x] = y
+
+    temp_file_path = directory + "/temp.md"
+    with open(file_path, 'r') as f:
+        text = re.sub(r'(?s).*?(#.*)', r'\g<1>', f.read(), 1)
+        open(temp_file_path, 'w').write(text)
+    file_path = temp_file_path
+
+    # extract the title from the markdown
+    if 'title' in meta:
+        title = meta['title']
+    else:
+        with open(file_path, 'r') as f:
+            title = f.readline()
+        while title[0] == "#" or title[0] == " ":
+            title = title[1:]
+        title = title.strip()
+
+    # extract description
+    if 'description' in meta:
+        description = meta['description']
+    else:
+        description = None
 
     # extract date from file name
     m = FILENAME_DATE.match(file_path.split("/")[-1])
@@ -129,9 +152,10 @@ for file_path in csv_files:
         '%s</h1>' % title.rstrip(), '%s</h1>\n%s' % (title.rstrip(), buttons))
 
     # replace in production HTML
-    productionHTML = templateHTML.replace("{{ title }}", title)
-    productionHTML = productionHTML.replace("{{ body }}", bodyHTML)
-    productionHTML = productionHTML.replace("{{ date }}", fdate)
+    env = Environment(loader=FileSystemLoader('templates'))
+    template = env.get_template('post.html')
+    productionHTML = template.render(body=bodyHTML, title=title, date=fdate, description=description)
+
     if args.minify:
         # need to get relative path from HTML file to minified css
         common_prefix = '/'.join(os.path.commonprefix([file_path, combined_css_path]).split('/')[:-1])
@@ -147,16 +171,21 @@ for file_path in csv_files:
     productionFile = open(directory + "/index.html", "w")
     productionFile.write(productionHTML)
 
+    os.system("rm " + file_path)
+
 if os.path.exists("temp.txt"):
     os.system("rm temp.txt")
 
 if os.path.exists("all.html"):
-    templateHTML = file("all.html", "rb").read()
-
     # sort posts by date and concatenate HTML
     allPosts.sort(reverse=True)
     allHTML = ''.join(map(lambda (x, y): y, allPosts))
     allHTML = templateHTML.replace("{{ body }}", allHTML)
+
+    # fill in template
+    env = Environment(loader=FileSystemLoader('templates'))
+    template = env.get_template('post.html')
+    allHTML = template.render(body=allHTML)
 
     # create feed file
     feedFile = open("production/all/index.html", "w")

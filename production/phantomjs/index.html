@@ -8,10 +8,9 @@
 
   <!-- Always force latest IE rendering engine or request Chrome Frame -->
   <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
-  <meta name="description" content="Charlie Marsh is a programmer and student at Princeton University with major interests in functional programming and machine learning.">
+  <meta name="description" content="Considering PhantomJS? Save yourself hours of troublesome debugging and indecipherable error messages by avoiding these common errors, mistakes, and misunderstandings.">
   <meta name="viewport" content="width=device-width">
-  <title>PhantomJS: Common Gotchas for Beginners
- | Charlie Marsh</title>
+  <title>Getting Started with PhantomJS: Common Gotchas for Beginners | Charlie Marsh</title>
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans">
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Source+Code+Pro">
   <link href="http://crmarsh416.appspot.com/css/combined.css" rel="stylesheet" type="text/css" />
@@ -53,20 +52,16 @@
         </div>
         <div class="span9 offset1" style="padding-left:20px">
           <h1>PhantomJS: Common Gotchas for Beginners</h1>
-<a class="btn btn-primary" href="http://twitter.com/intent/tweet?url=http://www.princeton.edu/~crmarsh/phantomjs&text=PhantomJS: Common Gotchas for Beginners
-&via=crm416">Tweet</a> | <a class="btn btn-primary" href="http://facebook.com/sharer.php?u=http://www.princeton.edu/~crmarsh/phantomjs">Like</a> | <a class="btn btn-primary" href="https://plus.google.com/share?url=http%3A%2F%2Fwww.princeton.edu/~crmarsh/phantomjs">+1</a>
 
-<p>Over the summer, I had a pet project to automate <a href="https://github.com/geuis/helium-css">Helium.js</a>, a tool for identifying unused style elements in your CSS. Currently, in order to generate a Helium report, you need to add some JavaScript to your webpage, open up your web browser, navigate to the page, and click some buttons.</p>
+<p>Over the summer, I had a pet project to automate <a href="https://github.com/geuis/helium-css">Helium.js</a>, a tool for identifying unused style elements in your CSS. Currently, in order to generate a Helium report, you need to add some JavaScript to your webpage, open up your web browser, navigate to the page, and click on some buttons.</p>
 
-<p>My goal was to automate the process using a headless browser <em>(that is, a browser that runs without a GUI, allowing you to navigate the web and interact with web pages from your terminal)</em>. In this case, I chose to use <a href="http://phantomjs.org">PhantomJS</a>, a tool designed designed precisely for this use-case.</p>
-
-<p><em>(Note: the aforementioned project is still under active development and not yet available on GitHub.)</em></p>
+<p>My goal was to automate the process using a headless browser <em>(that is, a browser that runs without a GUI, allowing you to navigate the web and interact with web pages from your terminal)</em>. In this case, I chose to use <a href="http://phantomjs.org">PhantomJS</a>.</p>
 
 <p>I had a mixed experience. Headless browsing is notoriously difficult to debug, and this case was no different: errors were tough to reproduce, results were inconsistent, and producing informative output was challenging.</p>
 
-<p>Once I got past the initial difficulties, however, PhantomJS was actually a pretty powerful tool—hats off to the creators, as always.</p>
+<p>Once I got past the initial difficulties, however, PhantomJS was an impressive tool—hats off to the creators, as always.</p>
 
-<p>In this post, I'd like to describe some of the common "gotchas" that I've found associated with PhantomJS (I call them "common" due to: 1. my own experience, and 2. finding similar questions/issues documented on StackOverflow), along with their solutions.</p>
+<p>In this post, I'd like to describe some of the common "gotchas" that I've found associated with PhantomJS and walk through their solutions. (I call them "common" due to: 1. my own experience, and 2. finding similar questions/issues documented on StackOverflow.)</p>
 
 <p><em>Note: that PhantomJS is often used in tandem with <a href="http://casperjs.org">CasperJS</a>; it's possible that some of what follows is made easier with Casper, namely, navigating webpages. But I think these gotchas are still valid, even in the face of Casper.</em></p>
 
@@ -175,7 +170,7 @@ page.open('http://www.sample.com', function() {
 
 <p>There's a lot more to PhantomJS than I've managed to go through in this post. And I'm personally excited to check out CasperJS at some point in the future, which seems great as well (in particular, for unit testing). But hopefully the tips and gotchas described in this post can be helpful for beginners.</p>
 
-          <p class="date">Posted on September 13, 2013.<p>
+          <p class="date">Posted on .<p>
             <div id="disqus_thread"></div>
             <script type="text/javascript">
               var disqus_shortname = 'crmarsh416';
