@@ -13,7 +13,9 @@
   <title>Rule Optimization in Software-Defined Networks | Charlie Marsh</title>
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans">
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Source+Code+Pro">
-  <link href="http://crmarsh416.appspot.com/css/combined.css" rel="stylesheet" type="text/css" />
+  <link href="http://crmarsh416.appspot.com/css/bootstrap.css" rel="stylesheet" type="text/css" />
+  <link href="http://crmarsh416.appspot.com/css/sprites.css" rel="stylesheet" type="text/css" />
+  <link href="http://crmarsh416.appspot.com/css/styles.css" rel="stylesheet" type="text/css" />
   <link href='https://plus.google.com/u/0/100601164815113053596/' rel='author'>
   <script type="text/javascript" src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang=ml"></script>
   <script type="text/javascript" data-no-instant>
@@ -51,12 +53,12 @@
           <hr />
         </div>
         <div class="span9 offset1" style="padding-left:20px">
-          <h1>Rule Optimization in Software-Defined Networks</h1>
+          <h1 id='rule-optimization-in-softwaredefined-networks'>Rule Optimization in Software-Defined Networks<a class="headerlink" href="#rule-optimization-in-softwaredefined-networks" title="Permalink to this headline">¶</a></h1>
 <a class="btn btn-primary" href="http://twitter.com/intent/tweet?url=http://www.princeton.edu/~crmarsh/intro_to_sdn&text=Rule Optimization in Software-Defined Networks&via=crm416">Tweet</a> | <a class="btn btn-primary" href="http://facebook.com/sharer.php?u=http://www.princeton.edu/~crmarsh/intro_to_sdn">Like</a> | <a class="btn btn-primary" href="https://plus.google.com/share?url=http%3A%2F%2Fwww.princeton.edu/~crmarsh/intro_to_sdn">+1</a>
 
 <p>I'm doing some independent work this semester with Professor David Walker, with whom I took functional programming last semester. My project is being implemented functionally, however the main focus is on rule optimization in network routers; specifically, routers within software-defined networks (SDNs).</p>
 
-<h2>SDNs</h2>
+<h2 id='sdns'>SDNs<a class="headerlink" href="#sdns" title="Permalink to this headline">¶</a></h2>
 
 <p>The difference between SDNs and traditional networks lies in the positioning and functionality of the control plane: typically, when you buy a bunch of routers from Cisco, they’re implemented as a control plane and a data plane, where the former decides (at a high level) where packets should go, and the latter actually processes the packets as they come in and ships them off according to the former’s directions. SDNs, on the other hand, strip away the control plane, creating a single master controller that communicates with every router, where the routers are now just data planes.</p>
 
@@ -66,7 +68,7 @@
 
 <p>There are a ton of potential advantages to this type of networking. To give you a taste: say you’re trying to figure out how to get from New York to Miami. With traditional networks, you’re stuck on the ground in a swamp, asking nearby travellers if they can lend you some information. With SDNs, you’re looking down at the world from a high level, as if you have the world mapped out—finding a path is trivial.</p>
 
-<h2>Rule Optimization</h2>
+<h2 id='rule-optimization'>Rule Optimization<a class="headerlink" href="#rule-optimization" title="Permalink to this headline">¶</a></h2>
 
 <p>Each router in the network is implemented as a <em>flow table</em>, which is a set of {<em>pattern, action}</em> pairs. Each pattern matches on some field of the incoming packets and, if it finds a correct match, the action is performed (where the actions are things like <em>forward to port 5</em> or <em>drop from network</em>).</p>
 
@@ -74,7 +76,7 @@
 
 <p>The hardware that implements this matching is known as TCAM. It works in parallel to perform O(1) matching, but it makes up in cost what it gives you in speed—that is, you can’t get much of it because it’s highly expensive. As a consequence, you want to use as few rules as possible in your router.</p>
 
-<h2>A Family of Algorithms</h2>
+<h2 id='a-family-of-algorithms'>A Family of Algorithms<a class="headerlink" href="#a-family-of-algorithms" title="Permalink to this headline">¶</a></h2>
 
 <p>That’s where my work comes in: I’m trying to develop a family of algorithms that optimizes the number of rules necessary in a given flow table. Included in this family would be:</p>
 
@@ -86,7 +88,7 @@
 
 <p>These problems have been progressed to various degrees: the first is solved (and I’ve implemented the solution); the second is considered NP-complete for more than two fields, but a good approximate solution exists (which I’ve also implemented); and the third has not received much attention, which perhaps makes it the most exciting.</p>
 
-<h2>Going Forward</h2>
+<h2 id='going-forward'>Going Forward<a class="headerlink" href="#going-forward" title="Permalink to this headline">¶</a></h2>
 
 <p>I’ve only been working on this project for a few weeks, but already it makes me more excited about the prospect of academia. The problem I’m trying to solve here is small enough that I’ve been able to gather and read all the relevant papers, with which I’m now comfortable enough to reference by author names. I’ve really dived into the task, and I’m incredibly excited to (hopefully) contribute something to the open problem.</p>
 

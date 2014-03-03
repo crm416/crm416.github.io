@@ -13,7 +13,9 @@
   <title>The 5-Minute Guide to a Perfect, Personal EC2 Instance | Charlie Marsh</title>
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans">
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Source+Code+Pro">
-  <link href="http://crmarsh416.appspot.com/css/combined.css" rel="stylesheet" type="text/css" />
+  <link href="http://crmarsh416.appspot.com/css/bootstrap.css" rel="stylesheet" type="text/css" />
+  <link href="http://crmarsh416.appspot.com/css/sprites.css" rel="stylesheet" type="text/css" />
+  <link href="http://crmarsh416.appspot.com/css/styles.css" rel="stylesheet" type="text/css" />
   <link href='https://plus.google.com/u/0/100601164815113053596/' rel='author'>
   <script type="text/javascript" src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang=ml"></script>
   <script type="text/javascript" data-no-instant>
@@ -51,7 +53,7 @@
           <hr />
         </div>
         <div class="span9 offset1" style="padding-left:20px">
-          <h1>The 5-Minute Guide to a Perfect, Personal EC2 Instance</h1>
+          <h1 id='the-5minute-guide-to-a-perfect-personal-ec2-instance'>The 5-Minute Guide to a Perfect, Personal EC2 Instance<a class="headerlink" href="#the-5minute-guide-to-a-perfect-personal-ec2-instance" title="Permalink to this headline">¶</a></h1>
 <a class="btn btn-primary" href="http://twitter.com/intent/tweet?url=http://www.princeton.edu/~crmarsh/aws&text=The 5-Minute Guide to a Perfect, Personal EC2 Instance&via=crm416">Tweet</a> | <a class="btn btn-primary" href="http://facebook.com/sharer.php?u=http://www.princeton.edu/~crmarsh/aws">Like</a> | <a class="btn btn-primary" href="https://plus.google.com/share?url=http%3A%2F%2Fwww.princeton.edu/~crmarsh/aws">+1</a>
 
 <p>I like SSHing into things. So I went ahead and setup my own AWS EC2 instance. Under the free tier, you can get good mileage out of an instance and use it to do whatever you please.</p>
@@ -67,13 +69,13 @@
 
 <p>If that experience sounds good to you, keep reading. I've pulled together the assorted posts that I used to setup my EC2 instance and assembled <strong>The Idiot-Proof Guide</strong>.</p>
 
-<h2>Signing Up With AWS (The Boring Part)</h2>
+<h2 id='signing-up-with-aws'>Signing Up With AWS (The Boring Part)<a class="headerlink" href="#signing-up-with-aws" title="Permalink to this headline">¶</a></h2>
 
 <ul>
 <li>Go to the <a href="https://portal.aws.amazon.com/gp/aws/developer/registration/index.html">AWS signup page</a>. Proceed with the signup process. Note that the information necessary to get up and running with an AWS account includes a valid <strong>credit card</strong> and a <strong>valid phone</strong> (used for verification). Have these at the ready.</li>
 </ul>
 
-<h2>Launching Your Instance</h2>
+<h2 id='launching-your-instance'>Launching Your Instance<a class="headerlink" href="#launching-your-instance" title="Permalink to this headline">¶</a></h2>
 
 <ul>
 <li>After you've received your activation email, head to the <a href="https://console.aws.amazon.com/console/home?#">AWS management console</a> (this link requires you to be logged in to AWS). Click on the icon labelled 'EC2' (orange, below).</li>
@@ -103,7 +105,7 @@
 
 <p><img src="http://crmarsh416.appspot.com/img/aws_ready.png" alt="Instance ready" class="center" width="700"></p>
 
-<h2>Getting Onto Your Server</h2>
+<h2 id='getting-onto-your-server'>Getting Onto Your Server<a class="headerlink" href="#getting-onto-your-server" title="Permalink to this headline">¶</a></h2>
 
 <ul>
 <li><p>Now that our instance is up and running, we need to make one more step before we can SSH in. That is, we need to set the file permissions of <em>your_keyname.pem</em>. To do that, use the <a href="http://stackoverflow.com/questions/1454629/aws-ssh-access-permission-denied-publickey-issue#1454647">following command</a>:</p>
@@ -130,7 +132,7 @@
 
 <p><img src="http://crmarsh416.appspot.com/img/aws_successful_login.png" class="center" alt="Successful login"></p>
 
-<h2>Configuring Your Account</h2>
+<h2 id='configuring-your-account'>Configuring Your Account<a class="headerlink" href="#configuring-your-account" title="Permalink to this headline">¶</a></h2>
 
 <ul>
 <li>Ideally, you want to <a href="http://www.howtogeek.com/124950/htg-explains-why-you-shouldnt-log-into-your-linux-system-as-root/">minimize the amount of time</a> you're logged in as <em>root</em>, for security purposes. So next, we'll create our own account on the EC2 instance and set it up with the proper permissions. I'll be creating the account <em>charlie</em>.</li>
@@ -178,7 +180,7 @@ logout
 <li><p>Now we'll make this login flow much smoother.</p></li>
 </ul>
 
-<h2>Smoothing Out the Workflow</h2>
+<h2 id='smoothing-out-the-workflow'>Smoothing Out the Workflow<a class="headerlink" href="#smoothing-out-the-workflow" title="Permalink to this headline">¶</a></h2>
 
 <ul>
 <li>Now, I want to be able to SSH in with the click of a button. To do that, we'll: 1) remove the need for typing in your password when SSHing from your local machine, and 2) create an alias for the SSH command (and its arguments).</li>
@@ -220,7 +222,7 @@ alias aws='ssh crmarsh@$AWS'
 <li>As a final note: if you're like me and you love Sublime Text, I highly recommend using <a href="http://wbond.net/sublime_packages/sftp">Sublime SFTP</a>. It lets you edit files on your remote server using Sublime Text over SFTP.</li>
 </ul>
 
-<h2>Appendix: Installing Essential Tools</h2>
+<h2 id='appendix'>Appendix: Installing Essential Tools<a class="headerlink" href="#appendix" title="Permalink to this headline">¶</a></h2>
 
 <ul>
 <li>Thankfully, most of the things you need come pre-installed on Ubuntu; so this section is small. Try 'em out: ssh, scp, grep, wget, etc.</li>

@@ -66,6 +66,16 @@ a {
     a:hover.blank {
       color: inherit; }
 
+a.headerlink {
+  color: white !important;
+  font-size: 1em;
+  margin-left: 6px;
+  padding: 0 4px 0 4px;
+  text-decoration: none !important; }
+  a.headerlink:hover {
+    background-color: #ccc;
+    color: white !important; }
+
 /* Code snippets */
 pre, code, kbd, samp, .match-list {
   font-family: 'Source Code Pro', sans-serif;

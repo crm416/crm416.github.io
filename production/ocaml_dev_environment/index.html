@@ -13,7 +13,9 @@
   <title>Setting Up Your OCaml Development Environment on OS X | Charlie Marsh</title>
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans">
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Source+Code+Pro">
-  <link href="http://crmarsh416.appspot.com/css/combined.css" rel="stylesheet" type="text/css" />
+  <link href="http://crmarsh416.appspot.com/css/bootstrap.css" rel="stylesheet" type="text/css" />
+  <link href="http://crmarsh416.appspot.com/css/sprites.css" rel="stylesheet" type="text/css" />
+  <link href="http://crmarsh416.appspot.com/css/styles.css" rel="stylesheet" type="text/css" />
   <link href='https://plus.google.com/u/0/100601164815113053596/' rel='author'>
   <script type="text/javascript" src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang=ml"></script>
   <script type="text/javascript" data-no-instant>
@@ -51,7 +53,7 @@
           <hr />
         </div>
         <div class="span9 offset1" style="padding-left:20px">
-          <h1>Setting Up Your OCaml Development Environment on OS X</h1>
+          <h1 id='setting-up-your-ocaml-development-environment-on-os-x'>Setting Up Your OCaml Development Environment on OS X<a class="headerlink" href="#setting-up-your-ocaml-development-environment-on-os-x" title="Permalink to this headline">¶</a></h1>
 <a class="btn btn-primary" href="http://twitter.com/intent/tweet?url=http://www.princeton.edu/~crmarsh/ocaml_dev_environment&text=Setting Up Your OCaml Development Environment on OS X&via=crm416">Tweet</a> | <a class="btn btn-primary" href="http://facebook.com/sharer.php?u=http://www.princeton.edu/~crmarsh/ocaml_dev_environment">Like</a> | <a class="btn btn-primary" href="https://plus.google.com/share?url=http%3A%2F%2Fwww.princeton.edu/~crmarsh/ocaml_dev_environment">+1</a>
 
 <p>Last fall, I began exploring the subject of functional programming as part of <a href="http://www.cs.princeton.edu/~dpw/">Professor David Walker’s</a> <a href="http://www.cs.princeton.edu/~dpw/courses/cos326-12/info.php">COS 326 at Princeton</a>. Throughout the course, we did all of our programing in OCaml. I also spent the past spring using OCaml for my CS Independent Work. So in total, I’ve spent a reasonable amount of time around the language, and I think it’s fantastic: it’s got a great module system, plenty of useful open source tools, etc.</p>
@@ -60,7 +62,7 @@
 
 <p>In this post, I’ll provide a couple of choices for setting up such an environment when developing on a Mac.</p>
 
-<h2>Getting the OCaml Source Code</h2>
+<h2 id='getting-the-ocaml-source-code'>Getting the OCaml Source Code<a class="headerlink" href="#getting-the-ocaml-source-code" title="Permalink to this headline">¶</a></h2>
 
 <p>To start, there are a few ways to get the actual source code for the OCaml language.</p>
 
@@ -97,11 +99,11 @@ $ sh ./opam_installer.sh /usr/local/bin
 #
 </code></pre>
 
-<h2>Setting Up Your Development Environment</h2>
+<h2 id='setting-up-your-development-environment'>Setting Up Your Development Environment<a class="headerlink" href="#setting-up-your-development-environment" title="Permalink to this headline">¶</a></h2>
 
 <p>Next, you’ll want a high-quality editor that’s well integrated with the OCaml language. I’ve played around with three different editors/environments, all of which have had their pros and cons. Anyway, the process for setting up such environments is as follows:</p>
 
-<h3>Emacs (with Tuareg Mode)</h3>
+<h3 id='emacs'>Emacs (with Tuareg Mode)<a class="headerlink" href="#emacs" title="Permalink to this headline">¶</a></h3>
 
 <p>Professor Walker was a big fan of playing around in the OCaml toplevel within the IDE. That is, loading your current module into the OCaml toplevel and playing around without having to leave the text editor. To do that, you need Tuareg mode. Follow these instructions:</p>
 
@@ -126,7 +128,7 @@ $ wget https://forge.ocamlcore.org/frs/download.php/514/tuareg-2.0.4.tgz
 
 <p>Restart Emacs and Tuareg mode should be up and running. There are a number of useful commands for opening up the OCaml toplevel—<a href="http://www.ocamlpro.com/files/tuareg-mode.pdf">here’s</a> a good cheat sheet.</p>
 
-<h3>Eclipse (with OcaIDE)</h3>
+<h3 id='eclipse'>Eclipse (with OcaIDE)<a class="headerlink" href="#eclipse" title="Permalink to this headline">¶</a></h3>
 
 <p>OcaIDE is an Ocaml plugin for Eclipse. It works reasonably well, with auto-completion across packages and all those cute tricks. Here are some step-by-step instructions for setting it up:</p>
 
@@ -165,11 +167,11 @@ $ make: *** [a1] Error 1
   <p>NOTE: if you're using OPAM, then you'll have to go to properties (CTRL+,) –> OcaIDE –> Paths. Then, go to ~/.opam/4.00.1/bin, type 'pwd' (you need the full path, rather than '~') and paste the whole path into the ‘OCaml Binaries Directory’ field. Hit apply.</p>
 </blockquote>
 
-<h3>Sublime Text</h3>
+<h3 id='sublime-text'>Sublime Text<a class="headerlink" href="#sublime-text" title="Permalink to this headline">¶</a></h3>
 
 <p>Sublime Text is great. It’s quick, sexy, and lightweight, with plenty of room for customization. There’s an unlimited free trial available <a href="http://www.sublimetext.com/2">here</a>. It doesn’t have any particular integration with OCaml (although it does provide correct syntax highlighting for your .ml and .mli files), but there’s a fantastic setup tutorial available <a href="http://blog.alexmaccaw.com/sublime-text">here</a> that describes how to get started and recommends some baseline packages.</p>
 
-<h2>In Conclusion</h2>
+<h2 id='in-conclusion'>In Conclusion<a class="headerlink" href="#in-conclusion" title="Permalink to this headline">¶</a></h2>
 
 <p>OCaml is a great language, and I wish it were more widely proliferated. Hopefully, this post will help you get developing as quickly as possible—if anything is unclear, just email me at <a href="mailto:crmarsh@princeton.edu">crmarsh@princeton.edu</a> and I’ll do my best to help you debug.</p>
 

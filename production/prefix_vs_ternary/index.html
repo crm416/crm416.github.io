@@ -13,7 +13,9 @@
   <title>Prefix-Based vs. Ternary Predicate Matching | Charlie Marsh</title>
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans">
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Source+Code+Pro">
-  <link href="http://crmarsh416.appspot.com/css/combined.css" rel="stylesheet" type="text/css" />
+  <link href="http://crmarsh416.appspot.com/css/bootstrap.css" rel="stylesheet" type="text/css" />
+  <link href="http://crmarsh416.appspot.com/css/sprites.css" rel="stylesheet" type="text/css" />
+  <link href="http://crmarsh416.appspot.com/css/styles.css" rel="stylesheet" type="text/css" />
   <link href='https://plus.google.com/u/0/100601164815113053596/' rel='author'>
   <script type="text/javascript" src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang=ml"></script>
   <script type="text/javascript" data-no-instant>
@@ -51,7 +53,7 @@
           <hr />
         </div>
         <div class="span9 offset1" style="padding-left:20px">
-          <h1>Prefix-Based vs. Ternary Predicate Matching</h1>
+          <h1 id='prefixbased-vs-ternary-predicate-matching'>Prefix-Based vs. Ternary Predicate Matching<a class="headerlink" href="#prefixbased-vs-ternary-predicate-matching" title="Permalink to this headline">¶</a></h1>
 <a class="btn btn-primary" href="http://twitter.com/intent/tweet?url=http://www.princeton.edu/~crmarsh/prefix_vs_ternary&text=Prefix-Based vs. Ternary Predicate Matching&via=crm416">Tweet</a> | <a class="btn btn-primary" href="http://facebook.com/sharer.php?u=http://www.princeton.edu/~crmarsh/prefix_vs_ternary">Like</a> | <a class="btn btn-primary" href="https://plus.google.com/share?url=http%3A%2F%2Fwww.princeton.edu/~crmarsh/prefix_vs_ternary">+1</a>
 
 <p>As part of my independent work (described in my last post), I’ve been looking at the different types of pattern matching that’s permitted in flow tables for network switches. If you recall, the flow tables operate by matching packet fields on different patterns and performing the action associated with the matching pattern. The actions typically look like: DROP, FORWARD to port (n), etc. Here’s a sample table:</p>
@@ -73,7 +75,7 @@
 
 <p>I’ve been focusing on the last two variants, which are closely related. In fact, I want to talk about two algorithms for compressing rules tables with these predicate formats, both of which must be credited to Alex Liu at the University of Michigan.</p>
 
-<h2>The Dynamic Approach</h2>
+<h2 id='the-dynamic-approach'>The Dynamic Approach<a class="headerlink" href="#the-dynamic-approach" title="Permalink to this headline">¶</a></h2>
 
 <p>We’re going to focus on a single dimension (i.e., matching on a single field). This problem has been solved for the prefix-based case. The algorithm takes a dynamic programming approach, defining the concept of <em>consistency</em>: a rule table is <em>consistent</em> on a predicate <em>P</em> if, for every possible packet that matches <em>P</em>, the same rule is executed. For example, if your rule table is simply [*] -> DROP, then your table is completely consistent on ‘*’.</p>
 
@@ -83,7 +85,7 @@
 
 <p>For the one-dimensional case, this dynamic programming algorithm manages to minimize the size (i.e., the cost) of the rule table.</p>
 
-<h2>Bit-Weaving</h2>
+<h2 id='bitweaving'>Bit-Weaving<a class="headerlink" href="#bitweaving" title="Permalink to this headline">¶</a></h2>
 
 <p>To solve the ternary case, Liu employs some ingenuity (the inspiration for this blog post) in what he calls the Bit-Weaving Algorithm. Instead of tackling it as an entirely new problem, he manages to <strong>reduce the ternary case to the prefix-based case.</strong></p>
 

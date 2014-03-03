@@ -13,7 +13,9 @@
   <title>Getting Started with PhantomJS: Common Gotchas for Beginners | Charlie Marsh</title>
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans">
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Source+Code+Pro">
-  <link href="http://crmarsh416.appspot.com/css/combined.css" rel="stylesheet" type="text/css" />
+  <link href="http://crmarsh416.appspot.com/css/bootstrap.css" rel="stylesheet" type="text/css" />
+  <link href="http://crmarsh416.appspot.com/css/sprites.css" rel="stylesheet" type="text/css" />
+  <link href="http://crmarsh416.appspot.com/css/styles.css" rel="stylesheet" type="text/css" />
   <link href='https://plus.google.com/u/0/100601164815113053596/' rel='author'>
   <script type="text/javascript" src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang=ml"></script>
   <script type="text/javascript" data-no-instant>
@@ -51,7 +53,7 @@
           <hr />
         </div>
         <div class="span9 offset1" style="padding-left:20px">
-          <h1>PhantomJS: Common Gotchas for Beginners</h1>
+          <h1 id='phantomjs'>PhantomJS: Common Gotchas for Beginners<a class="headerlink" href="#phantomjs" title="Permalink to this headline">¶</a></h1>
 
 <p>Over the summer, I had a pet project to automate <a href="https://github.com/geuis/helium-css">Helium.js</a>, a tool for identifying unused style elements in your CSS. Currently, in order to generate a Helium report, you need to add some JavaScript to your webpage, open up your web browser, navigate to the page, and click on some buttons.</p>
 
@@ -65,7 +67,7 @@
 
 <p><em>Note: that PhantomJS is often used in tandem with <a href="http://casperjs.org">CasperJS</a>; it's possible that some of what follows is made easier with Casper, namely, navigating webpages. But I think these gotchas are still valid, even in the face of Casper.</em></p>
 
-<h2>Code Context</h2>
+<h2 id='code-context'>Code Context<a class="headerlink" href="#code-context" title="Permalink to this headline">¶</a></h2>
 
 <p>Perhaps the first gotcha is that there are really two contexts in your PhantomJS program: firstly, the PhantomJS program itself; secondly, the webpage open in your headless browser, i.e., access to the DOM. (This is important for subsequent gotchas.)</p>
 
@@ -73,7 +75,7 @@
 
 <p>A litmus test: if you're using jQuery, you're in the latter context.</p>
 
-<h2>Page.evaluate</h2>
+<h2 id='pageevaluate'>Page.evaluate<a class="headerlink" href="#pageevaluate" title="Permalink to this headline">¶</a></h2>
 
 <p>With that in mind, one of the first questions that I asked myself, when using PhantomJS: "How can I execute JavaScript <em>on</em> the given webpage itself?" In other words, I wanted to somehow mess around with the webpage using jQuery, and I couldn't figure out how to actually execute code in the context of the page.</p>
 
@@ -88,7 +90,7 @@
 
 <p>You could then use <code class="prettyprint">foo</code> in your PhantomJS program, successfully extracting the value from the webpage. <em>Note: return values are limited to simple objects, rather than, say, functions.</em></p>
 
-<h2>IncludeJs and InjectJs</h2>
+<h2 id='includejs-and-injectjs'>IncludeJs and InjectJs<a class="headerlink" href="#includejs-and-injectjs" title="Permalink to this headline">¶</a></h2>
 
 <p>Actually, the code snippet above might not work as expected. I'll repeat it here for clarity:</p>
 
@@ -112,7 +114,7 @@
 });
 </code></pre>
 
-<h2>Console.logging from your web browser</h2>
+<h2 id='consolelogging-from-your-web-browser'>Console.logging from your web browser<a class="headerlink" href="#consolelogging-from-your-web-browser" title="Permalink to this headline">¶</a></h2>
 
 <p>Similarly, I was often frustrated by the inability to display information logged by my webpage. Recall the split between the context of your PhantomJS program and the webpage open in your headless browser. Well, if you type <code class="prettyprint">console.log("Hello, World!")</code> in your PhantomJS program, that will be printed to your terminal. If, however, your webpage tries to log the same message, it will pass by unnoticed! So if your webpage prints a bunch of traces to the console, you'll never see 'em.</p>
 
@@ -132,7 +134,7 @@
 
 <p>For more, see my <a href="http://stackoverflow.com/questions/18115888/phantomjs-not-returning-results/18131369#18131369">StackOverflow answer</a>.</p>
 
-<h2>waitFor.js</h2>
+<h2 id='waitforjs'>waitFor.js<a class="headerlink" href="#waitforjs" title="Permalink to this headline">¶</a></h2>
 
 <p>PhantomJS beginners constantly ask how they can wait for something to appear on their webpage before acting. For example, maybe they want a banner to appear and then extract some text from it. Say "#foo" is now a div that loads a few seconds after the page has appeared. If you simply use the following code, you'll get unexpected results, as the banner may not be loaded at the time of query:</p>
 
@@ -166,7 +168,7 @@ page.open('http://www.sample.com', function() {
 });
 </code></pre>
 
-<h2>Going Forward</h2>
+<h2 id='going-forward'>Going Forward<a class="headerlink" href="#going-forward" title="Permalink to this headline">¶</a></h2>
 
 <p>There's a lot more to PhantomJS than I've managed to go through in this post. And I'm personally excited to check out CasperJS at some point in the future, which seems great as well (in particular, for unit testing). But hopefully the tips and gotchas described in this post can be helpful for beginners.</p>
 

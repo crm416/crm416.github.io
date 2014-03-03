@@ -13,7 +13,9 @@
   <title>True Parallelism in OCaml | Charlie Marsh</title>
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans">
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Source+Code+Pro">
-  <link href="http://crmarsh416.appspot.com/css/combined.css" rel="stylesheet" type="text/css" />
+  <link href="http://crmarsh416.appspot.com/css/bootstrap.css" rel="stylesheet" type="text/css" />
+  <link href="http://crmarsh416.appspot.com/css/sprites.css" rel="stylesheet" type="text/css" />
+  <link href="http://crmarsh416.appspot.com/css/styles.css" rel="stylesheet" type="text/css" />
   <link href='https://plus.google.com/u/0/100601164815113053596/' rel='author'>
   <script type="text/javascript" src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang=ml"></script>
   <script type="text/javascript" data-no-instant>
@@ -51,18 +53,18 @@
           <hr />
         </div>
         <div class="span9 offset1" style="padding-left:20px">
-          <h1>True Parallelism in OCaml</h1>
+          <h1 id='true-parallelism-in-ocaml'>True Parallelism in OCaml<a class="headerlink" href="#true-parallelism-in-ocaml" title="Permalink to this headline">¶</a></h1>
 <a class="btn btn-primary" href="http://twitter.com/intent/tweet?url=http://www.princeton.edu/~crmarsh/ocaml_parallelism&text=True Parallelism in OCaml&via=crm416">Tweet</a> | <a class="btn btn-primary" href="http://facebook.com/sharer.php?u=http://www.princeton.edu/~crmarsh/ocaml_parallelism">Like</a> | <a class="btn btn-primary" href="https://plus.google.com/share?url=http%3A%2F%2Fwww.princeton.edu/~crmarsh/ocaml_parallelism">+1</a>
 
 <p>OCaml provides a nice <a href="http://caml.inria.fr/pub/docs/manual-ocaml-4.00/libref/Thread.html">library for multi-threading</a>. Problem is, according to my professor, under the hood, <strong>OCaml doesn't actually employ any parallelism at all!</strong> In truth, the compiler just interleaves instructions in a way that has the same computational effect as multi-threading, barring the 2x speed-up.</p>
 
 <p>On the side, I've been working on an alternative to the small Futures module we used in class. Futures are very similar to threads but safer and easier to use. The interface itself is composed of a <strong>create</strong> method, which takes as argument an expression to compute and performs said computation on a new thread; as well as a <strong>force</strong> method, which blocks the main thread until the Future has finished its computation.</p>
 
-<h2>Processes</h2>
+<h2 id='processes'>Processes<a class="headerlink" href="#processes" title="Permalink to this headline">¶</a></h2>
 
 <p>This alternative aims to operate at a lower level than would typically be done in OCaml and circumvent the language's lack of true multi-threading. To do so, it runs the desired computation on a separate UNIX process using some of <a href="http://ocamlunix.forge.ocamlcore.org">these features</a>. <strong>Rather than trying to run two programs from within the same process, then, it seeks to run a single program, in two separate processes.</strong></p>
 
-<h2>Preserving Type Safety</h2>
+<h2 id='preserving-type-safety'>Preserving Type Safety<a class="headerlink" href="#preserving-type-safety" title="Permalink to this headline">¶</a></h2>
 
 <p>One difficulty that I encountered along the way was preserving type-safety. To transfer information from the forked thread to the main thread (i.e., to return the result of the Future's computation), I use the <a href="http://caml.inria.fr/pub/docs/manual-ocaml/libref/Marshal.html">Marshal module</a>, which allows you to encode arbitrary data structures as sequences of bytes. However, the documentation includes the following, essential warning: <strong>Warning: marshaling is currently not type-safe</strong>. In reality, if you're trying to Marshall some expression <em>e</em> of type <em>'a</em>, you need to somehow pass type <em>'a</em> to the output function. That is, the Marshal module needs to know the output type of the data it's trying to decode. To handle that, I had to strictly enforce the type of the output computation as follows:</p>
 
@@ -76,7 +78,7 @@
 
 <p>Notice that type <em>'b</em>, the desired output of the function <em>f</em>, is explicitly enforced as the output of the Marshal operation.</p>
 
-<h2>Thread Pools</h2>
+<h2 id='thread-pools'>Thread Pools<a class="headerlink" href="#thread-pools" title="Permalink to this headline">¶</a></h2>
 
 <p>One issue: I haven't gotten around to implementing a <a href="http://en.wikipedia.org/wiki/Thread_pool_pattern">thread pool</a> for the Futures module. That is, if you run some massive computation that requires too many threads, you run into all sorts of errors. On my machine, running the <em>Mergesort</em> demo with a list of size 1000 results in a crash (this seems to be roughly the threshold).</p>
 

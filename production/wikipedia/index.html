@@ -13,7 +13,9 @@
   <title>A Human-Friendly API for Wikipedia | Charlie Marsh</title>
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans">
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Source+Code+Pro">
-  <link href="http://crmarsh416.appspot.com/css/combined.css" rel="stylesheet" type="text/css" />
+  <link href="http://crmarsh416.appspot.com/css/bootstrap.css" rel="stylesheet" type="text/css" />
+  <link href="http://crmarsh416.appspot.com/css/sprites.css" rel="stylesheet" type="text/css" />
+  <link href="http://crmarsh416.appspot.com/css/styles.css" rel="stylesheet" type="text/css" />
   <link href='https://plus.google.com/u/0/100601164815113053596/' rel='author'>
   <script type="text/javascript" src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang=ml"></script>
   <script type="text/javascript" data-no-instant>
@@ -51,7 +53,7 @@
           <hr />
         </div>
         <div class="span9 offset1" style="padding-left:20px">
-          <h1>A Human-Friendly API for Wikipedia</h1>
+          <h1 id='a-humanfriendly-api-for-wikipedia'>A Human-Friendly API for Wikipedia<a class="headerlink" href="#a-humanfriendly-api-for-wikipedia" title="Permalink to this headline">¶</a></h1>
 <a class="btn btn-primary" href="http://twitter.com/intent/tweet?url=http://www.princeton.edu/~crmarsh/wikipedia&text=A Human-Friendly API for Wikipedia&via=crm416">Tweet</a> | <a class="btn btn-primary" href="http://facebook.com/sharer.php?u=http://www.princeton.edu/~crmarsh/wikipedia">Like</a> | <a class="btn btn-primary" href="https://plus.google.com/share?url=http%3A%2F%2Fwww.princeton.edu/~crmarsh/wikipedia">+1</a>
 
 <p><strong>Motivation:</strong> There's a lot of information on Wikipedia, and people want to use it. Sometimes, these people are programmers; and sometimes, their customers aren't computers.</p>
@@ -60,7 +62,7 @@
 
 <p><em>Note: this module is currently housed within a larger project; I'll be writing more on that later.</em></p>
 
-<h2>How It Works</h2>
+<h2 id='how-it-works'>How It Works<a class="headerlink" href="#how-it-works" title="Permalink to this headline">¶</a></h2>
 
 <p>To start, we need to understand the current Wikipedia API, the so-called <em>MediaWiki API</em>. The <a href="http://www.mediawiki.org/wiki/API:Main_page">documentation</a> is fairly comprehensive, although it's not easy to find what you're looking for in those dense pages.</p>
 
@@ -90,7 +92,7 @@
 
 <p>Where <em>cleanWikiSection</em> is reponsible for removing extraneous information from the page itself, and <em>cleanHTMLSection</em> is responsible for converting the HTML to plaintext.</p>
 
-<h2>BeautifulSoup: Traversing the Parse Tree</h2>
+<h2 id='beautifulsoup'>BeautifulSoup: Traversing the Parse Tree<a class="headerlink" href="#beautifulsoup" title="Permalink to this headline">¶</a></h2>
 
 <p>In some cases, <em>wikipedia.py</em> also uses BeautifulSoup to explore the target page. For example, say we want to extract information from the table below (again, from Michael Jordan's Wikipedia page.)</p>
 
@@ -103,7 +105,7 @@
 <pre><code class="prettyprint">[('Born', 'February 17, 1963'), ('Nationality', 'American'), ('Listed height', '6ft6in'), ('Listed weight', '216lb'), ('High school', 'Emsley A. Laney'), ('College', 'North Carolina'), ('NBA Draft', '1984 / Round: 1 / Pick: 3rd overall'), ...]
 </code></pre>
 
-<h2>In Conclusion</h2>
+<h2 id='in-conclusion'>In Conclusion<a class="headerlink" href="#in-conclusion" title="Permalink to this headline">¶</a></h2>
 
 <p>Feel free to fork, comment, criticise, or (best of all) get in touch. This was created as a sub-project and is by no means perfect, but I certainly hope it can be useful to some.</p>
 

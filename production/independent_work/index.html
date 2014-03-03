@@ -13,7 +13,9 @@
   <title>A Guide to CS Independent Work at Princeton | Charlie Marsh</title>
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans">
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Source+Code+Pro">
-  <link href="http://crmarsh416.appspot.com/css/combined.css" rel="stylesheet" type="text/css" />
+  <link href="http://crmarsh416.appspot.com/css/bootstrap.css" rel="stylesheet" type="text/css" />
+  <link href="http://crmarsh416.appspot.com/css/sprites.css" rel="stylesheet" type="text/css" />
+  <link href="http://crmarsh416.appspot.com/css/styles.css" rel="stylesheet" type="text/css" />
   <link href='https://plus.google.com/u/0/100601164815113053596/' rel='author'>
   <script type="text/javascript" src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang=ml"></script>
   <script type="text/javascript" data-no-instant>
@@ -51,7 +53,7 @@
           <hr />
         </div>
         <div class="span9 offset1" style="padding-left:20px">
-          <h1>A Guide to CS Independent Work at Princeton</h1>
+          <h1 id='a-guide-to-cs-independent-work-at-princeton'>A Guide to CS Independent Work at Princeton<a class="headerlink" href="#a-guide-to-cs-independent-work-at-princeton" title="Permalink to this headline">¶</a></h1>
 <a class="btn btn-primary" href="http://twitter.com/intent/tweet?url=http://www.princeton.edu/~crmarsh/independent_work&text=A Guide to CS Independent Work at Princeton&via=crm416">Tweet</a> | <a class="btn btn-primary" href="http://facebook.com/sharer.php?u=http://www.princeton.edu/~crmarsh/independent_work">Like</a> | <a class="btn btn-primary" href="https://plus.google.com/share?url=http%3A%2F%2Fwww.princeton.edu/~crmarsh/independent_work">+1</a>
 
 <p>Last Spring, I did a semester of independent work (IW) with professor <a href="https://www.cs.princeton.edu/~dpw/">David Walker</a>. My project was focused on rule optimization in Software-Defined Networks (more <a href="http://www.princeton.edu/~crmarsh/intro_to_sdn/">here</a>), and it was probably the greatest learning experience of my Princeton career (so far).</p>
@@ -60,7 +62,7 @@
 
 <p><a href="http://iw.cs.princeton.edu/11-12/#Important_Information_for_Everyone">Every COS major</a> will do IW at some point. The COS Department has a decent guide <a href="http://iw.cs.princeton.edu/11-12/">here</a>, but after comparing and contrasting my experience with those of my friends, I wanted to jot down some notes about what worked and what didn't. Without further ado:</p>
 
-<h2>Optimize for the advisor, rather than the topic</h2>
+<h2 id='optimize-for-the-advisor-rather-than-the-topic'>Optimize for the advisor, rather than the topic<a class="headerlink" href="#optimize-for-the-advisor-rather-than-the-topic" title="Permalink to this headline">¶</a></h2>
 
 <p>I can't emphasize this enough: your advisor can <em>make</em> or <em>break</em> your experience. I was fortunate enough to have a great advisor who'd also been my professor the previous semester (in <a href="http://www.cs.princeton.edu/~dpw/courses/cos326-12/info.php">COS 326</a>), but I have friends whose advisors showed little interest in their projects and met with them very rarely (more on this in a second).</p>
 
@@ -72,11 +74,11 @@
 
 <p>A great advisor in a mediocre field (in terms of your own interest) will prove a much more enjoyable experience than a crummy advisor in a field you love but can't break into.</p>
 
-<h2>Favor professor-suggested projects</h2>
+<h2 id='favor-professorsuggested-projects'>Favor professor-suggested projects<a class="headerlink" href="#favor-professorsuggested-projects" title="Permalink to this headline">¶</a></h2>
 
 <p>If you're lucky, your advisor will have a project or two in-mind when you approach him or her. Try and stick to one of these. If the professor suggested the project, odds are they're in a good position to advise on it. If, instead, you suggest something out of left field, they might not be as familiar with the topic and thus slightly less useful as advisors.</p>
 
-<h2>Schedule weekly meetings with your advisor</h2>
+<h2 id='schedule-weekly-meetings-with-your-advisor'>Schedule weekly meetings with your advisor<a class="headerlink" href="#schedule-weekly-meetings-with-your-advisor" title="Permalink to this headline">¶</a></h2>
 
 <p>This sounds like a no-brainer—but it's crucial. At the beginning of the semester, schedule a one-hour (or thirty minute) standing, weekly meeting with your advisor.</p>
 
@@ -90,13 +92,13 @@
 
 <p>I really wanted to emphasize this point, so I'll exaggerate a little: This is the single greatest thing you can do to ensure a good IW experience.</p>
 
-<h2>Budget time for setting up your development environment</h2>
+<h2 id='budget-time-for-setting-up-your-development-environment'>Budget time for setting up your development environment<a class="headerlink" href="#budget-time-for-setting-up-your-development-environment" title="Permalink to this headline">¶</a></h2>
 
 <p>I didn't, and it put me behind on my scheduled goals. This could be the largest programming project you've ever undertaken individually (lines of code is a bad metric, but I wrote something like 3500). Budget time to set up source control, your dev environment, etc.</p>
 
 <p>That said, I was working in <a href="http://ocaml.org">OCaml</a>, and I'd never used <a href="http://opam.ocamlpro.com">OPAM</a> or <a href="http://omake.metaprl.org/index.html">OMake</a> or <a href="http://ounit.forge.ocamlcore.org">OUnit</a> before, so there was an unusual amount of overhead.</p>
 
-<h2>Papers are cryptic—email their authors</h2>
+<h2 id='papers-are-cryptic—email-their-authors'>Papers are cryptic—email their authors<a class="headerlink" href="#papers-are-cryptic—email-their-authors" title="Permalink to this headline">¶</a></h2>
 
 <p>Every paper covers the vanilla case (if you're lucky). I've had papers completely ignore or exclude key definitions (by assuming their readers had read a previously published paper). I've come to <em>expect</em> papers to disregard any mention of corner cases or input checking.</p>
 
@@ -108,7 +110,7 @@
 
 <p>The lesson: don't be afraid to email authors. They're human beings. In fact, they're a lot like your professors (or even your preceptors). Who knows—they'll might even be a bit flattered that you're interested in their work.</p>
 
-<h2>Don't be afraid to interact with graduate students and other professors</h2>
+<h2 id='dont-be-afraid-to-interact-with-graduate-students-and-other-professors'>Don't be afraid to interact with graduate students and other professors<a class="headerlink" href="#dont-be-afraid-to-interact-with-graduate-students-and-other-professors" title="Permalink to this headline">¶</a></h2>
 
 <p>This one is even easier. Throughout the semester, I had help from <a href="http://www.cs.princeton.edu/~nkang/">Nanxi Kang</a>, <a href="http://www.cs.princeton.edu/~cschlesi/">Cole Schlesinger</a>, <a href="http://www.cs.princeton.edu/~jrex/">Jennifer Rexford</a> (one of the leading SDN academics), and even <a href="http://www.cs.cornell.edu/~jnfoster/">Nate Foster</a> (at Cornell) and <a href="https://people.cs.umass.edu/~arjun/">Arjun Guha</a> (now at UMass-Amherst).</p>
 
@@ -116,7 +118,7 @@
 
 <p>Research is a collaborative process; embrace it.</p>
 
-<h2>Organization is key</h2>
+<h2 id='organization-is-key'>Organization is key<a class="headerlink" href="#organization-is-key" title="Permalink to this headline">¶</a></h2>
 
 <p>At the end of the semester, you'll have to create both a poster and a 20+-page paper summarizing your findings and the process by which you reached them.</p>
 
@@ -132,7 +134,7 @@
 
 <p>When it comes time to write, you'll be glad you kept things neat and tidy.</p>
 
-<h2>In conclusion</h2>
+<h2 id='in-conclusion'>In conclusion<a class="headerlink" href="#in-conclusion" title="Permalink to this headline">¶</a></h2>
 
 <p>Do independent work. It's an awesome experience and one of the things that makes Princeton a truly special place—so take advantage of the opportunity.</p>
 

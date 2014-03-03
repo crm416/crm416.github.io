@@ -13,7 +13,9 @@
   <title>First Thoughts on OCaml | Charlie Marsh</title>
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans">
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Source+Code+Pro">
-  <link href="http://crmarsh416.appspot.com/css/combined.css" rel="stylesheet" type="text/css" />
+  <link href="http://crmarsh416.appspot.com/css/bootstrap.css" rel="stylesheet" type="text/css" />
+  <link href="http://crmarsh416.appspot.com/css/sprites.css" rel="stylesheet" type="text/css" />
+  <link href="http://crmarsh416.appspot.com/css/styles.css" rel="stylesheet" type="text/css" />
   <link href='https://plus.google.com/u/0/100601164815113053596/' rel='author'>
   <script type="text/javascript" src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang=ml"></script>
   <script type="text/javascript" data-no-instant>
@@ -51,7 +53,7 @@
           <hr />
         </div>
         <div class="span9 offset1" style="padding-left:20px">
-          <h1>First Thoughts on OCaml</h1>
+          <h1 id='first-thoughts-on-ocaml'>First Thoughts on OCaml<a class="headerlink" href="#first-thoughts-on-ocaml" title="Permalink to this headline">¶</a></h1>
 <a class="btn btn-primary" href="http://twitter.com/intent/tweet?url=http://www.princeton.edu/~crmarsh/intro_to_ocaml&text=First Thoughts on OCaml&via=crm416">Tweet</a> | <a class="btn btn-primary" href="http://facebook.com/sharer.php?u=http://www.princeton.edu/~crmarsh/intro_to_ocaml">Like</a> | <a class="btn btn-primary" href="https://plus.google.com/share?url=http%3A%2F%2Fwww.princeton.edu/~crmarsh/intro_to_ocaml">+1</a>
 
 <p style="color:rgb(130,130,130)">N.B.: I wrote this post a few weeks after first using OCaml. Before that, 90% of my programing had been in Java. Looking back on these notes, perhaps a more accurate title would be "First Thoughts on a Functional Language After Only Knowing OOP", or something along those lines. But for posterity, I'll leave it as-is.</p>
@@ -60,7 +62,7 @@
 
 <p>In this post, I’m going to touch on some of the features that make OCaml beautiful to me. In particular, I’m going to contrast these features with their Java counterparts—I think most of the observations made will generalize to the broader question of functional vis-à-vis objective-oriented/imperative, but I’m sure there are a few outliers given any specific language. Also note that I’m sticking to the functional subset of OCaml (the language incorporates some objective-oriented and imperative features, but you can get by without using them at all if you so desire).</p>
 
-<h2>Type definitions</h2>
+<h2 id='type-definitions'>Type definitions<a class="headerlink" href="#type-definitions" title="Permalink to this headline">¶</a></h2>
 
 <p>OCaml makes it unbelievably easy to define new types. As a simple example, say we're making a phone book and we need to define a type for entries in said book. For each entry, we'd want a <em>first name</em>, a <em>last name</em>, and a <em>phone number</em>. For demonstration's sake, lets say we also want an <em>age</em>. All of this would be pretty straightforward in OCaml:</p>
 
@@ -99,7 +101,7 @@ type cnf = clause list
 
 <p>This is saying that a tree is either a leaf, or a node with some value and two subtrees. That is the entire definition. Again, brilliant.</p>
 
-<h2>Generics</h2>
+<h2 id='generics'>Generics<a class="headerlink" href="#generics" title="Permalink to this headline">¶</a></h2>
 
 <p>We can make our tree generic with:</p>
 
@@ -112,7 +114,7 @@ type cnf = clause list
 
 <p>The handling of generic types in OCaml really couldn’t be easier.</p>
 
-<h2>Option types</h2>
+<h2 id='option-types'>Option types<a class="headerlink" href="#option-types" title="Permalink to this headline">¶</a></h2>
 
 <p>OCaml also provides a framework for handling what in Java might be called the Null case through its option types. By specificying a variable as
     type ‘a option
@@ -125,7 +127,7 @@ or
 
 <p>For example, if x is of type int option, then x can either be None or Some int (e.g., Some 12, Some -1, Some 0). This becomes very useful, very quickly: think about functions in which you may want to return nothing (due to some bad input) but would prefer not to throw an exception. With the option type, we’re able to avoid all the extreme dangers that you see so often in C regarding null pointers and the general disruption that null values can cause.</p>
 
-<h2>The Thought Process</h2>
+<h2 id='the-thought-process'>The Thought Process<a class="headerlink" href="#the-thought-process" title="Permalink to this headline">¶</a></h2>
 
 <p>An example that really instilled in me an appreciation for OCaml came when attempting to check whether two lists are of equal length. The function looks like this: </p>
 
@@ -155,7 +157,7 @@ or
 
 <p>Here, we’re taking the sum of a node and adding it to the sum of all nodes in each of the node’s two subtrees. Recursion is awesome.</p>
 
-<h2>Conclusion</h2>
+<h2 id='conclusion'>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h2>
 
 <p>This post ignores a lot of the best or most powerful features of OCaml, but it’s dragged on a little long, so I’ll stop here. For those interested, check out: proving program correctness (according to my professor: conquerable by college students in OCaml, but “still the subject of current research” in Java), currying functions, and pattern matching.</p>
 

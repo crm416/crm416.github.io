@@ -1,7 +1,10 @@
+# -*- coding: utf-8 -*
+
 import os
 import sys
 import argparse
 import re
+import string
 import datetime
 from jinja2 import Environment, FileSystemLoader
 
@@ -101,6 +104,7 @@ for file_path in csv_files:
 
     temp_file_path = directory + "/temp.md"
     with open(file_path, 'r') as f:
+        # Delete all meta information (everything before first header)
         text = re.sub(r'(?s).*?(#.*)', r'\g<1>', f.read(), 1)
         open(temp_file_path, 'w').write(text)
     file_path = temp_file_path
@@ -151,18 +155,43 @@ for file_path in csv_files:
     bodyHTML = bodyHTML.replace(
         '%s</h1>' % title.rstrip(), '%s</h1>\n%s' % (title.rstrip(), buttons))
 
+    if args.minify:
+        # need to get relative path from HTML file to minified css
+        common_prefix = '/'.join(os.path.commonprefix([file_path, combined_css_path])
+                                 .split('/')[:-1])
+        minified_css = '../' + \
+            os.path.relpath(combined_css_path, common_prefix)
+    else:
+        minified_css = None
+
+    # add permalinks
+    def addPermalinks(html):
+        def titleToID(title):
+            title = re.sub(r'\(.*\)', r'', title)
+            title = re.sub(r'(:.*)', r'', title)
+            exclude = set(string.punctuation)
+            title = ''.join(ch for ch in title if ch not in exclude)
+            title = title.lower()
+            title = '-'.join(title.split())
+            return title
+
+        def permalink(title):
+            return u'<a class="headerlink" href="#%s" title="Permalink to this headline">¶</a>' % titleToID(title)
+
+        titles = re.findall(r'(<h\d>)(.*)(</h\d>)', html)
+        for match in titles:
+            link = permalink(match[1])
+            tag = match[0][:-1] + " id='%s'" % titleToID(match[1]) + ">"
+            html = html.replace(''.join(match), tag + match[1] + link + match[2])
+        return html
+
+    bodyHTML = addPermalinks(bodyHTML)
+
     # replace in production HTML
     env = Environment(loader=FileSystemLoader('templates'))
     template = env.get_template('post.html')
-    productionHTML = template.render(body=bodyHTML, title=title, date=fdate, description=description)
-
-    if args.minify:
-        # need to get relative path from HTML file to minified css
-        common_prefix = '/'.join(os.path.commonprefix([file_path, combined_css_path]).split('/')[:-1])
-        relative_path = '../' + \
-            os.path.relpath(combined_css_path, common_prefix)
-        productionHTML = productionHTML.replace(
-            "{{ minified_css }}", relative_path)
+    productionHTML = template.render(
+        body=bodyHTML, title=title, date=fdate, description=description, minified_css=minified_css)
 
     # only body goes into 'all posts'
     allPosts.append((date, bodyHTML))
