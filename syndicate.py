@@ -180,6 +180,8 @@ for file_path in csv_files:
 
         titles = re.findall(r'(<h\d>)(.*)(</h\d>)', html)
         for match in titles:
+            if match[0] == '<h1>':
+                continue
             link = permalink(match[1])
             tag = match[0][:-1] + " id='%s'" % titleToID(match[1]) + ">"
             html = html.replace(''.join(match), tag + match[1] + link + match[2])
