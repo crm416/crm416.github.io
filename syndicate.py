@@ -96,6 +96,16 @@ for file_path in csv_files:
 
     sys.stdout.flush()
 
+    # extract date from file name
+    print file_path.split("/")[-1]
+    m = FILENAME_DATE.match(file_path.split("/")[-1])
+    if m:
+        date = datetime.date(int(m.group(1)), int(m.group(2)), int(m.group(3)))
+        fdate = date.strftime("%B %-d, %Y")
+    else:
+        date = datetime.date.min
+        fdate = ""
+
     with open(file_path, 'r') as f:
         results = re.findall(r'\|\s*(.*):\s*"(.*)"\n', f.read())
         meta = {}
@@ -124,15 +134,6 @@ for file_path in csv_files:
         description = meta['description']
     else:
         description = None
-
-    # extract date from file name
-    m = FILENAME_DATE.match(file_path.split("/")[-1])
-    if m:
-        date = datetime.date(int(m.group(1)), int(m.group(2)), int(m.group(3)))
-        fdate = date.strftime("%B %-d, %Y")
-    else:
-        date = datetime.date.min
-        fdate = ""
 
     # run the converter and output to a temp.txt
     os.system(compile_markdown % file_path)
@@ -207,15 +208,14 @@ for file_path in csv_files:
 if os.path.exists("temp.txt"):
     os.system("rm temp.txt")
 
-if os.path.exists("all.html"):
+if os.path.exists("templates/all.html"):
     # sort posts by date and concatenate HTML
     allPosts.sort(reverse=True)
     allHTML = ''.join(map(lambda (x, y): y, allPosts))
-    allHTML = templateHTML.replace("{{ body }}", allHTML)
 
     # fill in template
     env = Environment(loader=FileSystemLoader('templates'))
-    template = env.get_template('post.html')
+    template = env.get_template('all.html')
     allHTML = template.render(body=allHTML)
 
     # create feed file

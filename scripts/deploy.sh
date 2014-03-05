@@ -43,8 +43,8 @@ fi
 echo "Creating posts"
 prepare
 
-echo "Migrating static content to CDN"
-migrate
+#echo "Migrating static content to CDN"
+#migrate
 
 echo "Pushing to server"
 scp -r production/* crmarsh@nobel.princeton.edu:public_html/
@@ -54,5 +54,5 @@ git add -A
 git commit -m "$1"
 git push
 
-echo "Reverting to local static content"
-unmigrate
+#echo "Reverting to local static content"
+#unmigrate

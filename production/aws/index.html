@@ -13,7 +13,7 @@
   <title>The 5-Minute Guide to a Perfect, Personal EC2 Instance | Charlie Marsh</title>
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans">
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Source+Code+Pro">
-  <link href="http://crmarsh416.appspot.com/css/combined.css" rel="stylesheet" type="text/css" />
+  <link href="../static/css/combined.css" rel="stylesheet" type="text/css" />
   <link href='https://plus.google.com/u/0/100601164815113053596/' rel='author'>
   <script type="text/javascript" src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang=ml"></script>
   <script type="text/javascript" data-no-instant>
@@ -79,7 +79,7 @@
 <li>After you've received your activation email, head to the <a href="https://console.aws.amazon.com/console/home?#">AWS management console</a> (this link requires you to be logged in to AWS). Click on the icon labelled 'EC2' (orange, below).</li>
 </ul>
 
-<p><img src="http://crmarsh416.appspot.com/img/aws_portal.png" alt="AWS Portal" class="center" width="700"></p>
+<p><img src="../static/img/aws_portal.png" alt="AWS Portal" class="center" width="700"></p>
 
 <p><em>For those interested, 'EC2' stands for *Elastic Cloud Compute*. The service itself allows users to rent out virtual computers on which they can boot up their own images. Basically, we're booting onto some random CPU in some Amazon-owned datacenter somewhere in America.</em></p>
 
@@ -87,7 +87,7 @@
 <li>On the next page, hit the big blue 'Launch Instance' button, as seen below.</li>
 </ul>
 
-<p><img src="http://crmarsh416.appspot.com/img/aws_launch_instance.png" alt="Launch instance" class="center"></p>
+<p><img src="../static/img/aws_launch_instance.png" alt="Launch instance" class="center"></p>
 
 <ul>
 <li>Next, we proceed with the 'Classic Wizard'. It's at this point that we have to select our disk image. Personally, I like using Ubuntu, so the rest of this tutorial will assume that you select <em>Ubuntu Server 13.04</em> (64-bit).</li>
@@ -95,13 +95,13 @@
 <li>Click through and launch your instance.</li>
 </ul>
 
-<p><img src="http://crmarsh416.appspot.com/img/aws_final.png" alt="Final configuration" class="center" width="700"></p>
+<p><img src="../static/img/aws_final.png" alt="Final configuration" class="center" width="700"></p>
 
 <ul>
 <li>Wait until your instance state goes from <em>pending</em> to <em>active</em>. For me, that took about 2-3 minutes. When you see something like this, you're golden.</li>
 </ul>
 
-<p><img src="http://crmarsh416.appspot.com/img/aws_ready.png" alt="Instance ready" class="center" width="700"></p>
+<p><img src="../static/img/aws_ready.png" alt="Instance ready" class="center" width="700"></p>
 
 <h2 id='getting-onto-your-server'>Getting Onto Your Server<a class="headerlink" href="#getting-onto-your-server" title="Permalink to this headline">¶</a></h2>
 
@@ -113,7 +113,7 @@
 <li>Get your EC2 name (something of the form *.compute.amazonaws.com). It'll look like this:</li>
 </ul>
 
-<p><img src="http://crmarsh416.appspot.com/img/aws_instance_name.png" alt="Instance name" class="center"></p>
+<p><img src="../static/img/aws_instance_name.png" alt="Instance name" class="center"></p>
 
 <ul>
 <li><p>Now, we can go ahead and SSH in. Issue the <a href="http://stackoverflow.com/questions/6394762/ssh-access-to-amazon-ec2-instance#6407649">following command</a>:</p>
@@ -128,7 +128,7 @@
 <li>Success! (I hope...)</li>
 </ul>
 
-<p><img src="http://crmarsh416.appspot.com/img/aws_successful_login.png" class="center" alt="Successful login"></p>
+<p><img src="../static/img/aws_successful_login.png" class="center" alt="Successful login"></p>
 
 <h2 id='configuring-your-account'>Configuring Your Account<a class="headerlink" href="#configuring-your-account" title="Permalink to this headline">¶</a></h2>
 
@@ -233,7 +233,7 @@ sudo apt-get install make
 </code></pre></li>
 </ul>
 
-          <p class="date">Posted on .<p>
+          <p class="date">Posted on June 19, 2013.<p>
             <div id="disqus_thread"></div>
             <script type="text/javascript">
               var disqus_shortname = 'crmarsh416';
@@ -250,13 +250,13 @@ sudo apt-get install make
             <center>
               &copy; 2014 Charles Marsh
               <a href="feed.xml" style="padding-bottom:15px">
-                <img class="icon" src="http://crmarsh416.appspot.com/img/rss.png">
+                <img class="icon" src="../static/img/rss.png">
               </a>
             </center>
           </div>
         </div>
       </div>
-    <script src="http://crmarsh416.appspot.com/js/instantclick.min.js" data-no-instant></script>
+    <script src="static/js/instantclick.min.js" data-no-instant></script>
     <script data-no-instant>InstantClick.init();</script>
     </body>
     </html>
