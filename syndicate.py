@@ -97,7 +97,6 @@ for file_path in csv_files:
     sys.stdout.flush()
 
     # extract date from file name
-    print file_path.split("/")[-1]
     m = FILENAME_DATE.match(file_path.split("/")[-1])
     if m:
         date = datetime.date(int(m.group(1)), int(m.group(2)), int(m.group(3)))

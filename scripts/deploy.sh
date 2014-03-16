@@ -44,7 +44,7 @@ echo "Creating posts"
 prepare
 
 #echo "Migrating static content to CDN"
-#migrate
+migrate
 
 echo "Pushing to server"
 scp -r production/* crmarsh@nobel.princeton.edu:public_html/
@@ -55,4 +55,4 @@ git commit -m "$1"
 git push
 
 #echo "Reverting to local static content"
-#unmigrate
+unmigrate
