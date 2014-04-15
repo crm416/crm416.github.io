@@ -1,7 +1,7 @@
 prepare ()
 {
     source env/bin/activate
-    #sass production/static/css/styles.scss production/static/css/styles.css
+    sass production/static/css/styles.scss production/static/css/styles.css
     python syndicate.py --minify --prettify
 }
 
