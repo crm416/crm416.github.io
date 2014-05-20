@@ -43,6 +43,7 @@ h1, h2, h3, h4, p {
 
 li {
     list-style:square;
+    font-weight: 100;
 }
 
 p {
@@ -142,6 +143,7 @@ code { padding: 0 3px 0 3px; font-size:14px}
 
 .match-list li {
     font-size: 16px;
+    font-weight: 400;
     line-height:1.5em;
     list-style-type:none;
 }
