@@ -16,10 +16,7 @@
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
     ga('create', 'UA-36552582-2', 'princeton.edu');
-    InstantClick.on('change', function() {
-      ga('send', 'pageview', location.pathname + location.search);
-    });
-    InstantClick.init();
+    ga('send', 'pageview');
   </script>
 </head>
 <body class="index">
@@ -28,7 +25,7 @@
     <center>
       <div>
         <code style="font-size:18px">
-          <span class="code_red">type</span> <a class="implicit" href="all/" data-instant><span class="code_blue">blog</span></a> = Post <span class="code_red">of</span> (<span class="code_blue">string</span> <span class="code_red">*</span> <span class="code_blue">blog</span>) | Meta <span class="code_red">of</span> (<a class="implicit" href="/~crmarsh/" data-instant><span class="code_blue">home</span></a> <span class="code_red">*</span> <a class="implicit" href="about.html" data-instant><span class="code_blue">about</span></a>)
+          <span class="code_red">type</span> <a class="implicit" href="all/"><span class="code_blue">blog</span></a> = Post <span class="code_red">of</span> (<span class="code_blue">string</span> <span class="code_red">*</span> <span class="code_blue">blog</span>) | Meta <span class="code_red">of</span> (<a class="implicit" href="/~crmarsh/"><span class="code_blue">home</span></a> <span class="code_red">*</span> <a class="implicit" href="about.html"><span class="code_blue">about</span></a>)
         </code>
       </div>
     </center>
@@ -42,7 +39,7 @@
     &sdot;
     <a class="implicit" href="Charles_Marsh_CV.pdf">Resume</a>
     &sdot;
-    <a class="implicit" href="about.html" data-instant>About Me</a>
+    <a class="implicit" href="about.html">About Me</a>
   </center>
   <hr />
   <h2>
@@ -62,17 +59,17 @@
 
     <li><a class="implicit code_orange" target="_blank" href="https://github.com/crm416/semantic"><span class="code_red">|</span> semantic <span class="code_red">-></span> </a><a class="implicit" target="_blank" href="https://github.com/crm416/semantic">A Python library for extracting semantic information (e.g., dates, numbers, mathematical calculations) from text</a> <a class="implicit" target="_blank" href="https://pypi.python.org/pypi/semantic/">(available via PyPI)</a></li>
 
-    <li><a class="implicit code_orange" target="_blank" href="hack/" data-instant><span class="code_red">|</span> Quizzler <span class="code_red">-></span> </a><a class="implicit" target="_blank" href="hack/" data-instant>An automatic quiz-question generator for iOS with a Python back-end (<b>first place</b> entry into the Facebook Summer of Hack Hackathon)</a></li>
+    <li><a class="implicit code_orange" href="hack/"><span class="code_red">|</span> Quizzler <span class="code_red">-></span> </a><a class="implicit" href="hack/">An automatic quiz-question generator for iOS with a Python back-end (<b>first place</b> entry into the Facebook Summer of Hack Hackathon)</a></li>
 
     <li><a class="implicit code_orange" target="_blank" href="static/pdf/Charles_Marsh.pdf"><span class="code_red">|</span> rule-opt <span class="code_red">-></span> </a><a class="implicit" target="_blank" href="http://crmarsh416.appspot.com/pdf/Charles_Marsh.pdf">An SDN Rule Optimizer for hetereogeneous hardware [PDF]</a></li>
 
-    <li><a class="implicit code_orange" href="wikipedia/" data-instant><span class="code_red">|</span> wikipedia.py <span class="code_red">-></span> </a><a class="implicit" href="wikipedia/" data-instant>A Wikipedia API for humans (in Python)</a></li>
+    <li><a class="implicit code_orange" href="wikipedia/"><span class="code_red">|</span> wikipedia.py <span class="code_red">-></span> </a><a class="implicit" href="wikipedia/">A Wikipedia API for humans (in Python)</a></li>
 
     <li><a class="implicit code_orange" target="_blank" href="https://itunes.apple.com/us/app/everycollegecal/id554462715?mt=8"><span class="code_red">|</span> EveryCollegeCal <span class="code_red">-></span> </a><a class="implicit" target="_blank" href="https://itunes.apple.com/us/app/everycollegecal/id554462715?mt=8">An iPhone app for tracking undergraduate college calendars</a></li>
 
     <li><a class="implicit code_orange" target="_blank" href="https://github.com/crm416/blog"><span class="code_red">|</span> type blog <span class="code_red">-></span> </a><a class="implicit" target="_blank" href="https://github.com/crm416/blog">This blog, and everything I've used to create it</a></li>
 
-    <li><a class="implicit code_orange" href="ocaml_parallelism/" data-instant><span class="code_red">|</span> OCaml Threads <span class="code_red">-></span> </a><a class="implicit" href="ocaml_parallelism/" data-instant>A threading module for exploiting parallelism in OCaml</a></li>
+    <li><a class="implicit code_orange" href="ocaml_parallelism/"><span class="code_red">|</span> OCaml Threads <span class="code_red">-></span> </a><a class="implicit" href="ocaml_parallelism/">A threading module for exploiting parallelism in OCaml</a></li>
 
     <li><a class="implicit code_orange" href="ios_graphing/"><span class="code_red">|</span> Grapher <span class="code_red">-></span> </a><a class="implicit" href="ios_graphing/">An interface for creating dynamic graphs in iOS</a></li>
   </ul>
@@ -93,22 +90,22 @@
     <li>2013:
       <ul class="posts-list">
         <li><a target="_blank" class="implicit" href="https://www.toptal.com/python/why-are-there-so-many-pythons">Why Are There So Many Pythons? (<b>front page</b> of Hacker News, featured in Python Weekly & Pycoder's Weekly)</a></li>
-        <li><a class="implicit" href="compiling_to_js/" data-instant>Compiling to JavaScript: A Case-by-Case Guide to the *Scripts</a></li>
-        <li><a class="implicit" href="phantomjs/" data-instant>PhantomJS: Common Gotchas for Beginners</a></li>
-        <li><a class="implicit" href="aws/" data-instant>The Idiot-Proof Guide to Setting Up Your Personal AWS Instance</a></li>
-        <li><a class="implicit" href="intro_to_sdn/" data-instant>An Introduction to Rule Optimization in Software Defined Networking (SDN)</a></li>
-        <li><a class="implicit" href="prefix_vs_ternary/" data-instant>Prefix vs. Ternary Rules in SDN</a></li>
-        <li><a class="implicit" href="ocaml_dev_environment/" data-instant>Setting Up an OCaml Development Environment on Mac OS X</a></li>
-        <li><a class="implicit" href="programming_languages/" data-instant>Programming Languages and the Solutions they Suggest</a></li>
+        <li><a class="implicit" href="compiling_to_js/">Compiling to JavaScript: A Case-by-Case Guide to the *Scripts</a></li>
+        <li><a class="implicit" href="phantomjs/">PhantomJS: Common Gotchas for Beginners</a></li>
+        <li><a class="implicit" href="aws/">The Idiot-Proof Guide to Setting Up Your Personal AWS Instance</a></li>
+        <li><a class="implicit" href="intro_to_sdn/">An Introduction to Rule Optimization in Software Defined Networking (SDN)</a></li>
+        <li><a class="implicit" href="prefix_vs_ternary/">Prefix vs. Ternary Rules in SDN</a></li>
+        <li><a class="implicit" href="ocaml_dev_environment/">Setting Up an OCaml Development Environment on Mac OS X</a></li>
+        <li><a class="implicit" href="programming_languages/">Programming Languages and the Solutions they Suggest</a></li>
       </ul>
     </li>
     <li>2012:
       <ul class="posts-list">
-        <li><a class="implicit" href="intro_to_ocaml/" data-instant>First Thoughts on OCaml</a></li>
-        <li><a class="implicit" href="streams/" data-instant>A Primer on Streams and Lazy Computation</a></li>
-        <li><a class="implicit" href="binomial_heaps/" data-instant>Binomial Heaps: Merge Better</a></li>
-        <li><a class="implicit" href="ios_performance/" data-instant>Performance Improvements in iOS</a></li>
-        <li><a class="implicit" href="np_vs_not_p/" data-instant>NP != NOT P</a></li>
+        <li><a class="implicit" href="intro_to_ocaml/">First Thoughts on OCaml</a></li>
+        <li><a class="implicit" href="streams/">A Primer on Streams and Lazy Computation</a></li>
+        <li><a class="implicit" href="binomial_heaps/">Binomial Heaps: Merge Better</a></li>
+        <li><a class="implicit" href="ios_performance/">Performance Improvements in iOS</a></li>
+        <li><a class="implicit" href="np_vs_not_p/">NP != NOT P</a></li>
       </ul>
     </li>
   </ul>
@@ -118,8 +115,8 @@
     Finally, here are some non-programming-related items that I've been involved with:</h2>
     <ul class="posts-list">
       <li><a target="_blank" class="implicit" href="http://schools.khanacademy.org/post/76585721219/charlie-marsh-college-hero">Interview for Khan Academy's <i>College Heroes</i> series [2014]</a></li>
-      <li><a class="implicit" href="independent_work/" data-instant>A Guide to CS Independent Work at Princeton [2014]</a></li>
-      <li><a class="implicit" href="statistics_in_basketball/" data-instant>Statistics in Basketball: Finding the Ultimate Metric (inspired by Bill Simmons' <i>The Book of Basketball</i>) [2014]</a></li>
+      <li><a class="implicit" href="independent_work/">A Guide to CS Independent Work at Princeton [2014]</a></li>
+      <li><a class="implicit" href="statistics_in_basketball/">Statistics in Basketball: Finding the Ultimate Metric (inspired by Bill Simmons' <i>The Book of Basketball</i>) [2014]</a></li>
       <li><a target="_blank" class="implicit" href="http://www.psychologytoday.com/blog/struck-living/201110/believing-it-gets-better">Interview & profile for Psychology Today [2012]</a></li>
       <li><a target="_blank" class="implicit" href="http://vimeo.com/25450568">American School in London Valedictorian address [2011]</a></li>
       <li><a target="_blank" class="implicit" href="http://worldsoccertalk.com/2010/10/08/liverpools-potential-new-ownership-and-the-state-of-prudency/">Liverpool's New Owners and Financial Prudency [2011]</a></li>
@@ -134,7 +131,5 @@
     </a>
   </center>
 </div>
-<script src="static/js/instantclick.min.js" data-no-instant></script>
-<script data-no-instant>InstantClick.init();</script>
 </body>
 </html>
