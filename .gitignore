@@ -1,4 +1,1 @@
-/production/**/index.html
-env/*
-*.DS_Store
-results/*
+_site/*
