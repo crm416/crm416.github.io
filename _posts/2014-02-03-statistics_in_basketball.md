@@ -15,7 +15,7 @@ His thesis revolves around _The Secret_: that is, that the key to basketball isn
 
 That said, what really got me thinking in TBOB was the role of _statistics_ in basketball.
 
-## The Statistical Revolution
+{% anchor h2 %}The Statistical Revolution{% endanchor %}
 
 With the rise of [Bill James's](http://en.wikipedia.org/wiki/Bill_James) [Sabermetrics](http://en.wikipedia.org/wiki/Sabermetrics), statistics have featured an increasingly important role in baseball. By attempting to isolate a player's performance from that of his teammates, he could be evaluated like never before. Obscure new metrics like [WAR](http://en.wikipedia.org/wiki/Wins_above_replacement) and [DIPS](http://en.wikipedia.org/wiki/Defense_independent_pitching_statistics) emerged, allowing us to put our favorite players in vacuums and line them up for comparison. As Simmons puts it:
 
@@ -23,7 +23,7 @@ With the rise of [Bill James's](http://en.wikipedia.org/wiki/Bill_James) [Saberm
 
 But is the same true for basketball? Have we developed reliable statistics that can tell the full story, that can be used in the future as objective indicators of player performance, ability, and potential?
 
-## (Part of) Wilt's legacy
+{% anchor h2 %}(Part of) Wilt's legacy{% endanchor %}
 
 Basketball is a sport where five men play together at a blazingly fast pace. If we buy into _The Secret_, then teamwork and selflessness are the keys to winning teams—but aren't these attributes often counter to producing individually impressive numbers?
 
@@ -31,7 +31,7 @@ Let's say Wilt Chamberlain puts up 80 points in a game, but takes 90% of his tea
 
 These are difficult questions to answer.
 
-## What Simmons says
+{% anchor h2 %}What Simmons says{% endanchor %}
 
 To Simmons, statistics alone will _never_ be enough. In his own words:
 
@@ -43,11 +43,11 @@ And, perhaps the kicker:
 
 And in mine: Basketball is a sport that you need to _see_ to fully understand. Numbers alone lead to historical injustices: putting Wilt above Russell, for example (Simmons devotes almost thirty pages to debunking this debate that "wasn't really a debate"). But numbers can help paint a clearer picture.
 
-## Finding the right statistic
+{% anchor h2 %}Finding the right statistic{% endanchor %}
 
 An alternative answer might be that we just haven't found the _right_ statistics yet. [Player Efficiency Rating](http://en.wikipedia.org/wiki/Player_efficiency_rating), or PER, was developed by John Hollinger in an attempt to create an all-in-one, definitive statistic, summarizing every player with a single number.
 
-### PER
+{% anchor h3 %}PER{% endanchor %}
 
 PER was a step in the right direction. I like it for the following reasons (which are true _in theory_):
 
@@ -56,7 +56,7 @@ PER was a step in the right direction. I like it for the following reasons (whic
 - It's a per-minute statistic, so subs and starters can be compared.
 - It's pace-adjusted, so that there's some team context (i.e., shooting more on a team that takes a lot of shots is treated differently than, say, shooting more on a team that takes few shots).
 
-### Is it enough?
+{% anchor h3 %}Is it enough?{% endanchor %}
 
 But PER still hasn't hit the mark. Lets draw on Simmons again:
 
@@ -76,18 +76,18 @@ Will we ever have such a statistic? Maybe not. Maybe it's PER. Maybe it will be 
 
 In the meantime, statistics will only take us so far. And the watching continues.
 
-## Appendix
+{% anchor h2 %}Appendix{% endanchor %}
 
 A few other quotes and ideas that I couldn't help but include.
 
-### On Other, Fun Statistics
+{% anchor h3 %}On Other, Fun Statistics{% endanchor %}
 
 Two of my favorite statistics that Simmons "invents" in TBOB:
 
 - The "42 Club": add up a players point, rebound, and assist averages; if they're above 42 (a magic number reached by observation), they're in the club. It works pretty well: MJ made it into the club for six seasons, Shaq for four, etc. [418]
 - All-Star Minutes: look at the average minutes that a given player was given in his All-Star appearances. Simmons calls this the "chicken leg breakdown": the best players get the biggest leg of the chicken (or, in this case, the most minutes in the All-Star Game). [490]
 
-### On Building a Championship Team
+{% anchor h3 %}On Building a Championship Team{% endanchor %}
 
 The four keys to winning a championship [47]:
 
@@ -96,7 +96,7 @@ The four keys to winning a championship [47]:
   3. “You complete your nucleus with top-notch role players and/or character guys… who know their place, don’t make mistakes.”
   4. “You need to stay healthy in the playoffs and maybe catch one or two breaks.”
 
-### On Comparing Players from Different Eras
+{% anchor h3 %}On Comparing Players from Different Eras{% endanchor %}
 
 A massive challenge. Simmons puts it well:
 
@@ -104,13 +104,13 @@ A massive challenge. Simmons puts it well:
 
 As a caveat, Simmons also claims that players can't be compared across different eras unless they both "thrived after 1976, when basketball became the sport it is today.
 
-### On Elgin Baylor
+{% anchor h3 %}On Elgin Baylor{% endanchor %}
 
 In 1962, Elgin averaged an “ungodly 38-19-5". At the same time, he was serving in the United States Army Reserves. He missed 40% of games, yet still managed to finish fourth in MVP voting. The full story:
 
 > A United States Army Reservist at the time, Elgin worked in the state of Washington during the week, living in any army barracks and leaving only whenever they gave him a weekend pass. Even with that pass, he had to fly coach on flights with multiple connections to meet the Lakers wherever they were playing, throw on a uniform and battle the best NBA players, then make the same complicated trip back to Washington in time to be there early Monday morning. [233]
 
-### On 'The Decision'
+{% anchor h3 %}On 'The Decision'{% endanchor %}
 
 Simmons tears 'The Decision' apart: not just his choice to break Cleveland's heart on national TV, but also to team up with Dwayne Wade.
 

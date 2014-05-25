@@ -11,7 +11,7 @@ I spent some time yesterday fixing some performance issues related to [EveryColl
 
 In the end, the fixes were not too involved—i.e., they didn’t involve a spectacular amount of code (of course, this can’t be said of all performance issues, so I count myself lucky). And there were only two necessary changes: the choppy segues were fixed by swapping out my glossy button library, which was apparently very inefficient. But the second change demonstrates something cool about iOS performance tweaks: while they’re often subtle, the under-the-hood explanations are always logical.
 
-## Drop Shadows
+{% anchor h2 %}Drop Shadows{% endanchor %}
 
 I thought for a while that my poor scrolling performance was due to the cells themselves, which use resizable assets to create a gradient background. But after rolling the app with certain features of the table disabled, **I figured out that the issue was caused by the drop shadow in my cells’ accessories—such a tiny detail.**
 

@@ -13,7 +13,7 @@ But OCaml isn’t _that_ widely used. And as a result, there aren’t very many 
 
 In this post, I’ll provide a couple of choices for setting up such an environment when developing on a Mac.
 
-## Getting the OCaml Source Code
+{% anchor h2 %}Getting the OCaml Source Code{% endanchor %}
 
 To start, there are a few ways to get the actual source code for the OCaml language.
 
@@ -44,11 +44,11 @@ To make sure that you’ve installed the language properly, open up your Bash te
       x+y;;
     - : int = 5
 
-## Setting Up Your Development Environment
+{% anchor h2 %}Setting Up Your Development Environment{% endanchor %}
 
 Next, you’ll want a high-quality editor that’s well integrated with the OCaml language. I’ve played around with three different editors/environments, all of which have had their pros and cons. Anyway, the process for setting up such environments is as follows:
 
-### Emacs (with Tuareg Mode)
+{% anchor h3 %}Emacs (with Tuareg Mode){% endanchor %}
 
 Professor Walker was a big fan of playing around in the OCaml toplevel within the IDE. That is, loading your current module into the OCaml toplevel and playing around without having to leave the text editor. To do that, you need Tuareg mode. Follow these instructions:
 
@@ -70,7 +70,7 @@ Professor Walker was a big fan of playing around in the OCaml toplevel within th
 
 Restart Emacs and Tuareg mode should be up and running. There are a number of useful commands for opening up the OCaml toplevel—[here’s](http://www.ocamlpro.com/files/tuareg-mode.pdf) a good cheat sheet.
 
-### Eclipse (with OcaIDE)
+{% anchor h3 %}Eclipse (with OcaIDE){% endanchor %}
 
 OcaIDE is an OCaml plugin for Eclipse. It works reasonably well, with auto-completion across packages and all those cute tricks. Here are some step-by-step instructions for setting it up:
 
@@ -102,10 +102,10 @@ I find this incredibly annoying, and, to be honest, it doesn't make sense to me 
 
 _NOTE: if you're using OPAM, then you'll have to go to properties (CTRL+,) –> OcaIDE –> Paths. Then, go to ~/.opam/4.00.1/bin, type 'pwd' (you need the full path, rather than '~') and paste the whole path into the ‘OCaml Binaries Directory’ field. Hit apply._
 
-### Sublime Text
+{% anchor h3 %}Sublime Text{% endanchor %}
 
 Sublime Text is great. It’s quick, sexy, and lightweight, with plenty of room for customization. There’s an unlimited free trial available [here](http://www.sublimetext.com/2). It doesn’t have any particular integration with OCaml (although it does provide correct syntax highlighting for your .ml and .mli files), but there’s a fantastic setup tutorial available [here](http://blog.alexmaccaw.com/sublime-text) that describes how to get started and recommends some baseline packages.
 
-## In Conclusion
+{% anchor h2 %}In Conclusion{% endanchor %}
 
 OCaml is a great language, and I wish it were more widely proliferated. Hopefully, this post will help you get developing as quickly as possible—if anything is unclear, just email me at [crmarsh@princeton.edu](mailto:crmarsh@princeton.edu) and I’ll do my best to help you debug.

@@ -13,7 +13,9 @@ I’ve been learning to program in OCaml for one of my courses this semester ([C
 
 In this post, I’m going to touch on some of the features that make OCaml beautiful to me. In particular, I’m going to contrast these features with their Java counterparts—I think most of the observations made will generalize to the broader question of functional vis-à-vis objective-oriented/imperative, but I’m sure there are a few outliers given any specific language. Also note that I’m sticking to the functional subset of OCaml (the language incorporates some objective-oriented and imperative features, but you can get by without using them at all if you so desire).
 
-## Type definitions
+{% anchor h2 %}
+Type definitions
+{% endanchor %}
 
 OCaml makes it unbelievably easy to define new types. As a simple example, say we're making a phone book and we need to define a type for entries in said book. For each entry, we'd want a *first name*, a *last name*, and a *phone number*. For demonstration's sake, lets say we also want an *age*. All of this would be pretty straightforward in OCaml:
 
@@ -26,7 +28,7 @@ OCaml makes it unbelievably easy to define new types. As a simple example, say w
     type phone_number = string
     type entry = full_name * age * phone_number
 
-The '\*' operator allosw us to create tuples. So 'int \* int' indicates a tuple of two integers. Also note that we can use our types when defining types later on (e.g., 'full\_name = first\_name \* last\_name').
+The '\*' operator allows us to create tuples. So 'int \* int' indicates a tuple of two integers. Also note that we can use our types when defining types later on (e.g., 'full\_name = first\_name \* last\_name').
 
 Most of what’s happening here can be read out-loud: a 'first_name' is just a string; a 'name' is just a first name and a last name; an 'age' is just an integer; and a phone book entry just brings these things together. Brilliant.
 
@@ -49,7 +51,7 @@ Better yet, we can define types recursively. This lets us **can define a binary 
 
 This is saying that a tree is either a leaf, or a node with some value and two subtrees. That is the entire definition. Again, brilliant.
 
-## Generics
+{% anchor h2 %}Generics{% endanchor %}
 
 We can make our tree generic with:
 
@@ -57,13 +59,13 @@ We can make our tree generic with:
 
     type ‘a tree = Leaf | Node of ‘a * ‘a tree * ‘a tree
 
-Think about how much time would be spent in Java handling the Integer or Object wrapper classes—all of that is ignore dwith the ‘a semantic in OCaml, which lets you fill in the type later (the type checker will still detect type mismatches! E.g., if you attempt to add a char tree as a subtree of an int tree, you will get a compile-time error). 
+Think about how much time would be spent in Java handling the Integer or Object wrapper classes—all of that is ignored with the ‘a semantic in OCaml, which lets you fill in the type later (the type checker will still detect type mismatches! E.g., if you attempt to add a char tree as a subtree of an int tree, you will get a compile-time error). 
 
 The handling of generic types in OCaml really couldn’t be easier.
 
-## Option types
+{% anchor h2 %}Option types{% endanchor %}
 
-OCaml also provides a framework for handling what in Java might be called the Null case through its option types. By specificying a variable as
+OCaml also provides a framework for handling what in Java might be called the Null case through its option types. By specifying a variable as
     type ‘a option
 (e.g.,
     int option
@@ -74,7 +76,7 @@ or
 
 For example, if x is of type int option, then x can either be None or Some int (e.g., Some 12, Some -1, Some 0). This becomes very useful, very quickly: think about functions in which you may want to return nothing (due to some bad input) but would prefer not to throw an exception. With the option type, we’re able to avoid all the extreme dangers that you see so often in C regarding null pointers and the general disruption that null values can cause.
 
-## The Thought Process
+{% anchor h2 %}The Thought Process{% endanchor %}
 
 An example that really instilled in me an appreciation for OCaml came when attempting to check whether two lists are of equal length. The function looks like this: 
 
@@ -102,6 +104,6 @@ OCaml is constantly training you to think recursively, like with the above. I ca
 
 Here, we’re taking the sum of a node and adding it to the sum of all nodes in each of the node’s two subtrees. Recursion is awesome.
 
-## Conclusion
+{% anchor h2 %}Conclusion{% endanchor %}
 
 This post ignores a lot of the best or most powerful features of OCaml, but it’s dragged on a little long, so I’ll stop here. For those interested, check out: proving program correctness (according to my professor: conquerable by college students in OCaml, but “still the subject of current research” in Java), currying functions, and pattern matching.

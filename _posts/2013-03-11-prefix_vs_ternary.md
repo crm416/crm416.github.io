@@ -23,7 +23,7 @@ In general, the patterns come in one of four varieties:
 
 I’ve been focusing on the last two variants, which are closely related. In fact, I want to talk about two algorithms for compressing rules tables with these predicate formats, both of which must be credited to Alex Liu at the University of Michigan.
 
-## The Dynamic Approach
+{% anchor h2 %}The Dynamic Approach{% endanchor %}
 
 We’re going to focus on a single dimension (i.e., matching on a single field). This problem has been solved for the prefix-based case. The algorithm takes a dynamic programming approach, defining the concept of _consistency_: a rule table is _consistent_ on a predicate _P_ if, for every possible packet that matches _P_, the same rule is executed. For example, if your rule table is simply [\*] -> DROP, then your table is completely consistent on ‘\*’.
 
@@ -33,7 +33,7 @@ There is some care that’s needed for combining the two sub-solutions, but over
 
 For the one-dimensional case, this dynamic programming algorithm manages to minimize the size (i.e., the cost) of the rule table.
 
-## Bit-Weaving
+{% anchor h2 %}Bit-Weaving{% endanchor %}
 
 To solve the ternary case, Liu employs some ingenuity (the inspiration for this blog post) in what he calls the Bit-Weaving Algorithm. Instead of tackling it as an entirely new problem, he manages to **reduce the ternary case to the prefix-based case.**
 

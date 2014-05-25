@@ -1,0 +1,43 @@
+- name: Jasper
+  description: An open source platform for developing always-on, voice-controlled applications (GitHub trending repo with 850+ stars)
+  url: http://jasperproject.github.io
+
+- name: MAD Topic Model
+  description: A topic-model-based tool for authorship detection and stylistic analysis
+  url: https://github.com/dmrd/mad_topic_model
+
+- name: online_boosting
+  description: A suite of online (in the machine-learning sense) boosting and weak learning algorithms (in Python), including those of Oza & Russell and Chen et al.
+  url: https://github.com/crm416/online_boosting
+
+- name: point-location
+  description: Fast point location in planar subdivisions using Kirkpatrick's Algorithm (see <a target="_blank" href="http://nbviewer.ipython.org/github/crm416/point-location/blob/master/PointLocation.ipynb">here</a> for a demo)
+  url: https://github.com/crm416/point-location
+
+- name: semantic
+  description: A Python library for extracting semantic information (e.g., dates, numbers, mathematical calculations) from text (available via PyPI)
+  url: https://github.com/crm416/semantic
+
+- name: Quizzler
+  description: NLP-based, automatic quiz-question generation for iOS with a Python back-end (first place entry into the Facebook Summer of Hack Hackathon)
+  url: ../hack/
+
+- name: wikipedia.py
+  description: A Wikipedia API for humans (in Python)
+  url: ../wikipedia/
+
+- name: EveryCollegeCal
+  description: An iPhone app for tracking undergraduate college calendars
+  url: https://itunes.apple.com/us/app/everycollegecal/id554462715?mt=8
+
+- name: type blog
+  description: This blog, and everything I've used to create it
+  url: https://github.com/crm416/blog
+
+- name: OCaml Threads
+  description: A threading module for exploiting parallelism in OCaml
+  url: ../ocaml_parallelism/
+
+- name: Grapher
+  description: An interface for creating dynamic graphs in iOS
+  url: ../ios_graphing/

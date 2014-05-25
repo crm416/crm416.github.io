@@ -21,13 +21,12 @@
 <meta name="description" content="Charlie Marsh is a programmer and student at Princeton University with major interests in functional programming and machine learning.">
 <meta name="viewport" content="width=device-width">
 
-<!-- Use title if it's in the page YAML frontmatter -->
 <title>Projects | Charlie Marsh</title>
 <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans">
 <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Source+Code+Pro">
-<link href="static/css/bootstrap.css" rel="stylesheet" type="text/css" />
-<link href="static/css/sprites.css" rel="stylesheet" type="text/css" />
-<link href="static/css/styles.css" rel="stylesheet" type="text/css" />
+<link href="../static/css/bootstrap.css" rel="stylesheet" type="text/css" />
+<link href="../static/css/sprites.css" rel="stylesheet" type="text/css" />
+<link href="../static/css/styles.css" rel="stylesheet" type="text/css" />
 <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang=ml"></script>
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -44,8 +43,8 @@
       <div class="span2 hidden-phone"></div>
       <div class="span2 hidden-phone" style="position:fixed">
         <header>
-          <h1 style="font-size:50px"><a class="blank" href="/~crmarsh/">Charlie<br>Marsh</a></h1>
-          <p><a class="implicit" href="/~crmarsh/">Home</a> &sdot; <a class="implicit" href="Charles_Marsh_CV.pdf">CV</a> &sdot; <a class="implicit" href="about.html"><b>About</b></a></p>
+          <h1 style="font-size:50px"><a class="blank" href="../~crmarsh/">Charlie<br>Marsh</a></h1>
+          <p><a class="implicit" href="/~crmarsh/">Home</a> &sdot; <a class="implicit" href="../static/pdf/Charles_Marsh_CV.pdf">CV</a> &sdot; <a class="implicit" href="../about.html"><b>About</b></a></p>
           <h2>Programmer,<br>student.</h2>
           <p>I'm into functional<br>programming,<br>machine learning,<br> and other fun stuff.<p>
             <p>Find me on:</p>
@@ -64,23 +63,59 @@
         <div class="span9 offset1">
           <h1>My Work</h1>
           <p>For an abridged list, see my <a href="/~crmarsh/">homepage</a>.</p>
+          <h2 id="projects">Projects <a class='anchor-wrap' href="#projects" title="Permalink to this headline">¶</a></h2>
           <section>
             <table style="border-collapse:separate; border-spacing:10px">
+              {% for project in site.data.projects %}
               <tr>
-                <td><a class="implicit code_orange" href="ios_graphing/"><span class="code_red">|</span> Grapher <span class="code_red"></td>
+                <td><a class="implicit code_orange" href="{{ project.url }}"><span class="code_red">|</span> {{ project.name }} <span class="code_red"></td>
               </tr>
               <tr>
-                <td>An interface for creating dynamic graphs in iOS</td>
+                <td>{{ project.description }}</td>
               </tr>
               <tr class="spacer"><td></td></tr>
+              {% endfor %}
             </table>
           </section>
+
+          <h2 id="papers">Papers <a class='anchor-wrap' href="#papers" title="Permalink to this headline">¶</a></h2>
+          <section>
+            <table style="border-collapse:separate; border-spacing:10px">
+              {% for paper in site.data.papers %}
+              <tr>
+                <td><a class="implicit code_orange" href="{{ paper.url }}"><span class="code_red">|</span> {{ paper.name }} <span class="code_red"></td>
+              </tr>
+              <tr>
+                <td>{{ paper.description }}</td>
+              </tr>
+              <tr class="spacer"><td></td></tr>
+              {% endfor %}
+            </table>
+          </section>
+
+          <h2 id="posts">Posts <a class='anchor-wrap' href="#posts" title="Permalink to this headline">¶</a></h2>
+          {% for collection in site.data.posts %}
+          <li>{{  collection.year  }}:
+          <ul class="posts-list">
+            {% for post in collection.posts %}
+            <li><a target="_blank" class="implicit" href="{{ post.url }}">{{ post.name }}</a></li>
+            {% endfor %}
+          </ul>
+          </li>
+          {% endfor %}
+
+          <h2 style="padding-top:40px" id="non-programming">Non-Programming<a class='anchor-wrap' href="#non-programming" title="Permalink to this headline">¶</a></h2>
+          <ul class="posts-list">
+            {% for post in site.data.non_programming %}
+            <li><a target="_blank" class="implicit" href="{{ post.url }}">{{ post.name }}</a></li>
+            {% endfor %}
+          </ul>
           <br><br>
           <hr />
           <center>
             &copy; 2014 Charles Marsh
-            <a href="feed.xml" style="padding-bottom:15px">
-              <img class="icon" src="static/img/rss.png">
+            <a href="../feed.xml" style="padding-bottom:15px">
+              <img class="icon" src="../static/img/rss.png">
             </a>
           </center>
         </div>

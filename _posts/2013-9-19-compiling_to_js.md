@@ -21,7 +21,7 @@ Each of these variants were conceived by different creators with different goals
 
 In this post, I'd like to give readers some insight into why they might choose one of these languages over (1) JavaScript, and (2) the other \*Scripts in contention.
 
-## CoffeeScript
+{% anchor h2 %}CoffeeScript{% endanchor %}
 I see [CoffeeScript](http://coffeescript.org) as the poster child of the \*Scripts. Really, CoffeeScript aims to make your code more concise and more readable. The syntax doesn't use any of the '{' and '(' and ';' that plague JavaScript code, instead opting to use whitespace (a lá Python). Again, similar to Python, it's got great comprehensions that require 10x more JavaScript code to implement.
 
 Here's an example of these list comprehensions:
@@ -69,7 +69,7 @@ If this doesn't look impressive on its own, check out the corresponding JavaScri
 
 Why use CoffeeScript? It's just a pleasure. The syntax takes away the worst parts of JavaScript. The language appears more functional and less disgusting.
 
-## TypeScript
+{% anchor h2 %}TypeScript{% endanchor %}
 
 [TypeScript](http://www.typescriptlang.org) is a Microsoft project that aims to add static typing and a better module and interface system to JavaScript. Essentially, you can define classes and interfaces (very easily) and then enforce type safety at compile time, saving you tens of hours of awful JavaScript debugging.
 
@@ -115,7 +115,7 @@ TypeScript also amplifies some of the functional flavor of JavaScript (albeit, l
 
 So, why use TypeScript? If you're a fan of type safety and a static type system, it's a no-brainer. And for large projects, it can be a life-saver. At the same time, it retains some of JavaScript's verbosity. You do end up with plenty of `})})};`-style code. In the end, it's a matter of preference.
 
-## LiveScript
+{% anchor h2 %}LiveScript{% endanchor %}
 [LiveScript](http://livescript.net) is even _more_ functional than CoffeeScript. To keep the analogies going, we might say that **CoffeeScript : Python :: TypeScript : OCaml :: LiveScript : Haskell**, or something like that.
 
 As in CoffeeScript, LiveScript uses whitespace and newlines as delimiters, rather than the brackets of JavaScript.
@@ -129,7 +129,7 @@ I actually see LiveScript and CoffeeScript as a bit of a toss-up. If you're _rea
 
 In general, LiveScript has a strong functional lean. If that's for you, check it out.
 
-## RedScript
+{% anchor h2 %}RedScript{% endanchor %}
 
 [RedScript](http://redscript.org) appeared on HackerNews recently, and although it certainly hasn't reached widespread adoption, I've included it here because I think it's a good example of how people are developing different 'flavors' of JavaScript.
 
@@ -143,7 +143,7 @@ Actually, I lied: this not only "strongly resembles" Ruby—it _is_ [valid](http
 
 If you're a Rubyist, try RedScript. It's as simple as that.
 
-## Conclusion
+{% anchor h2 %}Conclusion{% endanchor %}
 
 The languages described here are just a subset of the compile-to-JS family. But even with these four examples, we see:
 

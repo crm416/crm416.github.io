@@ -20,7 +20,7 @@ In this post, I'd like to describe some of the common "gotchas" that I've found 
 
 _Note: that PhantomJS is often used in tandem with [CasperJS](http://casperjs.org); it's possible that some of what follows is made easier with Casper, namely, navigating webpages. But I think these gotchas are still valid, even in the face of Casper._
 
-## Code Context
+{% anchor h2 %}Code Context{% endanchor %}
 
 Perhaps the first gotcha is that there are really two contexts in your PhantomJS program: firstly, the PhantomJS program itself; secondly, the webpage open in your headless browser, i.e., access to the DOM. (This is important for subsequent gotchas.)
 
@@ -28,7 +28,7 @@ What's the difference? Well, the PhantomJS code you write is used to control you
 
 A litmus test: if you're using jQuery, you're in the latter context.
 
-## Page.evaluate
+{% anchor h2 %}Page.evaluate{% endanchor %}
 
 With that in mind, one of the first questions that I asked myself, when using PhantomJS: "How can I execute JavaScript _on_ the given webpage itself?" In other words, I wanted to somehow mess around with the webpage using jQuery, and I couldn't figure out how to actually execute code in the context of the page.
 
@@ -42,7 +42,7 @@ The [solution](https://github.com/ariya/phantomjs/wiki/Quick-Start#code-evaluati
 
 You could then use `foo` in your PhantomJS program, successfully extracting the value from the webpage. _Note: return values are limited to simple objects, rather than, say, functions._
 
-## IncludeJs and InjectJs
+{% anchor h2 %}IncludeJs and InjectJs{% endanchor %}
 
 Actually, the code snippet above might not work as expected. I'll repeat it here for clarity:
 
@@ -64,7 +64,7 @@ Here's the revised code (credit to the [PhantomJS docs](https://github.com/ariya
         // ...
     });
 
-## Console.logging from your web browser
+{% anchor h2 %}Console.logging from your web browser{% endanchor %}
 
 Similarly, I was often frustrated by the inability to display information logged by my webpage. Recall the split between the context of your PhantomJS program and the webpage open in your headless browser. Well, if you type `console.log("Hello, World!")` in your PhantomJS program, that will be printed to your terminal. If, however, your webpage tries to log the same message, it will pass by unnoticed! So if your webpage prints a bunch of traces to the console, you'll never see 'em.
 
@@ -82,7 +82,7 @@ So, what if you want to log messages to your terminal from within your webpage? 
 
 For more, see my [StackOverflow answer](http://stackoverflow.com/questions/18115888/phantomjs-not-returning-results/18131369#18131369).
 
-## waitFor.js
+{% anchor h2 %}waitFor.js{% endanchor %}
 
 PhantomJS beginners constantly ask how they can wait for something to appear on their webpage before acting. For example, maybe they want a banner to appear and then extract some text from it. Say "#foo" is now a div that loads a few seconds after the page has appeared. If you simply use the following code, you'll get unexpected results, as the banner may not be loaded at the time of query:
 
@@ -115,6 +115,6 @@ Instead, you should use [waitFor.js](https://github.com/ariya/phantomjs/blob/mas
         });
     });
 
-## Going Forward
+{% anchor h2 %}Going Forward{% endanchor %}
 
 There's a lot more to PhantomJS than I've managed to go through in this post. And I'm personally excited to check out CasperJS at some point in the future, which seems great as well (in particular, for unit testing). But hopefully the tips and gotchas described in this post can be helpful for beginners.

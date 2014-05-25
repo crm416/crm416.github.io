@@ -13,7 +13,7 @@ I needed to parse some information from Wikipedia programatically and present it
 
 _Note: this module is currently housed within a larger project; I'll be writing more on that later._
 
-## How It Works
+{% anchor h2 %}How It Works{% endanchor %}
 
 To start, we need to understand the current Wikipedia API, the so-called *MediaWiki API*. The [documentation](http://www.mediawiki.org/wiki/API:Main_page) is fairly comprehensive, although it's not easy to find what you're looking for in those dense pages.
 
@@ -41,7 +41,7 @@ The methods in *wikipedia.py* are designed to extract the information (i.e., the
 
 Where *cleanWikiSection* is reponsible for removing extraneous information from the page itself, and *cleanHTMLSection* is responsible for converting the HTML to plaintext.
 
-## BeautifulSoup: Traversing the Parse Tree
+{% anchor h2 %}BeautifulSoup: Traversing the Parse Tree{% endanchor %}
 
 In some cases, *wikipedia.py* also uses BeautifulSoup to explore the target page. For example, say we want to extract information from the table below (again, from Michael Jordan's Wikipedia page.)
 
@@ -53,6 +53,6 @@ The output for MJ's table is as follows:
 
     [('Born', 'February 17, 1963'), ('Nationality', 'American'), ('Listed height', '6ft6in'), ('Listed weight', '216lb'), ('High school', 'Emsley A. Laney'), ('College', 'North Carolina'), ('NBA Draft', '1984 / Round: 1 / Pick: 3rd overall'), ...]
 
-## In Conclusion
+{% anchor h2 %}In Conclusion{% endanchor %}
 
 Feel free to fork, comment, criticise, or (best of all) get in touch. This was created as a sub-project and is by no means perfect, but I certainly hope it can be useful to some.
