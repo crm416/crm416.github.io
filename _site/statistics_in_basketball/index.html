@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <meta name="description" content="Charlie Marsh is a programmer and student at Princeton University with major interests in functional programming and machine learning.">
+  <meta name="viewport" content="width=device-width">
+  <title>Statistics in Basketball: What's a "Good" Player? | Charlie Marsh</title>
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans">
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Source+Code+Pro">
+  <link href="../static/css/bootstrap.css" rel="stylesheet" type="text/css" />
+  <link href="../static/css/sprites.css" rel="stylesheet" type="text/css" />
+  <link href="../static/css/styles.css" rel="stylesheet" type="text/css" />
+  <link href='https://plus.google.com/u/0/100601164815113053596/' rel='author'>
+  <script type="text/javascript" src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang=ml"></script>
+  <script type="text/javascript">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-36552582-2', 'princeton.edu');
+    ga('send', 'pageview');
+  </script>
+</head>
+
+<body class="index">
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="span2 hidden-phone"></div>
+      <div class="span2 hidden-phone" style="position:fixed">
+          <h1 style="font-size:50px"><a class="blank" href="/~crmarsh/">Charlie<br>Marsh</a></h1>
+          <p><a class="implicit" href="/~crmarsh/">Home</a> &sdot; <a class="implicit" href="../static/pdf/Charles_Marsh_CV.pdf">CV</a>&sdot; <a class="implicit" href="../about.html">About</a></p>
+          <h2>Programmer,<br>student.</h2>
+          <p>I'm into functional<br>programming,<br>machine learning,<br> and other fun stuff.<p>
+            <p>Find me on:</p>
+          <a href="mailto:crmarsh@princeton.edu" class="nav email"></a>
+          <a href="http://www.github.com/crm416" class="nav github"></a>
+          <a href="http://stackoverflow.com/users/1450892/charles-marsh" class="nav stackoverflow"></a>
+          <a href="http://uk.linkedin.com/in/marshcharles" class="nav linkedin"></a>
+        </div>
+        <div class="span2 visible-phone">
+          <div>
+            <p style="font-size:25px"><a class="blank" href="/~crmarsh/">Charlie Marsh</a>  <div style="margin-top:-10px"><code class="custom"><span class="code_red">type</span> <span class="code_blue">blog</span></code></div>
+          </div>
+          <hr />
+        </div>
+        <div class="span9 offset1" style="padding-left:20px">
+          <h1>Statistics in Basketball: What&#39;s a &quot;Good&quot; Player?</h1>
+
+<p>I just finished Bill Simmons&#39;s absolute masterpiece and basketball Bible aptly titled <em>The Book of Basketball</em> (TBOB).</p>
+
+<p>His thesis revolves around <em>The Secret</em>: that is, that the key to basketball isn&#39;t about basketball. The truly great teams in NBA history didn&#39;t win based on talent (alone). Instead:</p>
+
+<blockquote>
+<p>... they won because they liked each other knew their roles, ignored statistics and valued winning over everything else. They won because their best players sacrificed to make everyone else happy. They won as long as everyone remained on the same page. By that same token, they lost if any of those three factors weren’t in place.</p>
+</blockquote>
+
+<p>That said, what really got me thinking in TBOB was the role of <em>statistics</em> in basketball.</p>
+
+<h2>The Statistical Revolution</h2>
+
+<p>With the rise of <a href="http://en.wikipedia.org/wiki/Bill_James">Bill James&#39;s</a> <a href="http://en.wikipedia.org/wiki/Sabermetrics">Sabermetrics</a>, statistics have featured an increasingly important role in baseball. By attempting to isolate a player&#39;s performance from that of his teammates, he could be evaluated like never before. Obscure new metrics like <a href="http://en.wikipedia.org/wiki/Wins_above_replacement">WAR</a> and <a href="http://en.wikipedia.org/wiki/Defense_independent_pitching_statistics">DIPS</a> emerged, allowing us to put our favorite players in vacuums and line them up for comparison. As Simmons puts it:</p>
+
+<blockquote>
+<p>Every conceivable diamond talent can be measured objectively.</p>
+</blockquote>
+
+<p>But is the same true for basketball? Have we developed reliable statistics that can tell the full story, that can be used in the future as objective indicators of player performance, ability, and potential?</p>
+
+<h2>(Part of) Wilt&#39;s legacy</h2>
+
+<p>Basketball is a sport where five men play together at a blazingly fast pace. If we buy into <em>The Secret</em>, then teamwork and selflessness are the keys to winning teams—but aren&#39;t these attributes often counter to producing individually impressive numbers?</p>
+
+<p>Let&#39;s say Wilt Chamberlain puts up 80 points in a game, but takes 90% of his team&#39;s shots—and they lose. Is this an admirable performance? Is winning more important than Wilt&#39;s 80? Does the fact that he got the ball on nearly <em>every</em> possession mar his performance?</p>
+
+<p>These are difficult questions to answer.</p>
+
+<h2>What Simmons says</h2>
+
+<p>To Simmons, statistics alone will <em>never</em> be enough. In his own words:</p>
+
+<blockquote>
+<p>In my opinion, there’s no ironclad way to assign statistical value to every player when so much of an individual’s success (as well as his numbers) hinges on situations and team success, as well as his willingness to put the team ahead of himself.</p>
+</blockquote>
+
+<p>And, perhaps the kicker:</p>
+
+<blockquote>
+<p>Basketball is an objective sport and a subjective sport, dammit. That’s what makes it so much fun to follow.</p>
+</blockquote>
+
+<p>And in mine: Basketball is a sport that you need to <em>see</em> to fully understand. Numbers alone lead to historical injustices: putting Wilt above Russell, for example (Simmons devotes almost thirty pages to debunking this debate that &quot;wasn&#39;t really a debate&quot;). But numbers can help paint a clearer picture.</p>
+
+<h2>Finding the right statistic</h2>
+
+<p>An alternative answer might be that we just haven&#39;t found the <em>right</em> statistics yet. <a href="http://en.wikipedia.org/wiki/Player_efficiency_rating">Player Efficiency Rating</a>, or PER, was developed by John Hollinger in an attempt to create an all-in-one, definitive statistic, summarizing every player with a single number.</p>
+
+<h3>PER</h3>
+
+<p>PER was a step in the right direction. I like it for the following reasons (which are true <em>in theory</em>):</p>
+
+<ul>
+<li>It rewards positive and <em>punishes</em> negative actions.</li>
+<li>There&#39;s a mandated, 15.00 league average, so you can try to compare players across seasons.</li>
+<li>It&#39;s a per-minute statistic, so subs and starters can be compared.</li>
+<li>It&#39;s pace-adjusted, so that there&#39;s some team context (i.e., shooting more on a team that takes a lot of shots is treated differently than, say, shooting more on a team that takes few shots).</li>
+</ul>
+
+<h3>Is it enough?</h3>
+
+<p>But PER still hasn&#39;t hit the mark. Lets draw on Simmons again:</p>
+
+<blockquote>
+<p>When John Hollinger’s PER metric decides that Marreese Speights is the 30th most efficient offensive player in basketball with Shane Battier is 284th, obviously I’m dubious.</p>
+</blockquote>
+
+<p>This got me thinking. What would we want, then, in the <em>ultimate</em> statistic:</p>
+
+<ul>
+<li>It <strong>correlates strongly with the Eye Test</strong> (that is, players that look good on the court look good in terms of this ultimate statistic).</li>
+<li>But it <strong>doesn&#39;t correlate <em>perfectly</em> with the Eye Test</strong>. It teaches us things we might have missed and it points out behaviors that slipped through the cracks.</li>
+<li>It <strong>reconciles individual and team performances</strong>. Wilt&#39;s 80 points are discounted because they represented 90% of his teams shots (this is partly incorporated into PER, as mentioned above). They&#39;re also discounted because of his team&#39;s loss. <em>But</em> it&#39;s not quite that simple. If Wilt were surrounded by subpar teammates, then you&#39;d want his team&#39;s loss to be less of a dampening factor than if he were surrounded by Hall-of-Famers (or Pyramid Players, in Simmons&#39;s world). But now we&#39;ve come full-circle: we want Wilt&#39;s points to be discounted (because of his team&#39;s loss), but we want this discount to be discounted by the subpar quality of his teammates—<em>but</em> we need to provide some means of defining the &quot;subpar quality&quot; of these teammates. Are they discounted or rewarded for playing alongside a ball-hog? The game isn&#39;t played in isolation and our ultimate statistic needs to recognize that.</li>
+<li>It <strong>contextualizes individual statistics by era</strong>. To put it simply: in different decades (and different years, even), it was easier to score. When explaining Wilt&#39;s statistical dominance of <a href="http://en.wikipedia.org/wiki/Kareem_Abdul-Jabbar">Kareem Abdul-Jabar</a>, Simmons notes that Wilt played in a mostly white league with no &quot;modern&quot; centers other than Russell. As another data point, look at how <a href="http://bleacherreport.com/articles/833257-michael-jordan-could-he-really-score-50-with-the-hand-check-rules-in-place">hand-checking rules</a> revolutionized scoring statistics <em>overnight</em>: instantly, it became easier to score and harder to defend; our past superstars were put at an immediate disadvantage.</li>
+<li>It <strong>embraces selflessness</strong>; it embraces <em>The Secret</em>.</li>
+<li>It <strong>rewards <em>defense</em></strong>. We still haven&#39;t done a very good job of quantifying defensive prowess. If anything, we rely on metrics like [All-NBA Defensive Team] selections, which are themselves picked by the Eye Test (in other words, it&#39;s a statistic defined by the Eye Test). Two of the most popular and oft-cited defensive statistics: blocks and steals. These are pieces of the puzzle, but certainly don&#39;t paint a complete picture. Why should a block be rewarded above good, clean defense in the lane that leads to a similar stop? Sometimes, I feel like these statistics are the easy way out: we like them because they&#39;re <em>clean</em>, and because we&#39;ve <em>failed</em> to make sense of the messy bits.</li>
+<li>It <strong>punishes mistakes</strong>, just like PER.</li>
+</ul>
+
+<p>Will we ever have such a statistic? Maybe not. Maybe it&#39;s PER. Maybe it will be something completely different with a fresh take and a fresh acronym. Maybe it&#39;s several numbers; maybe it&#39;s a single one.</p>
+
+<p>In the meantime, statistics will only take us so far. And the watching continues.</p>
+
+<h2>Appendix</h2>
+
+<p>A few other quotes and ideas that I couldn&#39;t help but include.</p>
+
+<h3>On Other, Fun Statistics</h3>
+
+<p>Two of my favorite statistics that Simmons &quot;invents&quot; in TBOB:</p>
+
+<ul>
+<li>The &quot;42 Club&quot;: add up a players point, rebound, and assist averages; if they&#39;re above 42 (a magic number reached by observation), they&#39;re in the club. It works pretty well: MJ made it into the club for six seasons, Shaq for four, etc. [418]</li>
+<li>All-Star Minutes: look at the average minutes that a given player was given in his All-Star appearances. Simmons calls this the &quot;chicken leg breakdown&quot;: the best players get the biggest leg of the chicken (or, in this case, the most minutes in the All-Star Game). [490]</li>
+</ul>
+
+<h3>On Building a Championship Team</h3>
+
+<p>The four keys to winning a championship [47]:</p>
+
+<ol>
+<li>“You build potential champions around one great player.”</li>
+<li>“You surround that superstar with one or two elite sidekicks who understand their place in the team’s hierarchy, don’t obsess over stats, and fill in every blank they can.”</li>
+<li>“You complete your nucleus with top-notch role players and/or character guys… who know their place, don’t make mistakes.”</li>
+<li>“You need to stay healthy in the playoffs and maybe catch one or two breaks.”</li>
+</ol>
+
+<h3>On Comparing Players from Different Eras</h3>
+
+<p>A massive challenge. Simmons puts it well:</p>
+
+<blockquote>
+<p>You can’t forget that twenty-first-century stars are evolutionary versions of the best guys from the fifties and sixties… Really, it’s like comparing an ’09 Porsche with a ’62 Porsche: the ’09 would easily win a race between them, but the ’62 was a more groundbreaking car. [284]</p>
+</blockquote>
+
+<p>As a caveat, Simmons also claims that players can&#39;t be compared across different eras unless they both &quot;thrived after 1976, when basketball became the sport it is today.</p>
+
+<h3>On Elgin Baylor</h3>
+
+<p>In 1962, Elgin averaged an “ungodly 38-19-5&quot;. At the same time, he was serving in the United States Army Reserves. He missed 40% of games, yet still managed to finish fourth in MVP voting. The full story:</p>
+
+<blockquote>
+<p>A United States Army Reservist at the time, Elgin worked in the state of Washington during the week, living in any army barracks and leaving only whenever they gave him a weekend pass. Even with that pass, he had to fly coach on flights with multiple connections to meet the Lakers wherever they were playing, throw on a uniform and battle the best NBA players, then make the same complicated trip back to Washington in time to be there early Monday morning. [233]</p>
+</blockquote>
+
+<h3>On &#39;The Decision&#39;</h3>
+
+<p>Simmons tears &#39;The Decision&#39; apart: not just his choice to break Cleveland&#39;s heart on national TV, but also to team up with Dwayne Wade.</p>
+
+<blockquote>
+<p>I feel like LeBron James copped out. In pickup basketball, there&#39;s an unwritten rule to keep teams relatively equal to maximize competitiveness of the games... But two perimeter players willingly deciding that it would be easier to join forces than compete against each other? There&#39;s no &#39;secret&#39; to that... As someone who loves basketball, I can&#39;t forgive him. [509]</p>
+</blockquote>
+
+          <p class="date">Posted on Feb 03, 2014.<p>
+
+            <div id="disqus_thread"></div>
+            <script type="text/javascript">
+              (function() {
+                var disqus_shortname = 'crmarsh416';
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = false;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+              })();
+            </script>
+            <br><br>
+            <hr />
+            <center>
+              &copy; 2014 Charles Marsh
+              <a href="../feed.xml" style="padding-bottom:15px">
+                <img class="icon" src="../static/img/rss.png">
+              </a>
+            </center>
+          </div>
+        </div>
+      </div>
+    </body>
+    </html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <meta name="description" content="Charlie Marsh is a programmer and student at Princeton University with major interests in functional programming and machine learning.">
+  <meta name="viewport" content="width=device-width">
+  <title>iOS Performance: Shadows with Bezier Paths | Charlie Marsh</title>
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans">
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Source+Code+Pro">
+  <link href="../static/css/bootstrap.css" rel="stylesheet" type="text/css" />
+  <link href="../static/css/sprites.css" rel="stylesheet" type="text/css" />
+  <link href="../static/css/styles.css" rel="stylesheet" type="text/css" />
+  <link href='https://plus.google.com/u/0/100601164815113053596/' rel='author'>
+  <script type="text/javascript" src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang=ml"></script>
+  <script type="text/javascript">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-36552582-2', 'princeton.edu');
+    ga('send', 'pageview');
+  </script>
+</head>
+
+<body class="index">
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="span2 hidden-phone"></div>
+      <div class="span2 hidden-phone" style="position:fixed">
+          <h1 style="font-size:50px"><a class="blank" href="/~crmarsh/">Charlie<br>Marsh</a></h1>
+          <p><a class="implicit" href="/~crmarsh/">Home</a> &sdot; <a class="implicit" href="../static/pdf/Charles_Marsh_CV.pdf">CV</a>&sdot; <a class="implicit" href="../about.html">About</a></p>
+          <h2>Programmer,<br>student.</h2>
+          <p>I'm into functional<br>programming,<br>machine learning,<br> and other fun stuff.<p>
+            <p>Find me on:</p>
+          <a href="mailto:crmarsh@princeton.edu" class="nav email"></a>
+          <a href="http://www.github.com/crm416" class="nav github"></a>
+          <a href="http://stackoverflow.com/users/1450892/charles-marsh" class="nav stackoverflow"></a>
+          <a href="http://uk.linkedin.com/in/marshcharles" class="nav linkedin"></a>
+        </div>
+        <div class="span2 visible-phone">
+          <div>
+            <p style="font-size:25px"><a class="blank" href="/~crmarsh/">Charlie Marsh</a>  <div style="margin-top:-10px"><code class="custom"><span class="code_red">type</span> <span class="code_blue">blog</span></code></div>
+          </div>
+          <hr />
+        </div>
+        <div class="span9 offset1" style="padding-left:20px">
+          <h1>iOS Performance: Shadows with Bezier Paths</h1>
+
+<p>I spent some time yesterday fixing some performance issues related to <a href="https://itunes.apple.com/us/app/everycollegecal/id554462715?mt=8">EveryCollegeCal</a> (my iOS app). Basically, I was seeing very slow, choppy segues between the first two views (one of which is a welcome screen, the other a table view). On top of that, the scrolling performance of the latter view was equally gross.</p>
+
+<p>In the end, the fixes were not too involved—i.e., they didn’t involve a spectacular amount of code (of course, this can’t be said of all performance issues, so I count myself lucky). And there were only two necessary changes: the choppy segues were fixed by swapping out my glossy button library, which was apparently very inefficient. But the second change demonstrates something cool about iOS performance tweaks: while they’re often subtle, the under-the-hood explanations are always logical.</p>
+
+<h2>Drop Shadows</h2>
+
+<p>I thought for a while that my poor scrolling performance was due to the cells themselves, which use resizable assets to create a gradient background. But after rolling the app with certain features of the table disabled, <strong>I figured out that the issue was caused by the drop shadow in my cells’ accessories—such a tiny detail.</strong></p>
+
+<p>It’s very easy to add drop shadows to your views in iOS. What’s not so easy is making sure that they have good performance.</p>
+
+<p>Previously, I was adding a drop shadow with CALayer:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">disclosureIndicator.layer.shadowColor = [UIColor colorWithRed:0.2 green:0.2 blue:0.2 alpha:0.5].CGColor;
+disclosureIndicator.layer.shadowOffset = CGSizeMake(0, 1);
+disclosureIndicator.layer.shadowOpacity = 1.0;
+disclosureIndicator.layer.shadowRadius = 1;
+disclosureIndicator.layer.masksToBounds = NO;
+</code></pre></div>
+<p>This looks great and requires minimal code but—as outlined <a href="http://markpospesel.wordpress.com/2012/04/03/on-the-importance-of-setting-shadowpath/">here</a>—there’s a huge expense associated the process, namely because you must render (offscreen) the exact shape of the view; i.e., your device will spend time figuring out if your view is circular, rectangular, hexagonal, etc.</p>
+
+<p>The fix: specify the shape of the shadow using a <strong>Bezier path</strong>. Just add this line of code (replacing withOvalInRect with the appropriate shape):</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">disclosureIndicator.layer.shadowPath = [UIBezierPath bezierPathWithOvalInRect:disclosureIndicator.layer.bounds].CGPath;
+</code></pre></div>
+<p>It’s a simple fix, but I can’t emphasize enough how drastically it improved my table’s scroll performance. And the reasoning behind it is simple enough: with the latter method, you save the machine having to calculate the shape of an object.</p>
+
+<p>This is a great example of iOS performance tweaks: subtle, but logical.</p>
+
+          <p class="date">Posted on Nov 24, 2012.<p>
+
+            <div id="disqus_thread"></div>
+            <script type="text/javascript">
+              (function() {
+                var disqus_shortname = 'crmarsh416';
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = false;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+              })();
+            </script>
+            <br><br>
+            <hr />
+            <center>
+              &copy; 2014 Charles Marsh
+              <a href="../feed.xml" style="padding-bottom:15px">
+                <img class="icon" src="../static/img/rss.png">
+              </a>
+            </center>
+          </div>
+        </div>
+      </div>
+    </body>
+    </html>
