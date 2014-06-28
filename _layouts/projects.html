@@ -65,43 +65,33 @@
           <p>For an abridged list, see my <a href="/~crmarsh/">homepage</a>.</p>
           <h2 id="projects">Projects <a class='anchor-wrap' href="#projects" title="Permalink to this headline">¶</a></h2>
           <section>
-            <table style="border-collapse:separate; border-spacing:10px">
+            <div>
               {% for project in site.data.projects %}
-              <tr>
-                <td><a class="implicit code_orange" href="{{ project.url }}"><span class="code_red">|</span> {{ project.name }} <span class="code_red"></td>
-              </tr>
-              <tr>
-                <td>{{ project.description }}</td>
-              </tr>
-              <tr class="spacer"><td></td></tr>
+              <h3><a class="implicit code_orange" href="{{ project.url }}">{{ project.name }}</a></h2>
+              <div style="margin-top:-10px">{{ project.description }}</div>
               {% endfor %}
-            </table>
+            </div>
           </section>
 
           <h2 id="papers">Papers <a class='anchor-wrap' href="#papers" title="Permalink to this headline">¶</a></h2>
           <section>
-            <table style="border-collapse:separate; border-spacing:10px">
+            <div>
               {% for paper in site.data.papers %}
-              <tr>
-                <td><a class="implicit code_orange" href="{{ paper.url }}"><span class="code_red">|</span> {{ paper.name }} <span class="code_red"></td>
-              </tr>
-              <tr>
-                <td>{{ paper.description }}</td>
-              </tr>
-              <tr class="spacer"><td></td></tr>
+              <h3><a class="implicit code_orange" href="{{ paper.url }}">{{ paper.name }}</a></h2>
+              <div style="margin-top:-10px">{{ paper.description }}</div>
               {% endfor %}
-            </table>
+            </div>
           </section>
 
           <h2 id="posts">Posts <a class='anchor-wrap' href="#posts" title="Permalink to this headline">¶</a></h2>
           {% for collection in site.data.posts %}
-          <li>{{  collection.year  }}:
+          <div>{{  collection.year  }}:
           <ul class="posts-list">
             {% for post in collection.posts %}
             <li><a target="_blank" class="implicit" href="{{ post.url }}">{{ post.name }}</a></li>
             {% endfor %}
           </ul>
-          </li>
+          </div>
           {% endfor %}
 
           <h2 style="padding-top:40px" id="non-programming">Non-Programming<a class='anchor-wrap' href="#non-programming" title="Permalink to this headline">¶</a></h2>

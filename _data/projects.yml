@@ -1,9 +1,9 @@
 - name: Jasper
-  description: An open source platform for developing always-on, voice-controlled applications (GitHub trending repo with 850+ stars)
+  description: An open source platform for developing always-on, voice-controlled applications (GitHub trending repo with 900+ stars and 200 forks). Featured in Forbes, WIRED, RaspberryPi.org, and more.
   url: http://jasperproject.github.io
 
 - name: MAD Topic Model
-  description: A topic-model-based tool for authorship detection and stylistic analysis
+  description: A topic-model-based tool for authorship detection and stylistic analysis that extracts rich sylistic and lexical n-gram features from text. These features are then used as vocabularies over which topic models are generated.
   url: https://github.com/dmrd/mad_topic_model
 
 - name: online_boosting
@@ -11,7 +11,7 @@
   url: https://github.com/crm416/online_boosting
 
 - name: point-location
-  description: Fast point location in planar subdivisions using Kirkpatrick's Algorithm (see <a target="_blank" href="http://nbviewer.ipython.org/github/crm416/point-location/blob/master/PointLocation.ipynb">here</a> for a demo)
+  description: Fast point location in planar subdivisions using Kirkpatrick's Algorithm (see <a target="_blank" href="http://nbviewer.ipython.org/github/crm416/point-location/blob/master/PointLocation.ipynb">here</a> for a demo), implemented in Python with Numpy, Matplotlib, and more.
   url: https://github.com/crm416/point-location
 
 - name: semantic
@@ -23,21 +23,21 @@
   url: ../hack/
 
 - name: wikipedia.py
-  description: A Wikipedia API for humans (in Python)
+  description: A Wikipedia API for humans (in Python), used by Quizzler to extract useful information from Wikipedia without worrying about low-level scraping.
   url: ../wikipedia/
 
 - name: EveryCollegeCal
-  description: An iPhone app for tracking undergraduate college calendars
+  description: An iPhone app for tracking undergraduate college calendars. Included information from hundreds of undergraduate schools and saw hundreds of downloads through the App Store. Note that this project is no longer maintained.
   url: https://itunes.apple.com/us/app/everycollegecal/id554462715?mt=8
 
 - name: type blog
-  description: This blog, and everything I've used to create it
+  description: This blog, and everything I've used to create it, from its origins with Syndicate to its current development with Jekyll.
   url: https://github.com/crm416/blog
 
 - name: OCaml Threads
-  description: A threading module for exploiting parallelism in OCaml
+  description: A threading module for mimicking parallelism in OCaml by marshalling data across multiple Unix processes. Includes some simple examples and benchmarks.
   url: ../ocaml_parallelism/
 
 - name: Grapher
-  description: An interface for creating dynamic graphs in iOS
+  description: An interface for creating dynamic graphs in iOS, developed as part of a hackathon project. Note that this project is not under active development.
   url: ../ios_graphing/
