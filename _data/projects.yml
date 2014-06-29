@@ -1,29 +1,29 @@
 - name: Jasper
-  description: An open source platform for developing always-on, voice-controlled applications (GitHub trending repo with 900+ stars and 200 forks). Featured in Forbes, WIRED, RaspberryPi.org, and more.
+  description: An open source platform for developing always-on, voice-controlled applications, built on top of a Raspberry Pi. The <a href="https://github.com/jasperproject/jasper-client">GitHub repository</a> has over 900 stars and 200 forks, and Jasper itself has been featured in <a href="http://www.wired.com/2014/04/out-in-the-open-jasper/">WIRED</a>, <a href="http://www.forbes.com/sites/davealtavilla/2014/04/09/princeton-wiz-kids-create-open-source-api-for-device-voice-control-assistant-runs-on-raspberry-pi/">Forbes</a>, <a href="http://www.raspberrypi.org/meet-jasper-open-source-voice-computing/">RaspberryPi.org</a>, and others.
   url: http://jasperproject.github.io
 
 - name: MAD Topic Model
-  description: A topic-model-based tool for authorship detection and stylistic analysis that extracts rich sylistic and lexical n-gram features from text. These features are then used as vocabularies over which topic models are generated.
+  description: A topic-model-based tool for authorship detection and stylistic analysis that extracts rich sylistic and lexical n-gram features from text. These features are then used as vocabularies over which topic models are generated. Implemented as part of a larger research project.
   url: https://github.com/dmrd/mad_topic_model
 
 - name: online_boosting
-  description: A suite of online (in the machine-learning sense) boosting and weak learning algorithms (in Python), including those of Oza & Russell and Chen et al.
+  description: A suite of online (in the machine-learning sense) boosting and weak learning algorithms, implemented in Python, including those of Oza & Russell and Chen et al. Implemented as part of a larger research project, the final paper for which can be found <a href="../static/pdf/Charles_Marsh_Online_Boosting.pdf">here</a>.
   url: https://github.com/crm416/online_boosting
 
 - name: point-location
-  description: Fast point location in planar subdivisions using Kirkpatrick's Algorithm (see <a target="_blank" href="http://nbviewer.ipython.org/github/crm416/point-location/blob/master/PointLocation.ipynb">here</a> for a demo), implemented in Python with Numpy, Matplotlib, and more.
+  description: Fast point location in planar subdivisions using Kirkpatrick's Algorithm (see <a target="_blank" href="http://nbviewer.ipython.org/github/crm416/point-location/blob/master/PointLocation.ipynb">here</a> for a demo). Implemented in Python with Numpy, Matplotlib, and more.
   url: https://github.com/crm416/point-location
 
 - name: semantic
-  description: A Python library for extracting semantic information (e.g., dates, numbers, mathematical calculations) from text (available via PyPI)
+  description: A Python library for extracting semantic information (e.g., dates, numbers, mathematical calculations) from text. Available via <a href="https://pypi.python.org/pypi/semantic/">PyPI</a>.
   url: https://github.com/crm416/semantic
 
 - name: Quizzler
-  description: NLP-based, automatic quiz-question generation for iOS with a Python back-end (first place entry into the Facebook Summer of Hack Hackathon)
+  description: NLP-based, automatic quiz-question generation for iOS with a Python back-end. Rated the first place entry in Facebook Seattle's Summer of Hack Hackathon.
   url: ../hack/
 
 - name: wikipedia.py
-  description: A Wikipedia API for humans (in Python), used by Quizzler to extract useful information from Wikipedia without worrying about low-level scraping.
+  description: A Wikipedia API for humans (implemented in Python). This is the same API used by Quizzler to extract useful information from Wikipedia without worrying about low-level scraping.
   url: ../wikipedia/
 
 - name: EveryCollegeCal
