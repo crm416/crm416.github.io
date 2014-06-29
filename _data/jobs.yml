@@ -1,0 +1,33 @@
+- company: Khan Academy
+  title: Software Development Engineer (Intern)
+  team: Content Tools Team
+  dates: Summer 2014
+  description: Created interactive exercise tools based on React.
+  img: ../static/img/Khan_logo.png
+
+- company: Microsoft
+  title: Software Development Engineer (Intern)
+  team: Core Ranking Team
+  dates: Summer 2013
+  description: Developed visualization tools to observe machine learning algorithms in real-time on massive datasets.
+  img: ../static/img/Microsoft_logo.png
+
+- company: Facebook
+  title: Market Development Intern
+  team: Mobile Products
+  dates: Summer 2012
+  description:
+  img: ../static/img/Facebook_logo.png
+
+- company: Toptal
+  title: Head of Content
+  team: ""
+  dates: 2013-2014
+  description: Grew the <a href="http://www.toptal.com/blog">Toptal Engineering Blog</a> from scratch to hundreds of thousands of unique visitors, contributing to the editing, graphic design, and SEO processes.
+  img: ../static/img/Toptal_logo.png
+
+- company: Princeton
+  title: Physics Department Intern
+  team: Dark Matter Research
+  dates: Summer 2010
+  img: ../static/img/Princeton_logo.png
