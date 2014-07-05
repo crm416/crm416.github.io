@@ -21,23 +21,27 @@ The MediaWiki API returns a JSON (or XML, etc.) response with the information yo
 
 For example, here's the beginning of the JSON response for [Michael Jordan's Wikipedia page](http://en.wikipedia.org/wiki/Michael_Jordan):
 
+{% highlight json %}
+[
     [
-        [
-            "parse",
-            {
-                "text": {
-                    "*": "<div class=\"dablink\">For other people named Michael Jordan, see <a href=\"/wiki/Michael_Jordan_(disambiguation)\" title=\"Michael Jordan (disambiguation)\">Michael Jordan (disambiguation)</a>.</div>\n<div class=\"metadata topicon nopopups\"..."
-                },
-                "title": "Michael Jordan"
-            }
-        ]
+        "parse",
+        {
+            "text": {
+                "*": "<div class=\"dablink\">For other people named Michael Jordan, see <a href=\"/wiki/Michael_Jordan_(disambiguation)\" title=\"Michael Jordan (disambiguation)\">Michael Jordan (disambiguation)</a>.</div>\n<div class=\"metadata topicon nopopups\"..."
+            },
+            "title": "Michael Jordan"
+        }
     ]
+]
+{% endhighlight %}
 
 Note that the text itself is also still in HTML.
 
 The methods in *wikipedia.py* are designed to extract the information (i.e., the "*" field above) and parse the HTML, with some help from the *HTMLParser* library. In the above case, our method looks something like this:
 
-    return cleanHTMLSection(cleanWikiSection(json_response[0][1][u'text'][u'*']))
+{% highlight python %}
+return cleanHTMLSection(cleanWikiSection(json_response[0][1][u'text'][u'*']))
+{% endhighlight %}
 
 Where *cleanWikiSection* is reponsible for removing extraneous information from the page itself, and *cleanHTMLSection* is responsible for converting the HTML to plaintext.
 
@@ -51,7 +55,9 @@ We do some fairly low-level searching in the table to check every row and extrac
 
 The output for MJ's table is as follows:
 
-    [('Born', 'February 17, 1963'), ('Nationality', 'American'), ('Listed height', '6ft6in'), ('Listed weight', '216lb'), ('High school', 'Emsley A. Laney'), ('College', 'North Carolina'), ('NBA Draft', '1984 / Round: 1 / Pick: 3rd overall'), ...]
+{% highlight python %}
+[('Born', 'February 17, 1963'), ('Nationality', 'American'), ('Listed height', '6ft6in'), ('Listed weight', '216lb'), ('High school', 'Emsley A. Laney'), ('College', 'North Carolina'), ('NBA Draft', '1984 / Round: 1 / Pick: 3rd overall'), ...]
+{% endhighlight %}
 
 {% anchor h2 %}In Conclusion{% endanchor %}
 

@@ -1,2 +1,3 @@
 name: type blog
 markdown: redcarpet
+highlighter: pygments

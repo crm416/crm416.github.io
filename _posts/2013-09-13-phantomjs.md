@@ -36,9 +36,11 @@ The [solution](https://github.com/ariya/phantomjs/wiki/Quick-Start#code-evaluati
 
 `page.evaluate` takes, as argument, a function to-be executed in the context of the webpage. This is incredibly useful. Further, `page.evaluate` can return a result from the webpage back to your PhantomJS program. Say, for example, that you'd like to grab the text of an element on the current page with ID "foo":
 
-    var foo = page.evaluate(function() {
-        return $("#foo").text;
-    })
+{% highlight js %}
+var foo = page.evaluate(function() {
+    return $("#foo").text;
+});
+{% endhighlight %}
 
 You could then use `foo` in your PhantomJS program, successfully extracting the value from the webpage. _Note: return values are limited to simple objects, rather than, say, functions._
 
@@ -46,9 +48,11 @@ You could then use `foo` in your PhantomJS program, successfully extracting the 
 
 Actually, the code snippet above might not work as expected. I'll repeat it here for clarity:
 
-    var foo = page.evaluate(function() {
-        return $("#foo").text;
-    })
+{% highlight js %}
+var foo = page.evaluate(function() {
+    return $("#foo").text;
+});
+{% endhighlight %}
 
 The problem? The active webpage might not have jQuery loaded.
 
@@ -56,13 +60,15 @@ Luckily, you can use PhantomJS to inject/include JavaScript files in the current
 
 Here's the revised code (credit to the [PhantomJS docs](https://github.com/ariya/phantomjs/wiki/Page-Automation)):
 
-    page.includeJs("http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js", function() {
-        var foo = page.evaluate(function() {
-            return $("#foo").text;
-        });
-        // do what you gotta do with 'foo'
-        // ...
+{% highlight js %}
+page.includeJs("http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js", function() {
+    var foo = page.evaluate(function() {
+        return $("#foo").text;
     });
+    // do what you gotta do with 'foo'
+    // ...
+});
+{% endhighlight %}
 
 {% anchor h2 %}Console.logging from your web browser{% endanchor %}
 
@@ -70,15 +76,19 @@ Similarly, I was often frustrated by the inability to display information logged
 
 Specifically, **the following code does nothing** because "Hello, World!" is printed in the context of the browser:
 
-    page.evaluate(function() {
-        console.log("Hello, World!")
-    })
+{% highlight js %}
+page.evaluate(function() {
+    console.log("Hello, World!")
+});
+{% endhighlight %}
 
 So, what if you want to log messages to your terminal from within your webpage? The trick is to use the `page.onConsoleMessage` event and echo any messages printed in the browser out to your terminal. Try this:
 
-    page.onConsoleMessage = function(msg){
-        console.log(msg);
-    };
+{% highlight js %}
+page.onConsoleMessage = function(msg) {
+    console.log(msg);
+};
+{% endhighlight %}
 
 For more, see my [StackOverflow answer](http://stackoverflow.com/questions/18115888/phantomjs-not-returning-results/18131369#18131369).
 
@@ -86,34 +96,37 @@ For more, see my [StackOverflow answer](http://stackoverflow.com/questions/18115
 
 PhantomJS beginners constantly ask how they can wait for something to appear on their webpage before acting. For example, maybe they want a banner to appear and then extract some text from it. Say "#foo" is now a div that loads a few seconds after the page has appeared. If you simply use the following code, you'll get unexpected results, as the banner may not be loaded at the time of query:
 
-
-    var page = require('webpage').create();
-    page.open('http://www.sample.com', function() {
-        var foo = page.evaluate(function() {
-            return $("#foo").text;
-        });
-        // ...
-        phantom.exit();
+{% highlight js %}
+var page = require('webpage').create();
+page.open('http://www.sample.com', function() {
+    var foo = page.evaluate(function() {
+        return $("#foo").text;
     });
+    // ...
+    phantom.exit();
+});
+{% endhighlight %}
 
 Instead, you should use [waitFor.js](https://github.com/ariya/phantomjs/blob/master/examples/waitfor.js), a nice JavaScript snippet provided by the PhantomJS guys. This function is pretty simple, but very, very useful. Essentially, it queries the page every few seconds (the exact interval is an optional parameter), executing a user-specified function when a certain condition has been met. Expanding on the previous example, our code might look like the following (excluding the lengthy definition of [waitFor](https://github.com/ariya/phantomjs/blob/master/examples/waitfor.js)):
 
-    var page = require('webpage').create();
-    page.open('http://www.sample.com', function() {
-        waitFor(function() {
-                // Check in the page if a specific element is now visible
-                return page.evaluate(function() {
-                    return $("#foo").is(":visible");
-                });
-            }, function() {
-               var foo = page.evaluate(function() {
-                    return $("#foo").text;
-                });
-                // ...
-                phantom.exit();
+{% highlight js %}
+var page = require('webpage').create();
+page.open('http://www.sample.com', function() {
+    waitFor(function() {
+            // Check in the page if a specific element is now visible
+            return page.evaluate(function() {
+                return $("#foo").is(":visible");
             });
+        }, function() {
+           var foo = page.evaluate(function() {
+                return $("#foo").text;
+            });
+            // ...
+            phantom.exit();
         });
     });
+});
+{% endhighlight %}
 
 {% anchor h2 %}Going Forward{% endanchor %}
 

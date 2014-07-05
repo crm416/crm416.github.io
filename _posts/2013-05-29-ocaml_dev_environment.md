@@ -36,13 +36,13 @@ If you’re doing any **significant development (i.e., large-scale projects)**, 
 
 To make sure that you’ve installed the language properly, open up your Bash terminal and type ‘ocaml’. You should see the toplevel initialize, like this:
 
-<!--?prettify lang=ml?-->
-
-    OCaml version 4.00.1
-    # let x = 2 in
-      let y = 3 in
-      x+y;;
-    - : int = 5
+{% highlight ocaml %}
+OCaml version 4.00.1
+# let x = 2 in
+  let y = 3 in
+  x+y;;
+- : int = 5
+{% endhighlight %}
 
 {% anchor h2 %}Setting Up Your Development Environment{% endanchor %}
 
@@ -61,6 +61,7 @@ Professor Walker was a big fan of playing around in the OCaml toplevel within th
 
 *   Open Emacs. Type: 'Ctrl+X Ctrl+F .emacs', which should open (or create) your .emacs file (located at ~/.emacs).
 *   Paste the following code into your .emacs file:
+
 
         (add-to-list 'load-path "~/tuareg-caml-mode")
         (add-to-list 'load-path "~/tuareg-2.0.4")

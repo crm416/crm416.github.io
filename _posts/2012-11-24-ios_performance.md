@@ -19,18 +19,22 @@ It’s very easy to add drop shadows to your views in iOS. What’s not so easy 
 
 Previously, I was adding a drop shadow with CALayer:
 
-    disclosureIndicator.layer.shadowColor = [UIColor colorWithRed:0.2 green:0.2 blue:0.2 alpha:0.5].CGColor;
-    disclosureIndicator.layer.shadowOffset = CGSizeMake(0, 1);
-    disclosureIndicator.layer.shadowOpacity = 1.0;
-    disclosureIndicator.layer.shadowRadius = 1;
-    disclosureIndicator.layer.masksToBounds = NO;
+{% highlight objc %}
+disclosureIndicator.layer.shadowColor = [UIColor colorWithRed:0.2 green:0.2 blue:0.2 alpha:0.5].CGColor;
+disclosureIndicator.layer.shadowOffset = CGSizeMake(0, 1);
+disclosureIndicator.layer.shadowOpacity = 1.0;
+disclosureIndicator.layer.shadowRadius = 1;
+disclosureIndicator.layer.masksToBounds = NO;
+{% endhighlight %}
 
 
 This looks great and requires minimal code but—as outlined [here](http://markpospesel.wordpress.com/2012/04/03/on-the-importance-of-setting-shadowpath/)—there’s a huge expense associated the process, namely because you must render (offscreen) the exact shape of the view; i.e., your device will spend time figuring out if your view is circular, rectangular, hexagonal, etc.
 
 The fix: specify the shape of the shadow using a **Bezier path**. Just add this line of code (replacing withOvalInRect with the appropriate shape):
 
-    disclosureIndicator.layer.shadowPath = [UIBezierPath bezierPathWithOvalInRect:disclosureIndicator.layer.bounds].CGPath;
+{% highlight objc %}
+disclosureIndicator.layer.shadowPath = [UIBezierPath bezierPathWithOvalInRect:disclosureIndicator.layer.bounds].CGPath;
+{% endhighlight %}
 
 It’s a simple fix, but I can’t emphasize enough how drastically it improved my table’s scroll performance. And the reasoning behind it is simple enough: with the latter method, you save the machine having to calculate the shape of an object.
 

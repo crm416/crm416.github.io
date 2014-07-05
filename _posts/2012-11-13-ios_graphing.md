@@ -7,7 +7,7 @@ permalink: ios_graphing
 
 # A Dynamic Graphing Interface for iOS
 
-This weekend was HackPrinceton, our school’s biannual hackathon run by the E Club (find out more [here](http://hackprinceton.com "HackPrinceton"), including the list of [winners](http://hackprinceton.com/results/ "HackPrinceton results")!). Unfortunately, a commitment on Saturday precluded my full-fledged participation; however, I managed to pump out a small tool on Friday: a dynamic graphing (note: **graphing**, not graphical) interface for iOS.
+This weekend was HackPrinceton, our school’s biannual hackathon run by the E Club (find out more [here](http://hackprinceton.com "HackPrinceton"), including the list of [winners](http://hackprinceton.com/results/ "HackPrinceton results")!). Unfortunately, a commitment on Saturday precluded my full-fledged participation; however, I managed to pump out a small tool on Friday: a dynamic graphing (note: **graphing**, not graphical) interface for iOS.
 
 I’m not exactly sure how I’m going to use it, but the essence of the class is that it allows the client to create 3-D bar graphs (similar to Excel’s 3-D graphing modes) and feed the graphs data over time; as the data is received, the graphs resize themselves and adjust the axes as necessary.
 
@@ -16,17 +16,20 @@ Each bar is drawn individually with the Core Graphics library: first, the bar is
 1.  Create the bar as a generic UIView.
 2.  Casted it to a UIImage with this code:
 
-        UIGraphicsBeginImageContext(bar.bounds.size);
-        [bar.layer renderInContext:UIGraphicsGetCurrentContext()];
-        UIImage *viewImage = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-        UIImage *barImage = [viewImage resizableImageWithCapInsets:UIEdgeInsetsMake(bar.backdrop_size + 5, 0, bar.backdrop_size + 5, 0)];
+
+{% highlight objc %}
+UIGraphicsBeginImageContext(bar.bounds.size);
+[bar.layer renderInContext:UIGraphicsGetCurrentContext()];
+UIImage *viewImage = UIGraphicsGetImageFromCurrentImageContext();
+UIGraphicsEndImageContext();
+UIImage *barImage = [viewImage resizableImageWithCapInsets:UIEdgeInsetsMake(bar.backdrop_size + 5, 0, bar.backdrop_size + 5, 0)];
+{% endhighlight %}
 
 Note above: you must ensure proper cap insets. In this case, the aim is to avoid stretching out the bar's perspective on the top and bottom; thus, we pad it with cap insets above and below—this enforces that only the middle section of the bar will be stretched out whenever the frame expands.
 
-Finally, after creating the correct UIImage, just put it into a UIImageView and add it as a subview. 
+Finally, after creating the correct UIImage, just put it into a UIImageView and add it as a subview.
 
-I’ve open-sourced the project [here](https://github.com/crm416/iOS-Elements "My Github"); hopefully I’ll get around to adding line graphs and some other features—or, better yet, finding a use for the class within an application!
+I’ve open-sourced the project [here](https://github.com/crm416/iOS-Elements "My Github"); hopefully I’ll get around to adding line graphs and some other features—or, better yet, finding a use for the class within an application!
 
 Here's a demo:
 

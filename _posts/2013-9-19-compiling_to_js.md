@@ -26,46 +26,49 @@ I see [CoffeeScript](http://coffeescript.org) as the poster child of the \*Scrip
 
 Here's an example of these list comprehensions:
 
-    even_nums = (i for i in [0..10] when i % 2 == 0)
-    odd_nums = (i for i in [0..10] when i not in even_nums)
+{% highlight coffeescript %}
+even_nums = (i for i in [0..10] when i % 2 == 0)
+odd_nums = (i for i in [0..10] when i not in even_nums)
 
-    console.log even_nums ## prints '0, 2, 4, 6, 8'
-    console.log odd_nums ## prints '1, 3, 5, 7, 9'
+console.log even_nums ## prints '0, 2, 4, 6, 8'
+console.log odd_nums ## prints '1, 3, 5, 7, 9'
+{% endhighlight %}
 
 If this doesn't look impressive on its own, check out the corresponding JavaScript:
 
-    (function() {
-      var even_nums, i, odd_nums,
-        __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
+{% highlight javascript %}
+(function() {
+  var even_nums, i, odd_nums,
+    __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
-      even_nums = (function() {
-        var _i, _results;
-        _results = [];
-        for (i = _i = 1; _i <= 10; i = ++_i) {
-          if (i % 2 === 0) {
-            _results.push(i);
-          }
-        }
-        return _results;
-      })();
+  even_nums = (function() {
+    var _i, _results;
+    _results = [];
+    for (i = _i = 1; _i <= 10; i = ++_i) {
+      if (i % 2 === 0) {
+        _results.push(i);
+      }
+    }
+    return _results;
+  })();
 
-      odd_nums = (function() {
-        var _i, _results;
-        _results = [];
-        for (i = _i = 1; _i <= 10; i = ++_i) {
-          if (__indexOf.call(even_nums, i) < 0) {
-            _results.push(i);
-          }
-        }
-        return _results;
-      })();
+  odd_nums = (function() {
+    var _i, _results;
+    _results = [];
+    for (i = _i = 1; _i <= 10; i = ++_i) {
+      if (__indexOf.call(even_nums, i) < 0) {
+        _results.push(i);
+      }
+    }
+    return _results;
+  })();
 
-      console.log(even_nums);
+  console.log(even_nums);
 
-      console.log(odd_nums);
+  console.log(odd_nums);
 
-    }).call(this);
-
+}).call(this);
+{% endhighlight %}
 
 Why use CoffeeScript? It's just a pleasure. The syntax takes away the worst parts of JavaScript. The language appears more functional and less disgusting.
 
@@ -77,39 +80,43 @@ One might claim that **CoffeeScript : Python :: TypeScript : OCaml**.
 
 Lets see this type safety in action:
 
-    interface Point {
-        x: number;
-        y: number;
-    }
+{% highlight ts %}
+interface Point {
+    x: number;
+    y: number;
+}
 
-    /* Calculate a Point's distance from the origin. */
-    function distance(a: Point): number {
-        var squared_distance: number = a.x*a.x + a.y*a.y;
-        return Math.sqrt(squared_distance);
-    }
+/* Calculate a Point's distance from the origin. */
+function distance(a: Point): number {
+    var squared_distance: number = a.x*a.x + a.y*a.y;
+    return Math.sqrt(squared_distance);
+}
 
-    var not_point: number = 15;
-    distance(not_point);
-    // type error: parameter does not match any signature of call target
+var not_point: number = 15;
+distance(not_point);
+// type error: parameter does not match any signature of call target
 
-    var point: Point = {
-        x: 3,
-        y: 4
-    };
-    distance(point);
-    // success! returns '5'
+var point: Point = {
+    x: 3,
+    y: 4
+};
+distance(point);
+// success! returns '5'
 
-    var bad_point: Point = {
-        x: 3
-    };
-    // type error: missing property 'y' from type Point
+var bad_point: Point = {
+    x: 3
+};
+// type error: missing property 'y' from type Point
+{% endhighlight %}
 
 
 TypeScript also amplifies some of the functional flavor of JavaScript (albeit, less-so than CoffeeScript), mainly by adding the 'Fat Arrow' `(arg) => { // use arg }` lambdas. For example:
 
-    document.addEventListener(myevent, (e) => {
-        // Handle the event...
-    })
+{% highlight javascript %}
+document.addEventListener(myevent, (e) => {
+    // Handle the event...
+})
+{% endhighlight %}
 
 (_Note: the 'Fat Arrow' is part of [ECMAScript 6 specification](http://wiki.ecmascript.org/doku.php?id=harmony:arrow_function_syntax) and thus will eventually be supported by all JavaScript engines. [Firefox](http://robcee.net/2013/fat-arrow-functions-in-javascript/) already supports it._)
 
@@ -122,10 +129,12 @@ As in CoffeeScript, LiveScript uses whitespace and newlines as delimiters, rathe
 
 I actually see LiveScript and CoffeeScript as a bit of a toss-up. If you're _really_ into functional programming, you might prefer LiveScript. For example, one differentiating factor: LiveScript allows for [function currying](http://en.wikipedia.org/wiki/Currying) (i.e., partial application of functions). Watch us define the `increment` function as adding one:
 
-    add = (x, y) --> x + y
-    add 11, 9       ##=> 20
-    increment = add 1
-    increment 11    ##=> 12
+{% highlight livescript %}
+add = (x, y) --> x + y
+add 11, 9       ##=> 20
+increment = add 1
+increment 11    ##=> 12
+{% endhighlight %}
 
 In general, LiveScript has a strong functional lean. If that's for you, check it out.
 
@@ -135,9 +144,11 @@ In general, LiveScript has a strong functional lean. If that's for you, check it
 
 At its core, RedScript wants to be a Ruby-flavored JavaScript. This makes it very easy to extend our analogy! **CoffeeScript : Python :: TypeScript : OCaml :: LiveScript : Haskell :: RedScript : Ruby**. For example, here's some valid RedScript that strongly resembles Ruby:
 
-    for i in 0..5
-      puts i
-    end
+{% highlight ruby %}
+for i in 0..5
+  puts i
+end
+{% endhighlight %}
 
 Actually, I lied: this not only "strongly resembles" Ruby—it _is_ [valid](http://www.tutorialspoint.com/ruby/ruby_loops.htm) Ruby.
 

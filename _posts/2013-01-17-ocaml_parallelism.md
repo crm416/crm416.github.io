@@ -19,12 +19,12 @@ This alternative aims to operate at a lower level than would typically be done i
 
 One difficulty that I encountered along the way was preserving type-safety. To transfer information from the forked thread to the main thread (i.e., to return the result of the Future's computation), I use the [Marshal module](http://caml.inria.fr/pub/docs/manual-ocaml/libref/Marshal.html), which allows you to encode arbitrary data structures as sequences of bytes. However, the documentation includes the following, essential warning: **Warning: marshaling is currently not type-safe**. In reality, if you're trying to Marshall some expression *e* of type *'a*, you need to somehow pass type *'a* to the output function. That is, the Marshal module needs to know the output type of the data it's trying to decode. To handle that, I had to strictly enforce the type of the output computation as follows:
 
-<!--?prettify lang=ml?-->
-
-    let future (f:'a -> 'b) (x:'a) : 'b future =
+{% highlight ocaml %}
+let future (f:'a -> 'b) (x:'a) : 'b future =
+...
+    let result : 'b = Marshal.from_channel (in_channel_of_descr fd_in) in
     ...
-        let result : 'b = Marshal.from_channel (in_channel_of_descr fd_in) in
-        ...
+{% endhighlight %}
 
 Notice that type *'b*, the desired output of the function *f*, is explicitly enforced as the output of the Marshal operation.
 
