@@ -1,5 +1,8 @@
 - year: 2014
   posts:
+    - name: "Styling React Components: How to Escape Selector Hell (talk delivered @ Khan Academy)"
+      url: ../static/pdf/Styling_React_Components.pdf
+
     - name: An Overly Thorough Guide to Python Class Attributes (featured in Python Weekly)
       url: http://www.toptal.com/python/python-class-attributes-an-overly-thorough-guide
 
