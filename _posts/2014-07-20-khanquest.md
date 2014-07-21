@@ -7,8 +7,7 @@ permalink: khanquest
 
 # KhanQuest: A Young Person's Illustrated Video Game
 
-Thus marks the end of the Third Annual "Healthy Hackathon", Khan Academy's weekend-long celebration, which featured [awesome improvements to our CS platform](https://www.youtube.com/watch?v=Pq0OSkFhmhk), [awesome (and hilarious) fundraising efforts](https://znd-vowels-dot-khan-academy.appspot.com/buy-a-vowel), and [awesome (and hilarious) music videos](https://twitter.com/pamelafox/status/489968073915387905#), to name but a few.
-
+Thus marks the end of the Third Annual "Healthy Hackathon", Khan Academy's weekend-long celebration, which featured [awesome improvements to our CS platform](https://www.youtube.com/watch?v=Pq0OSkFhmhk), [awesome (and hilarious) fundraising efforts](https://znd-vowels-dot-khan-academy.appspot.com/buy-a-vowel), and [awesome (and hilarious) music videos](https://twitter.com/pamelafox/status/489968073915387905#), to name but a few of the fantastic hacks.
 
 {% anchor h2 %}Aside: Hackathons Can Be Healthy?{% endanchor %}
 
