@@ -59,7 +59,7 @@ After settling on a browser-based game, we went all-in on [React](http://faceboo
 
 Personally, one of my more demoable contributions was the implementation of fun HTML5 Canvas-based effects to simulate snowfall, rainfall, fog, and spell casting (see below, or the embedded video above for the weather effects), the code for which can be found [here](https://github.com/Khan/KhanQuest/blob/master/src/sprites/animation.jsx).
 
-<img src="/static/img/fire.gif" alt="Fire animation" class="center">
+<img src="/~crmarsh/static/img/fire.gif" alt="Fire animation" class="center">
 
 Beyond that, I also took care of a grab-bag of UI implementations (e.g., the spellbook and transition animations), game mechanics (e.g., the 'unused spells grow in strength' behavior), and core features (e.g., [Perseus](https://github.com/Khan/perseus) exercise rendering via the Khan Academy API).
 
@@ -67,6 +67,6 @@ Beyond that, I also took care of a grab-bag of UI implementations (e.g., the spe
 
 We'd love to get this game online, if only for the laughs. In the meantime, you'll have to settle for hilarious GIFs of early game renditions (or [cloning the repo](https://github.com/Khan/KAQuest)).
 
-<img src="/static/img/map-glitch.gif" alt="Map glitch" class="center">
+<img src="/~crmarsh/static/img/map-glitch.gif" alt="Map glitch" class="center">
 
 Jokes aside, I consider this my best hackathon experience yet--one that I'll look back on very fondly. And amidst the [explanations of yak shaving](http://i.minus.com/ibaDjk7AeIcvxv.gif) and [extended metaphors for software development](https://www.youtube.com/watch?v=1IAXrxlDK6c), we pumped out some (reasonably) good code and a (reasonably) fun game. Three cheers for healthy hacking!
