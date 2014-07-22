@@ -9,7 +9,7 @@ permalink: khanquest
 
 Thus marks the end of the Third Annual "Healthy Hackathon", Khan Academy's weekend-long celebration, which featured [awesome improvements to our CS platform](https://www.youtube.com/watch?v=Pq0OSkFhmhk), [awesome (and hilarious) fundraising efforts](https://znd-vowels-dot-khan-academy.appspot.com/buy-a-vowel), and [awesome (and hilarious) music videos](https://twitter.com/pamelafox/status/489968073915387905#), to name but a few of the fantastic hacks.
 
-_P.S.: If you hate words and just want to play KhanQuest, click [here](khan.github.io/KhanQuest/)._
+_P.S.: If you hate words and just want to play KhanQuest, click [here](http://khan.github.io/KhanQuest/)._
 
 {% anchor h2 %}Aside: Hackathons Can Be Healthy?{% endanchor %}
 
@@ -29,7 +29,9 @@ You can read more on [Ben Kamens' blog](http://bjk5.com/post/56123354891/how-we-
 
 This year, my colleague [Zach Gotsch](https://github.com/zgotsch) rallied a few of us together on Thursday evening around a simple idea: take Khan Academy's core learning mechanics and philosophies, and wrap them within a fantasy video game (think _Pokemon_ meets _Final Fantasy_ meets _Harry Potter_). The team consisted of myself, Zach, [Joel Burget](http://joelburget.com/healthy-hackathon/), [Desmond Brand](http://desmondbrand.com/), [Jack Toole](https://github.com/jacktoole1), and [Michelle Todd](https://twitter.com/himichelletodd), with a special shoutout to [Elizabeth Lin](http://www.elizabethylin.com/about/) for lending her (unreal) design skills.
 
-After a few solid days of hacking, we demoed **"KhanQuest"**. All the code is available on [GitHub](https://github.com/Khan/KAQuest); if you prefer games to code, you can click through and play immediately (at your own risk) @ [this link](khan.github.io/KhanQuest/). It's totally imperfect, and we love it.
+After a few solid days of hacking, we demoed **"KhanQuest"**. All the code is available on [GitHub](https://github.com/Khan/KAQuest), and you play it immediately (at your own risk) @ [this link](http://khan.github.io/KhanQuest/).
+
+It's totally imperfect, and we love it.
 
 The core plot line: our beloved Salman Khan has been kidnapped by an evil warlock (I think?), and it's your job as the trusty delivery boy/girl (who happens to look like some sort of mage) to save him, learning the requisite magic along the way.
 
@@ -70,7 +72,7 @@ Beyond that, I also took care of a grab-bag of UI implementations (e.g., the spe
 
 {% anchor h2 %}Going Forward{% endanchor %}
 
-As I mentioned, the game is now online [here](khan.github.io/KhanQuest/). It's still in the incredibly rough form we left it at the end of the hackathon, and in all likelihood, it'll stay that way. You'll encounter bugs when you play it; but hey, even the healthiest of hackathons inspires last-minute fixes and monkey-patching.
+As I mentioned, the game is now online [here](http://khan.github.io/KhanQuest/). It's still in the incredibly rough form we left it at when we demoed, and in all likelihood, it'll stay that way. You'll run into bugs and console errors; but hey, even the healthiest of hackathons inspire last-minute fixes and monkey-patching!
 
 Jokes aside, I consider this my best hackathon experience yet—one that I'll look back on very fondly. And amidst the [explanations of yak shaving](http://i.minus.com/ibaDjk7AeIcvxv.gif) and [extended metaphors for software development](https://www.youtube.com/watch?v=1IAXrxlDK6c), we pumped out some (reasonably) good code and a (reasonably) fun game. Three cheers for healthy hacking!
 
