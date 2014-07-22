@@ -72,7 +72,7 @@ Beyond that, I also took care of a grab-bag of UI implementations (e.g., the spe
 
 {% anchor h2 %}Going Forward{% endanchor %}
 
-As I mentioned, the game is now online [here](http://khan.github.io/KhanQuest/). It's still in the incredibly rough form we left it at when we demoed, and in all likelihood, it'll stay that way. You'll run into bugs and console errors; but hey, even the healthiest of hackathons inspire last-minute fixes and monkey-patching!
+As I mentioned, the game is now online [here](http://khan.github.io/KhanQuest/). It's still in the incredibly rough form we left it in when we demoed, and in all likelihood, that won't change. You'll run into bugs and console errors; but hey, even the healthiest of hackathons inspire last-minute fixes and monkey-patching!
 
 Jokes aside, I consider this my best hackathon experience yet—one that I'll look back on very fondly. And amidst the [explanations of yak shaving](http://i.minus.com/ibaDjk7AeIcvxv.gif) and [extended metaphors for software development](https://www.youtube.com/watch?v=1IAXrxlDK6c), we pumped out some (reasonably) good code and a (reasonably) fun game. Three cheers for healthy hacking!
 
