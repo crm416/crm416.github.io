@@ -9,13 +9,15 @@ permalink: khanquest
 
 Thus marks the end of the Third Annual "Healthy Hackathon", Khan Academy's weekend-long celebration, which featured [awesome improvements to our CS platform](https://www.youtube.com/watch?v=Pq0OSkFhmhk), [awesome (and hilarious) fundraising efforts](https://znd-vowels-dot-khan-academy.appspot.com/buy-a-vowel), and [awesome (and hilarious) music videos](https://twitter.com/pamelafox/status/489968073915387905#), to name but a few of the fantastic hacks.
 
+_P.S.: If you hate words and just want to play KhanQuest, click [here](khan.github.io/KhanQuest/)._
+
 {% anchor h2 %}Aside: Hackathons Can Be Healthy?{% endanchor %}
 
 What separates the "Healthy Hackathon" from your typical hackathon is, well, everything about it. I'm not a big fan of the "competitive" hackathon, where hundreds of hackers stay up all night drinking Red Bull, racing to slap together the best crowd pleaser and "win" (see: the [Cash-omatic](http://greylocku.com/hackfest/#prizes)). But I digress!
 
 In more concrete terms, what sets Khan Academy's Healthy Hackathon apart is that:
 
-1. There is no staying up all night: Everyone is kicked out at 11pm, lest they face the wrath of the Nerf gun.
+1. There is no staying up all night: Everyone is kicked out at midnight, lest they face the wrath of the Nerf gun. From then, the office doors remain locked until 9:30am.
 2. There is no (or, very limited) junk food: All the catered food errs towards "healthy".
 3. There is no "winning" and there are no "judges": Everyone gets a raffle ticket for participating, with additional tickets doled out for cool hacks via anonymous voting. The prizes also err more towards gag (think: favorite company board games) than prestige.
 
@@ -25,17 +27,19 @@ You can read more on [Ben Kamens' blog](http://bjk5.com/post/56123354891/how-we-
 
 {% anchor h2 %}KhanQuest{% endanchor %}
 
-This year, my colleague [Zach Gotsch](https://github.com/zgotsch) rallied a few of us together on Thursday evening around a simple idea: take Khan Academy's core learning mechanics and philosophies, and wrap them within a fantasy video game (think _Pokemon_ meets _Final Fantasy_ meets _Harry Potter_). The team consisted of myself, Zach, [Joel Burget](http://joelburget.com/), [Desmond Brand](http://desmondbrand.com/), [Jack Toole](https://github.com/jacktoole1), and [Michelle Todd](https://twitter.com/himichelletodd), with a special shoutout to [Elizabeth Lin](http://www.elizabethylin.com/about/) for lending her (unreal) design skills.
+This year, my colleague [Zach Gotsch](https://github.com/zgotsch) rallied a few of us together on Thursday evening around a simple idea: take Khan Academy's core learning mechanics and philosophies, and wrap them within a fantasy video game (think _Pokemon_ meets _Final Fantasy_ meets _Harry Potter_). The team consisted of myself, Zach, [Joel Burget](http://joelburget.com/healthy-hackathon/), [Desmond Brand](http://desmondbrand.com/), [Jack Toole](https://github.com/jacktoole1), and [Michelle Todd](https://twitter.com/himichelletodd), with a special shoutout to [Elizabeth Lin](http://www.elizabethylin.com/about/) for lending her (unreal) design skills.
 
-After a few solid days of hacking, we demoed **"KhanQuest"** (note: we like "Khan" puns around here). All the code is available on [GitHub](https://github.com/Khan/KAQuest), if you're interested.
+After a few solid days of hacking, we demoed **"KhanQuest"**. All the code is available on [GitHub](https://github.com/Khan/KAQuest); if you prefer games to code, you can click through and play immediately (at your own risk) @ [this link](khan.github.io/KhanQuest/). It's totally imperfect, and we love it.
 
-The core plot line: our beloved Salman Khan has been kidnapped by an evil warlock (I think?), and it's your job as the trusty delivery boy/girl (who happens to look like some sort of mage) to save him, learning the requisite magic along the way. Here's an extended screencast:
+The core plot line: our beloved Salman Khan has been kidnapped by an evil warlock (I think?), and it's your job as the trusty delivery boy/girl (who happens to look like some sort of mage) to save him, learning the requisite magic along the way.
+
+Here's an extended screencast (with commentary):
 
 <div style="text-align: center">
-<iframe src="//player.vimeo.com/video/101273457" width="500" height="368" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+<iframe src="//player.vimeo.com/video/101366825" width="500" height="368" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 </div>
 
-_(Confession: I had to crop out 30-seconds of me struggling with a basic geometry problem, which accounts for the flicker around 2:10.)_
+_(Confession: I had to crop out ~30 seconds of me struggling with a basic geometry problem around 3:10.)_
 
 {% anchor h3 %}Game Mechanics{% endanchor %}
 
@@ -52,11 +56,13 @@ To bake in some of Khan Academy's learning philosophies, we also added a few min
 
 At the end of the weekend, the game was playable through the first few levels, complete with monster encounters, a variety of spells, dialog, and more.
 
+However, there was _plenty_ that we didn't get around to implementing. Be sure to check out [Joel's blog post](http://joelburget.com/healthy-hackathon/) for a better discussion of (existing) bugs and flaws, as well as the challenges we faced.
+
 {% anchor h3 %}Technology{% endanchor %}
 
-After settling on a browser-based game, we went all-in on [React](http://facebook.github.io/react/) (Khan Academy is one of the larger production users (see, e.g., [Perseus](https://github.com/Khan/perseus)), so we all had some experience with it) and built the entire game under the [Flux](http://facebook.github.io/react/docs/flux-overview.html) architecture. Flux was entirely new to me and very fun to learn (hackathons are always a great time to experiment, especially when they're not made 'competitive')--here's hoping I can use it again the near future.
+After settling on a browser-based game, we went all-in on [React](http://facebook.github.io/react/) (Khan Academy is one of the larger production users (see, e.g., [Perseus](https://github.com/Khan/perseus)), so we all had some experience with it) and built the entire game under the [Flux](http://facebook.github.io/react/docs/flux-overview.html) architecture. Flux was entirely new to me and very fun to learn (hackathons are always a great time to experiment, especially when they're not made 'competitive')—here's hoping I can use it again the near future.
 
-Personally, one of my more demoable contributions was the implementation of fun HTML5 Canvas-based effects to simulate snowfall, rainfall, fog, and spell casting (see below, or the embedded video above for the weather effects), the code for which can be found [here](https://github.com/Khan/KhanQuest/blob/master/src/sprites/animation.jsx).
+One of my more demoable contributions was the implementation of fun HTML5 Canvas-based effects to simulate snowfall, rainfall, fog, and spell casting (see below, or the embedded video above for the weather effects), the code for which can be found [here](https://github.com/Khan/KhanQuest/blob/master/src/sprites/animation.jsx).
 
 <img src="/~crmarsh/static/img/fire.gif" alt="Fire animation" class="center">
 
@@ -64,8 +70,11 @@ Beyond that, I also took care of a grab-bag of UI implementations (e.g., the spe
 
 {% anchor h2 %}Going Forward{% endanchor %}
 
-We'd love to get this game online, if only for the laughs. In the meantime, you'll have to settle for hilarious GIFs of early game renditions (or [cloning the repo](https://github.com/Khan/KAQuest)).
+As I mentioned, the game is now online [here](khan.github.io/KhanQuest/). It's still in the incredibly rough form we left it at the end of the hackathon, and in all likelihood, it'll stay that way. You'll encounter bugs when you play it; but hey, even the healthiest of hackathons inspires last-minute fixes and monkey-patching.
+
+Jokes aside, I consider this my best hackathon experience yet—one that I'll look back on very fondly. And amidst the [explanations of yak shaving](http://i.minus.com/ibaDjk7AeIcvxv.gif) and [extended metaphors for software development](https://www.youtube.com/watch?v=1IAXrxlDK6c), we pumped out some (reasonably) good code and a (reasonably) fun game. Three cheers for healthy hacking!
+
+_P.S.: In parting, I leave you with a hilarious GIF from an early rendition of the game._
 
 <img src="/~crmarsh/static/img/map-glitch.gif" alt="Map glitch" class="center">
 
-Jokes aside, I consider this my best hackathon experience yet--one that I'll look back on very fondly. And amidst the [explanations of yak shaving](http://i.minus.com/ibaDjk7AeIcvxv.gif) and [extended metaphors for software development](https://www.youtube.com/watch?v=1IAXrxlDK6c), we pumped out some (reasonably) good code and a (reasonably) fun game. Three cheers for healthy hacking!
