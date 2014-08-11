@@ -57,7 +57,7 @@
           <section>
             <div>
               {% for project in site.data.projects %}
-              <h3 class="item"><a class="implicit code_orange" href="{{ project.url }}">{{ project.name }}</a></h2>
+              <h3 class="item"><a class="implicit" style="color: grey" href="{{ project.url }}">{{ project.name }}</a></h2>
               <div style="margin-top:-10px">{{ project.description }}</div>
               {% endfor %}
             </div>
@@ -67,7 +67,7 @@
           <section>
             <div>
               {% for paper in site.data.papers %}
-              <h3 class="item"><a class="implicit code_orange" href="{{ paper.url }}">{{ paper.name }}</a></h2>
+              <h3 class="item"><a class="implicit" style="color: grey" href="{{ paper.url }}">{{ paper.name }}</a></h2>
               <div style="margin-top:-10px">{{ paper.description }}</div>
               {% endfor %}
             </div>
