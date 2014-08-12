@@ -14,7 +14,7 @@ For a recent side project, I wanted to render my React components on the server,
 Typical motivations for rendering on the server include:
 
 1. [Faster page loads](http://openmymind.net/2012/5/30/Client-Side-vs-Server-Side-Rendering/): by rendering on the server, you get to send down a complete webpage, cut out an HTTP request, etc.
-2. More reliable SEO: any crawler that navigates to your site will see a complete page filled with content, rather than an empty page that requires JavaScript execution.
+2. [More reliable SEO](http://googlewebmastercentral.blogspot.com/2007/11/spiders-view-of-web-20.html): any crawler that navigates to your site will see a complete page filled with content, rather than an empty page that requires JavaScript execution.
 
 (This isn't to say that SSR is strictly better than client-side rendering; it's just different.)
 
