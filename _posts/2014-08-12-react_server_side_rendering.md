@@ -120,18 +120,26 @@ A key phrase there: we need to render `Item` with the same props on the client a
     );
     ```
 
-2. _Passing the initial props down as part of the component_. For example, we could embed a `<script>` tag with `type="application/json"` at the top of our rendered `Item`, so that our `render` function would now look like:
+2. _Passing the initial props down in a `<script>` tag with `type="application/json"`_. Again, you could do this in your templating engine and read from the `<script>` tag (similar to the above); but it's also possible to pass it down as _part of the component_. Back to the `Item` example, our `render` function would now look like:
 
     ```
     render: function() {
+        var json = JSON.stringify(this.props);
+        var propStore = <script type="application/json"
+            id={propStoreID}
+            dangerouslySetInnerHTML={{ "{{__html: json" }}}}>
+        </script>;
+
         return <div onClick={this._increment}>
-            <script id="props" type="application/json">{this.props}</script>
+            {propStore}
             {this.state.count}
         </div>;
     }
     ```
 
-    This is the approach I've been using—I like that it packages all the React-related logic together, rather than mixing props into the templating step. To bolster the abstraction, I have an `SSRWrapper` React component that takes care of this step for me, so that I can just focus on writing vanilla components.
+    The `dangerouslySetInnerHTML` attribute is used to [avoid escaping issues](http://facebook.github.io/react/docs/jsx-gotchas.html#html-entities). It's a little messy, but not too bad.
+
+    The upside of this approach is that it packages all the React-related logic together, rather than mixing props into the templating step. I have an `SSRWrapper` React component that takes care of this step for me (and caches the JSONified props (given that they only need to be read once, on page load) to avoid excessive stringifying) so that I can just focus on writing vanilla components.
 
     Note: you'll still need to execute some sort of `<script>` tag with a `React.renderComponent` call on the client. I typically follow the example [here](https://github.com/andreypopp/react-quickstart/blob/master/client.js#L101), appending my JSX file with:
 
