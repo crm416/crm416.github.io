@@ -18,7 +18,7 @@ Typical motivations for rendering on the server include:
 
 (This isn't to say that SSR is strictly better than client-side rendering; it's just different.)
 
-SSR is totally doable with React; but a lot of the SSR-related resources out there seem to assume a fair amount of prior knowledge. I thought I'd share what I've learned.
+SSR is totally doable with React; but a lot of the SSR-related resources out there seem to assume prior knowledge. I thought I'd share what I've learned.
 
 ## The Basics
 
@@ -26,7 +26,7 @@ SSR is totally doable with React; but a lot of the SSR-related resources out the
 
 Let's start with the static case, in which the rendered components we send to the client won't need to re-render in any way.
 
-React provides a method, `renderComponentToStaticMarkup`, that takes a React component and returns its HTML markup as a string. This is super useful for server-side rendering, as you can simply send the client an HTML page with this string thrown into some sort of templating engine. For example, if you're using Handlebars, you can render your component to static markup and send it down in the `markup` variable as such:
+React provides a method, `renderComponentToStaticMarkup`, that takes a React component and returns its HTML markup as a string. This is super useful for server-side rendering, as you can simply pass the method output into a templating engine and send the client the resulting HTML page. For example, if you're using Handlebars, you can render your component to static markup and send it down in the `markup` variable as such:
 
 ```html
 <div>{{ "{{{ markup " }}}}}</div>
@@ -36,7 +36,7 @@ React provides a method, `renderComponentToStaticMarkup`, that takes a React com
 
 But it's rare that you really want your components to be static. Why's that? Static components can't respond to non-trivial user interaction, update `state`, re-render, etc. They're totally passive and, err, static.
 
-For React components to behave as you'd expect (with updates and re-renders), they need an actual react.js instance to be aware of their existence so as to handle event binding, manage `prop` and `state` changes, and reflect these changes in the DOM.
+For React components to behave as you'd expect (with updates and re-renders), they need an actual react.js instance to be aware of their existence so as to handle event binding, manage `prop` and `state` changes, and reflect these changes in the DOM. Without it, all you have is static, non-responsive markup.
 
 Thankfully, React provides a second method, `renderComponentToString`, that again returns a string of HTML markup, but this time enables our generated components to react to interactions on the client-side as necessary.
 
@@ -44,7 +44,7 @@ How so? **The key is to (ostensibly) re-render the component on the client as so
 
 ### An Example
 
-Let's say that we have a React component named `Item` that has one `prop` (called `initialCount`) and one piece of `state` (called `count`). The component initializes `count` with `initialCount` and increments it on-click.
+Let's say that we have a React component, `Item`, with one prop (called `initialCount`) and one piece of state (called `count`). The component initializes `count` with `initialCount` and increments it on-click. Here's a bare-bones version:
 
 ```
 var Item = React.createClass({
@@ -53,11 +53,11 @@ var Item = React.createClass({
             count: this.props.initialCount
         };
     },
-    
+
     _increment: function() {
         this.setState({ count: this.state.count + 1 });
     },
-    
+
     render: function() {
         return <div onClick={this._increment}>
             {this.state.count}
@@ -66,7 +66,7 @@ var Item = React.createClass({
 });
 ```
 
-We want to render this component on the server (for example's sake, I'll assume Express and Handlebars), which might look like:
+We want to render this component on the server, which might look like (for example's sake, I'll assume Express and Handlebars):
 
 ```js
 var React = require('react');
@@ -85,9 +85,9 @@ Then, in our template, we'd have:
 <div id="container">{{ "{{{ markup " }}}}}</div>
 ```
 
-If we stopped here, then on page load, we'd see the number '7'—but our component wouldn't update on-click. Why? As I mentioned, we haven't made our client-side React instance aware of the component, so it can't handle re-renders. In addition, since React handles the binding of events to components, our `onClick` handler won't be passed down in the static markup, and thus won't be triggered at all.
+If we stopped here, then on page load, we'd see the number '7'—but our component wouldn't update on-click. Why? As I mentioned, we haven't made our client-side React instance aware of the component, so it can't handle re-renders. But the problem comes even before an attempt to `setState`: since React handles the binding of events to components, our `onClick` handler won't be passed down in the static markup (take a look), and thus won't be triggered at all.
 
-To get this component under control, we'll need a call in the browser that looks something like this (assuming `React` is available as a global):
+To get this component under control, we'll need a call in the browser that looks something like this (assuming `React` and `Item` are available as globals):
 
 ```js
 var container = document.getElementById('container');
@@ -95,11 +95,11 @@ var component = Item({ initialCount: 7 });
 React.renderComponent(component, container);
 ```
 
-With that, we can click on our rendered component and the count will increment: events are bound, as they would be if we'd rendered client-side, and the DOM updates.
+With that, we can click on our rendered component and the count will increment: events are bound, as they would be if we'd rendered client-side, and the DOM updates to reflect our changes.
 
-The magic of it all: as long as we render `Item` with the _same props_ and into the _same node_ on both the client and server, **React won't actually re-render the component** (which would be less performant)—it's smart enough to realize that the rendered `Item` already exists in the DOM and simply note that it may need to be re-rendered in the future.
+The magic of it all: as long as we render `Item` with the _same props_ and into the _same node_ on both the client and server, **React won't actually re-render the component** (which would be less performant)—it's smart enough to realize that the rendered `Item` already exists in the DOM and simply note that it _may_ need to be re-rendered in the future.
 
-This is the best of both worlds: we get all the benefits of server-side rendering while maintaining truly reactive React components.
+This is the best of both worlds: **we get all the benefits of server-side rendering while maintaining truly reactive React components**.
 
 ### Syncing Props
 
@@ -125,22 +125,27 @@ A key phrase there: we need to render `Item` with the same props on the client a
     ```
     render: function() {
         return <div onClick={this._increment}>
-            <script type="application/json">{this.props}</script>
+            <script id="props" type="application/json">{this.props}</script>
             {this.state.count}
         </div>;
     }
     ```
-   
-    This is the approach I've been using; actually, I have an `SSRWrapper` React component that takes care of this step for me, so that I can abstract away any SSR-related concerns and just write vanilla components.
-   
+
+    This is the approach I've been using—I like that it packages all the React-related logic together, rather than mixing props into the templating step. To bolster the abstraction, I have an `SSRWrapper` React component that takes care of this step for me, so that I can just focus on writing vanilla components.
+
     Note: you'll still need to execute some sort of `<script>` tag with a `React.renderComponent` call on the client. I typically follow the example [here](https://github.com/andreypopp/react-quickstart/blob/master/client.js#L101), appending my JSX file with:
-   
+
     ```js
     if (typeof window !== 'undefined') {
-        // render into DOM node
+        var container = document.getElementById("container");
+        var props = JSON.parse(
+            document.getElementById("props").innerHTML
+        );
+        var component = Item(props);
+        React.renderComponent(component, container);
     }
     ```
-   
+
     Etc. Again, I put this logic in my `SSRWrapper` component.
 
 3. _Passing the initial props down through a `window`-level variable._ Relatively straightforward, given the explanations above.
@@ -157,14 +162,32 @@ render: function() {
     </div>;
 }
 ```
-    
-And on the server, we'd have to make `item.js` available as a bundle. I use the excellent [browserify-middleware](https://github.com/ForbesLindesay/browserify-middleware) and create a shared bundle for React, as well as an individual bundle for each of my React components. (Some of the snippets above assumed proper bundling had been provided.)
+
+And on the server, we'd have to make `item.js` available as a bundle. I use the excellent [browserify-middleware](https://github.com/ForbesLindesay/browserify-middleware), for which the Express-side logic might look like:
+
+```js
+var browserify = require('browserify-middleware');
+var reactify = require('reactify');
+browserify.settings('transform', ['reactify']);
+app.get('/bundles/item.js', browserify('./jsx/item.jsx'));
+```
+
+It's often useful to create a shared bundle for React, as well as an individual bundle for each of your React components, in which case you might modify the snippet above to include:
+
+```js
+...
+var shared = ['react'];
+router.get('/bundles/shared.js', browserify(shared));
+app.get('/bundles/item.js', browserify('./jsx/item.jsx', {
+    external: shared
+}));
+```
 
 ## How does it all work?
 
-Now that we have a good sense for _how_ to render server-side, it's worth stepping through some React source to understand _why_ it works this way.
+Now that we have a good sense for how to render server-side, it's worth stepping through some React source to understand _why_ it works this way.
 
-If you look at a React component that's been rendered on the server (i.e., with `renderComponentToString`), you'll notice that it has an unfamiliar attribute, `data-react-checksum`, which you won't have seen on client-side components. For example, after it's been passed down from the server, our `Item` component might look like:
+If you inspect a React component that's been rendered on the server (i.e., generated with `renderComponentToString`), you'll notice that it has an unfamiliar attribute, `data-react-checksum`, which you won't have seen on client-side components. For example, after it's been passed down from the server, our `Item` component might look like:
 
 ```html
 <div id="container">
@@ -223,7 +246,7 @@ A few things to keep in mind:
     ```html
     <div>{{ "{{{ markup " }}}}}</div>
     ```
-    
+
     As opposed to, e.g.:
 
     ```html
@@ -233,7 +256,7 @@ A few things to keep in mind:
     ```
 
     React is somewhat space-sensitive: if you opt for the latter and try to render your component into the outermost `<div>`, React will infer that the `firstChild` of the `<div>` is actually a newline character, rather than your rendered React component. As a result, it'll just completely re-render it. It's unclear to me whether or not this is the intended behavior. (Whitespace does funny things to the `firstChild` property; see [here](https://developer.mozilla.org/en-US/docs/Web/API/Node.firstChild).)
-- To avoid re-rendering, the markup generated by the client and server must be completely identical. That means, for example, that you can't pass down the initial props in a `<script>` tag _only_ on the server; otherwise, the checksums won't match up. As a rule of thumb, avoid any checks for `(typeof window !== 'undefined')` or whatnot when  writing any rendering-related code.
+- To avoid re-rendering, the markup generated by the client and server must be _completely_ identical. That means, for example, that you can't pass down the initial props in a `<script>` tag _only_ on the server; otherwise, the checksums won't match up. As a rule of thumb, avoid any checks for `(typeof window !== 'undefined')` or whatnot when  writing any rendering-related code.
 
 ## Resources
 
