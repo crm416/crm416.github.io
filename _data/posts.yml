@@ -1,5 +1,8 @@
 - year: 2014
   posts:
+    - name: Rendering React Components on the Server
+      url: ../react-ssr/
+
     - name: "Styling React Components: How to Escape Selector Hell (talk delivered @ Khan Academy)"
       url: ../static/pdf/Styling_React_Components.pdf
 
