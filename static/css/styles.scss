@@ -45,8 +45,13 @@ h1, h2, h3, h4, p {
 }
 
 li {
-    list-style:square;
     font-weight: 100;
+}
+
+ul {
+    li {
+        list-style: square;
+    }
 }
 
 p {
@@ -220,4 +225,10 @@ h2.category {
 
 h3.item {
   padding-top: 10px;
+}
+
+/* Synax highlighting voodoo. */
+.highlight .err {
+    color: black !important;
+    background-color: transparent !important;
 }

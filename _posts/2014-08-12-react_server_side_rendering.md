@@ -20,9 +20,9 @@ Typical motivations for rendering on the server include:
 
 SSR is totally doable with React; but a lot of the SSR-related resources out there seem to assume prior knowledge. I thought I'd share what I've learned.
 
-## The Basics
+{% anchor h2 %}The Basics{% endanchor %}
 
-### Static markup
+{% anchor h3 %}Static markup{% endanchor %}
 
 Let's start with the static case, in which the rendered components we send to the client won't need to re-render in any way.
 
@@ -32,7 +32,7 @@ React provides a method, `renderComponentToStaticMarkup`, that takes a React com
 <div>{{ "{{{ markup " }}}}}</div>
 ```
 
-### Reactive components
+{% anchor h3 %}Reactive components{% endanchor %}
 
 But it's rare that you really want your components to be static. Why's that? Static components can't respond to non-trivial user interaction, update `state`, re-render, etc. They're totally passive and, err, static.
 
@@ -42,11 +42,11 @@ Thankfully, React provides a second method, `renderComponentToString`, that agai
 
 How so? **The key is to (ostensibly) re-render the component on the client as soon as the page has loaded**. Bear with me.
 
-### An Example
+{% anchor h3 %}An Example{% endanchor %}
 
 Let's say that we have a React component, `Item`, with one prop (called `initialCount`) and one piece of state (called `count`). The component initializes `count` with `initialCount` and increments it on-click. Here's a bare-bones version:
 
-```
+```js
 var Item = React.createClass({
     getInitialState: function() {
         return {
@@ -101,11 +101,13 @@ The magic of it all: as long as we render `Item` with the _same props_ and into 
 
 This is the best of both worlds: **we get all the benefits of server-side rendering while maintaining truly reactive React components**.
 
-### Syncing Props
+{% anchor h3 %}Syncing Props{% endanchor %}
 
 A key phrase there: we need to render `Item` with the same props on the client and server (as evidenced by the last code snippet, above). That's a little frustrating, but not terribly difficult to do. A few viable approaches include:
 
-1. _Passing the initial props down through templating_. There's a good example of this behavior in Michael Hart's [react-server-example](https://github.com/mhart/react-server-example) repo, but here's the basic idea:
+1. _Passing the initial props down through templating_.
+
+    There's a good example of this behavior in Michael Hart's [react-server-example](https://github.com/mhart/react-server-example) repo, but here's the basic idea:
 
     ```js
     var props = { initialCount: 7 };
@@ -114,17 +116,47 @@ A key phrase there: we need to render `Item` with the same props on the client a
         '<div id="container">' + markup + '</div>' +
         '<script>
             var container = document.getElementById("container");
-            var component = Item(' + props + ');
+            var component = Item(' + JSON.stringify(props) + ');
             React.renderComponent(component, container);
          </script>'
     );
     ```
 
-2. _Passing the initial props down in a `<script>` tag with `type="application/json"`_. Again, you could do this in your templating engine and read from the `<script>` tag (similar to the above); but it's also possible to pass it down as _part of the component_. Back to the `Item` example, our `render` function would now look like:
+    Note: For each of these examples, to avoid XSS attacks (as per [Ben Alpert's blog post](http://benalpert.com/2012/08/03/preventing-xss-json.html)), you should use a `safeStringify` function, rather than `JSON.stringify`. There's a JavaScript implementation [here](https://github.com/mhart/react-server-example/blob/master/server.js#L96).
 
+2. _Passing the initial props down in a `<script>` tag with `type="application/json"`_.
+
+    Again, the standard approach would be to handle this step with your templating engine:
+
+    ```html
+    <div id="container">{{ "{{{ markup " }}}}}</div>
+    <script id="props" type="application/json">
+        {{ "{{{ jsonifiedProps " }}}}}
+    </script>
+    <script>
+        var container = document.getElementById("container");
+        var props = JSON.parse(document.getElementById("props").innerHTML);
+        React.renderComponent(Item(props), container);
+    </script>
     ```
+
+    Given that the second `<script>` tag is now totally independent of anything we passed in to our templating engine, we could follow Andrey Popp's [example](https://github.com/andreypopp/react-quickstart/blob/master/client.js#L101) by removing the second `<script>` tag and appending our `item.jsx` file with:
+
+    ```js
+    if (typeof window !== 'undefined') {
+        var container = document.getElementById("container");
+        var props = JSON.parse(document.getElementById("props").innerHTML);
+        React.renderComponent(Item(props), container);
+    }
+    ```
+
+3. _Passing the initial props down in a `<script>` tag on the component itself_.
+
+    This is a twist on approach \#2 that, while somewhat unorthdox, has its merits. Back to the `Item` example, our `render` function could be written as follows:
+
+    ```js
     render: function() {
-        var json = JSON.stringify(this.props);
+        var json = safeStringify(this.props);
         var propStore = <script type="application/json"
             id={propStoreID}
             dangerouslySetInnerHTML={{ "{{__html: json" }}}}>
@@ -139,30 +171,19 @@ A key phrase there: we need to render `Item` with the same props on the client a
 
     The `dangerouslySetInnerHTML` attribute is used to [avoid escaping issues](http://facebook.github.io/react/docs/jsx-gotchas.html#html-entities). It's a little messy, but not too bad.
 
-    The upside of this approach is that it packages all the React-related logic together, rather than mixing props into the templating step. I have an `SSRWrapper` React component that takes care of this step for me (and caches the JSONified props (given that they only need to be read once, on page load) to avoid excessive stringifying) so that I can just focus on writing vanilla components.
+    The upside of this approach: it avoids mixing `props` into the templating step. Further, if you move the client-side `React.renderComponent` call into your JSX file by following the `if (typeof window !== 'undefined')` pattern, you can package _all_ of your server-side rendering logic within React, which is a big plus.
 
-    Note: you'll still need to execute some sort of `<script>` tag with a `React.renderComponent` call on the client. I typically follow the example [here](https://github.com/andreypopp/react-quickstart/blob/master/client.js#L101), appending my JSX file with:
+    As an aside: I use an `SSRWrapper` React component that takes care of both the `<script type="application/json">` injection and client-side `React.renderComponent` call, allowing me to write carefree components.
 
-    ```js
-    if (typeof window !== 'undefined') {
-        var container = document.getElementById("container");
-        var props = JSON.parse(
-            document.getElementById("props").innerHTML
-        );
-        var component = Item(props);
-        React.renderComponent(component, container);
-    }
-    ```
+4. _Passing the initial props down as a `window`-level variable._ Relatively straightforward, given the explanations above.
 
-    Etc. Again, I put this logic in my `SSRWrapper` component.
+{% anchor h3 %}Browserifying{% endanchor %}
 
-3. _Passing the initial props down through a `window`-level variable._ Relatively straightforward, given the explanations above.
+One other thing: of course, your client page will need to have access to the actual JSX files that make up your React components (along with React itself). This is typically done by creating a Browserify (or Webpack) bundle and adding a `<script>` tag to your React component that loads said bundle.
 
-### Browserifying
+So, in addition to any changes we made in the previous section, we might modify our `render` to look like:
 
-One other thing: of course, your client page will need to have access to the actual JSX files that make up your React components (along with React itself). This is typically done by creating a Browserify (or Webpack) bundle and adding a `<script>` tag to your React component. For example, we might again modify our `render` to look like:
-
-```
+```js
 render: function() {
     return <div onClick={this._increment}>
         <script src="/bundles/item.js"></script>
@@ -171,7 +192,9 @@ render: function() {
 }
 ```
 
-And on the server, we'd have to make `item.js` available as a bundle. I use the excellent [browserify-middleware](https://github.com/ForbesLindesay/browserify-middleware), for which the Express-side logic might look like:
+(We could also put this `<script>` tag elsewhere on the page through templating—whatever's easiest. Once again, I use my `SSRWrapper` component to abstract this step away.)
+
+On the server, we have to make `item.js` available as a bundle. I use the excellent [browserify-middleware](https://github.com/ForbesLindesay/browserify-middleware), for which the Express-side logic might look like:
 
 ```js
 var browserify = require('browserify-middleware');
@@ -191,7 +214,7 @@ app.get('/bundles/item.js', browserify('./jsx/item.jsx', {
 }));
 ```
 
-## How does it all work?
+{% anchor h2 %}How does it all work?{% endanchor %}
 
 Now that we have a good sense for how to render server-side, it's worth stepping through some React source to understand _why_ it works this way.
 
@@ -244,11 +267,13 @@ So, what's happening here is actually quite simple:
 
 For example, if we render `Item({ initialCount: 5 })` on the server, it'll turn it into HTML markup, calculate a checksum, and append it to the outermost DOM node. Then, when we call `React.renderComponent(Item({ initialCount: 5 }), container)` on the client, it checks if the markup generated by `Item({ initialCount: 5 })` matches the checksum (which it does) and simply returns (rather than re-rendering).
 
-## Gotchas
+{% anchor h2 %}Gotchas{% endanchor %}
 
 A few things to keep in mind:
 
-- If you're using Handlebars, note that you'll need triple `{` around your markup, otherwise it won't interpret it as raw HTML (see "HTML Escaping" in [the docs](http://handlebarsjs.com/)).
+- When rendering on the server, `getDefaultProps`, `getInitialState`, and `componentWillMount` are the only React lifecycle methods that get run (see, e.g., the note on `componentDidMount` in the [docs](http://facebook.github.io/react/docs/component-specs.html#mounting-componentdidmount)). Be aware!
+
+- If you're using Handlebars, you'll need triple `{` around your markup, otherwise it won't be interpreted as raw HTML (see "HTML Escaping" in the [docs](http://handlebarsjs.com/)).
 - Again, if you're using Handlebars, be sure to do:
 
     ```html
@@ -263,14 +288,16 @@ A few things to keep in mind:
     </div>
     ```
 
-    React is somewhat space-sensitive: if you opt for the latter and try to render your component into the outermost `<div>`, React will infer that the `firstChild` of the `<div>` is actually a newline character, rather than your rendered React component. As a result, it'll just completely re-render it. It's unclear to me whether or not this is the intended behavior. (Whitespace does funny things to the `firstChild` property; see [here](https://developer.mozilla.org/en-US/docs/Web/API/Node.firstChild).)
-- To avoid re-rendering, the markup generated by the client and server must be _completely_ identical. That means, for example, that you can't pass down the initial props in a `<script>` tag _only_ on the server; otherwise, the checksums won't match up. As a rule of thumb, avoid any checks for `(typeof window !== 'undefined')` or whatnot when  writing any rendering-related code.
+    React is somewhat space-sensitive: if you opt for the latter and try to render your component into the outermost `<div>`, React will infer that the `firstChild` of the `<div>` is actually a [newline character](https://developer.mozilla.org/en-US/docs/Web/API/Node.firstChild), rather than your rendered component. As a result, it'll completely re-render it. This is a [known issue](https://github.com/facebook/react/issues/996), but the fix isn't live yet.
+- To avoid re-rendering, the markup generated by the client and server must be _completely_ identical. That means, for example, that you can't pass down the initial props in a `<script>` tag _only_ on the server; otherwise, the checksums won't match up. As a rule of thumb, avoid any checks for `(typeof window !== 'undefined')` or whatnot when writing rendering-related code.
 
-## Resources
+{% anchor h2 %}Resources & Acknowledgements{% endanchor %}
 
-Finally, some links I found helpful:
+Here are some resources I found helpful (and referenced above):
 
 - Andrey Popp's [ReactAsync](https://github.com/andreypopp/react-async/tree/master/example) examples.
 - Andrey Popp's [react-quickstart](https://github.com/andreypopp/react-quickstart) guide.
 - Michael Hart's [react-server-example](https://github.com/mhart/react-server-example) repo.
 - Pete Hunt's [react-server-rendering-example](https://github.com/petehunt/react-server-rendering-example) repo.
+
+Finally, thanks to [Ben Alpert](http://benalpert.com/) ([@soprano](https://twitter.com/soprano)) for his feedback on a draft of this post.
