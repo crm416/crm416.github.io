@@ -1,5 +1,8 @@
 - year: 2014
   posts:
+    - name: Speeding Up SVGs with CSS Transforms at Khan Academy
+      url: ../svg-performance/
+
     - name: Rendering React Components on the Server
       url: ../react-ssr/
 
