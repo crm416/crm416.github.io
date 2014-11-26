@@ -52,14 +52,14 @@
         <div class="span9 offset1" style="padding-left:20px">
         <!-- using the split filter -->
         {% for post in site.posts limit:10 %}
+          {% if post.content contains '<!--break-->' %}
           <div class="post-preview">
             {{ post.content | split:'<!--break-->' | first }}
-            {% if post.content contains '<!--break-->' %}
-              <a href="{{ post.url }}">read more</a>
-            {% endif %}
+            <a href="{{ post.url }}">Read on.</a>
             <p class="date">Posted on {{ post.date | date: "%B %d, %Y" }}.<p>
           </div>
           <hr>
+          {% endif %}
         {% endfor %}
         </div>
       </div>

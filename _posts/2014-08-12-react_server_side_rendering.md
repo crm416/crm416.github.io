@@ -20,6 +20,8 @@ Typical motivations for rendering on the server include:
 
 SSR is totally doable with React; but a lot of the SSR-related resources out there seem to assume prior knowledge. I thought I'd share what I've learned.
 
+<!--break-->
+
 {% anchor h2 %}The Basics{% endanchor %}
 
 {% anchor h3 %}Static markup{% endanchor %}

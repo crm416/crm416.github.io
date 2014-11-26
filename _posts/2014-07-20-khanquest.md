@@ -11,6 +11,8 @@ Thus marks the end of the Third Annual "Healthy Hackathon", Khan Academy's weeke
 
 <i>P.S.: If you hate words and just want to play KhanQuest, click <a href="http://khan.github.io/KhanQuest/" target="_blank">here</a>.</i>
 
+<!--break-->
+
 {% anchor h2 %}Aside: Hackathons Can Be Healthy?{% endanchor %}
 
 What separates the "Healthy Hackathon" from your typical hackathon is, well, everything about it. I'm not a big fan of the "competitive" hackathon, where hundreds of hackers stay up all night drinking Red Bull, racing to slap together the best crowd pleaser and "win" (see: the [Cash-omatic](http://greylocku.com/hackfest/#prizes)). But I digress!
