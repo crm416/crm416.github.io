@@ -94,7 +94,6 @@ a {
         &.implicit {color:$codeblue !important};
         &.blank {color:inherit};
     }
-
 }
 
 a.anchor-wrap {
@@ -225,6 +224,19 @@ h2.category {
 
 h3.item {
   padding-top: 10px;
+}
+
+div.read-more {
+    text-align: center;
+
+    a {
+        border: solid 1px $codeblue;
+        padding: 2px;
+    }
+
+    a:hover {
+        border: solid 1px $codeorange;
+    }
 }
 
 /* Synax highlighting voodoo. */
