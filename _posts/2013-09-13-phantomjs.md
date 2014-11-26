@@ -18,6 +18,8 @@ Once I got past the initial difficulties, however, PhantomJS was an impressive t
 
 In this post, I'd like to describe some of the common "gotchas" that I've found associated with PhantomJS and walk through their solutions. (I call them "common" due to: 1. my own experience, and 2. finding similar questions/issues documented on StackOverflow.)
 
+<!--break-->
+
 _Note: that PhantomJS is often used in tandem with [CasperJS](http://casperjs.org); it's possible that some of what follows is made easier with Casper, namely, navigating webpages. But I think these gotchas are still valid, even in the face of Casper._
 
 {% anchor h2 %}Code Context{% endanchor %}

@@ -11,6 +11,8 @@ OCaml provides a nice [library for multi-threading](http://caml.inria.fr/pub/doc
 
 On the side, I've been working on an alternative to the small Futures module we used in class. Futures are very similar to threads but safer and easier to use. The interface itself is composed of a **create** method, which takes as argument an expression to compute and performs said computation on a new thread; as well as a **force** method, which blocks the main thread until the Future has finished its computation.
 
+<!--break-->
+
 {% anchor h2 %}Processes{% endanchor %}
 
 This alternative aims to operate at a lower level than would typically be done in OCaml and circumvent the language's lack of true multi-threading. To do so, it runs the desired computation on a separate UNIX process using some of [these features](http://ocamlunix.forge.ocamlcore.org). **Rather than trying to run two programs from within the same process, then, it seeks to run a single program, in two separate processes.**

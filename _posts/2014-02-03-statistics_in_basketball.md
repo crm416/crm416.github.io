@@ -15,6 +15,8 @@ His thesis revolves around _The Secret_: that is, that the key to basketball isn
 
 That said, what really got me thinking in TBOB was the role of _statistics_ in basketball.
 
+<!--break-->
+
 {% anchor h2 %}The Statistical Revolution{% endanchor %}
 
 With the rise of [Bill James's](http://en.wikipedia.org/wiki/Bill_James) [Sabermetrics](http://en.wikipedia.org/wiki/Sabermetrics), statistics have featured an increasingly important role in baseball. By attempting to isolate a player's performance from that of his teammates, he could be evaluated like never before. Obscure new metrics like [WAR](http://en.wikipedia.org/wiki/Wins_above_replacement) and [DIPS](http://en.wikipedia.org/wiki/Defense_independent_pitching_statistics) emerged, allowing us to put our favorite players in vacuums and line them up for comparison. As Simmons puts it:

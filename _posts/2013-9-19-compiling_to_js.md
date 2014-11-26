@@ -9,6 +9,8 @@ permalink: compiling_to_js
 
 It seems like all the cool languages these days are compiling to JavaScript. (_I joke, but replace 'cool' with 'relevant' and you might have a reasonable heuristic for evaluating the modernity of a programming language._) [Jeremy Ashkenas](https://github.com/jashkenas) (CoffeeScript creator) has a great [list](https://github.com/jashkenas/coffee-script/wiki/List-of-languages-that-compile-to-JS) of what seems like hundreds of languages, each of which helps prove my point.
 
+<!--break-->
+
 Why is this all-the-rage, you ask?
 
 Firstly, in my opinion, when we say that a language compiles to JavaScript, we could really be talking about two different approaches:

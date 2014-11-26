@@ -11,7 +11,11 @@ Last Spring, I did a semester of independent work (IW) with professor [David Wal
 
 I worked hard, and I learned a ton—not just about SDNs, but about the research process in general.
 
-[Every COS major](http://iw.cs.princeton.edu/11-12/#Important_Information_for_Everyone) will do IW at some point. The COS Department has a decent guide [here](http://iw.cs.princeton.edu/11-12/), but after comparing and contrasting my experience with those of my friends, I wanted to jot down some notes about what worked and what didn't. Without further ado:
+[Every COS major](http://iw.cs.princeton.edu/11-12/#Important_Information_for_Everyone) will do IW at some point. The COS Department has a decent guide [here](http://iw.cs.princeton.edu/11-12/), but after comparing and contrasting my experience with those of my friends, I wanted to jot down some notes about what worked and what didn't.
+
+<!--break-->
+
+Without further ado:
 
 {% anchor h2 %}Optimize for the advisor, rather than the topic{% endanchor %}
 

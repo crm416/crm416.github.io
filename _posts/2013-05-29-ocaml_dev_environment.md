@@ -13,6 +13,8 @@ But OCaml isn’t _that_ widely used. And as a result, there aren’t very many 
 
 In this post, I’ll provide a couple of choices for setting up such an environment when developing on a Mac.
 
+<!--break-->
+
 {% anchor h2 %}Getting the OCaml Source Code{% endanchor %}
 
 To start, there are a few ways to get the actual source code for the OCaml language.

@@ -11,6 +11,8 @@ permalink: wikipedia
 
 I needed to parse some information from Wikipedia programatically and present it in a human-readable format, i.e., for clients. I found that a bunch of other people had similar issues (e.g., [here](http://stackoverflow.com/questions/120061/fetch-a-wikipedia-article-with-python?lq=1) and [here](http://stackoverflow.com/questions/4452102/how-to-get-plain-text-out-of-wikipedia?rq=1)), so I've [open-sourced my solution](https://github.com/crm416/quizzler/blob/master/src/wiki.py).
 
+<!--break-->
+
 _Note: this module is currently housed within a larger project; I'll be writing more on that later._
 
 {% anchor h2 %}How It Works{% endanchor %}

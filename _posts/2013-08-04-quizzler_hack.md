@@ -11,6 +11,8 @@ permalink: hack
 
 After playing a number of poorly-made iPhone quiz games, I decided to roll my own. But I didn't want to spend time creating my own corpus of questions. Thus, Quizzler was born, an attempt to build an iPhone quiz app that generates its own questions.
 
+<!--break-->
+
 <img src="../static/img/hack_home.png" alt="Quizzler Homescreen" class="center" width="315">
 
 _Credit to [Karen Dessire](http://dribbble.com/hrtislove) for the [Playing With Science](http://dribbble.com/shots/921928-Playing-With-Science?list=users) icons on the home screen!_

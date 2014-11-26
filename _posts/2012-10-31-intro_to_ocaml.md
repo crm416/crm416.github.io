@@ -11,6 +11,8 @@ permalink: intro_to_ocaml
 
 I’ve been learning to program in OCaml for one of my courses this semester ([COS 326: Functional Programming](http://www.cs.princeton.edu/~dpw/courses/cos326-12/info.php "COS 326")) and I can't remember the last time I was this excited about anything CS-related. Learning to program functionally is like learning to program all over again.
 
+<!--break-->
+
 In this post, I’m going to touch on some of the features that make OCaml beautiful to me. In particular, I’m going to contrast these features with their Java counterparts—I think most of the observations made will generalize to the broader question of functional vis-à-vis objective-oriented/imperative, but I’m sure there are a few outliers given any specific language. Also note that I’m sticking to the functional subset of OCaml (the language incorporates some objective-oriented and imperative features, but you can get by without using them at all if you so desire).
 
 {% anchor h2 %}
