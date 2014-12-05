@@ -10,7 +10,7 @@
 
           <div class="span9 offset1" style="padding-left:20px">
           {{ content }}
-          <p class="date">Posted on {{ page.date | date: "%B %d, %Y" }}.<p>
+          <p class="date">Posted on {{ page.date | date: "%B %-d, %Y" }}.<p>
           <br>
           {% include rss.html %}
         </div>
