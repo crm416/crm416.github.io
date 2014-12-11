@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <meta name="description" content="Charlie Marsh is a programmer and student at Princeton University with major interests in functional programming and machine learning.">
+  <meta name="viewport" content="width=device-width">
+  <title>First Thoughts on OCaml | Charlie Marsh</title>
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans">
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Source+Code+Pro">
+  <link href="/static/css/bootstrap.css" rel="stylesheet" type="text/css" />
+  <link href="/static/css/sprites.css" rel="stylesheet" type="text/css" />
+  <link href="/static/css/styles.css" rel="stylesheet" type="text/css" />
+  <link href="/static/css/syntax.css" rel="stylesheet" type="text/css" />
+  <link href="https://plus.google.com/u/0/100601164815113053596/" rel='author'>
+  <script type="text/javascript">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-36552582-2', 'princeton.edu');
+    ga('send', 'pageview');
+  </script>
+</head>
+
+  <body class="index">
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span2 hidden-phone"></div>
+        <div class="span2 hidden-phone" style="position:fixed">
+          <h1 style="font-size:50px">
+  <a class="blank" href="/">
+    Charlie<br>Marsh
+  </a>
+</h1>
+<p>
+  <a class="implicit" href="/">Home</a> &sdot; <a class="implicit" href="/static/pdf/Charles_Marsh_CV.pdf">CV</a>&sdot; <a class="implicit" href="/about/">About</a>
+</p>
+<h2>
+  Programmer,<br>student.
+</h2>
+<p>I'm into functional<br>programming,<br>machine learning,<br> and other fun stuff.<p>
+<p>Find me on:</p>
+<a href="mailto:crmarsh@princeton.edu"><img class="icon" src="/static/img/email.png"></a>
+<a href="http://www.github.com/crm416"><img class="icon" src="/static/img/github.png"></a>
+<a href="http://stackoverflow.com/users/1450892/charles-marsh"><img class="icon" src="/static/img/stackoverflow.png"></a>
+<a href="https://www.twitter.com/crm416"><img class="icon" src="/static/img/twitter.png"></a>
+</div>
+<div class="span2 visible-phone">
+  <div>
+    <p style="font-size:25px"><a class="blank" href="/">Charlie Marsh</a>  <div style="margin-top:-10px"><code class="custom"><span class="code_red">type</span> <span class="code_blue">blog</span></code></div>
+  </div>
+  <hr />
+</div>
+
+          <div class="span9 offset1" style="padding-left:20px">
+          <h1>First Thoughts on OCaml</h1>
+
+<p style="color:rgb(130,130,130)">N.B.: I wrote this post a few weeks after first using OCaml. Before that, 90% of my programing had been in Java. Looking back on these notes, perhaps a more accurate title would be "First Thoughts on a Functional Language After Only Knowing OOP", or something along those lines. But for posterity, I'll leave it as-is.</p>
+
+<p>I’ve been learning to program in OCaml for one of my courses this semester (<a href="http://www.cs.princeton.edu/%7Edpw/courses/cos326-12/info.php" title="COS 326">COS 326: Functional Programming</a>) and I can&#39;t remember the last time I was this excited about anything CS-related. Learning to program functionally is like learning to program all over again.</p>
+
+<!--break-->
+
+<p>In this post, I’m going to touch on some of the features that make OCaml beautiful to me. In particular, I’m going to contrast these features with their Java counterparts—I think most of the observations made will generalize to the broader question of functional vis-à-vis objective-oriented/imperative, but I’m sure there are a few outliers given any specific language. Also note that I’m sticking to the functional subset of OCaml (the language incorporates some objective-oriented and imperative features, but you can get by without using them at all if you so desire).</p>
+
+<p><h2  id='-Type-definitions'>Type definitions<a class='anchor-wrap' href="#-Type-definitions" title="Permalink to this headline">¶</a></h2 ></p>
+
+<p>OCaml makes it unbelievably easy to define new types. As a simple example, say we&#39;re making a phone book and we need to define a type for entries in said book. For each entry, we&#39;d want a <em>first name</em>, a <em>last name</em>, and a <em>phone number</em>. For demonstration&#39;s sake, lets say we also want an <em>age</em>. All of this would be pretty straightforward in OCaml:</p>
+
+<div class="highlight"><pre><code class="language-ocaml" data-lang="ocaml"><span class="k">type</span> <span class="n">first_name</span> <span class="o">=</span> <span class="kt">string</span>
+<span class="k">type</span> <span class="n">last_name</span> <span class="o">=</span> <span class="kt">string</span>
+<span class="k">type</span> <span class="n">full_name</span> <span class="o">=</span> <span class="n">first_name</span> <span class="o">*</span> <span class="n">last_name</span>
+<span class="k">type</span> <span class="n">age</span> <span class="o">=</span> <span class="kt">int</span>
+<span class="k">type</span> <span class="n">phone_number</span> <span class="o">=</span> <span class="kt">string</span>
+<span class="k">type</span> <span class="n">entry</span> <span class="o">=</span> <span class="n">full_name</span> <span class="o">*</span> <span class="n">age</span> <span class="o">*</span> <span class="n">phone_number</span></code></pre></div>
+
+<p>The &#39;*&#39; operator allows us to create tuples. So &#39;int * int&#39; indicates a tuple of two integers. Also note that we can use our types when defining types later on (e.g., &#39;full_name = first_name * last_name&#39;).</p>
+
+<p>Most of what’s happening here can be read out-loud: a &#39;first_name&#39; is just a string; a &#39;name&#39; is just a first name and a last name; an &#39;age&#39; is just an integer; and a phone book entry just brings these things together. Brilliant.</p>
+
+<p>As an example from one of my <a href="https://github.com/crm416/OCaml-SAT-Solvers" title="SAT Solvers">recent projects</a>, what about the construction of a module to solve <a href="http://en.wikipedia.org/wiki/Boolean_satisfiability_problem">SAT problems</a> using statements in <a href="http://en.wikipedia.org/wiki/Conjunctive_normal_form">conjunctive normal form</a>. In Java, you would need to create a class ‘clause’, which has a private class ‘literal’, which might have a private class ‘symbol’—oh, and then you’d need to create a class CNF which has, as one of its fields, an array of clauses. I can see this boiling down to roughly 30 lines of code just for outlining your type definitions. In OCaml, we can cover all of this ground with:</p>
+
+<div class="highlight"><pre><code class="language-ocaml" data-lang="ocaml"><span class="k">type</span> <span class="n">symbol</span> <span class="o">=</span> <span class="kt">string</span>
+<span class="k">type</span> <span class="n">literal</span> <span class="o">=</span> <span class="n">symbol</span> <span class="o">*</span> <span class="kt">bool</span>
+<span class="k">type</span> <span class="n">clause</span> <span class="o">=</span> <span class="n">literal</span> <span class="kt">list</span>
+<span class="k">type</span> <span class="n">cnf</span> <span class="o">=</span> <span class="n">clause</span> <span class="kt">list</span></code></pre></div>
+
+<p>Again: easy to follow.</p>
+
+<p>Better yet, we can define types recursively. This lets us <strong>can define a binary tree in one line of code</strong>:</p>
+
+<!--?prettify lang=ml?-->
+
+<div class="highlight"><pre><code class="language-ocaml" data-lang="ocaml"><span class="k">type</span> <span class="n">tree</span> <span class="o">=</span> <span class="nc">Leaf</span> <span class="o">|</span> <span class="nc">Node</span> <span class="k">of</span> <span class="kt">int</span> <span class="o">*</span> <span class="n">tree</span> <span class="o">*</span> <span class="n">tree</span></code></pre></div>
+
+<p>This is saying that a tree is either a leaf, or a node with some value and two subtrees. That is the entire definition. Again, brilliant.</p>
+
+<p><h2  id='Generics'>Generics<a class='anchor-wrap' href="#Generics" title="Permalink to this headline">¶</a></h2 ></p>
+
+<p>We can make our tree generic with:</p>
+
+<div class="highlight"><pre><code class="language-ocaml" data-lang="ocaml"><span class="k">type</span> <span class="k">&#39;</span><span class="n">a</span> <span class="n">tree</span> <span class="o">=</span> <span class="nc">Leaf</span> <span class="o">|</span> <span class="nc">Node</span> <span class="k">of</span> <span class="k">&#39;</span><span class="n">a</span> <span class="o">*</span> <span class="k">&#39;</span><span class="n">a</span> <span class="n">tree</span> <span class="o">*</span> <span class="k">&#39;</span><span class="n">a</span> <span class="n">tree</span></code></pre></div>
+
+<p>Think about how much time would be spent in Java handling the Integer or Object wrapper classes—all of that is ignored with the ‘a semantic in OCaml, which lets you fill in the type later (the type checker will still detect type mismatches! E.g., if you attempt to add a char tree as a subtree of an int tree, you will get a compile-time error). </p>
+
+<p>The handling of generic types in OCaml really couldn’t be easier.</p>
+
+<p><h2  id='Option-types'>Option types<a class='anchor-wrap' href="#Option-types" title="Permalink to this headline">¶</a></h2 ></p>
+
+<p>OCaml also provides a framework for handling what in Java might be called the Null case through its option types. By specifying a variable as
+    type ‘a option
+(e.g., <code>int option</code>), that variable can then either take on the form <code>None</code> or <code>Some &#39;a</code>.</p>
+
+<p>For example, if x is of type <code>int option</code>, then x can either be <code>None</code> or <code>Some int</code> (e.g., <code>Some 12</code>, <code>Some -1</code>, <code>Some 0</code>). This becomes very useful, very quickly: think about functions in which you may want to return nothing (due to some bad input) but would prefer not to throw an exception. With the option type, we’re able to avoid all the extreme dangers that you see so often in C regarding null pointers and the general disruption that null values can cause.</p>
+
+<p><h2  id='The-Thought-Process'>The Thought Process<a class='anchor-wrap' href="#The-Thought-Process" title="Permalink to this headline">¶</a></h2 ></p>
+
+<p>An example that really instilled in me an appreciation for OCaml came when attempting to check whether two lists are of equal length. The function looks like this: </p>
+
+<div class="highlight"><pre><code class="language-ocaml" data-lang="ocaml"><span class="k">let</span> <span class="n">equal_length</span> <span class="n">l1</span> <span class="n">l2</span> <span class="o">:</span> <span class="kt">bool</span> <span class="o">=</span>
+  <span class="k">match</span> <span class="o">(</span><span class="n">l1</span><span class="o">,</span> <span class="n">l2</span><span class="o">)</span> <span class="k">with</span>
+    <span class="o">(</span><span class="bp">[]</span><span class="o">,</span> <span class="bp">[]</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="bp">true</span>
+  <span class="o">|</span> <span class="o">(</span><span class="bp">[]</span><span class="o">,</span> <span class="o">_)</span> <span class="o">-&gt;</span> <span class="bp">false</span>
+  <span class="o">|</span> <span class="o">(_,</span> <span class="bp">[]</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="bp">false</span>
+  <span class="o">|</span> <span class="o">(_::</span><span class="n">tl1</span><span class="o">,</span> <span class="o">_::</span><span class="n">tl2</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">equal_length</span> <span class="n">tl1</span> <span class="n">tl2</span></code></pre></div>
+
+<p>The semantics can be ignored, but the basic premise is that we continue to pull one item at a time off the two lists until they are either both empty (in which case the lengths must be equal) or one is empty and the other is not (in which case the lengths must not be equal).</p>
+
+<p>To me, this was a great example of how OCaml trains programmers to think both deeply and recursively: here, we established an invariant (“we will take one item at a time off both lists”), and from that we were able to reach conclusions given the structure of the resulting lists.</p>
+
+<p>OCaml is constantly training you to think recursively, like with the above. I can’t recall a single instance in which I’ve used a for-loop; instead, OCaml provides you with an awesome framework for exercising induction—indeed, in most cases, you’ll recur on the naturally recursive data structures that OCaml provides you with. For example, consider summing a tree of integers using the Tree definition above.</p>
+
+<div class="highlight"><pre><code class="language-ocaml" data-lang="ocaml"><span class="k">let</span> <span class="n">sum</span> <span class="n">tree</span> <span class="o">=</span>
+  <span class="k">match</span> <span class="n">tree</span> <span class="k">with</span>
+    <span class="nc">Leaf</span> <span class="o">-&gt;</span> <span class="mi">0</span>
+  <span class="o">|</span> <span class="o">(</span><span class="k">value</span><span class="o">,</span> <span class="n">left</span><span class="o">,</span> <span class="n">right</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="k">value</span> <span class="o">+</span> <span class="n">sum</span> <span class="n">left</span> <span class="o">+</span> <span class="n">sum</span> <span class="n">right</span></code></pre></div>
+
+<p>Here, we’re taking the sum of a node and adding it to the sum of all nodes in each of the node’s two subtrees. Recursion is awesome.</p>
+
+<p><h2  id='Conclusion'>Conclusion<a class='anchor-wrap' href="#Conclusion" title="Permalink to this headline">¶</a></h2 ></p>
+
+<p>This post ignores a lot of the best or most powerful features of OCaml, but it’s dragged on a little long, so I’ll stop here. For those interested, check out: proving program correctness (according to my professor: conquerable by college students in OCaml, but “still the subject of current research” in Java), currying functions, and pattern matching.</p>
+
+          <p class="date">Posted on October 31, 2012.<p>
+          <br>
+          <hr />
+<center>
+&copy; 2014 Charles Marsh
+<a href="/feed.xml" style="padding-bottom:15px">
+  <img class="icon" src="/static/img/rss.png">
+</a>
+</center>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

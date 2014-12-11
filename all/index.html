@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+  <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <meta name="description" content="Charlie Marsh is a programmer and student at Princeton University with major interests in functional programming and machine learning.">
+  <meta name="viewport" content="width=device-width">
+  <title>type blog | Charlie Marsh</title>
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans">
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Source+Code+Pro">
+  <link href="/static/css/bootstrap.css" rel="stylesheet" type="text/css" />
+  <link href="/static/css/sprites.css" rel="stylesheet" type="text/css" />
+  <link href="/static/css/styles.css" rel="stylesheet" type="text/css" />
+  <link href="/static/css/syntax.css" rel="stylesheet" type="text/css" />
+  <link href="https://plus.google.com/u/0/100601164815113053596/" rel='author'>
+  <script type="text/javascript">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-36552582-2', 'princeton.edu');
+    ga('send', 'pageview');
+  </script>
+</head>
+
+  <body class="index">
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span2 hidden-phone"></div>
+        <div class="span2 hidden-phone" style="position:fixed">
+          <h1 style="font-size:50px">
+  <a class="blank" href="/">
+    Charlie<br>Marsh
+  </a>
+</h1>
+<p>
+  <a class="implicit" href="/">Home</a> &sdot; <a class="implicit" href="/static/pdf/Charles_Marsh_CV.pdf">CV</a>&sdot; <a class="implicit" href="/about/">About</a>
+</p>
+<h2>
+  Programmer,<br>student.
+</h2>
+<p>I'm into functional<br>programming,<br>machine learning,<br> and other fun stuff.<p>
+<p>Find me on:</p>
+<a href="mailto:crmarsh@princeton.edu"><img class="icon" src="/static/img/email.png"></a>
+<a href="http://www.github.com/crm416"><img class="icon" src="/static/img/github.png"></a>
+<a href="http://stackoverflow.com/users/1450892/charles-marsh"><img class="icon" src="/static/img/stackoverflow.png"></a>
+<a href="https://www.twitter.com/crm416"><img class="icon" src="/static/img/twitter.png"></a>
+</div>
+<div class="span2 visible-phone">
+  <div>
+    <p style="font-size:25px"><a class="blank" href="/">Charlie Marsh</a>  <div style="margin-top:-10px"><code class="custom"><span class="code_red">type</span> <span class="code_blue">blog</span></code></div>
+  </div>
+  <hr />
+</div>
+          <div class="span9 offset1" style="padding-left:20px">
+          <!-- using the split filter -->
+          
+          
+          
+          
+          
+          
+          <div class="post-preview">
+            <h1><a href="//svg-performance" class="implicit">(More Than) Doubling SVG FPS Rates at Khan Academy</a></h1>
+            
+
+<p>At Khan Academy, we put a lot of effort into producing interactive math content (e.g., <a href="https://www.khanacademy.org/math/basic-geo/basic-geo-coordinate-plane/basic-geo-shapes-on-a-plane/e/drawing-polygons">Drawing Polygons</a>).</p>
+
+<p>This kind of interaction is particularly important on touch devices: to create an engaging mobile experience, we strive to provide interactive content that feels effortless and fun—tightening the feedback loop as much as possible and enforcing the illusion of complete control.</p>
+
+<p>Poor performance kills this illusion: if a user drags his or her finger across the screen and the polygon lags behind noticeably, the shapes feel heavy and the interaction becomes a chore.</p>
+
+<p>So, when we recently discovered that many of our interactive exercises run at rates <strong>as low as 12 FPS</strong> on tablets, it was pretty startling.</p>
+
+
+            <div class='read-more' style='text-align:center'><a href="//svg-performance">Read more</a></div>
+          </div>
+          
+          
+          
+          
+          <div class="post-preview">
+            <h1><a href="//react-ssr" class="implicit">Rendering React Components on the Server</a></h1>
+            
+
+<p>I love working with React. Like, a little too much (no thanks to my (amazing) internship at Khan Academy, where we use React in buckets).</p>
+
+<p>For a recent side project, I wanted to render my React components on the server, rather than the client (this is often abbreviated as &quot;server-side rendering&quot;, or SSR, for short).</p>
+
+<p>Typical motivations for rendering on the server include:</p>
+
+<ol>
+<li><a href="http://openmymind.net/2012/5/30/Client-Side-vs-Server-Side-Rendering/">Faster page loads</a>: by rendering on the server, you get to send down a complete webpage, cut out an HTTP request, etc.</li>
+<li><a href="http://googlewebmastercentral.blogspot.com/2007/11/spiders-view-of-web-20.html">More reliable SEO</a>: any crawler that navigates to your site will see a complete page filled with content, rather than an empty page that requires JavaScript execution.</li>
+</ol>
+
+<p>(This isn&#39;t to say that SSR is strictly better than client-side rendering; it&#39;s just different.)</p>
+
+<p>SSR is totally doable with React; but a lot of the SSR-related resources out there seem to assume prior knowledge. I thought I&#39;d share what I&#39;ve learned.</p>
+
+
+            <div class='read-more' style='text-align:center'><a href="//react-ssr">Read more</a></div>
+          </div>
+          
+          
+          
+          
+          <div class="post-preview">
+            <h1><a href="//khanquest" class="implicit">KhanQuest: A Young Person&#39;s Illustrated Video Game</a></h1>
+            
+
+<p>Thus marks the end of the Third Annual &quot;Healthy Hackathon&quot;, Khan Academy&#39;s weekend-long celebration, which featured <a href="https://www.youtube.com/watch?v=Pq0OSkFhmhk">awesome improvements to our CS platform</a>, <a href="https://znd-vowels-dot-khan-academy.appspot.com/buy-a-vowel">awesome (and hilarious) fundraising efforts</a>, and <a href="https://twitter.com/pamelafox/status/489968073915387905#">awesome (and hilarious) music videos</a>, to name but a few of the fantastic hacks.</p>
+
+
+            <div class='read-more' style='text-align:center'><a href="//khanquest">Read more</a></div>
+          </div>
+          
+          
+          
+          
+          
+          
+          
+          
+          <div class="post-preview">
+            <h1><a href="//statistics_in_basketball" class="implicit">Statistics in Basketball: What&#39;s a &quot;Good&quot; Player?</a></h1>
+            
+
+<p>I just finished Bill Simmons&#39;s absolute masterpiece and basketball Bible aptly titled <em>The Book of Basketball</em> (TBOB).</p>
+
+<p>His thesis revolves around <em>The Secret</em>: that is, that the key to basketball isn&#39;t about basketball. The truly great teams in NBA history didn&#39;t win based on talent (alone). Instead:</p>
+
+<blockquote>
+<p>... they won because they liked each other knew their roles, ignored statistics and valued winning over everything else. They won because their best players sacrificed to make everyone else happy. They won as long as everyone remained on the same page. By that same token, they lost if any of those three factors weren’t in place.</p>
+</blockquote>
+
+<p>That said, what really got me thinking in TBOB was the role of <em>statistics</em> in basketball.</p>
+
+
+            <div class='read-more' style='text-align:center'><a href="//statistics_in_basketball">Read more</a></div>
+          </div>
+          
+          
+          
+          
+          <div class="post-preview">
+            <h1><a href="//independent_work" class="implicit">A Guide to CS Independent Work at Princeton</a></h1>
+            
+
+<p>Last Spring, I did a semester of independent work (IW) with professor <a href="https://www.cs.princeton.edu/%7Edpw/">David Walker</a>. My project was focused on rule optimization in Software-Defined Networks (more <a href="http://www.princeton.edu/%7Ecrmarsh/intro_to_sdn/">here</a>), and it was probably the greatest learning experience of my Princeton career (so far).</p>
+
+<p>I worked hard, and I learned a ton—not just about SDNs, but about the research process in general.</p>
+
+<p><a href="http://iw.cs.princeton.edu/11-12/#Important_Information_for_Everyone">Every COS major</a> will do IW at some point. The COS Department has a decent guide <a href="http://iw.cs.princeton.edu/11-12/">here</a>, but after comparing and contrasting my experience with those of my friends, I wanted to jot down some notes about what worked and what didn&#39;t.</p>
+
+
+            <div class='read-more' style='text-align:center'><a href="//independent_work">Read more</a></div>
+          </div>
+          
+          
+          
+          
+          <div class="post-preview">
+            <h1><a href="//compiling_to_js" class="implicit">Compiling to JS: Comparing TypeScript, CoffeeScript, etc.</a></h1>
+            
+
+<p>It seems like all the cool languages these days are compiling to JavaScript. (<em>I joke, but replace &#39;cool&#39; with &#39;relevant&#39; and you might have a reasonable heuristic for evaluating the modernity of a programming language.</em>) <a href="https://github.com/jashkenas">Jeremy Ashkenas</a> (CoffeeScript creator) has a great <a href="https://github.com/jashkenas/coffee-script/wiki/List-of-languages-that-compile-to-JS">list</a> of what seems like hundreds of languages, each of which helps prove my point.</p>
+
+
+            <div class='read-more' style='text-align:center'><a href="//compiling_to_js">Read more</a></div>
+          </div>
+          
+          
+          
+          
+          <div class="post-preview">
+            <h1><a href="//phantomjs" class="implicit">PhantomJS: Common Gotchas for Beginners</a></h1>
+            
+
+<p>Over the summer, I had a pet project to automate <a href="https://github.com/geuis/helium-css">Helium.js</a>, a tool for identifying unused style elements in your CSS. Currently, in order to generate a Helium report, you need to add some JavaScript to your webpage, open up your web browser, navigate to the page, and click on some buttons.</p>
+
+<p>My goal was to automate the process using a headless browser <em>(that is, a browser that runs without a GUI, allowing you to navigate the web and interact with web pages from your terminal)</em>. In this case, I chose to use <a href="http://phantomjs.org">PhantomJS</a>.</p>
+
+<p>I had a mixed experience. Headless browsing is notoriously difficult to debug, and this case was no different: errors were tough to reproduce, results were inconsistent, and producing informative output was challenging.</p>
+
+<p>Once I got past the initial difficulties, however, PhantomJS was an impressive tool—hats off to the creators, as always.</p>
+
+<p>In this post, I&#39;d like to describe some of the common &quot;gotchas&quot; that I&#39;ve found associated with PhantomJS and walk through their solutions. (I call them &quot;common&quot; due to: 1. my own experience, and 2. finding similar questions/issues documented on StackOverflow.)</p>
+
+
+            <div class='read-more' style='text-align:center'><a href="//phantomjs">Read more</a></div>
+          </div>
+          
+          
+          
+          
+          <div class="post-preview">
+            <h1><a href="//hack" class="implicit">Quizzler</a></h1>
+            
+
+<p style="color:rgb(130,130,130)">Update: Quizzler was built as my entry into the Facebook Summer of Hack Hackathon in August 2013 and was selected as the winning hack. Thanks to Facebook for hosting a great event.</p>
+
+<p>After playing a number of poorly-made iPhone quiz games, I decided to roll my own. But I didn&#39;t want to spend time creating my own corpus of questions. Thus, Quizzler was born, an attempt to build an iPhone quiz app that generates its own questions.</p>
+
+
+            <div class='read-more' style='text-align:center'><a href="//hack">Read more</a></div>
+          </div>
+          
+          
+          
+          
+          <div class="post-preview">
+            <h1><a href="//aws" class="implicit">The 5-Minute Guide to a Perfect, Personal EC2 Instance</a></h1>
+            
+
+<p>I like SSHing into things. So I went ahead and setup my own AWS EC2 instance. Under the free tier, you can get good mileage out of an instance and use it to do whatever you please.</p>
+
+<p>But it took me awhile to get the thing up and running properly. Here are the things I wanted to have:</p>
+
+<ol>
+<li>Easy SSH access at the press of a button (i.e., without entering a password).</li>
+<li>Yet, safety and security from the attempted access of others (i.e., using RSA keys).</li>
+<li>My own account on the instance (rather than, say, using <em>root</em>).</li>
+<li>All the tools I use naturally on my local machine.</li>
+</ol>
+
+<p>If that experience sounds good to you, keep reading. I&#39;ve pulled together the assorted posts that I used to setup my EC2 instance and assembled <strong>The Idiot-Proof Guide</strong>.</p>
+
+
+            <div class='read-more' style='text-align:center'><a href="//aws">Read more</a></div>
+          </div>
+          
+          
+          
+          
+          <div class="post-preview">
+            <h1><a href="//wikipedia" class="implicit">A Human-Friendly API for Wikipedia</a></h1>
+            
+
+<p><strong>Motivation:</strong> There&#39;s a lot of information on Wikipedia, and people want to use it. Sometimes, these people are programmers; and sometimes, their customers aren&#39;t computers.</p>
+
+<p>I needed to parse some information from Wikipedia programatically and present it in a human-readable format, i.e., for clients. I found that a bunch of other people had similar issues (e.g., <a href="http://stackoverflow.com/questions/120061/fetch-a-wikipedia-article-with-python?lq=1">here</a> and <a href="http://stackoverflow.com/questions/4452102/how-to-get-plain-text-out-of-wikipedia?rq=1">here</a>), so I&#39;ve <a href="https://github.com/crm416/quizzler/blob/master/src/wiki.py">open-sourced my solution</a>.</p>
+
+
+            <div class='read-more' style='text-align:center'><a href="//wikipedia">Read more</a></div>
+          </div>
+          
+          
+          
+          
+          <div class="post-preview">
+            <h1><a href="//ocaml_dev_environment" class="implicit">Setting Up Your OCaml Development Environment on OS X</a></h1>
+            
+
+<p>Last fall, I began exploring the subject of functional programming as part of <a href="http://www.cs.princeton.edu/%7Edpw/">Professor David Walker’s</a> <a href="http://www.cs.princeton.edu/%7Edpw/courses/cos326-12/info.php">COS 326 at Princeton</a>. Throughout the course, we did all of our programing in OCaml. I also spent the past spring using OCaml for my CS Independent Work. So in total, I’ve spent a reasonable amount of time around the language, and I think it’s fantastic: it’s got a great module system, plenty of useful open source tools, etc.</p>
+
+<p>But OCaml isn’t <em>that</em> widely used. And as a result, there aren’t very many good write-ups out there for setting up an OCaml development environment.</p>
+
+<p>In this post, I’ll provide a couple of choices for setting up such an environment when developing on a Mac.</p>
+
+
+            <div class='read-more' style='text-align:center'><a href="//ocaml_dev_environment">Read more</a></div>
+          </div>
+          
+          
+          
+          
+          
+          
+          
+          
+          <div class="post-preview">
+            <h1><a href="//intro_to_sdn" class="implicit">Rule Optimization in Software-Defined Networks</a></h1>
+            
+
+<p>I&#39;m doing some independent work this semester with Professor David Walker, with whom I took functional programming last semester. My project is being implemented functionally, however the main focus is on rule optimization in network routers; specifically, routers within software-defined networks (SDNs).</p>
+
+
+            <div class='read-more' style='text-align:center'><a href="//intro_to_sdn">Read more</a></div>
+          </div>
+          
+          
+          
+          
+          <div class="post-preview">
+            <h1><a href="//ocaml_parallelism" class="implicit">True Parallelism in OCaml</a></h1>
+            
+
+<p>OCaml provides a nice <a href="http://caml.inria.fr/pub/docs/manual-ocaml-4.00/libref/Thread.html">library for multi-threading</a>. Problem is, according to my professor, under the hood, <strong>OCaml doesn&#39;t actually employ any parallelism at all!</strong> In truth, the compiler just interleaves instructions in a way that has the same computational effect as multi-threading, barring the 2x speed-up.</p>
+
+<p>On the side, I&#39;ve been working on an alternative to the small Futures module we used in class. Futures are very similar to threads but safer and easier to use. The interface itself is composed of a <strong>create</strong> method, which takes as argument an expression to compute and performs said computation on a new thread; as well as a <strong>force</strong> method, which blocks the main thread until the Future has finished its computation.</p>
+
+
+            <div class='read-more' style='text-align:center'><a href="//ocaml_parallelism">Read more</a></div>
+          </div>
+          
+          
+          
+          
+          <div class="post-preview">
+            <h1><a href="//streams" class="implicit">Streams and Lazy Computation</a></h1>
+            
+
+<p>I was recently introduced to lazy computation in the context of streams—very cool (and powerful) stuff. In this post, I&#8217;ll go through streams first, then use lazy computation to address a problem specific to the data type before closing with an example.</p>
+
+
+            <div class='read-more' style='text-align:center'><a href="//streams">Read more</a></div>
+          </div>
+          
+          
+          
+          
+          <div class="post-preview">
+            <h1><a href="//ios_performance" class="implicit">iOS Performance: Shadows with Bezier Paths</a></h1>
+            
+
+<p>I spent some time yesterday fixing some performance issues related to <a href="https://itunes.apple.com/us/app/everycollegecal/id554462715?mt=8">EveryCollegeCal</a> (my iOS app). Basically, I was seeing very slow, choppy segues between the first two views (one of which is a welcome screen, the other a table view). On top of that, the scrolling performance of the latter view was equally gross.</p>
+
+<p>In the end, the fixes were not too involved—i.e., they didn’t involve a spectacular amount of code (of course, this can’t be said of all performance issues, so I count myself lucky). And there were only two necessary changes: the choppy segues were fixed by swapping out my glossy button library, which was apparently very inefficient. But the second change demonstrates something cool about iOS performance tweaks: while they’re often subtle, the under-the-hood explanations are always logical.</p>
+
+
+            <div class='read-more' style='text-align:center'><a href="//ios_performance">Read more</a></div>
+          </div>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <div class="post-preview">
+            <h1><a href="//intro_to_ocaml" class="implicit">First Thoughts on OCaml</a></h1>
+            
+
+<p style="color:rgb(130,130,130)">N.B.: I wrote this post a few weeks after first using OCaml. Before that, 90% of my programing had been in Java. Looking back on these notes, perhaps a more accurate title would be "First Thoughts on a Functional Language After Only Knowing OOP", or something along those lines. But for posterity, I'll leave it as-is.</p>
+
+<p>I’ve been learning to program in OCaml for one of my courses this semester (<a href="http://www.cs.princeton.edu/%7Edpw/courses/cos326-12/info.php" title="COS 326">COS 326: Functional Programming</a>) and I can&#39;t remember the last time I was this excited about anything CS-related. Learning to program functionally is like learning to program all over again.</p>
+
+
+            <div class='read-more' style='text-align:center'><a href="//intro_to_ocaml">Read more</a></div>
+          </div>
+          
+            <br>
+            <hr />
+<center>
+&copy; 2014 Charles Marsh
+<a href="/feed.xml" style="padding-bottom:15px">
+  <img class="icon" src="/static/img/rss.png">
+</a>
+</center>
+          
+          
+          
+      </div>
+    </div>
+  </body>
+</html>

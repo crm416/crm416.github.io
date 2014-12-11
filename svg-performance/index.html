@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <meta name="description" content="Charlie Marsh is a programmer and student at Princeton University with major interests in functional programming and machine learning.">
+  <meta name="viewport" content="width=device-width">
+  <title>Goodbye, Layout Invalidation: Animating SVGs With CSS Transforms | Charlie Marsh</title>
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans">
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Source+Code+Pro">
+  <link href="/static/css/bootstrap.css" rel="stylesheet" type="text/css" />
+  <link href="/static/css/sprites.css" rel="stylesheet" type="text/css" />
+  <link href="/static/css/styles.css" rel="stylesheet" type="text/css" />
+  <link href="/static/css/syntax.css" rel="stylesheet" type="text/css" />
+  <link href="https://plus.google.com/u/0/100601164815113053596/" rel='author'>
+  <script type="text/javascript">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-36552582-2', 'princeton.edu');
+    ga('send', 'pageview');
+  </script>
+</head>
+
+  <body class="index">
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span2 hidden-phone"></div>
+        <div class="span2 hidden-phone" style="position:fixed">
+          <h1 style="font-size:50px">
+  <a class="blank" href="/">
+    Charlie<br>Marsh
+  </a>
+</h1>
+<p>
+  <a class="implicit" href="/">Home</a> &sdot; <a class="implicit" href="/static/pdf/Charles_Marsh_CV.pdf">CV</a>&sdot; <a class="implicit" href="/about/">About</a>
+</p>
+<h2>
+  Programmer,<br>student.
+</h2>
+<p>I'm into functional<br>programming,<br>machine learning,<br> and other fun stuff.<p>
+<p>Find me on:</p>
+<a href="mailto:crmarsh@princeton.edu"><img class="icon" src="/static/img/email.png"></a>
+<a href="http://www.github.com/crm416"><img class="icon" src="/static/img/github.png"></a>
+<a href="http://stackoverflow.com/users/1450892/charles-marsh"><img class="icon" src="/static/img/stackoverflow.png"></a>
+<a href="https://www.twitter.com/crm416"><img class="icon" src="/static/img/twitter.png"></a>
+</div>
+<div class="span2 visible-phone">
+  <div>
+    <p style="font-size:25px"><a class="blank" href="/">Charlie Marsh</a>  <div style="margin-top:-10px"><code class="custom"><span class="code_red">type</span> <span class="code_blue">blog</span></code></div>
+  </div>
+  <hr />
+</div>
+
+          <div class="span9 offset1" style="padding-left:20px">
+          <h1>(More Than) Doubling SVG FPS Rates at Khan Academy</h1>
+
+<p>At Khan Academy, we put a lot of effort into producing interactive math content (e.g., <a href="https://www.khanacademy.org/math/basic-geo/basic-geo-coordinate-plane/basic-geo-shapes-on-a-plane/e/drawing-polygons">Drawing Polygons</a>).</p>
+
+<p>This kind of interaction is particularly important on touch devices: to create an engaging mobile experience, we strive to provide interactive content that feels effortless and fun—tightening the feedback loop as much as possible and enforcing the illusion of complete control.</p>
+
+<p>Poor performance kills this illusion: if a user drags his or her finger across the screen and the polygon lags behind noticeably, the shapes feel heavy and the interaction becomes a chore.</p>
+
+<p>So, when we recently discovered that many of our interactive exercises run at rates <strong>as low as 12 FPS</strong> on tablets, it was pretty startling.</p>
+
+<!--break-->
+
+<p>(You might ask: why was this a <em>recent</em> discovery? For one, it&#39;s easy to hit 60 FPS on a MacBook Pro, but much harder to do so on a resource-constrained tablet. Thus, our poor perf wasn&#39;t apparent on desktop machines. &quot;Discovery&quot; is also a misnomer; we&#39;ve just been focusing far more on mobile lately for a number of reasons.)</p>
+
+<p>For Khan Academy&#39;s Hack Week (a week-long version of the <a href="http://bjk5.com/post/26810034751/how-we-ran-the-first-khan-academy-healthy-hackathon">Healthy Hackathon</a>), I spent a few days addressing this problem. In the end, I was able to bump most of our interactive exercises up to 55-60 FPS on an iPad. That&#39;s a 2-5x speedup (depending on which exercise you&#39;re profiling) for a week&#39;s worth of work.</p>
+
+<p><em>(And better yet, much of this has already shipped!)</em></p>
+
+<h2>Benchmarks</h2>
+
+<p>Let&#39;s first lay out some benchmarks and background. (If you just want numbers and pictures, you can skip ahead to the <a href="#-The-Results">results</a> section.)</p>
+
+<p>On the most recent iPad Mini (with a retina display), I clocked the following FPS numbers for our interactive exercises using <a href="https://developer.apple.com/library/mac/documentation/developertools/conceptual/instrumentsuserguide/MeasuringGraphicsPerformanceinYouriOSDevice/MeasuringGraphicsPerformanceinYouriOSDevice.html">Instruments</a> on OS X. For each shape mentioned below, I had it follow my finger&#39;s touch around the canvas (as in <a href="https://www.khanacademy.org/math/basic-geo/basic-geo-coordinate-plane/basic-geo-shapes-on-a-plane/e/drawing-polygons">Drawing Polygons</a>) at maximum speed:</p>
+
+<ul>
+<li>Multiple points on graph: 35-45 FPS</li>
+<li>Line segments: 16-20 FPS</li>
+<li>Lines: 12 FPS</li>
+<li>Polygons: 16-20 FPS</li>
+</ul>
+
+<p>Yikes. For reference, humans can&#39;t really perceive any difference in frame rates about 60 FPS; 10 FPS, on the other hand, feels like slogging through tar, even to the most untrained eye.</p>
+
+<p>It&#39;s worth noting that our existing interactive content used SVG (with <a href="raphaeljs.com">Raphael</a>).</p>
+
+<h2>How Browsers Work</h2>
+
+<p>(If you&#39;re doing <em>any</em> perf-related front-end work, I highly recommend you read <a href="http://www.html5rocks.com/en/tutorials/speed/high-performance-animations/">High Performance Animations</a> by Paul Lewis and Paul Irish. Below, I&#39;ll be referencing the concepts described in this article.)</p>
+
+<p>Let&#39;s talk about how browsers work (for, like, 100 words, I promise). There are four key styles that a browser can animate cheaply:</p>
+
+<ul>
+<li>Translation, i.e., <code>transform: translate</code></li>
+<li>Scale, i.e., <code>transform: scales</code></li>
+<li>Rotation, i.e., <code>transform: rotate</code></li>
+<li>Opacity</li>
+</ul>
+
+<p>Changing a node&#39;s style can force the browser to perform some expensive tasks. For example, changing the <code>width</code> of an element may affect the layout of the page, including that of other nodes, so the browser has to recompute layout; changing the <code>background-color</code> of an element requires that the element&#39;s pixels be repainted.</p>
+
+<p>Sticking to the four properties above (i.e., linear transformations and opacity) lets the browser avoid these expensive tasks and instead merely move existing, painted pixels around the screen (i.e., &quot;composite layers&quot;).</p>
+
+<h2>The Problem With SVG</h2>
+
+<p>To achieve silky-smooth animation, then, you should obviously stick to these properties. And at Khan Academy, we generally did (with a few exceptions).</p>
+
+<p>However, <strong>SVG doesn&#39;t provide these same performance guarantees</strong>. In other words, applying linear transformations to SVG elements <em>does</em> trigger re-layout and re-painting. Just take a look at <a href="http://jsfiddle.net/to83thbt/">this Fiddle</a> and the timeline it produces in Chrome—see the purple layout events followed by green paint events?</p>
+
+<p><img src="../static/img/svg_timeline.png" alt="Timeline" class="center"></p>
+
+<p><em>(Aside: This came as something of a surprise to me. When I spoke with <a href="http://www.paulirish.com/">Paul Irish</a> during Hack Week, he said that there wasn&#39;t any particular reason that SVG nodes had to behave differently than DOM nodes here, but that most browsers didn&#39;t have particularly good SVG implementations.)</em></p>
+
+<p>In simplest terms: while we&#39;d like our machine to do no more than shift pixels around the screen, our SVG nodes were demanding expensive re-computation and re-painting, leading to a sub-par experience on resource-constrained devices.</p>
+
+<h2>Exploiting CSS Transforms</h2>
+
+<p>During the profiling process, my colleagues <a href="https://twitter.com/ariabuckles">Aria Toole</a> and <a href="http://andymatuschak.org/">Andy Matuschak</a> had an interesting idea: Why don&#39;t we just wrap each individual SVG element in its own DOM node? Then, when we need to transform the underlying SVG, we can just apply an analogous CSS transform to the outer DOM node.</p>
+
+<p>In effect, they were proposing that we go from:</p>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;svg&gt;</span>
+  <span class="nt">&lt;circle</span> <span class="na">fill=</span><span class="s">&quot;red&quot;</span> <span class="na">transform=</span><span class="s">&quot;translate(2px, 3px)&quot;</span><span class="nt">&gt;&lt;/circle&gt;</span>
+  <span class="nt">&lt;circle</span> <span class="na">fill=</span><span class="s">&quot;blue&quot;</span> <span class="na">transform=</span><span class="s">&quot;scale(2)&quot;</span><span class="nt">&gt;&lt;/circle&gt;</span>
+<span class="nt">&lt;/svg&gt;</span>
+</code></pre></div>
+<p>To:</p>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">style=</span><span class="s">&quot;transform:translate(2px, 3px)&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;svg&gt;</span>
+    <span class="nt">&lt;circle</span> <span class="na">fill=</span><span class="s">&quot;red&quot;</span><span class="nt">&gt;&lt;/circle&gt;</span>
+  <span class="nt">&lt;/svg&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">style=</span><span class="s">&quot;transform:scale(2)&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;svg&gt;</span>
+    <span class="nt">&lt;circle</span> <span class="na">fill=</span><span class="s">&quot;blue&quot;</span><span class="nt">&gt;&lt;/circle&gt;</span>
+  <span class="nt">&lt;/svg&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div>
+<p>Under this scheme, we&#39;d regain all the benefits of cheap animation: as the browser is merely applying linear transforms to vanilla DOM nodes, there&#39;d be no layout or painting required. Better yet: <a href="http://www.html5rocks.com/en/tutorials/speed/html5/">CSS Transforms are GPU accelerated</a>, which would make for an even smoother experience.</p>
+
+<p>So, for Hack Week, I gave it a shot.</p>
+
+<h3>Implementation Details</h3>
+
+<p>The bulk of the work was in adding a layer of abstraction on top of our existing graphing code, mostly to handle the disparity between interacting with the outer DOM node and the underlying SVG element. For example, while you want transforms to be applied to the outer DOM node, other attribute changes (e.g., changing a circle&#39;s color from red to blue) should be propagated to the underlying SVG.</p>
+
+<p>There were also spots in the code where we animated our SVGs with non-transform styles, e.g., setting the center coordinate (<code>cx</code> and <code>cy</code>) for a <code>&lt;circle&gt;</code> rather than applying a transform, or cutting off a <code>&lt;line&gt;</code> at the boundaries of the graph by setting its <code>clip-rect</code> property. All of these inefficiencies had to go.</p>
+
+<p>As an even more extreme example, we were drawing the tips (or arrows) of our lines by throwing an SVG <code>&lt;path&gt;</code> into the DOM and, when the line moved, removing that node from the DOM and replacing it with a new <code>&lt;path&gt;</code>. This was super inefficient, and my re-write instead re-used the existing DOM node, moving it with CSS transforms, rather than complete replacement.</p>
+
+<p>This was a process of removing jank from our existing graphing code and deconstructing all of our animation into simple linear transforms—and doing so with as few hacks as possible, given that I wanted this to ship eventually.</p>
+
+<p><h2  id='-The-Results'>The Results<a class='anchor-wrap' href="#-The-Results" title="Permalink to this headline">¶</a></h2 ></p>
+
+<p>Recall the benchmarks I introduced earlier:</p>
+
+<ul>
+<li>Multiple points on graph: 35-45 FPS</li>
+<li>Line segments: 16-20 FPS</li>
+<li>Lines: 12 FPS</li>
+<li>Polygons: 16-20 FPS</li>
+</ul>
+
+<p>After introducing the changes above, I was able to present these numbers during my Hack Week demo:</p>
+
+<ul>
+<li>Multiple points on graph: <strong>52-60</strong> FPS</li>
+<li>Line segments: <strong>48-58</strong> FPS</li>
+<li>Lines: <strong>52-60</strong> FPS</li>
+<li>Polygons: <strong>55</strong> FPS</li>
+</ul>
+
+<p>That&#39;s more like it.</p>
+
+<p>To further hammer home the difference, check out these GIFs, taken in Chrome with &quot;Show paint rectangles&quot; enabled. First, in our previous implementation (note that the green rectangles indicate re-painting activity required by the browser):</p>
+
+<p><img src="../static/img/svg_demo_old.gif" alt="Timeline" class="center"></p>
+
+<p>And with these improvements, the green rectangles disappear:</p>
+
+<p><img src="../static/img/svg_demo_new.gif" alt="Timeline" class="center" ></p>
+
+<h2>The Future</h2>
+
+<p>My hope it that, at some point in this post, you asked yourself: &quot;Why don&#39;t you just re-write all of your graphing tools to use HTML5 Canvas or WebGL?&quot; Because that would be a great question! Moving to more performant animation technologies is certainly on our road map, but it&#39;s more of a several-month project, whereas my goal here was to get some immediate benefit and touch as little of the codebase as possible.</p>
+
+<p>That said, we&#39;ve already started to plan out the future of our interactive tools. We&#39;re hoping to use <a href="http://threejs.org/">Three.js</a> or <a href="http://acko.net/blog/making-mathbox/">Mathbox</a>—after you&#39;ve seen <a href="http://acko.net/blog/how-to-fold-a-julia-fractal/">How to Fold a Julia Fractal</a>, you don&#39;t really have any other choice.</p>
+
+<p>As a caveat, I&#39;d also note that this technique doesn&#39;t cover <em>all</em> of our interactive exercises. For example, you can&#39;t really cover parabolas or sinusoids under this scheme without distorting the lines in unacceptable ways. Moving over to WebGL would provide a more universal (and less hacky) solution.</p>
+
+<p><em><strong>P.S.: Thanks, Khan Academy! As some of you may know, I was a summer intern at KA in 2014. I had an absolute blast, learning and growing an immense amount from an amazing team with an amazing culture. KA is truly a special company, both in mission and the individuals that comprise it. I&#39;m thrilled that I was able to make it out for Hack Week. Thanks for having me—and hope to see you all again soon!</strong></em></p>
+
+<h2>P.S. The Gory Bits</h2>
+
+<p>There were a few more minor pain-points in the implementation. I&#39;ll go over them pretty quickly:</p>
+
+<h3>Replacing &lt;path&gt; elements.</h3>
+
+<p>SVG <code>&lt;path&gt;</code> elements couldn&#39;t be scaled and rotated in the same way for a number of reasons (aspect ratios would get all messed), but they could be <em>translated</em> with ease. We use paths heavily in our polygon implementation, which draws the boundary and interior with a <code>&lt;path&gt;</code>, and features two key interactions:</p>
+
+<ol>
+<li>Clicking and dragging on the interior to translate the polygon.</li>
+<li>Clicking and dragging on a vertex to manipulate the polygon&#39;s core shape.</li>
+</ol>
+
+<p>My first change was to replace the polygon&#39;s boundary with a set of <code>&lt;line&gt;</code> elements which could be easily transformed with CSS. Then, I had our DOM-node-wrapped <code>&lt;path&gt;</code> elements detect whether a provided transform was a translation, and, if so, merely translate the DOM nodes (and completely re-draw itself for non-translations). This gave us excellent performance for interaction (1), but sub-par perf for (2). Luckily for us, the interior of the polygon is completely opaque in (2)—why animate what the user can&#39;t see? Instead of transforming the interior path onMove, I instead had the path re-draw only onMoveEnd. Major hacks, but the payoff was worth it.</p>
+
+<h3>Maintaining origin.</h3>
+
+<p>In order to avoid clipping, we couldn&#39;t have the outer <code>&lt;div&gt;</code> hug too tightly to the underlying <code>&lt;svg&gt;</code>. Thus, I had to add some padding to the outer <code>&lt;div&gt;</code>. This had the unfortunate effect of messing up the origin for transforms, so rotations and scaling transformations caused unexpected behavior. Taking some care to set the <code>transform-origin</code> of the outer <code>&lt;div&gt;</code> preserved the abstraction.</p>
+
+<h3>Handling the asymmetry between the SVG and CSS transform APIs.</h3>
+
+<p>For example, SVG transforms are unit-less, while CSS transforms <em>require</em> units (e.g., <code>transform=&quot;translate(4, 5)&quot;</code> vs. <code>transform=&quot;translate(4px, 5px)&quot;</code>.</p>
+
+          <p class="date">Posted on November 24, 2014.<p>
+          <br>
+          <hr />
+<center>
+&copy; 2014 Charles Marsh
+<a href="/feed.xml" style="padding-bottom:15px">
+  <img class="icon" src="/static/img/rss.png">
+</a>
+</center>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

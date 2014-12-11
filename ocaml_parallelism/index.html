@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <meta name="description" content="Charlie Marsh is a programmer and student at Princeton University with major interests in functional programming and machine learning.">
+  <meta name="viewport" content="width=device-width">
+  <title>True Parallelism in OCaml | Charlie Marsh</title>
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans">
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Source+Code+Pro">
+  <link href="/static/css/bootstrap.css" rel="stylesheet" type="text/css" />
+  <link href="/static/css/sprites.css" rel="stylesheet" type="text/css" />
+  <link href="/static/css/styles.css" rel="stylesheet" type="text/css" />
+  <link href="/static/css/syntax.css" rel="stylesheet" type="text/css" />
+  <link href="https://plus.google.com/u/0/100601164815113053596/" rel='author'>
+  <script type="text/javascript">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-36552582-2', 'princeton.edu');
+    ga('send', 'pageview');
+  </script>
+</head>
+
+  <body class="index">
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span2 hidden-phone"></div>
+        <div class="span2 hidden-phone" style="position:fixed">
+          <h1 style="font-size:50px">
+  <a class="blank" href="/">
+    Charlie<br>Marsh
+  </a>
+</h1>
+<p>
+  <a class="implicit" href="/">Home</a> &sdot; <a class="implicit" href="/static/pdf/Charles_Marsh_CV.pdf">CV</a>&sdot; <a class="implicit" href="/about/">About</a>
+</p>
+<h2>
+  Programmer,<br>student.
+</h2>
+<p>I'm into functional<br>programming,<br>machine learning,<br> and other fun stuff.<p>
+<p>Find me on:</p>
+<a href="mailto:crmarsh@princeton.edu"><img class="icon" src="/static/img/email.png"></a>
+<a href="http://www.github.com/crm416"><img class="icon" src="/static/img/github.png"></a>
+<a href="http://stackoverflow.com/users/1450892/charles-marsh"><img class="icon" src="/static/img/stackoverflow.png"></a>
+<a href="https://www.twitter.com/crm416"><img class="icon" src="/static/img/twitter.png"></a>
+</div>
+<div class="span2 visible-phone">
+  <div>
+    <p style="font-size:25px"><a class="blank" href="/">Charlie Marsh</a>  <div style="margin-top:-10px"><code class="custom"><span class="code_red">type</span> <span class="code_blue">blog</span></code></div>
+  </div>
+  <hr />
+</div>
+
+          <div class="span9 offset1" style="padding-left:20px">
+          <h1>True Parallelism in OCaml</h1>
+
+<p>OCaml provides a nice <a href="http://caml.inria.fr/pub/docs/manual-ocaml-4.00/libref/Thread.html">library for multi-threading</a>. Problem is, according to my professor, under the hood, <strong>OCaml doesn&#39;t actually employ any parallelism at all!</strong> In truth, the compiler just interleaves instructions in a way that has the same computational effect as multi-threading, barring the 2x speed-up.</p>
+
+<p>On the side, I&#39;ve been working on an alternative to the small Futures module we used in class. Futures are very similar to threads but safer and easier to use. The interface itself is composed of a <strong>create</strong> method, which takes as argument an expression to compute and performs said computation on a new thread; as well as a <strong>force</strong> method, which blocks the main thread until the Future has finished its computation.</p>
+
+<!--break-->
+
+<p><h2  id='Processes'>Processes<a class='anchor-wrap' href="#Processes" title="Permalink to this headline">¶</a></h2 ></p>
+
+<p>This alternative aims to operate at a lower level than would typically be done in OCaml and circumvent the language&#39;s lack of true multi-threading. To do so, it runs the desired computation on a separate UNIX process using some of <a href="http://ocamlunix.forge.ocamlcore.org">these features</a>. <strong>Rather than trying to run two programs from within the same process, then, it seeks to run a single program, in two separate processes.</strong></p>
+
+<p><h2  id='Preserving-Type-Safety'>Preserving Type Safety<a class='anchor-wrap' href="#Preserving-Type-Safety" title="Permalink to this headline">¶</a></h2 ></p>
+
+<p>One difficulty that I encountered along the way was preserving type-safety. To transfer information from the forked thread to the main thread (i.e., to return the result of the Future&#39;s computation), I use the <a href="http://caml.inria.fr/pub/docs/manual-ocaml/libref/Marshal.html">Marshal module</a>, which allows you to encode arbitrary data structures as sequences of bytes. However, the documentation includes the following, essential warning: <strong>Warning: marshaling is currently not type-safe</strong>. In reality, if you&#39;re trying to Marshall some expression <em>e</em> of type <em>&#39;a</em>, you need to somehow pass type <em>&#39;a</em> to the output function. That is, the Marshal module needs to know the output type of the data it&#39;s trying to decode. To handle that, I had to strictly enforce the type of the output computation as follows:</p>
+
+<div class="highlight"><pre><code class="language-ocaml" data-lang="ocaml"><span class="k">let</span> <span class="n">future</span> <span class="o">(</span><span class="n">f</span><span class="o">:</span><span class="k">&#39;</span><span class="n">a</span> <span class="o">-&gt;</span> <span class="k">&#39;</span><span class="n">b</span><span class="o">)</span> <span class="o">(</span><span class="n">x</span><span class="o">:</span><span class="k">&#39;</span><span class="n">a</span><span class="o">)</span> <span class="o">:</span> <span class="k">&#39;</span><span class="n">b</span> <span class="n">future</span> <span class="o">=</span>
+<span class="o">...</span>
+    <span class="k">let</span> <span class="n">result</span> <span class="o">:</span> <span class="k">&#39;</span><span class="n">b</span> <span class="o">=</span> <span class="nn">Marshal</span><span class="p">.</span><span class="n">from_channel</span> <span class="o">(</span><span class="n">in_channel_of_descr</span> <span class="n">fd_in</span><span class="o">)</span> <span class="k">in</span>
+    <span class="o">...</span></code></pre></div>
+
+<p>Notice that type <em>&#39;b</em>, the desired output of the function <em>f</em>, is explicitly enforced as the output of the Marshal operation.</p>
+
+<p><h2  id='Thread-Pools'>Thread Pools<a class='anchor-wrap' href="#Thread-Pools" title="Permalink to this headline">¶</a></h2 ></p>
+
+<p>One issue: I haven&#39;t gotten around to implementing a <a href="http://en.wikipedia.org/wiki/Thread_pool_pattern">thread pool</a> for the Futures module. That is, if you run some massive computation that requires too many threads, you run into all sorts of errors. On my machine, running the <em>Mergesort</em> demo with a list of size 1000 results in a crash (this seems to be roughly the threshold).</p>
+
+<p>Besides that, the package seems to be working, and the speed-up approaches 2x as I increase the size of the input to various functions. Give it a try: all the code is on <a href="https://github.com/crm416/ocaml-futures">GitHub</a>.</p>
+
+          <p class="date">Posted on January 17, 2013.<p>
+          <br>
+          <hr />
+<center>
+&copy; 2014 Charles Marsh
+<a href="/feed.xml" style="padding-bottom:15px">
+  <img class="icon" src="/static/img/rss.png">
+</a>
+</center>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

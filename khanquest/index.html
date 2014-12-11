@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <meta name="description" content="Charlie Marsh is a programmer and student at Princeton University with major interests in functional programming and machine learning.">
+  <meta name="viewport" content="width=device-width">
+  <title>KhanQuest: Bringing Khan Academy-based Learning to a Fantasy Video Game | Charlie Marsh</title>
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans">
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Source+Code+Pro">
+  <link href="/static/css/bootstrap.css" rel="stylesheet" type="text/css" />
+  <link href="/static/css/sprites.css" rel="stylesheet" type="text/css" />
+  <link href="/static/css/styles.css" rel="stylesheet" type="text/css" />
+  <link href="/static/css/syntax.css" rel="stylesheet" type="text/css" />
+  <link href="https://plus.google.com/u/0/100601164815113053596/" rel='author'>
+  <script type="text/javascript">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-36552582-2', 'princeton.edu');
+    ga('send', 'pageview');
+  </script>
+</head>
+
+  <body class="index">
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span2 hidden-phone"></div>
+        <div class="span2 hidden-phone" style="position:fixed">
+          <h1 style="font-size:50px">
+  <a class="blank" href="/">
+    Charlie<br>Marsh
+  </a>
+</h1>
+<p>
+  <a class="implicit" href="/">Home</a> &sdot; <a class="implicit" href="/static/pdf/Charles_Marsh_CV.pdf">CV</a>&sdot; <a class="implicit" href="/about/">About</a>
+</p>
+<h2>
+  Programmer,<br>student.
+</h2>
+<p>I'm into functional<br>programming,<br>machine learning,<br> and other fun stuff.<p>
+<p>Find me on:</p>
+<a href="mailto:crmarsh@princeton.edu"><img class="icon" src="/static/img/email.png"></a>
+<a href="http://www.github.com/crm416"><img class="icon" src="/static/img/github.png"></a>
+<a href="http://stackoverflow.com/users/1450892/charles-marsh"><img class="icon" src="/static/img/stackoverflow.png"></a>
+<a href="https://www.twitter.com/crm416"><img class="icon" src="/static/img/twitter.png"></a>
+</div>
+<div class="span2 visible-phone">
+  <div>
+    <p style="font-size:25px"><a class="blank" href="/">Charlie Marsh</a>  <div style="margin-top:-10px"><code class="custom"><span class="code_red">type</span> <span class="code_blue">blog</span></code></div>
+  </div>
+  <hr />
+</div>
+
+          <div class="span9 offset1" style="padding-left:20px">
+          <h1>KhanQuest: A Young Person&#39;s Illustrated Video Game</h1>
+
+<p>Thus marks the end of the Third Annual &quot;Healthy Hackathon&quot;, Khan Academy&#39;s weekend-long celebration, which featured <a href="https://www.youtube.com/watch?v=Pq0OSkFhmhk">awesome improvements to our CS platform</a>, <a href="https://znd-vowels-dot-khan-academy.appspot.com/buy-a-vowel">awesome (and hilarious) fundraising efforts</a>, and <a href="https://twitter.com/pamelafox/status/489968073915387905#">awesome (and hilarious) music videos</a>, to name but a few of the fantastic hacks.</p>
+
+<!--break-->
+
+<p><i>P.S.: If you hate words and just want to play KhanQuest, click <a href="http://khan.github.io/KhanQuest/" target="_blank">here</a>.</i></p>
+
+<p><h2  id='Aside-Hackathons-Can-Be-Healthy'>Aside: Hackathons Can Be Healthy?<a class='anchor-wrap' href="#Aside-Hackathons-Can-Be-Healthy" title="Permalink to this headline">¶</a></h2 ></p>
+
+<p>What separates the &quot;Healthy Hackathon&quot; from your typical hackathon is, well, everything about it. I&#39;m not a big fan of the &quot;competitive&quot; hackathon, where hundreds of hackers stay up all night drinking Red Bull, racing to slap together the best crowd pleaser and &quot;win&quot; (see: the <a href="http://greylocku.com/hackfest/#prizes">Cash-omatic</a>). But I digress!</p>
+
+<p>In more concrete terms, what sets Khan Academy&#39;s Healthy Hackathon apart is that:</p>
+
+<ol>
+<li>There is no staying up all night: Everyone is kicked out at midnight, lest they face the wrath of the Nerf gun. From then, the office doors remain locked until 9:30am.</li>
+<li>There is no (or, very limited) junk food: All the catered food errs towards &quot;healthy&quot;.</li>
+<li>There is no &quot;winning&quot; and there are no &quot;judges&quot;: Everyone gets a raffle ticket for participating, with additional tickets doled out for cool hacks via anonymous voting. The prizes also err more towards gag (think: favorite company board games) than prestige.</li>
+</ol>
+
+<p>It&#39;s an opportunity to go off in a new direction among friends and work on something exciting that you&#39;d otherwise defer or put off. That can lead to software that ships and software that doesn&#39;t, both of which are totally fine. In fact, one of the guiding principles of the hackathon is that your &quot;hack&quot; doesn&#39;t have to involve code.</p>
+
+<p>You can read more on <a href="http://bjk5.com/post/56123354891/how-we-ran-the-second-khan-academy-healthy-hackathon">Ben Kamens&#39; blog</a> (note: his post describes the Second Annual &quot;Healthy Hackathon&quot;, but I&#39;ll update the link soon).</p>
+
+<p><h2  id='KhanQuest'>KhanQuest<a class='anchor-wrap' href="#KhanQuest" title="Permalink to this headline">¶</a></h2 ></p>
+
+<p>This year, my colleague <a href="https://github.com/zgotsch">Zach Gotsch</a> rallied a few of us together on Thursday evening around a simple idea: take Khan Academy&#39;s core learning mechanics and philosophies, and wrap them within a fantasy video game (think <em>Pokemon</em> meets <em>Final Fantasy</em> meets <em>Harry Potter</em>). The team consisted of myself, Zach, <a href="http://joelburget.com/healthy-hackathon/">Joel Burget</a>, <a href="http://desmondbrand.com/">Desmond Brand</a>, <a href="https://github.com/jacktoole1">Jack Toole</a>, and <a href="https://twitter.com/himichelletodd">Michelle Todd</a>, with a special shoutout to <a href="http://www.elizabethylin.com/about/">Elizabeth Lin</a> for lending her (unreal) design skills.</p>
+
+<p>After a few solid days of hacking, we demoed <strong>&quot;KhanQuest&quot;</strong>. All the code is available on <a href="https://github.com/Khan/KAQuest">GitHub</a>, and you play it immediately (at your own risk) @ <a href="http://khan.github.io/KhanQuest/" target="_blank">this link</a>.</p>
+
+<p>It&#39;s totally imperfect, and we love it.</p>
+
+<p>The core plot line: our beloved Salman Khan has been kidnapped by an evil warlock (I think?), and it&#39;s your job as the trusty delivery boy/girl (who happens to look like some sort of mage) to save him, learning the requisite magic along the way.</p>
+
+<p>Here&#39;s an extended screencast (with commentary):</p>
+
+<div style="text-align: center">
+<iframe src="//player.vimeo.com/video/101366825" width="500" height="368" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+</div>
+
+<p><em>(Confession: I had to crop out ~30 seconds of me struggling with a basic geometry problem around 3:10.)</em></p>
+
+<p><h3  id='Game-Mechanics'>Game Mechanics<a class='anchor-wrap' href="#Game-Mechanics" title="Permalink to this headline">¶</a></h3 ></p>
+
+<p>The mapping between game and Khan Academy mechanic actually worked out pretty well:</p>
+
+<ul>
+<li>Each subject within mathematics mapped to a type of spell (e.g., geometry mapped to fire spells, while algebra mapped to frost spells).</li>
+<li>Each exercise within a subject mapped to a specific spell (e.g., calculating the area of a triangle mapped to &quot;Fireball&quot;).</li>
+<li>Completing a question on Khan Academy mapped to casting a spell (e.g., successfully calculating the area of a triangle mapped to casting &quot;Fireball&quot;).</li>
+</ul>
+
+<p>To bake in some of Khan Academy&#39;s learning philosophies, we also added a few minor tweaks:</p>
+
+<ul>
+<li><strong>Spells temporarily grew in strength as they <em>weren&#39;t</em> used</strong>. This sounds unintuitive, but the goal was to encourage players to go back and review (or tackle more difficult exercises), while giving them some payoff for doing so. For example, if you moved past basic addition, we&#39;d want to make sure that you&#39;d retained mastery of this basic skill even as you began to work on multiplication (or geometry or algebra). By giving a small boost to the basic addition spell that incremented over time, you&#39;d be incentivized to go back at some point in the future and review that exercise, which would then reset this incremental boost.</li>
+<li><strong>Random monster encounters encouraged practice</strong>. While boss battles would encourage you to master <em>new</em> skills, random encounters with spiders, wolves, and other classic video-game enemies would encourage you to build on your abilities.</li>
+</ul>
+
+<p>At the end of the weekend, the game was playable through the first few levels, complete with monster encounters, a variety of spells, dialog, and more.</p>
+
+<p>However, there was <em>plenty</em> that we didn&#39;t get around to implementing. Be sure to check out <a href="http://joelburget.com/healthy-hackathon/">Joel&#39;s blog post</a> for a better discussion of (existing) bugs and flaws, as well as the challenges we faced.</p>
+
+<p><h3  id='Technology'>Technology<a class='anchor-wrap' href="#Technology" title="Permalink to this headline">¶</a></h3 ></p>
+
+<p>After settling on a browser-based game, we went all-in on <a href="http://facebook.github.io/react/">React</a> (Khan Academy is one of the larger production users (see, e.g., <a href="https://github.com/Khan/perseus">Perseus</a>), so we all had some experience with it) and built the entire game under the <a href="http://facebook.github.io/react/docs/flux-overview.html">Flux</a> architecture. Flux was entirely new to me and very fun to learn (hackathons are always a great time to experiment, especially when they&#39;re not made &#39;competitive&#39;)—here&#39;s hoping I can use it again the near future.</p>
+
+<p>One of my more demoable contributions was the implementation of fun HTML5 Canvas-based effects to simulate snowfall, rainfall, fog, and spell casting (see below, or the embedded video above for the weather effects), the code for which can be found <a href="https://github.com/Khan/KhanQuest/blob/master/src/sprites/animation.jsx">here</a>.</p>
+
+<p><img src="/~crmarsh/static/img/fire.gif" alt="Fire animation" class="center"></p>
+
+<p>Beyond that, I also took care of a grab-bag of UI implementations (e.g., the spellbook and transition animations), game mechanics (e.g., the &#39;unused spells grow in strength&#39; behavior), and core features (e.g., <a href="https://github.com/Khan/perseus">Perseus</a> exercise rendering via the Khan Academy API).</p>
+
+<p><h2  id='Going-Forward'>Going Forward<a class='anchor-wrap' href="#Going-Forward" title="Permalink to this headline">¶</a></h2 ></p>
+
+<p>As I mentioned, the game is now online <a href="http://khan.github.io/KhanQuest/" target="_blank">here</a>. It&#39;s still in the incredibly rough form we left it in when we demoed, and in all likelihood, that won&#39;t change. You&#39;ll run into bugs and console errors; but hey, even the healthiest of hackathons inspire last-minute fixes and monkey-patching!</p>
+
+<p>Jokes aside, I consider this my best hackathon experience yet—one that I&#39;ll look back on very fondly. And amidst the <a href="http://i.minus.com/ibaDjk7AeIcvxv.gif">explanations of yak shaving</a> and <a href="https://www.youtube.com/watch?v=1IAXrxlDK6c">extended metaphors for software development</a>, we pumped out some (reasonably) good code and a (reasonably) fun game. Three cheers for healthy hacking!</p>
+
+<p><em>P.S.: In parting, I leave you with a hilarious GIF from an early rendition of the game.</em></p>
+
+<p><img src="/~crmarsh/static/img/map-glitch.gif" alt="Map glitch" class="center"></p>
+
+          <p class="date">Posted on July 20, 2014.<p>
+          <br>
+          <hr />
+<center>
+&copy; 2014 Charles Marsh
+<a href="/feed.xml" style="padding-bottom:15px">
+  <img class="icon" src="/static/img/rss.png">
+</a>
+</center>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

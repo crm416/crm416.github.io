@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <meta name="description" content="Charlie Marsh is a programmer and student at Princeton University with major interests in functional programming and machine learning.">
+  <meta name="viewport" content="width=device-width">
+  <title>Compiling to JavaScript: A Case-by-Case Guide to the *Scripts | Charlie Marsh</title>
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans">
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Source+Code+Pro">
+  <link href="/static/css/bootstrap.css" rel="stylesheet" type="text/css" />
+  <link href="/static/css/sprites.css" rel="stylesheet" type="text/css" />
+  <link href="/static/css/styles.css" rel="stylesheet" type="text/css" />
+  <link href="/static/css/syntax.css" rel="stylesheet" type="text/css" />
+  <link href="https://plus.google.com/u/0/100601164815113053596/" rel='author'>
+  <script type="text/javascript">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-36552582-2', 'princeton.edu');
+    ga('send', 'pageview');
+  </script>
+</head>
+
+  <body class="index">
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span2 hidden-phone"></div>
+        <div class="span2 hidden-phone" style="position:fixed">
+          <h1 style="font-size:50px">
+  <a class="blank" href="/">
+    Charlie<br>Marsh
+  </a>
+</h1>
+<p>
+  <a class="implicit" href="/">Home</a> &sdot; <a class="implicit" href="/static/pdf/Charles_Marsh_CV.pdf">CV</a>&sdot; <a class="implicit" href="/about/">About</a>
+</p>
+<h2>
+  Programmer,<br>student.
+</h2>
+<p>I'm into functional<br>programming,<br>machine learning,<br> and other fun stuff.<p>
+<p>Find me on:</p>
+<a href="mailto:crmarsh@princeton.edu"><img class="icon" src="/static/img/email.png"></a>
+<a href="http://www.github.com/crm416"><img class="icon" src="/static/img/github.png"></a>
+<a href="http://stackoverflow.com/users/1450892/charles-marsh"><img class="icon" src="/static/img/stackoverflow.png"></a>
+<a href="https://www.twitter.com/crm416"><img class="icon" src="/static/img/twitter.png"></a>
+</div>
+<div class="span2 visible-phone">
+  <div>
+    <p style="font-size:25px"><a class="blank" href="/">Charlie Marsh</a>  <div style="margin-top:-10px"><code class="custom"><span class="code_red">type</span> <span class="code_blue">blog</span></code></div>
+  </div>
+  <hr />
+</div>
+
+          <div class="span9 offset1" style="padding-left:20px">
+          <h1>Compiling to JS: Comparing TypeScript, CoffeeScript, etc.</h1>
+
+<p>It seems like all the cool languages these days are compiling to JavaScript. (<em>I joke, but replace &#39;cool&#39; with &#39;relevant&#39; and you might have a reasonable heuristic for evaluating the modernity of a programming language.</em>) <a href="https://github.com/jashkenas">Jeremy Ashkenas</a> (CoffeeScript creator) has a great <a href="https://github.com/jashkenas/coffee-script/wiki/List-of-languages-that-compile-to-JS">list</a> of what seems like hundreds of languages, each of which helps prove my point.</p>
+
+<!--break-->
+
+<p>Why is this all-the-rage, you ask?</p>
+
+<p>Firstly, in my opinion, when we say that a language compiles to JavaScript, we could really be talking about two different approaches:</p>
+
+<ol>
+<li><p><strong>Long-standing languages (e.g., Python) that can compile down into JavaScript using a tool devoted to that very task (e.g., <a href="https://github.com/jashkenas/coffee-script/wiki/List-of-languages-that-compile-to-JS##python">these</a> Python-to-JS compilers)</strong>. In this case, the tool has been created not to explicitly replace JavaScript per se, but rather to allow programmers to write more of their code in a single language. (<em>Note: these libraries are often used because developers want to avoid using JavaScript due to personal dislike. In that way, you could say that these tools do replace JavaScript. But they weren&#39;t built with that as the primary goal.</em>)</p></li>
+<li><p><strong>Languages whose <em>sole purpose</em> is to <em>compile to JavaScript</em> (e.g., <a href="http://www.typescriptlang.org">TypeScript</a>)</strong>. These languages came long after JavaScript, and only exist because of it. They don&#39;t really have their own VMs, etc.: they can only be run by compiling to JavaScript. <strong>In this case, the language has been created because developers have qualms with Javascript</strong>. And in some ways, these could be seen as higher-level languages: they claim to have some improvement of JavaScript and then compile down to it. I&#39;ll call these <strong>*Scripts</strong>.</p></li>
+</ol>
+
+<p>Each of these variants were conceived by different creators with different goals in mind. They offer their own strengths, their own weaknesses, their own biases, their own opinions, and so forth. (<em>Note: in most of these languages, you could include valid JavaScript in your source code without any problems.</em>)</p>
+
+<p>In this post, I&#39;d like to give readers some insight into why they might choose one of these languages over (1) JavaScript, and (2) the other *Scripts in contention.</p>
+
+<p><h2  id='CoffeeScript'>CoffeeScript<a class='anchor-wrap' href="#CoffeeScript" title="Permalink to this headline">¶</a></h2 >
+I see <a href="http://coffeescript.org">CoffeeScript</a> as the poster child of the *Scripts. Really, CoffeeScript aims to make your code more concise and more readable. The syntax doesn&#39;t use any of the &#39;{&#39; and &#39;(&#39; and &#39;;&#39; that plague JavaScript code, instead opting to use whitespace (a lá Python). Again, similar to Python, it&#39;s got great comprehensions that require 10x more JavaScript code to implement.</p>
+
+<p>Here&#39;s an example of these list comprehensions:</p>
+
+<div class="highlight"><pre><code class="language-coffeescript" data-lang="coffeescript"><span class="nv">even_nums = </span><span class="p">(</span><span class="nx">i</span> <span class="k">for</span> <span class="nx">i</span> <span class="k">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">..</span><span class="mi">10</span><span class="p">]</span> <span class="k">when</span> <span class="nx">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+<span class="nv">odd_nums = </span><span class="p">(</span><span class="nx">i</span> <span class="k">for</span> <span class="nx">i</span> <span class="k">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">..</span><span class="mi">10</span><span class="p">]</span> <span class="k">when</span> <span class="nx">i</span> <span class="o">not</span> <span class="k">in</span> <span class="nx">even_nums</span><span class="p">)</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="nx">even_nums</span> <span class="c1">## prints &#39;0, 2, 4, 6, 8&#39;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="nx">odd_nums</span> <span class="c1">## prints &#39;1, 3, 5, 7, 9&#39;</span></code></pre></div>
+
+<p>If this doesn&#39;t look impressive on its own, check out the corresponding JavaScript:</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">even_nums</span><span class="p">,</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">odd_nums</span><span class="p">,</span>
+    <span class="nx">__indexOf</span> <span class="o">=</span> <span class="p">[].</span><span class="nx">indexOf</span> <span class="o">||</span> <span class="kd">function</span><span class="p">(</span><span class="nx">item</span><span class="p">)</span> <span class="p">{</span> <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">l</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">l</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="k">if</span> <span class="p">(</span><span class="nx">i</span> <span class="k">in</span> <span class="k">this</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">===</span> <span class="nx">item</span><span class="p">)</span> <span class="k">return</span> <span class="nx">i</span><span class="p">;</span> <span class="p">}</span> <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="p">};</span>
+
+  <span class="nx">even_nums</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">_i</span><span class="p">,</span> <span class="nx">_results</span><span class="p">;</span>
+    <span class="nx">_results</span> <span class="o">=</span> <span class="p">[];</span>
+    <span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="nx">_i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">_i</span> <span class="o">&lt;=</span> <span class="mi">10</span><span class="p">;</span> <span class="nx">i</span> <span class="o">=</span> <span class="o">++</span><span class="nx">_i</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">_results</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">_results</span><span class="p">;</span>
+  <span class="p">})();</span>
+
+  <span class="nx">odd_nums</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">_i</span><span class="p">,</span> <span class="nx">_results</span><span class="p">;</span>
+    <span class="nx">_results</span> <span class="o">=</span> <span class="p">[];</span>
+    <span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="nx">_i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">_i</span> <span class="o">&lt;=</span> <span class="mi">10</span><span class="p">;</span> <span class="nx">i</span> <span class="o">=</span> <span class="o">++</span><span class="nx">_i</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">__indexOf</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">even_nums</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">_results</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">_results</span><span class="p">;</span>
+  <span class="p">})();</span>
+
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">even_nums</span><span class="p">);</span>
+
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">odd_nums</span><span class="p">);</span>
+
+<span class="p">}).</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">);</span></code></pre></div>
+
+<p>Why use CoffeeScript? It&#39;s just a pleasure. The syntax takes away the worst parts of JavaScript. The language appears more functional and less disgusting.</p>
+
+<p><h2  id='TypeScript'>TypeScript<a class='anchor-wrap' href="#TypeScript" title="Permalink to this headline">¶</a></h2 ></p>
+
+<p><a href="http://www.typescriptlang.org">TypeScript</a> is a Microsoft project that aims to add static typing and a better module and interface system to JavaScript. Essentially, you can define classes and interfaces (very easily) and then enforce type safety at compile time, saving you tens of hours of awful JavaScript debugging.</p>
+
+<p>One might claim that <strong>CoffeeScript : Python :: TypeScript : OCaml</strong>.</p>
+
+<p>Lets see this type safety in action:</p>
+
+<div class="highlight"><pre><code class="language-ts" data-lang="ts"><span class="kr">interface</span> <span class="nx">Point</span> <span class="p">{</span>
+    <span class="nx">x</span>: <span class="kt">number</span><span class="p">;</span>
+    <span class="nx">y</span>: <span class="kt">number</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cm">/* Calculate a Point&#39;s distance from the origin. */</span>
+<span class="kd">function</span> <span class="nx">distance</span><span class="p">(</span><span class="nx">a</span>: <span class="kt">Point</span><span class="p">)</span><span class="o">:</span> <span class="kt">number</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">squared_distance</span>: <span class="kt">number</span> <span class="o">=</span> <span class="nx">a</span><span class="p">.</span><span class="nx">x</span><span class="o">*</span><span class="nx">a</span><span class="p">.</span><span class="nx">x</span> <span class="o">+</span> <span class="nx">a</span><span class="p">.</span><span class="nx">y</span><span class="o">*</span><span class="nx">a</span><span class="p">.</span><span class="nx">y</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">sqrt</span><span class="p">(</span><span class="nx">squared_distance</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">var</span> <span class="nx">not_point</span>: <span class="kt">number</span> <span class="o">=</span> <span class="mi">15</span><span class="p">;</span>
+<span class="nx">distance</span><span class="p">(</span><span class="nx">not_point</span><span class="p">);</span>
+<span class="c1">// type error: parameter does not match any signature of call target</span>
+
+<span class="kd">var</span> <span class="nx">point</span>: <span class="kt">Point</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">x</span>: <span class="kt">3</span><span class="p">,</span>
+    <span class="nx">y</span>: <span class="kt">4</span>
+<span class="p">};</span>
+<span class="nx">distance</span><span class="p">(</span><span class="nx">point</span><span class="p">);</span>
+<span class="c1">// success! returns &#39;5&#39;</span>
+
+<span class="kd">var</span> <span class="nx">bad_point</span>: <span class="kt">Point</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">x</span>: <span class="kt">3</span>
+<span class="p">};</span>
+<span class="c1">// type error: missing property &#39;y&#39; from type Point</span></code></pre></div>
+
+<p>TypeScript also amplifies some of the functional flavor of JavaScript (albeit, less-so than CoffeeScript), mainly by adding the &#39;Fat Arrow&#39; <code>(arg) =&gt; { // use arg }</code> lambdas. For example:</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="nx">myevent</span><span class="p">,</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="c1">// Handle the event...</span>
+<span class="p">})</span></code></pre></div>
+
+<p>(<em>Note: the &#39;Fat Arrow&#39; is part of <a href="http://wiki.ecmascript.org/doku.php?id=harmony:arrow_function_syntax">ECMAScript 6 specification</a> and thus will eventually be supported by all JavaScript engines. <a href="http://robcee.net/2013/fat-arrow-functions-in-javascript/">Firefox</a> already supports it.</em>)</p>
+
+<p>So, why use TypeScript? If you&#39;re a fan of type safety and a static type system, it&#39;s a no-brainer. And for large projects, it can be a life-saver. At the same time, it retains some of JavaScript&#39;s verbosity. You do end up with plenty of <code>})})};</code>-style code. In the end, it&#39;s a matter of preference.</p>
+
+<p><h2  id='LiveScript'>LiveScript<a class='anchor-wrap' href="#LiveScript" title="Permalink to this headline">¶</a></h2 >
+<a href="http://livescript.net">LiveScript</a> is even <em>more</em> functional than CoffeeScript. To keep the analogies going, we might say that <strong>CoffeeScript : Python :: TypeScript : OCaml :: LiveScript : Haskell</strong>, or something like that.</p>
+
+<p>As in CoffeeScript, LiveScript uses whitespace and newlines as delimiters, rather than the brackets of JavaScript.</p>
+
+<p>I actually see LiveScript and CoffeeScript as a bit of a toss-up. If you&#39;re <em>really</em> into functional programming, you might prefer LiveScript. For example, one differentiating factor: LiveScript allows for <a href="http://en.wikipedia.org/wiki/Currying">function currying</a> (i.e., partial application of functions). Watch us define the <code>increment</code> function as adding one:</p>
+
+<div class="highlight"><pre><code class="language-livescript" data-lang="livescript"><span class="nv">add = </span><span class="nf">(x, y) --&gt;</span> <span class="nx">x</span> <span class="o">+</span> <span class="nx">y</span>
+<span class="nx">add</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">9</span>       <span class="c1">##=&gt; 20</span>
+<span class="nv">increment = </span><span class="nx">add</span> <span class="mi">1</span>
+<span class="nx">increment</span> <span class="mi">11</span>    <span class="c1">##=&gt; 12</span></code></pre></div>
+
+<p>In general, LiveScript has a strong functional lean. If that&#39;s for you, check it out.</p>
+
+<p><h2  id='RedScript'>RedScript<a class='anchor-wrap' href="#RedScript" title="Permalink to this headline">¶</a></h2 ></p>
+
+<p><a href="http://redscript.org">RedScript</a> appeared on HackerNews recently, and although it certainly hasn&#39;t reached widespread adoption, I&#39;ve included it here because I think it&#39;s a good example of how people are developing different &#39;flavors&#39; of JavaScript.</p>
+
+<p>At its core, RedScript wants to be a Ruby-flavored JavaScript. This makes it very easy to extend our analogy! <strong>CoffeeScript : Python :: TypeScript : OCaml :: LiveScript : Haskell :: RedScript : Ruby</strong>. For example, here&#39;s some valid RedScript that strongly resembles Ruby:</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mi">0</span><span class="o">.</span><span class="n">.</span><span class="mi">5</span>
+  <span class="nb">puts</span> <span class="n">i</span>
+<span class="k">end</span></code></pre></div>
+
+<p>Actually, I lied: this not only &quot;strongly resembles&quot; Ruby—it <em>is</em> <a href="http://www.tutorialspoint.com/ruby/ruby_loops.htm">valid</a> Ruby.</p>
+
+<p>If you&#39;re a Rubyist, try RedScript. It&#39;s as simple as that.</p>
+
+<p><h2  id='Conclusion'>Conclusion<a class='anchor-wrap' href="#Conclusion" title="Permalink to this headline">¶</a></h2 ></p>
+
+<p>The languages described here are just a subset of the compile-to-JS family. But even with these four examples, we see:</p>
+
+<ul>
+<li>Function currying</li>
+<li>Static typing/type safety</li>
+<li>Whitespace vs. bracket delimiting</li>
+</ul>
+
+<p>… and more.</p>
+
+<p>JavaScript is a cool language. I love the community and I enjoy using it. But the development of these higher-level languages is cool too. If anything, they further emphasize the importance and relevance of JavaScript: without JavaScript, these languages would cease to run.</p>
+
+          <p class="date">Posted on September 19, 2013.<p>
+          <br>
+          <hr />
+<center>
+&copy; 2014 Charles Marsh
+<a href="/feed.xml" style="padding-bottom:15px">
+  <img class="icon" src="/static/img/rss.png">
+</a>
+</center>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

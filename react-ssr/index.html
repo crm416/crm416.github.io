@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <meta name="description" content="Charlie Marsh is a programmer and student at Princeton University with major interests in functional programming and machine learning.">
+  <meta name="viewport" content="width=device-width">
+  <title>Rendering React Components on the Server | Charlie Marsh</title>
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans">
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Source+Code+Pro">
+  <link href="/static/css/bootstrap.css" rel="stylesheet" type="text/css" />
+  <link href="/static/css/sprites.css" rel="stylesheet" type="text/css" />
+  <link href="/static/css/styles.css" rel="stylesheet" type="text/css" />
+  <link href="/static/css/syntax.css" rel="stylesheet" type="text/css" />
+  <link href="https://plus.google.com/u/0/100601164815113053596/" rel='author'>
+  <script type="text/javascript">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-36552582-2', 'princeton.edu');
+    ga('send', 'pageview');
+  </script>
+</head>
+
+  <body class="index">
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span2 hidden-phone"></div>
+        <div class="span2 hidden-phone" style="position:fixed">
+          <h1 style="font-size:50px">
+  <a class="blank" href="/">
+    Charlie<br>Marsh
+  </a>
+</h1>
+<p>
+  <a class="implicit" href="/">Home</a> &sdot; <a class="implicit" href="/static/pdf/Charles_Marsh_CV.pdf">CV</a>&sdot; <a class="implicit" href="/about/">About</a>
+</p>
+<h2>
+  Programmer,<br>student.
+</h2>
+<p>I'm into functional<br>programming,<br>machine learning,<br> and other fun stuff.<p>
+<p>Find me on:</p>
+<a href="mailto:crmarsh@princeton.edu"><img class="icon" src="/static/img/email.png"></a>
+<a href="http://www.github.com/crm416"><img class="icon" src="/static/img/github.png"></a>
+<a href="http://stackoverflow.com/users/1450892/charles-marsh"><img class="icon" src="/static/img/stackoverflow.png"></a>
+<a href="https://www.twitter.com/crm416"><img class="icon" src="/static/img/twitter.png"></a>
+</div>
+<div class="span2 visible-phone">
+  <div>
+    <p style="font-size:25px"><a class="blank" href="/">Charlie Marsh</a>  <div style="margin-top:-10px"><code class="custom"><span class="code_red">type</span> <span class="code_blue">blog</span></code></div>
+  </div>
+  <hr />
+</div>
+
+          <div class="span9 offset1" style="padding-left:20px">
+          <h1>Rendering React Components on the Server</h1>
+
+<p>I love working with React. Like, a little too much (no thanks to my (amazing) internship at Khan Academy, where we use React in buckets).</p>
+
+<p>For a recent side project, I wanted to render my React components on the server, rather than the client (this is often abbreviated as &quot;server-side rendering&quot;, or SSR, for short).</p>
+
+<p>Typical motivations for rendering on the server include:</p>
+
+<ol>
+<li><a href="http://openmymind.net/2012/5/30/Client-Side-vs-Server-Side-Rendering/">Faster page loads</a>: by rendering on the server, you get to send down a complete webpage, cut out an HTTP request, etc.</li>
+<li><a href="http://googlewebmastercentral.blogspot.com/2007/11/spiders-view-of-web-20.html">More reliable SEO</a>: any crawler that navigates to your site will see a complete page filled with content, rather than an empty page that requires JavaScript execution.</li>
+</ol>
+
+<p>(This isn&#39;t to say that SSR is strictly better than client-side rendering; it&#39;s just different.)</p>
+
+<p>SSR is totally doable with React; but a lot of the SSR-related resources out there seem to assume prior knowledge. I thought I&#39;d share what I&#39;ve learned.</p>
+
+<!--break-->
+
+<p><h2  id='The-Basics'>The Basics<a class='anchor-wrap' href="#The-Basics" title="Permalink to this headline">¶</a></h2 ></p>
+
+<p><h3  id='Static-markup'>Static markup<a class='anchor-wrap' href="#Static-markup" title="Permalink to this headline">¶</a></h3 ></p>
+
+<p>Let&#39;s start with the static case, in which the rendered components we send to the client won&#39;t need to re-render in any way.</p>
+
+<p>React provides a method, <code>renderComponentToStaticMarkup</code>, that takes a React component and returns its HTML markup as a string. This is super useful for server-side rendering, as you can simply pass the method output into a templating engine and send the client the resulting HTML page. For example, if you&#39;re using Handlebars, you can render your component to static markup and send it down in the <code>markup</code> variable as such:</p>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div&gt;</span>{{{ markup }}}<span class="nt">&lt;/div&gt;</span>
+</code></pre></div>
+<p><h3  id='Reactive-components'>Reactive components<a class='anchor-wrap' href="#Reactive-components" title="Permalink to this headline">¶</a></h3 ></p>
+
+<p>But it&#39;s rare that you really want your components to be static. Why&#39;s that? Static components can&#39;t respond to non-trivial user interaction, update <code>state</code>, re-render, etc. They&#39;re totally passive and, err, static.</p>
+
+<p>For React components to behave as you&#39;d expect (with updates and re-renders), they need an actual react.js instance to be aware of their existence so as to handle event binding, manage <code>prop</code> and <code>state</code> changes, and reflect these changes in the DOM. Without it, all you have is static, non-responsive markup.</p>
+
+<p>Thankfully, React provides a second method, <code>renderComponentToString</code>, that again returns a string of HTML markup, but this time enables our generated components to react to interactions on the client-side as necessary.</p>
+
+<p>How so? <strong>The key is to (ostensibly) re-render the component on the client as soon as the page has loaded</strong>. Bear with me.</p>
+
+<p><h3  id='An-Example'>An Example<a class='anchor-wrap' href="#An-Example" title="Permalink to this headline">¶</a></h3 ></p>
+
+<p>Let&#39;s say that we have a React component, <code>Item</code>, with one prop (called <code>initialCount</code>) and one piece of state (called <code>count</code>). The component initializes <code>count</code> with <code>initialCount</code> and increments it on-click. Here&#39;s a bare-bones version:</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">Item</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nx">createClass</span><span class="p">({</span>
+    <span class="nx">getInitialState</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="nx">count</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">initialCount</span>
+        <span class="p">};</span>
+    <span class="p">},</span>
+
+    <span class="nx">_increment</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span> <span class="nx">count</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">count</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">});</span>
+    <span class="p">},</span>
+
+    <span class="nx">render</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">_increment</span><span class="p">}</span><span class="o">&gt;</span>
+            <span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">count</span><span class="p">}</span>
+        <span class="o">&lt;</span><span class="err">/div&gt;;</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div>
+<p>We want to render this component on the server, which might look like (for example&#39;s sake, I&#39;ll assume Express and Handlebars):</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">React</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;react&#39;</span><span class="p">);</span>
+<span class="p">...</span>
+<span class="kd">var</span> <span class="nx">markup</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nx">renderComponentToString</span><span class="p">(</span>
+    <span class="nx">Item</span><span class="p">({</span> <span class="nx">initialCount</span><span class="o">:</span> <span class="mi">7</span> <span class="p">})</span>
+<span class="p">);</span>
+<span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">&#39;template&#39;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">markup</span><span class="o">:</span> <span class="nx">markup</span>
+<span class="p">});</span>
+</code></pre></div>
+<p>Then, in our template, we&#39;d have:</p>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;container&quot;</span><span class="nt">&gt;</span>{{{ markup }}}<span class="nt">&lt;/div&gt;</span>
+</code></pre></div>
+<p>If we stopped here, then on page load, we&#39;d see the number &#39;7&#39;—but our component wouldn&#39;t update on-click. Why? As I mentioned, we haven&#39;t made our client-side React instance aware of the component, so it can&#39;t handle re-renders. But the problem comes even before an attempt to <code>setState</code>: since React handles the binding of events to components, our <code>onClick</code> handler won&#39;t be passed down in the static markup (take a look), and thus won&#39;t be triggered at all.</p>
+
+<p>To get this component under control, we&#39;ll need a call in the browser that looks something like this (assuming <code>React</code> and <code>Item</code> are available as globals):</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">container</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;container&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">component</span> <span class="o">=</span> <span class="nx">Item</span><span class="p">({</span> <span class="nx">initialCount</span><span class="o">:</span> <span class="mi">7</span> <span class="p">});</span>
+<span class="nx">React</span><span class="p">.</span><span class="nx">renderComponent</span><span class="p">(</span><span class="nx">component</span><span class="p">,</span> <span class="nx">container</span><span class="p">);</span>
+</code></pre></div>
+<p>With that, we can click on our rendered component and the count will increment: events are bound, as they would be if we&#39;d rendered client-side, and the DOM updates to reflect our changes.</p>
+
+<p>The magic of it all: as long as we render <code>Item</code> with the <em>same props</em> and into the <em>same node</em> on both the client and server, <strong>React won&#39;t actually re-render the component</strong> (which would be less performant)—it&#39;s smart enough to realize that the rendered <code>Item</code> already exists in the DOM and simply note that it <em>may</em> need to be re-rendered in the future.</p>
+
+<p>This is the best of both worlds: <strong>we get all the benefits of server-side rendering while maintaining truly reactive React components</strong>.</p>
+
+<p><h3  id='Syncing-Props'>Syncing Props<a class='anchor-wrap' href="#Syncing-Props" title="Permalink to this headline">¶</a></h3 ></p>
+
+<p>A key phrase there: we need to render <code>Item</code> with the same props on the client and server (as evidenced by the last code snippet, above). That&#39;s a little frustrating, but not terribly difficult to do. A few viable approaches include:</p>
+
+<ol>
+<li><p><em>Passing the initial props down through templating</em>.</p>
+
+<p>There&#39;s a good example of this behavior in Michael Hart&#39;s <a href="https://github.com/mhart/react-server-example">react-server-example</a> repo, but here&#39;s the basic idea:</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">props</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">initialCount</span><span class="o">:</span> <span class="mi">7</span> <span class="p">};</span>
+<span class="kd">var</span> <span class="nx">markup</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nx">renderComponentToString</span><span class="p">(</span><span class="nx">Item</span><span class="p">(</span><span class="nx">props</span><span class="p">));</span>
+<span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span>
+    <span class="s1">&#39;&lt;div id=&quot;container&quot;&gt;&#39;</span> <span class="o">+</span> <span class="nx">markup</span> <span class="o">+</span> <span class="s1">&#39;&lt;/div&gt;&#39;</span> <span class="o">+</span>
+    <span class="s1">&#39;&lt;script&gt;</span>
+<span class="s1">        var container = document.getElementById(&quot;container&quot;);</span>
+<span class="s1">        var component = Item(&#39;</span> <span class="o">+</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;);</span>
+<span class="s1">        React.renderComponent(component, container);</span>
+<span class="s1">     &lt;/script&gt;&#39;</span>
+<span class="p">);</span>
+</code></pre></div>
+<p>Note: For each of these examples, to avoid XSS attacks (as per <a href="http://benalpert.com/2012/08/03/preventing-xss-json.html">Ben Alpert&#39;s blog post</a>), you should use a <code>safeStringify</code> function, rather than <code>JSON.stringify</code>. There&#39;s a JavaScript implementation <a href="https://github.com/mhart/react-server-example/blob/master/server.js#L96">here</a>.</p></li>
+<li><p><em>Passing the initial props down in a <code>&lt;script&gt;</code> tag with <code>type=&quot;application/json&quot;</code></em>.</p>
+
+<p>Again, the standard approach would be to handle this step with your templating engine:</p>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;container&quot;</span><span class="nt">&gt;</span>{{{ markup }}}<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;script </span><span class="na">id=</span><span class="s">&quot;props&quot;</span> <span class="na">type=</span><span class="s">&quot;application/json&quot;</span><span class="nt">&gt;</span>
+    <span class="p">{{{</span> <span class="nx">jsonifiedProps</span> <span class="p">}}}</span>
+<span class="nt">&lt;/script&gt;</span>
+<span class="nt">&lt;script&gt;</span>
+    <span class="kd">var</span> <span class="nx">container</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;container&quot;</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">props</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;props&quot;</span><span class="p">).</span><span class="nx">innerHTML</span><span class="p">);</span>
+    <span class="nx">React</span><span class="p">.</span><span class="nx">renderComponent</span><span class="p">(</span><span class="nx">Item</span><span class="p">(</span><span class="nx">props</span><span class="p">),</span> <span class="nx">container</span><span class="p">);</span>
+<span class="nt">&lt;/script&gt;</span>
+</code></pre></div>
+<p>Given that the second <code>&lt;script&gt;</code> tag is now totally independent of anything we passed in to our templating engine, we could follow Andrey Popp&#39;s <a href="https://github.com/andreypopp/react-quickstart/blob/master/client.js#L101">example</a> by removing the second <code>&lt;script&gt;</code> tag and appending our <code>item.jsx</code> file with:</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nb">window</span> <span class="o">!==</span> <span class="s1">&#39;undefined&#39;</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">container</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;container&quot;</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">props</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;props&quot;</span><span class="p">).</span><span class="nx">innerHTML</span><span class="p">);</span>
+    <span class="nx">React</span><span class="p">.</span><span class="nx">renderComponent</span><span class="p">(</span><span class="nx">Item</span><span class="p">(</span><span class="nx">props</span><span class="p">),</span> <span class="nx">container</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></li>
+<li><p><em>Passing the initial props down in a <code>&lt;script&gt;</code> tag on the component itself</em>.</p>
+
+<p>This is a twist on approach #2 that, while somewhat unorthdox, has its merits. Back to the <code>Item</code> example, our <code>render</code> function could be written as follows:</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">render</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">json</span> <span class="o">=</span> <span class="nx">safeStringify</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">propStore</span> <span class="o">=</span> <span class="o">&lt;</span><span class="nx">script</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;application/json&quot;</span>
+        <span class="nx">id</span><span class="o">=</span><span class="p">{</span><span class="nx">propStoreID</span><span class="p">}</span>
+        <span class="nx">dangerouslySetInnerHTML</span><span class="o">=</span><span class="p">{{</span><span class="nx">__html</span><span class="o">:</span> <span class="nx">json</span><span class="p">}}</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="err">/script&gt;;</span>
+
+    <span class="k">return</span> <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">_increment</span><span class="p">}</span><span class="o">&gt;</span>
+        <span class="p">{</span><span class="nx">propStore</span><span class="p">}</span>
+        <span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">count</span><span class="p">}</span>
+    <span class="o">&lt;</span><span class="err">/div&gt;;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>The <code>dangerouslySetInnerHTML</code> attribute is used to <a href="http://facebook.github.io/react/docs/jsx-gotchas.html#html-entities">avoid escaping issues</a>. It&#39;s a little messy, but not too bad.</p>
+
+<p>The upside of this approach: it avoids mixing <code>props</code> into the templating step. Further, if you move the client-side <code>React.renderComponent</code> call into your JSX file by following the <code>if (typeof window !== &#39;undefined&#39;)</code> pattern, you can package <em>all</em> of your server-side rendering logic within React, which is a big plus.</p>
+
+<p>As an aside: I use an <code>SSRWrapper</code> React component that takes care of both the <code>&lt;script type=&quot;application/json&quot;&gt;</code> injection and client-side <code>React.renderComponent</code> call, allowing me to write carefree components.</p></li>
+<li><p><em>Passing the initial props down as a <code>window</code>-level variable.</em> Relatively straightforward, given the explanations above.</p></li>
+</ol>
+
+<p><h3  id='Browserifying'>Browserifying<a class='anchor-wrap' href="#Browserifying" title="Permalink to this headline">¶</a></h3 ></p>
+
+<p>One other thing: of course, your client page will need to have access to the actual JSX files that make up your React components (along with React itself). This is typically done by creating a Browserify (or Webpack) bundle and adding a <code>&lt;script&gt;</code> tag to your React component that loads said bundle.</p>
+
+<p>So, in addition to any changes we made in the previous section, we might modify our <code>render</code> to look like:</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">render</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">_increment</span><span class="p">}</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">script</span> <span class="nx">src</span><span class="o">=</span><span class="s2">&quot;/bundles/item.js&quot;</span><span class="o">&gt;&lt;</span><span class="err">/script&gt;</span>
+        <span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">count</span><span class="p">}</span>
+    <span class="o">&lt;</span><span class="err">/div&gt;;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>(We could also put this <code>&lt;script&gt;</code> tag elsewhere on the page through templating—whatever&#39;s easiest. Once again, I use my <code>SSRWrapper</code> component to abstract this step away.)</p>
+
+<p>On the server, we have to make <code>item.js</code> available as a bundle. I use the excellent <a href="https://github.com/ForbesLindesay/browserify-middleware">browserify-middleware</a>, for which the Express-side logic might look like:</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">browserify</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;browserify-middleware&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">reactify</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;reactify&#39;</span><span class="p">);</span>
+<span class="nx">browserify</span><span class="p">.</span><span class="nx">settings</span><span class="p">(</span><span class="s1">&#39;transform&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;reactify&#39;</span><span class="p">]);</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/bundles/item.js&#39;</span><span class="p">,</span> <span class="nx">browserify</span><span class="p">(</span><span class="s1">&#39;./jsx/item.jsx&#39;</span><span class="p">));</span>
+</code></pre></div>
+<p>It&#39;s often useful to create a shared bundle for React, as well as an individual bundle for each of your React components, in which case you might modify the snippet above to include:</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="p">...</span>
+<span class="kd">var</span> <span class="nx">shared</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;react&#39;</span><span class="p">];</span>
+<span class="nx">router</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/bundles/shared.js&#39;</span><span class="p">,</span> <span class="nx">browserify</span><span class="p">(</span><span class="nx">shared</span><span class="p">));</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/bundles/item.js&#39;</span><span class="p">,</span> <span class="nx">browserify</span><span class="p">(</span><span class="s1">&#39;./jsx/item.jsx&#39;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">external</span><span class="o">:</span> <span class="nx">shared</span>
+<span class="p">}));</span>
+</code></pre></div>
+<p><h2  id='How-does-it-all-work'>How does it all work?<a class='anchor-wrap' href="#How-does-it-all-work" title="Permalink to this headline">¶</a></h2 ></p>
+
+<p>Now that we have a good sense for how to render server-side, it&#39;s worth stepping through some React source to understand <em>why</em> it works this way.</p>
+
+<p>If you inspect a React component that&#39;s been rendered on the server (i.e., generated with <code>renderComponentToString</code>), you&#39;ll notice that it has an unfamiliar attribute, <code>data-react-checksum</code>, which you won&#39;t have seen on client-side components. For example, after it&#39;s been passed down from the server, our <code>Item</code> component might look like:</p>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;container&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">data-reactid=</span><span class="s">&quot;.feh782p6o0&quot;</span> <span class="na">data-react-checksum=</span><span class="s">&quot;75238508&quot;</span><span class="nt">&gt;</span>
+        7
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div>
+<p>Walking through the React source for <code>renderComponentToString</code>, we see the following:</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">renderComponentToString</span><span class="p">(</span><span class="nx">component</span><span class="p">)</span> <span class="p">{</span>
+    <span class="p">...</span>
+    <span class="kd">var</span> <span class="nx">componentInstance</span> <span class="o">=</span> <span class="nx">instantiateReactComponent</span><span class="p">(</span><span class="nx">component</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">markup</span> <span class="o">=</span> <span class="nx">componentInstance</span><span class="p">.</span><span class="nx">mountComponent</span><span class="p">(</span><span class="nx">id</span><span class="p">,</span> <span class="nx">transaction</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nx">ReactMarkupChecksum</span><span class="p">.</span><span class="nx">addChecksumToMarkup</span><span class="p">(</span><span class="nx">markup</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Stepping one level deeper into the <code>addChecksumToMarkup</code> function reveals that <code>data-react-checksum</code> is an <a href="http://en.wikipedia.org/wiki/Adler-32">Adler-32</a> checksum generated from the HTML markup and appended to any component rendered server-side.</p>
+
+<p>Later, we call <code>renderComponent</code> on the client-side. With new components (i.e., those that haven&#39;t been seen before by our React instance, like the ones we generated on the server), a call to <code>renderComponent</code> eventually tests for <code>canReuseMarkup</code>:</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="c1">// `markup` is the HTML markup that would be generated by our component</span>
+<span class="c1">// `element` is the DOM node into which it would be rendered</span>
+<span class="nx">canReuseMarkup</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">markup</span><span class="p">,</span> <span class="nx">element</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">existingChecksum</span> <span class="o">=</span> <span class="nx">element</span><span class="p">.</span><span class="nx">getAttribute</span><span class="p">(</span>
+        <span class="nx">ReactMarkupChecksum</span><span class="p">.</span><span class="nx">CHECKSUM_ATTR_NAME</span>
+    <span class="p">);</span>
+    <span class="nx">existingChecksum</span> <span class="o">=</span> <span class="nx">existingChecksum</span> <span class="o">&amp;&amp;</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">existingChecksum</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">markupChecksum</span> <span class="o">=</span> <span class="nx">adler32</span><span class="p">(</span><span class="nx">markup</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nx">markupChecksum</span> <span class="o">===</span> <span class="nx">existingChecksum</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>If this test passes, then instead of rendering anything, React simply takes note of the component.</p>
+
+<p>So, what&#39;s happening here is actually quite simple:</p>
+
+<ul>
+<li>On the server, React appends a checksum for the rendered components to its outermost DOM node.</li>
+<li>When a new component is passed to React on the client, it first checks for the existing HTML markup at the target DOM node and grabs the Adler-32 checksum appended by the server.</li>
+<li>This value is compared to the checksum that would be generated by the provided React component and its props.</li>
+<li>If the values are equivalent, no rendering is necessary, and thus no rendering is performed.</li>
+</ul>
+
+<p>For example, if we render <code>Item({ initialCount: 5 })</code> on the server, it&#39;ll turn it into HTML markup, calculate a checksum, and append it to the outermost DOM node. Then, when we call <code>React.renderComponent(Item({ initialCount: 5 }), container)</code> on the client, it checks if the markup generated by <code>Item({ initialCount: 5 })</code> matches the checksum (which it does) and simply returns (rather than re-rendering).</p>
+
+<p><h2  id='Gotchas'>Gotchas<a class='anchor-wrap' href="#Gotchas" title="Permalink to this headline">¶</a></h2 ></p>
+
+<p>A few things to keep in mind:</p>
+
+<ul>
+<li><p>When rendering on the server, <code>getDefaultProps</code>, <code>getInitialState</code>, and <code>componentWillMount</code> are the only React lifecycle methods that get run (see, e.g., the note on <code>componentDidMount</code> in the <a href="http://facebook.github.io/react/docs/component-specs.html#mounting-componentdidmount">docs</a>). Be aware!</p></li>
+<li><p>If you&#39;re using Handlebars, you&#39;ll need triple <code>{</code> around your markup, otherwise it won&#39;t be interpreted as raw HTML (see &quot;HTML Escaping&quot; in the <a href="http://handlebarsjs.com/">docs</a>).</p></li>
+<li><p>Again, if you&#39;re using Handlebars, be sure to do:</p>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div&gt;</span>{{{ markup }}}<span class="nt">&lt;/div&gt;</span>
+</code></pre></div>
+<p>As opposed to, e.g.:</p>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div&gt;</span>
+  {{{ markup }}}
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div>
+<p>React is somewhat space-sensitive: if you opt for the latter and try to render your component into the outermost <code>&lt;div&gt;</code>, React will infer that the <code>firstChild</code> of the <code>&lt;div&gt;</code> is actually a <a href="https://developer.mozilla.org/en-US/docs/Web/API/Node.firstChild">newline character</a>, rather than your rendered component. As a result, it&#39;ll completely re-render it. This is a <a href="https://github.com/facebook/react/issues/996">known issue</a>, but the fix isn&#39;t live yet.</p></li>
+<li><p>To avoid re-rendering, the markup generated by the client and server must be <em>completely</em> identical. That means, for example, that you can&#39;t pass down the initial props in a <code>&lt;script&gt;</code> tag <em>only</em> on the server; otherwise, the checksums won&#39;t match up. As a rule of thumb, avoid any checks for <code>(typeof window !== &#39;undefined&#39;)</code> or whatnot when writing rendering-related code.</p></li>
+</ul>
+
+<p><h2  id='Resources--Acknowledgements'>Resources &amp; Acknowledgements<a class='anchor-wrap' href="#Resources--Acknowledgements" title="Permalink to this headline">¶</a></h2 ></p>
+
+<p>Here are some resources I found helpful (and referenced above):</p>
+
+<ul>
+<li>Andrey Popp&#39;s <a href="https://github.com/andreypopp/react-async/tree/master/example">ReactAsync</a> examples.</li>
+<li>Andrey Popp&#39;s <a href="https://github.com/andreypopp/react-quickstart">react-quickstart</a> guide.</li>
+<li>Michael Hart&#39;s <a href="https://github.com/mhart/react-server-example">react-server-example</a> repo.</li>
+<li>Pete Hunt&#39;s <a href="https://github.com/petehunt/react-server-rendering-example">react-server-rendering-example</a> repo.</li>
+</ul>
+
+<p>Finally, thanks to <a href="http://benalpert.com/">Ben Alpert</a> (<a href="https://twitter.com/soprano">@soprano</a>) for his feedback on a draft of this post.</p>
+
+          <p class="date">Posted on August 12, 2014.<p>
+          <br>
+          <hr />
+<center>
+&copy; 2014 Charles Marsh
+<a href="/feed.xml" style="padding-bottom:15px">
+  <img class="icon" src="/static/img/rss.png">
+</a>
+</center>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

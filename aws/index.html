@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <meta name="description" content="Charlie Marsh is a programmer and student at Princeton University with major interests in functional programming and machine learning.">
+  <meta name="viewport" content="width=device-width">
+  <title>The 5-Minute Guide to a Perfect, Personal EC2 Instance | Charlie Marsh</title>
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans">
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Source+Code+Pro">
+  <link href="/static/css/bootstrap.css" rel="stylesheet" type="text/css" />
+  <link href="/static/css/sprites.css" rel="stylesheet" type="text/css" />
+  <link href="/static/css/styles.css" rel="stylesheet" type="text/css" />
+  <link href="/static/css/syntax.css" rel="stylesheet" type="text/css" />
+  <link href="https://plus.google.com/u/0/100601164815113053596/" rel='author'>
+  <script type="text/javascript">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-36552582-2', 'princeton.edu');
+    ga('send', 'pageview');
+  </script>
+</head>
+
+  <body class="index">
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span2 hidden-phone"></div>
+        <div class="span2 hidden-phone" style="position:fixed">
+          <h1 style="font-size:50px">
+  <a class="blank" href="/">
+    Charlie<br>Marsh
+  </a>
+</h1>
+<p>
+  <a class="implicit" href="/">Home</a> &sdot; <a class="implicit" href="/static/pdf/Charles_Marsh_CV.pdf">CV</a>&sdot; <a class="implicit" href="/about/">About</a>
+</p>
+<h2>
+  Programmer,<br>student.
+</h2>
+<p>I'm into functional<br>programming,<br>machine learning,<br> and other fun stuff.<p>
+<p>Find me on:</p>
+<a href="mailto:crmarsh@princeton.edu"><img class="icon" src="/static/img/email.png"></a>
+<a href="http://www.github.com/crm416"><img class="icon" src="/static/img/github.png"></a>
+<a href="http://stackoverflow.com/users/1450892/charles-marsh"><img class="icon" src="/static/img/stackoverflow.png"></a>
+<a href="https://www.twitter.com/crm416"><img class="icon" src="/static/img/twitter.png"></a>
+</div>
+<div class="span2 visible-phone">
+  <div>
+    <p style="font-size:25px"><a class="blank" href="/">Charlie Marsh</a>  <div style="margin-top:-10px"><code class="custom"><span class="code_red">type</span> <span class="code_blue">blog</span></code></div>
+  </div>
+  <hr />
+</div>
+
+          <div class="span9 offset1" style="padding-left:20px">
+          <h1>The 5-Minute Guide to a Perfect, Personal EC2 Instance</h1>
+
+<p>I like SSHing into things. So I went ahead and setup my own AWS EC2 instance. Under the free tier, you can get good mileage out of an instance and use it to do whatever you please.</p>
+
+<p>But it took me awhile to get the thing up and running properly. Here are the things I wanted to have:</p>
+
+<ol>
+<li>Easy SSH access at the press of a button (i.e., without entering a password).</li>
+<li>Yet, safety and security from the attempted access of others (i.e., using RSA keys).</li>
+<li>My own account on the instance (rather than, say, using <em>root</em>).</li>
+<li>All the tools I use naturally on my local machine.</li>
+</ol>
+
+<p>If that experience sounds good to you, keep reading. I&#39;ve pulled together the assorted posts that I used to setup my EC2 instance and assembled <strong>The Idiot-Proof Guide</strong>.</p>
+
+<!--break-->
+
+<p><h2  id='Signing-Up-With-AWS-The-Boring-Part'>Signing Up With AWS (The Boring Part)<a class='anchor-wrap' href="#Signing-Up-With-AWS-The-Boring-Part" title="Permalink to this headline">¶</a></h2 >
+* Go to the <a href="https://portal.aws.amazon.com/gp/aws/developer/registration/index.html">AWS signup page</a>. Proceed with the signup process. Note that the information necessary to get up and running with an AWS account includes a valid <strong>credit card</strong> and a <strong>valid phone</strong> (used for verification). Have these at the ready.</p>
+
+<p><h2  id='-Launching-Your-Instance'>Launching Your Instance<a class='anchor-wrap' href="#-Launching-Your-Instance" title="Permalink to this headline">¶</a></h2 ></p>
+
+<ul>
+<li>After you&#39;ve received your activation email, head to the <a href="https://console.aws.amazon.com/console/home?#">AWS management console</a> (this link requires you to be logged in to AWS). Click on the icon labelled &#39;EC2&#39; (orange, below).</li>
+</ul>
+
+<p><img src="../static/img/aws_portal.png" alt="AWS Portal" class="center" width="700"></p>
+
+<p><em>For those interested, &#39;EC2&#39; stands for <em>Elastic Cloud Compute</em>. The service itself allows users to rent out virtual computers on which they can boot up their own images. Basically, we&#39;re booting onto some random CPU in some Amazon-owned datacenter somewhere in America.</em></p>
+
+<ul>
+<li>On the next page, hit the big blue &#39;Launch Instance&#39; button, as seen below.</li>
+</ul>
+
+<p><img src="../static/img/aws_launch_instance.png" alt="Launch instance" class="center"></p>
+
+<ul>
+<li>Next, we proceed with the &#39;Classic Wizard&#39;. It&#39;s at this point that we have to select our disk image. Personally, I like using Ubuntu, so the rest of this tutorial will assume that you select <em>Ubuntu Server 13.04</em> (64-bit).</li>
+<li>Click-through (accepting the default settings) until you get to the &#39;Create a Key Pair&#39; tab. You can read more about public/private key pairs <a href="http://en.wikipedia.org/wiki/Public-key_cryptography">here</a>. Basically, Amazon will give you a <em>your_keyname.pem</em> file which will allow you to SSH into your server. Name it whatever you want and save it locally.</li>
+<li>Click through and launch your instance.</li>
+</ul>
+
+<p><img src="../static/img/aws_final.png" alt="Final configuration" class="center" width="700"></p>
+
+<ul>
+<li>Wait until your instance state goes from <em>pending</em> to <em>active</em>. For me, that took about 2-3 minutes. When you see something like this, you&#39;re golden.</li>
+</ul>
+
+<p><img src="../static/img/aws_ready.png" alt="Instance ready" class="center" width="700"></p>
+
+<p><h2  id='Getting-Onto-Your-Server'>Getting Onto Your Server<a class='anchor-wrap' href="#Getting-Onto-Your-Server" title="Permalink to this headline">¶</a></h2 ></p>
+
+<ul>
+<li><p>Now that our instance is up and running, we need to make one more step before we can SSH in. That is, we need to set the file permissions of <em>your_keyname.pem</em>. To do that, use the <a href="http://stackoverflow.com/questions/1454629/aws-ssh-access-permission-denied-publickey-issue#1454647">following command</a>:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">chmod 600 /path/to/your_keyname.pem
+</code></pre></div></li>
+<li><p>Get your EC2 name (something of the form *.compute.amazonaws.com). It&#39;ll look like this:</p></li>
+</ul>
+
+<p><img src="../static/img/aws_instance_name.png" alt="Instance name" class="center"></p>
+
+<ul>
+<li><p>Now, we can go ahead and SSH in. Issue the <a href="http://stackoverflow.com/questions/6394762/ssh-access-to-amazon-ec2-instance#6407649">following command</a>:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">ssh -i /path/to/your_keyname.pem ubuntu@your_instance.compute.amazonaws.com
+</code></pre></div>
+<p>In my case, for example, that looks like:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">ssh -i ~/Desktop/my_key.pem ubuntu@ec2-54-218-37-172.us-west-2.compute.amazonaws.com
+</code></pre></div></li>
+<li><p>Success! (I hope...)</p></li>
+</ul>
+
+<p><img src="../static/img/aws_successful_login.png" class="center" alt="Successful login"></p>
+
+<p><h2  id='Configuring-Your-Account'>Configuring Your Account<a class='anchor-wrap' href="#Configuring-Your-Account" title="Permalink to this headline">¶</a></h2 ></p>
+
+<ul>
+<li>Ideally, you want to <a href="http://www.howtogeek.com/124950/htg-explains-why-you-shouldnt-log-into-your-linux-system-as-root/">minimize the amount of time</a> you&#39;re logged in as <em>root</em>, for security purposes. So next, we&#39;ll create our own account on the EC2 instance and set it up with the proper permissions. I&#39;ll be creating the account <em>charlie</em>.</li>
+<li><p>First, we should setup password authentication so that when we add users, our instance is secure. <a href="http://stackoverflow.com/questions/8339912/allowing-users-to-ssh-to-an-ec2-ubuntu-instance#8339975">To do so</a>:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">sudo vi /etc/ssh/sshd_config
+# Change the line &quot;PasswordAuthentication no&quot; to &quot;PasswordAuthentication yes&quot;
+</code></pre></div>
+<p>Notice that we need to use <em>sudo</em>.</p></li>
+<li><p>Next, we&#39;ll add our user <a href="http://www.edukatr.com/how-to-start-an-ec2-ubuntu-server-for-your-developer-in-6-minutes/">as follows</a>:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">sudo useradd -d /home/charlie -m charlie
+sudo passwd charlie
+# Enter password, twice
+</code></pre></div></li>
+<li><p>That&#39;s great! But <em>charlie</em> still isn&#39;t sudo. If you don&#39;t know what that means: in short, a sudo user is able to access files reserved for admins. We want our account to have these admin privileges. So to provide that, we type the following (still on <em>ubuntu</em>):</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">sudo visudo
+# After line &quot;root ALL=(ALL:ALL) ALL&quot;, add &quot;charlie ALL=(ALL:ALL) ALL&quot;
+</code></pre></div>
+<p>Note: if you don&#39;t want to be prompted to enter your password, then <a href="http://www.ducea.com/2006/06/18/linux-tips-password-usage-in-sudo-passwd-nopasswd/">use</a> &quot;charlie ALL = NOPASSWD:ALL&quot; instead.</p></li>
+<li><p>At this point, <strong>we can SSH in</strong> as <em>charlie</em>! Lets give it a try. Before closing our current instance, lets reload the SSH file for good measure. Still as <em>ubuntu</em>, type:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">sudo /etc/init.d/ssh restart
+logout
+</code></pre></div>
+<p>Now back in the terminal, we can go ahead and login:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">ssh charlie@ec2-54-218-37-172.us-west-2.compute.amazonaws.com
+</code></pre></div>
+<p>(Some readers have had trouble with this step, and reported that editing sshd_config as described <a href="http://askubuntu.com/questions/16650/create-a-new-ssh-user-on-ubuntu-server">here</a> was also necessary. I&#39;m told that you&#39;ll need to add the &quot;ubuntu&quot; user, as well as your own, when following these steps.)</p></li>
+<li><p>We&#39;re in! Last thing (for now): when I created my new user account, it didn&#39;t default to the bash shell. So I lacked tab-to-autocomplete, up-arrow-for-last-command, etc. To fix that:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">sudo chsh -s /bin/bash
+</code></pre></div>
+<p>Logout and login. You&#39;ll know you&#39;re successful if you see:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">charlie@ip-172-31-23-65:~$
+</code></pre></div>
+<p>If this method doesn&#39;t work, you can also <a href="http://askubuntu.com/questions/306137/ssh-shell-prompt-does-not-show-userhost-for-one-user#answer-306148">manually edit</a> the <em>/etc/passwd</em> file and change &quot;/bin/sh&quot; to &quot;/bin/bash&quot; for <em>charlie</em>.</p></li>
+<li><p>Now we&#39;ll make this login flow much smoother.</p></li>
+</ul>
+
+<p><h2  id='Smoothing-Out-the-Workflow'>Smoothing Out the Workflow<a class='anchor-wrap' href="#Smoothing-Out-the-Workflow" title="Permalink to this headline">¶</a></h2 >
+* Now, I want to be able to SSH in with the click of a button. To do that, we&#39;ll: 1) remove the need for typing in your password when SSHing from your local machine, and 2) create an alias for the SSH command (and its arguments).
+* To avoid the need to enter our password, we need to take some careful steps and create a <a href="http://blakesmith.me/2010/02/08/understanding-public-key-private-key-concepts.html">public-private key pair</a>. If you already have a private key that you want to use, continue to the next step. Otherwise, we first create a private-public key pair on our local machine in ~/.ssh:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">    cd /Users/crmarsh/.ssh/
+    ssh-keygen -t rsa
+    # Name your key. Add a password, if you want.
+If you didn&#39;t use the default key name, you need to [add the private key](https://wiki.hpcc.msu.edu/display/hpccdocs/Adding+a+Private+Key+to+Your+Mac+OSX+Keychain) (the version *without* the .pub extension) to your keychain as follows:
+
+    ssh-add -K keyname
+Next, we need to move the **public** key to our server. Note that I&#39;m assuming this is still your fresh EC2 instance; it *should* still be okay if you have an existing setup, but I can&#39;t make any promises. We proceed [as follows](http://www.linuxproblem.org/art_9.html):
+
+    scp keyname.pub charlie@ec2-54-218-37-172.us-west-2.compute.amazonaws.com:
+    # SSH in
+    ssh charlie@ec2-54-218-37-172.us-west-2.compute.amazonaws.com
+    # Add key to list of authorized keys
+    mkdir .ssh
+    touch .ssh/authorized_keys
+    cat keyname.pub &gt;&gt; .ssh/authorized_keys
+    # Set permissions
+    chmod 700 .ssh
+    chmod 0640 .ssh/authorized_keys
+    rm keyname.pub
+Logout, and you should be able to SSH in without having to enter your password.
+</code></pre></div>
+<ul>
+<li><p>To <a href="http://askubuntu.com/questions/17536/how-do-i-create-a-permanent-bash-alias#17538">create the alias</a>, go to your bash_profile (emacs ~/.bash_profile) or wherever you configure your local bash settings. Add the following two lines (with your arguments substituted):</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">export AWS=&#39;ec2-54-245-139-10.us-west-2.compute.amazonaws.com&#39;
+alias aws=&#39;ssh crmarsh@$AWS&#39;
+</code></pre></div>
+<p>Why both? Well, if you ever need the address of your instance (it comes in handy), you can just type &#39;echo $AWS&#39;. And when you want to login, you can just type &#39;aws&#39; on its own. Try it for yourself.</p></li>
+<li><p>As a final note: if you&#39;re like me and you love Sublime Text, I highly recommend using <a href="http://wbond.net/sublime_packages/sftp">Sublime SFTP</a>. It lets you edit files on your remote server using Sublime Text over SFTP.</p></li>
+</ul>
+
+<p><h2  id='Appendix-Installing-Essential-Tools'>Appendix: Installing Essential Tools<a class='anchor-wrap' href="#Appendix-Installing-Essential-Tools" title="Permalink to this headline">¶</a></h2 >
+* Thankfully, most of the things you need come pre-installed on Ubuntu; so this section is small. Try &#39;em out: ssh, scp, grep, wget, etc.
+* However, there were still some things I wanted: emacs (not sure why, but I still use it), git, make, etc. Obviously, preferences will vary from dev to dev. Here are some commands you might want to use, for your convenience:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">    sudo apt-get install emacs
+    sudo apt-get install git
+    sudo apt-get install make
+    ...
+</code></pre></div>
+          <p class="date">Posted on June 19, 2013.<p>
+          <br>
+          <hr />
+<center>
+&copy; 2014 Charles Marsh
+<a href="/feed.xml" style="padding-bottom:15px">
+  <img class="icon" src="/static/img/rss.png">
+</a>
+</center>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

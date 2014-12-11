@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <meta name="description" content="Charlie Marsh is a programmer and student at Princeton University with major interests in functional programming and machine learning.">
+  <meta name="viewport" content="width=device-width">
+  <title>What Makes a 'Good' Class? Lessons Learned from Four Years at Princeton | Charlie Marsh</title>
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans">
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Source+Code+Pro">
+  <link href="/static/css/bootstrap.css" rel="stylesheet" type="text/css" />
+  <link href="/static/css/sprites.css" rel="stylesheet" type="text/css" />
+  <link href="/static/css/styles.css" rel="stylesheet" type="text/css" />
+  <link href="/static/css/syntax.css" rel="stylesheet" type="text/css" />
+  <link href="https://plus.google.com/u/0/100601164815113053596/" rel='author'>
+  <script type="text/javascript">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-36552582-2', 'princeton.edu');
+    ga('send', 'pageview');
+  </script>
+</head>
+
+  <body class="index">
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span2 hidden-phone"></div>
+        <div class="span2 hidden-phone" style="position:fixed">
+          <h1 style="font-size:50px">
+  <a class="blank" href="/">
+    Charlie<br>Marsh
+  </a>
+</h1>
+<p>
+  <a class="implicit" href="/">Home</a> &sdot; <a class="implicit" href="/static/pdf/Charles_Marsh_CV.pdf">CV</a>&sdot; <a class="implicit" href="/about/">About</a>
+</p>
+<h2>
+  Programmer,<br>student.
+</h2>
+<p>I'm into functional<br>programming,<br>machine learning,<br> and other fun stuff.<p>
+<p>Find me on:</p>
+<a href="mailto:crmarsh@princeton.edu"><img class="icon" src="/static/img/email.png"></a>
+<a href="http://www.github.com/crm416"><img class="icon" src="/static/img/github.png"></a>
+<a href="http://stackoverflow.com/users/1450892/charles-marsh"><img class="icon" src="/static/img/stackoverflow.png"></a>
+<a href="https://www.twitter.com/crm416"><img class="icon" src="/static/img/twitter.png"></a>
+</div>
+<div class="span2 visible-phone">
+  <div>
+    <p style="font-size:25px"><a class="blank" href="/">Charlie Marsh</a>  <div style="margin-top:-10px"><code class="custom"><span class="code_red">type</span> <span class="code_blue">blog</span></code></div>
+  </div>
+  <hr />
+</div>
+
+          <div class="span9 offset1" style="padding-left:20px">
+          <h1>What Makes a &#39;Good&#39; Class?</h1>
+
+<p>I&#39;m approaching my final semester at Princeton and course selection is coming up quickly. This has prompted some introspection: it&#39;s the last time I&#39;ll choose courses and that comes with some responsibility. Suddenly, here I am, with four slots remaining and a laundry list of subjects and professors left to experience.</p>
+
+<p>The interesting thing is that it&#39;s still hard for me to define a <em>good</em> class—even with the benefit of hindsight, it&#39;s not always clear what made one course worth taking over another. Was it a function of the instructor? Or the material? Or something else entirely?</p>
+
+<p>This is my attempt to answer these questions.</p>
+
+<p><h2  id='My-Background'>My Background<a class='anchor-wrap' href="#My-Background" title="Permalink to this headline">¶</a></h2 ></p>
+
+<p>Real quick: I&#39;m a computer science major. I&#39;ve taken ~19 computer-science-based courses (including two semesters of independent research).</p>
+
+<p>Apart from those 19, I&#39;ve taken four courses in math or statistics, along with nine liberal arts classes, which span the History, Sociology, Asian-American Studies, Near-Eastern Studies, Philosophy, and Religion departments.</p>
+
+<p>This is a reasonable cross-section of the offerings on campus, but one that&#39;s skewed towards the experience of an engineer—I really can&#39;t speak towards <a href="http://wws.princeton.edu/undergraduate-academics/curriculum/policy-task-forces">Task Forces</a> in the Wilson School or <a href="http://www.princeton.edu/economics/undergraduate/junior-independent-work/">Junior Papers</a> in the Economics Department.</p>
+
+<p><h2  id='On-the-Uselessness-of-Exams'>On the Uselessness of Exams<a class='anchor-wrap' href="#On-the-Uselessness-of-Exams" title="Permalink to this headline">¶</a></h2 ></p>
+
+<p>The clearest realization I&#39;ve come to: exams are <em>useless</em>. In fact, I now actively avoid classes with midterm and/or final exams, if I can help it.</p>
+
+<p>There are a bunch of reasons for this:</p>
+
+<ol>
+<li>From a pedagogical perspective, I retain zero information after taking an exam.</li>
+<li>Exams encourages &#39;teaching to the test&#39;. In higher education, where teachers don&#39;t necessarily have an incentive for students to do well on their exams (unlike, say, in high school), this may be more aptly described as &#39;learning for the test&#39;, manifesting itself as students frequently asking whether <em>x</em> or <em>y</em> will be on the test (and zoning out if not). As a student, it&#39;s depressing to see both others and myself take on this attitude.</li>
+<li>In my experience, exams produced by university professors are generally not that well made. I can&#39;t quite figure out why, but they often fail to balance the material in a fair manner or encourage you to study hard facts (e.g., maps) that are then excluded completely.</li>
+<li>Exams make school a contest in memorization or, the very least, skew towards good memorizers. Without digressing too much, I feel pretty strongly that the ability to memorize is <em>not</em> an important criteria for assessing competency, regardless of whether college should be considered vocational training or an evaluation of intelligence.</li>
+<li>Exams contribute to a hostile learning environment. Competition becomes much more real when you pin grades down to a single sit-down with a paper and pencil.</li>
+</ol>
+
+<p>Look, I generally do quite well on exams, but I&#39;m always frustrated by this cycle of cram-for-test-and-forget-soon-after. They&#39;re completely counter to my goals here at school.</p>
+
+<p>Of course, many will claim that exams are &quot;necessary&quot;. Cue next section.</p>
+
+<p><h2  id='On-the-Value-of-Projects'>On the Value of Projects<a class='anchor-wrap' href="#On-the-Value-of-Projects" title="Permalink to this headline">¶</a></h2 ></p>
+
+<p>Some of my most valuable learning experiences at this school have come through project-based work.</p>
+
+<p>This idea can manifest itself in a variety of forms, but the basic structure: take two+ weeks at the end of the semester and (in lieu of a final exam) go explore some topic relevant to the course. The final deliverables might include a research report and/or some amount of code, all of which can be produced individually or in groups.</p>
+
+<p>This is an engineer&#39;s response to the idea of a &#39;final paper&#39;.</p>
+
+<p>As a few examples, here are some of my own final projects:</p>
+
+<ul>
+<li><a href="https://github.com/crm416/point-location">An implementation of Kirkpatrick&#39;s Algorithm for point location</a> for <a href="http://www.cs.princeton.edu/courses/archive/fall13/cos451/" class="implicit">COS 451: Computational Geometry</a>.</li>
+<li><a href="https://github.com/dmrd/mad_topic_model">Wordless authorship detection using topic models</a> for <a href="http://registrar.princeton.edu/course-offerings/course_details.xml?courseid=010279&term=1124" class="implicit">COS 424: Interacting With Data</a>.</li>
+<li><a href="https://github.com/crm416/online_boosting">An overview and implementation of online boosting techniques</a> for <a href="http://www.cs.princeton.edu/courses/archive/spring14/cos511/" class="implicit">COS 511: Theoretical Machine Learning</a>.</li>
+<li><a href="http://www.princeton.edu/%7Ecrmarsh/static/pdf/Charles_Marsh_Continuous_Entropy.pdf">An introduction to continuous entropy</a> for <a href="http://registrar.princeton.edu/course-offerings/course_details.xml?courseid=009080&term=1142" class="implicit">COS 597F: Topics in Information Theory</a>. This project required that I give an hour-long lecture on the topic—a unique experience for an undergraduate and a great example of the usefulness of project-based work.</li>
+</ul>
+
+<p>So, why do I find these experiences so valuable?</p>
+
+<ol>
+<li>By spending several weeks on a single topic, you inevitably take a deep dive into the subject. In my experience, this leads to greater edification. Some might argue that taking a deep dive into a narrow area is less valuable than attaining a cursory understanding of a larger swath of the subject (which might be gained by an exam, for example). Of course, I&#39;d disagree based on the previous section. But even further, these deeper dives often end up covering more of the subject than one might expect. For example, with my <a href="https://github.com/crm416/point-location">point location</a> project, I gained exposure to the practical problems involved in computational geometric programming—the scope of the assignment went way beyond a narrow algorithm.</li>
+<li>By leaving the specification so open-ended, there&#39;s room for creativity and exploration. This also allows you to gravitate towards projects in which you&#39;re <em>actually interested</em> which, in-turn, motivates you to work harder and, in-turn, leads to a better learning experience.</li>
+<li>Projects on this scale are valuable in demonstrating competency to employers and other outside parties. (These benefits are well-described in Sal Khan&#39;s book, <a href="http://www.amazon.com/The-One-World-Schoolhouse-Reimagined/dp/1455508381">The One World Schoolhouse</a>, albeit in a slightly different context.)</li>
+<li>Working in groups, especially on software, is a valuable experience that can&#39;t really be recreated in the exam setting. And by &#39;valuable&#39;, I mean for both soft <em>and</em> hard skills, e.g., not only do you need to work together efficiently and professionally, but you also need to learn the basics of source control.</li>
+</ol>
+
+<p>I feel pretty strongly about the usefulness of projects. My advice would be to take courses that provide this kind of assessment and stay clear of examinations as much as possible.</p>
+
+<p><h2  id='On-the-Value-of-Independence'>On the Value of Independence<a class='anchor-wrap' href="#On-the-Value-of-Independence" title="Permalink to this headline">¶</a></h2 ></p>
+
+<p>This is tied closely to the previous point, but courses that provide a lot of independence often make for good learning experiences.</p>
+
+<p>This can come in the form of project-based final assessments or be scattered throughout the semester. For example, in <a href="http://www.cs.princeton.edu/courses/archive/fall13/cos217/">COS 217: Introduction to Programming Systems</a>, one assignment features an extra-credit competition to optimize assembly code. That&#39;s an experience I&#39;ll never forget, and while I wouldn&#39;t particularly <em>want</em> to do it over again, working through those optimizations on my own with some Intel manuals as my guides was a great experience.</p>
+
+<p>The most extreme manifestation of independence comes through independent research. The two semesters I&#39;ve spent on research have surely been the highlights of my Princeton education (see <a href="http://www.princeton.edu/%7Ecrmarsh/independent_work/">here</a> for more) and I&#39;d strongly encourage everyone to try their hand at it.</p>
+
+<p><h2  id='Questioning-Precepts'>Questioning Precepts<a class='anchor-wrap' href="#Questioning-Precepts" title="Permalink to this headline">¶</a></h2 ></p>
+
+<p>I&#39;ve found precepts to be sort of useless. It&#39;s not that the instructors are bad, but they often struggle to inspire. In a typical precept, I get the sense that most of the class hasn&#39;t done the reading. Determining whom to blame would be an entirely separate debate, but the point still stands: I often walk away with the sense that I&#39;ve just wasted an hour.</p>
+
+<p>My solution, then, has been to avoid them when possible, opting instead for classes that meet twice a week for an hour and a half (with no precept). I&#39;ve found this to be a much better setup for both COS and liberal arts courses.</p>
+
+<p>The latter claim might come as a surprise, but in my experience, adopting this format leads to better preparation by students, especially given that you can find <em>small</em> classes that abide by this format. For example, <a href="http://registrar.princeton.edu/course-offerings/course_details.xml?courseid=005959&amp;term=1132">REL 230: Who Wrote The Bible?</a> meets twice a week and the students appear to have done the reading. The course is also small enough that it achieves the desired goals of a precept by encouraging discussion.</p>
+
+<p><h2  id='On-the-Value-of-Small-Classes'>On the Value of Small Classes<a class='anchor-wrap' href="#On-the-Value-of-Small-Classes" title="Permalink to this headline">¶</a></h2 ></p>
+
+<p>This section, again, ties in to the previous: small classes are typically better.</p>
+
+<p>For starters, both students and professors typically care a lot more when the course is small. Maybe only students that care are willing to enroll in a small course, and only professors that care are willing to teach them? In a large course, it&#39;s easy to skip class and remain anonymous, but a more intimate setting keeps you honest and engaged. Regardless, both sides put in more effort—and everyone wins.</p>
+
+<p>Of course, there&#39;s also the notion that smaller classes lead to increased student-faculty interaction. While this is a hackneyed claim, it&#39;s undoubtedly true, both within the classroom and beyond it.</p>
+
+<p>As an example of why smaller classes are better, take <a href="http://registrar.princeton.edu/course-offerings/course_details.xml?courseid=002126&amp;term=1152">COS 597E: Bitcoin and Cryptocurrency Technologies</a>, one of the greatest courses I&#39;ve taken at Princeton. It&#39;s twenty-odd kids sitting in a room with two leading experts on Bitcoin. The course was designed to be discussion-based—and it&#39;s certainly walked the walk, with nearly everyone contributing on a regular basis and interacting with the professors non-stop. I come to class every day prepared and excited to participate.</p>
+
+<p>Taking these smaller classes pushes you out of your comfort zone. Try them out.</p>
+
+<p><h2  id='On-the-Value-of-Progression'>On the Value of Progression<a class='anchor-wrap' href="#On-the-Value-of-Progression" title="Permalink to this headline">¶</a></h2 ></p>
+
+<p>When courses are structured such that the material builds on top of itself (or progresses sequentially), I&#39;ve found them to be much, much more valuable.</p>
+
+<p>Again, let me illustrate with an example. When I took the aforementioned course on computational geometry, we spent one or two lectures on the basics of the subject (like the idea of counterclockwise vs. clockwise rotations). But the class then devolved into a disjointed series of lectures on specific problems, with the problem sets barely relating to what we&#39;d learned in class, much less anything we&#39;d learned in the previous weeks. It was hard to find the material intriguing and even harder to retain it.</p>
+
+<p>On the other hand, <a href="http://en.wikipedia.org/wiki/Robert_Schapire">Robert Schapire&#39;s</a> theoretical machine learning course opened with a few <em>weeks</em> worth of introduction to the mathematical formalism of the process and evaluation of learning. This gave us a great foundation and toolkit to analyze actual algorithms, starting with vector machines (SVMs) and then moving on to ensembling techniques (e.g., AdaBoost), which themselves build on learners like the SVM. The material flowed from one class to the next and constantly reinforced what we&#39;d learned in previous weeks. Better yet, the problem sets did a fantastic job of remaining relevant to the material we&#39;d covered recently while still requiring you to draw on important knowledge from previous weeks.</p>
+
+<p>&#39;Progression&#39; may not be the right word, but a dependent sequence of material, with assessments that reflect and enforce this dependence, has benefited me massively as a student.</p>
+
+<p><h2  id='Conclusion'>Conclusion<a class='anchor-wrap' href="#Conclusion" title="Permalink to this headline">¶</a></h2 ></p>
+
+<p>It seems like my ideal course would be small and discussion-based, with a dependent sequence of material, plenty of open-ended assignments, and a substantial final research project (like the <a href="http://registrar.princeton.edu/course-offerings/course_details.xml?courseid=002126&amp;term=1152">Bitcoin course</a> I mentioned earlier).</p>
+
+<p>I look back on my Princeton education incredibly fondly. There&#39;s a lot of talk here about how &quot;undergraduates come first&quot;, and I really believe it. Take my own education as evidence: I was able to do independent research with world-renowned professors as early as my sophomore year.</p>
+
+<p>So it&#39;s clear that this school has a lot to offer. But to get the most out of it, you need to cut through the bullshit and find the truly enriching experiences—the courses that will both push and stick with you.</p>
+
+          <p class="date">Posted on December 5, 2014.<p>
+          <br>
+          <hr />
+<center>
+&copy; 2014 Charles Marsh
+<a href="/feed.xml" style="padding-bottom:15px">
+  <img class="icon" src="/static/img/rss.png">
+</a>
+</center>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
