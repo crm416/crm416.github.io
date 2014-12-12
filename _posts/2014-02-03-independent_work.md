@@ -7,7 +7,7 @@ permalink: independent_work
 
 # A Guide to CS Independent Work at Princeton
 
-Last Spring, I did a semester of independent work (IW) with professor [David Walker](https://www.cs.princeton.edu/~dpw/). My project was focused on rule optimization in Software-Defined Networks (more [here](http://www.princeton.edu/~crmarsh/intro_to_sdn/)), and it was probably the greatest learning experience of my Princeton career (so far).
+Last Spring, I did a semester of independent work (IW) with professor [David Walker](https://www.cs.princeton.edu/~dpw/). My project was focused on rule optimization in Software-Defined Networks (more [here](/intro_to_sdn/)), and it was probably the greatest learning experience of my Princeton career (so far).
 
 I worked hard, and I learned a ton—not just about SDNs, but about the research process in general.
 
