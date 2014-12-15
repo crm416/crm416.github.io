@@ -65,48 +65,52 @@
 
 <p>At September&#39;s <a class='external' target='_blank' href='https://www.facebook.com/atscale2014'>@Scale conference</a>, Facebook introduced <a class='external' target='_blank' href='http://flowtype.org/'>Flow</a>, a static type checker for JavaScript.</p>
 
-<p>The stated goal of Flow is to &quot;find errors in JavaScript code with little programmer effort&quot;. Paraphrasing <a class='external' target='_blank' href='http://www.cs.umd.edu/~avik/'>Avik Chaudhuri</a>, the project lead, Flow aims to enforce the benefits of a type system while maintaing the &quot;feel&quot; of JavaScript.</p>
+<p>The stated goal of Flow is to &quot;find errors in JavaScript code with little programmer effort&quot;. To paraphrase project lead <a class='external' target='_blank' href='http://www.cs.umd.edu/~avik/'>Avik Chaudhuri</a>: Flow aims to enforce the benefits of a type system while maintaing the &quot;feel&quot; of JavaScript.</p>
 
-<p>Avik promised that Flow would be open-sourced by the end of the year and, true to his word, the project appeared on <a class='external' target='_blank' href='https://github.com/facebook/flow'>GitHub</a>) a few months later.</p>
+<p>Avik promised that Flow would be open-sourced by the end of the year and, true to his word, the project appeared on <a class='external' target='_blank' href='https://github.com/facebook/flow'>GitHub</a> a few months later.</p>
 
-<p>I wanted to give Flow a whirl, so I decided to integrate it into a small project to which I&#39;ve contributed: <a class='external' target='_blank' href='https://github.com/chenglou/RCSS'>RCSS</a>. You can find the Flow-annotated version of RCSS on <a class='external' target='_blank' href='https://github.com/crm416/rcss'>my fork</a>.</p>
+<p>I wanted to give Flow a whirl, so I decided to integrate it into a small project to which I&#39;ve contributed: <a class='external' target='_blank' href='https://github.com/chenglou/RCSS'>RCSS</a>. You can find my Flow-annotated fork on <a class='external' target='_blank' href='https://github.com/crm416/rcss'>GitHub</a>.</p>
 
-<p>Working with Flow was, overall, a good experience. The project certainly feels raw and there&#39;s a lot of room for improvement, but given a few months, I&#39;m confident that it will evolve into an incredibly useful and easy-to-use tool.</p>
+<p>Working with Flow was, overall, a good experience. The benefits of Flow are immediately evident and integration isn&#39;t particularly difficult. However, the project feels raw and there&#39;s a lot of room for improvement—it&#39;s a work-in-progress, and the docs <a class='external' target='_blank' href='http://flowtype.org/docs/about-flow.html'>admit as much</a>. Given time, I&#39;m confident that it will become even easier to use and even more useful.</p>
 
-<p>Let me go into some more detail.</p>
+<p><strong>This post will be part-commentary, part-resource</strong>. My goal is to give you, the reader, a better understanding of how to integrate Flow into your projects and avoid any undocumented pain points.</p>
 
-<h2>My Playground</h2>
+<p>If you have specific questions about <a href="#Interfaces">interfaces</a>, <a href="#Transforms">transforms</a>, <a href="#Objects">object annotations</a>, or <a href="#Globals">globals</a>, feel free to skip ahead.</p>
+
+<p><h2  id='My-Playground'>My Playground<a class='anchor-wrap' href="#My-Playground" title="Permalink to this headline">¶</a></h2 ></p>
 
 <p>Briefly: <a class='external' target='_blank' href='https://github.com/chenglou/RCSS'>RCSS</a> is an experiment in writing CSS with JavaScript, similar to how one might replace HTML with JSX. It&#39;s intended to be used with React or another front-end framework.</p>
 
-<p>The RCSS core comes in at around 200 lines of code. It&#39;s very small (which is, of course, a good thing). In the context of this experiment, it means that my observations mostly relate to surface-level usage of Flow—I tried to hit most of the features, but I certainly can&#39;t claim to have exercised Flow&#39;s most powerful muscles.</p>
+<p>The RCSS core comes in at around 200 lines of code. It&#39;s very small (which is, of course, a good thing). In the context of this experiment, it means that my observations mostly relate to surface-level usage and initial setup of Flow—I tried to hit most of the features, but I certainly can&#39;t claim to have exercised Flow&#39;s most powerful muscles.</p>
 
-<p>With that covered, time for some observations.</p>
+<p>With that covered, I&#39;ll start by discussing Flow&#39;s server model before getting into some of the intricacies of Flow interfaces.</p>
 
-<h2>Server Architecture</h2>
+<p><h2  id='Server-Architecture'>Server Architecture<a class='anchor-wrap' href="#Server-Architecture" title="Permalink to this headline">¶</a></h2 ></p>
 
-<p>Flow is centered around a server architecture, allowing for incremental type checking. In particular, to use Flow, you first spin up the Flow server with <code>flow start</code> and then type check your code with <code>flow</code>. Pretty simple.</p>
+<p>Flow is centered around a server architecture, which allows for <a class='external' target='_blank' href='http://flowtype.org/docs/about-flow.html'>online</a> type checking. So, to start, Flow scans your entire project—or, at least, any files marked with the <a class='external' target='_blank' href='http://flowtype.org/docs/new-project.html#typechecking-your-files'>pragma</a>, as Flow&#39;s type checking is opt-in. When you later change a file, Flow can intelligently type check the paths in the code that were affected by this change, rather than rescanning the entire project. This leads to big performance gains.</p>
 
-<p>Even for a tiny project like RCSS, my (very slow) machine takes over a minute to kick off the Flow server. But this time is made up in the incremental type checking: once the server is running, the <code>flow</code> command runs instantaneously.</p>
+<p>To use Flow, you first spin up the Flow server with <code>flow start</code> and then type check your code with <code>flow</code>. Pretty simple.</p>
 
-<p>I really, really appreciated the ease that came with running Flow—the feedback loop is incredibly tight. This was one of the major selling points to me coming in to the project. The hype was very much validated.</p>
+<p>Even for a tiny project like RCSS, my (slow) machine takes over a minute to kick off the Flow server. But this time is made up in the incremental type checking: once the server is running, the <code>flow</code> command runs instantaneously.</p>
 
-<h2>Interfaces</h2>
+<p>I really, really appreciated the ease that came with running Flow—the feedback loop is incredibly tight. This was one of the major selling points to me coming in to the project and the hype was validated.</p>
+
+<p><h2  id='Interfaces'>Interfaces<a class='anchor-wrap' href="#Interfaces" title="Permalink to this headline">¶</a></h2 ></p>
 
 <p>Flow allows you to provide a folder of interface files to be used during type checking, identified with:</p>
 <div class="highlight"><pre><code class="language-text" data-lang="text">flow start --lib path/to/interfaces/
 </code></pre></div>
-<p><em>(Note: Any file in path/to/interfaces will be included as an interface, as long as it ends in .js. The specific naming scheme is irrelevant.)</em></p>
+<p>Any file in path/to/interfaces will be included as an interface, as long as it ends in .js. The specific naming scheme is irrelevant.</p>
 
-<p>Interfaces should be filled with <a class='external' target='_blank' href='http://flowtype.org/docs/declarations.html'>declarations</a> and are primarily intended to be used for annotating third-party code. Any declarations you include in an interface will be global in the sense that any file Flow type checks can access them.</p>
+<p>Interfaces should be filled with <a class='external' target='_blank' href='http://flowtype.org/docs/declarations.html'>declarations</a> and are primarily intended for annotating third-party code. The declarations you include in an interface will be global to the type checker.</p>
 
-<p>As an example interface, say I installed the foo-bar module which exports two properties: <code>reverse</code>, which reverses a string and <code>square</code>, which squares an integer. Then, I could add the following declaration to my interface file:</p>
+<p>As an example, say I installed the foo-bar module from npm. This module exports two properties, both functions: <code>reverse</code>, which reverses a string and <code>square</code>, which squares a number. Then, I could add the following declaration to my interface file:</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">declare</span> <span class="nx">module</span> <span class="s1">&#39;foo-bar&#39;</span> <span class="p">{</span>
   <span class="nx">declare</span> <span class="kd">function</span> <span class="nx">reverse</span><span class="p">(</span><span class="nx">s</span><span class="o">:</span> <span class="nx">string</span><span class="p">)</span><span class="o">:</span> <span class="nx">string</span><span class="p">;</span>
   <span class="nx">declare</span> <span class="kd">function</span> <span class="nx">square</span><span class="p">(</span><span class="nx">x</span><span class="o">:</span> <span class="nx">number</span><span class="p">)</span><span class="o">:</span> <span class="nx">number</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>Notice that I&#39;m able to <a class='external' target='_blank' href='http://flowtype.org/docs/declarations.html#paths'>identify the module by its require-path</a>—super elegant.</p>
+<p>Notice that I&#39;m able to <a class='external' target='_blank' href='http://flowtype.org/docs/declarations.html#paths'>identify the module by its require-path</a>, which is super elegant.</p>
 
 <p>However, there were a bunch of oddities that I encountered with interfaces that made them pretty hard to use:</p>
 
@@ -123,32 +127,33 @@ flow start --lib path/to/interfaces/
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">reverse</span><span class="o">:</span> <span class="p">(</span><span class="nx">s</span><span class="o">:</span><span class="nx">string</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">string</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;reverse&#39;</span><span class="p">);</span>
 </code></pre></div>
 <p>The downside: I need to include this annotation whenever I import the module.</p></li>
+<li><p><strong>Interfaces are shallow</strong> (<a class='external' target='_blank' href='https://github.com/facebook/flow/issues/93'>#93</a>). If you specify an interface directory, only files in the immediate directory will be scanned and treated as interfaces. (There&#39;s an open <a class='external' target='_blank' href='https://github.com/facebook/flow/pull/193/files'>pull request</a> to fix this.)</p></li>
 </ol>
 
-<p>I&#39;m not trying to be overly critical of Flow—all of these issues are fixable and there are indications that they <em>will</em> be fixed. But for those experimenting with Flow in the meantime, it&#39;s very, very good to be aware of them.</p>
+<p>I&#39;m not trying to be overly critical of Flow—all of these issues are fixable and there are indications that they <em>will</em> be fixed (as evidenced by the GitHub issues referenced above). But for those experimenting with Flow in the meantime, it&#39;s very, very good to be aware of them.</p>
 
-<h2>Globals</h2>
+<p><h2  id='Globals'>Globals<a class='anchor-wrap' href="#Globals" title="Permalink to this headline">¶</a></h2 ></p>
 
 <p>There isn&#39;t a great way to deal with globals in Flow. Here, I&#39;m specifically talking about anything that would be on <code>window</code> in the browser or <code>global</code> in Node.</p>
 
 <p>For example, let&#39;s say you&#39;re the type of rebellious JavaScripter that uses the <code>Function</code> function, like this:</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">square</span> <span class="o">=</span> <span class="nb">Function</span><span class="p">(</span><span class="s1">&#39;function(x) { return x * x; }&#39;</span><span class="p">);</span>
 </code></pre></div>
-<p>Flow will flip out on this code, claiming that it can&#39;t find the static function <code>Function</code>.</p>
+<p>Flow will throw an error here, claiming that it can&#39;t find a callable signature for <code>Function</code>.</p>
 
 <p>If you want your code to run in both Node and the browser, you obviously can&#39;t hardcode <code>global</code> or <code>window</code>, respectively. Instead, the <a class='external' target='_blank' href='http://flowtype.org/docs/underscore.html#global-objects'>Flow docs</a> suggest you do this:</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">root</span><span class="o">:</span> <span class="nx">any</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 <span class="kd">var</span> <span class="nx">square</span> <span class="o">=</span> <span class="nx">root</span><span class="p">.</span><span class="nb">Function</span><span class="p">(</span><span class="s1">&#39;function(x) { return x * x; }&#39;</span><span class="p">);</span>
 </code></pre></div>
-<p>I found this to be somewhat unsatisfying and would be a little annoyed littering my codebase with this <code>root</code> pattern.</p>
+<p>I found this to be a reasonable but somewhat unsatisfying answer. It&#39;d be a little annoying to have this <code>root</code> pattern scattered throughout my codebase. But I can&#39;t think of a much better solution.</p>
 
-<p>An alternative would be to provide a declaration for <code>Function</code> in the same file it&#39;s used, e.g.:</p>
+<p>For example, one alternative would be to provide a declaration for <code>Function</code> in the same file it&#39;s used, e.g.:</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">declare</span> <span class="kd">var</span> <span class="nb">Function</span><span class="o">:</span> <span class="nx">any</span><span class="p">;</span>
 <span class="kd">var</span> <span class="nx">square</span> <span class="o">=</span> <span class="nb">Function</span><span class="p">(</span><span class="s1">&#39;function(x) { return x * x; }&#39;</span><span class="p">);</span>
 </code></pre></div>
-<p>I prefer the former.</p>
+<p>I prefer the former. (Surprisingly, putting this declaration in my interface file didn&#39;t work.)</p>
 
-<h2>Transforms</h2>
+<p><h2  id='Transforms'>Transforms<a class='anchor-wrap' href="#Transforms" title="Permalink to this headline">¶</a></h2 ></p>
 
 <p>Per the <a class='external' target='_blank' href='http://flowtype.org/docs/running.html#_'>docs</a>, you need to use Facebook&#39;s <a class='external' target='_blank' href='https://www.npmjs.com/package/react-tools'>JSX transformer</a> to strip away Flow&#39;s type annotations.</p>
 
@@ -158,21 +163,19 @@ flow start --lib path/to/interfaces/
 <p>The docs provide this more useful and more realistic example, which includes Harmony transpilation and watching:</p>
 <div class="highlight"><pre><code class="language-text" data-lang="text">jsx --strip-types --harmony --watch src/ build/
 </code></pre></div>
-<p>I wanted to use this transform with <a class='external' target='_blank' href='https://www.npmjs.com/package/browserify'>browserify</a>. Luckily, the <code>--strip-types</code> option is built into <a class='external' target='_blank' href='https://www.npmjs.com/package/reactify'>reactify</a>, the JSX browserify transform. Unluckily, it didn&#39;t work for unknown reasons.</p>
-
-<p>In particular, I should&#39;ve been able to run:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">browserify -t reactify --strip-types index.js
+<p>I wanted to use this transform with <a class='external' target='_blank' href='https://www.npmjs.com/package/browserify'>browserify</a>. Luckily, the <code>--strip-types</code> option is already built into <a class='external' target='_blank' href='https://www.npmjs.com/package/reactify'>reactify</a>, the JSX browserify transform, so you can run:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">browserify -t [reactify --strip-types] index.js
 </code></pre></div>
-<p>But this produced some strange file that I couldn&#39;t quite parse. The <a class='external' target='_blank' href='https://www.npmjs.org/package/flow-typestrip'>flow-typestrip</a> package, on the other hand, worked as a drop-in replacement:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">browserify -t reactify -t [flow-typestrip] index.js
+<p>There&#39;s also the <a class='external' target='_blank' href='https://www.npmjs.org/package/flow-typestrip'>flow-typestrip</a> package, a standlone Flow annotation transformer, which works as a drop-in replacement:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">browserify -t flow-typestrip index.js
 </code></pre></div>
 <p>This transpilation step, while somewhat inconvenient, is now the status quo for a lot of JS tooling.</p>
 
-<h3>Commented Annotations: The Future?</h3>
+<p><h3  id='Commented-Annotations-The-Future'>Commented Annotations: The Future?<a class='anchor-wrap' href="#Commented-Annotations-The-Future" title="Permalink to this headline">¶</a></h3 ></p>
 
-<p>That said, there&#39;s been some interesting <a class='external' target='_blank' href='https://github.com/facebook/flow/issues/3'>discussion on GitHub</a> about removing this transpiration step for Flow through the use of formatted comments.</p>
+<p>That said, there&#39;s been some interesting <a class='external' target='_blank' href='https://github.com/facebook/flow/issues/3'>discussion on GitHub</a> about removing this transpilation step for Flow through the use of formatted comments.</p>
 
-<p>Right now, Flow provides a way to generate annotations from docblock comments. For example, if you run <code>flow port</code> on the following:</p>
+<p>Right now, Flow provides a means of generating annotations from docblock comments. For example, if you run <code>flow port</code> on the following:</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/**</span>
 <span class="cm">  @param {number} x</span>
 <span class="cm">  @return {number}</span>
@@ -194,9 +197,9 @@ flow start --lib path/to/interfaces/
 
 <span class="nx">square</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
 </code></pre></div>
-<p>Some commenters have suggested performing this transformation in-place and using the output annotations for type checking. There are good ideas in that thread and I&#39;m excited to see what the Flow team produces.</p>
+<p>While the core team has noted that this should be considered <a class='external' target='_blank' href='https://github.com/facebook/flow/issues/3#issuecomment-63569368'>experimental</a>, some commenters have suggested performing this transformation in-place and using the output annotations for type checking. There are good ideas in that thread and I&#39;m excited to see what the Flow team produces.</p>
 
-<h2>Objects</h2>
+<p><h2  id='Objects'>Objects<a class='anchor-wrap' href="#Objects" title="Permalink to this headline">¶</a></h2 ></p>
 
 <p>In Flow, there are a few ways to annotate an object. The most basic, as you might guess, is to add an annotation to the object literal at the time of creation:</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">foo</span><span class="o">:</span> <span class="p">{</span> <span class="nx">x</span><span class="o">:</span> <span class="nx">number</span><span class="p">;</span> <span class="nx">y</span><span class="o">:</span> <span class="nx">string</span> <span class="p">}</span> <span class="o">=</span> <span class="p">{</span>
@@ -204,7 +207,7 @@ flow start --lib path/to/interfaces/
   <span class="nx">y</span><span class="o">:</span> <span class="s1">&#39;hello&#39;</span>
 <span class="p">};</span>
 </code></pre></div>
-<p>Note that any property included in the annotation <em>must</em> be included in the object at time of creation, so we get an error here:</p>
+<p>Any property included in the annotation <em>must</em> be included in the object at time of creation, so we get an error here:</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">foo</span><span class="o">:</span> <span class="p">{</span> <span class="nx">x</span><span class="o">:</span> <span class="nx">number</span><span class="p">;</span> <span class="nx">y</span><span class="o">:</span> <span class="nx">string</span> <span class="p">}</span> <span class="o">=</span> <span class="p">{</span>
   <span class="nx">x</span><span class="o">:</span> <span class="mi">5</span><span class="p">,</span>
 <span class="p">};</span>
@@ -217,7 +220,7 @@ flow start --lib path/to/interfaces/
   <span class="nx">y</span><span class="o">:</span> <span class="s1">&#39;hello&#39;</span>
 <span class="p">};</span>
 </code></pre></div>
-<p>Both of these approaches catch reads from and writes to undefined properties, like in the following case, where Flow throws an error:</p>
+<p>Both of these approaches catch reads from and writes to undefined properties, like this:</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">type</span> <span class="nx">FooType</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">x</span><span class="o">:</span> <span class="nx">number</span><span class="p">;</span> <span class="nx">y</span><span class="o">:</span> <span class="nx">string</span> <span class="p">};</span>
 <span class="kd">var</span> <span class="nx">foo</span><span class="o">:</span> <span class="nx">FooType</span> <span class="o">=</span> <span class="p">{</span>
   <span class="nx">x</span><span class="o">:</span> <span class="mi">5</span><span class="p">,</span>
@@ -226,7 +229,7 @@ flow start --lib path/to/interfaces/
 <span class="nx">foo</span><span class="p">.</span><span class="nx">z</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
 <span class="c1">// Property not found in object type</span>
 </code></pre></div>
-<p>Types can also be <a class='external' target='_blank' href='http://flowtype.org/docs/typeof.html#_'>inferred from existing objects</a> using the <code>typeof</code> operator. This is a really, really cool feature. For example, Flow would catch an error here, as <code>x</code> and <code>y</code> have incorrect types for the second object:</p>
+<p>Types can also be <a class='external' target='_blank' href='http://flowtype.org/docs/typeof.html#_'>inferred from existing objects</a> using the <code>typeof</code> operator. This is a really, really cool feature. For example, Flow would catch an error here, as the properties <code>x</code> and <code>y</code> have incorrect values in the second constructor:</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">type</span> <span class="nx">FooType</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">x</span><span class="o">:</span> <span class="nx">number</span><span class="p">;</span> <span class="nx">y</span><span class="o">:</span> <span class="nx">string</span> <span class="p">};</span>
 <span class="kd">var</span> <span class="nx">foo</span><span class="o">:</span> <span class="nx">FooType</span> <span class="o">=</span> <span class="p">{</span>
   <span class="nx">x</span><span class="o">:</span> <span class="mi">5</span><span class="p">,</span>
@@ -237,7 +240,7 @@ flow start --lib path/to/interfaces/
   <span class="nx">y</span><span class="o">:</span> <span class="mi">5</span>
 <span class="p">};</span>
 </code></pre></div>
-<h3>Unannotated Objects</h3>
+<p><h3  id='Unannotated-Objects'>Unannotated Objects<a class='anchor-wrap' href="#Unannotated-Objects" title="Permalink to this headline">¶</a></h3 ></p>
 
 <p>Without annotations, the typing on objects becomes pretty loose, as you&#39;d expect—it&#39;s hard to enforce type safety on an object that you know nothing about.</p>
 
@@ -247,6 +250,7 @@ flow start --lib path/to/interfaces/
   <span class="nx">y</span><span class="o">:</span> <span class="s1">&#39;hello&#39;</span>
 <span class="p">};</span>
 <span class="nx">foo</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="s1">&#39;world&#39;</span><span class="p">;</span>
+<span class="c1">// String is incompatible with number</span>
 </code></pre></div>
 <p>However, Flow has trouble tracking properties that are added to the object <em>after</em> creation. The docs make <a class='external' target='_blank' href='http://flowtype.org/docs/objects.html#adding-properties'>some guarantees</a> about the extent of the type checking for such a scenario, but behavior is hard to predict. For example, we (rightfully) get an error here:</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="p">{</span>
@@ -267,9 +271,9 @@ flow start --lib path/to/interfaces/
 <span class="kd">var</span> <span class="nx">s</span><span class="o">:</span> <span class="nx">string</span> <span class="o">=</span> <span class="nx">foo</span><span class="p">.</span><span class="nx">z</span><span class="p">;</span>
 <span class="c1">// Number is incompatible with string</span>
 </code></pre></div>
-<p>Note that the error here comes on the final line, so Flow lets us overwrite <code>foo.z</code> with a string, but later enforces that its type should be <code>number</code>. Odd. I think this is a bug, but the general point is that I wouldn&#39;t rely too heavily on unannotated objects.</p>
+<p>Note that the error here comes on the final line, so Flow lets us overwrite <code>foo.z</code> with a string, but later enforces that its type should be <code>number</code>. Odd. I think this is a bug, but the general point is that I wouldn&#39;t rely on unannotated objects.</p>
 
-<h3>Maps</h3>
+<p><h3  id='Maps'>Maps<a class='anchor-wrap' href="#Maps" title="Permalink to this headline">¶</a></h3 ></p>
 
 <p>Tucked away in the Flow docs is an <a class='external' target='_blank' href='http://flowtype.org/docs/objects.html#objects-as-maps'>interesting note</a> about treating objects as key-value maps.</p>
 
@@ -320,14 +324,16 @@ flow start --lib path/to/interfaces/
 <span class="nx">foo</span><span class="p">.</span><span class="nx">hello</span><span class="p">;</span>
 <span class="c1">// Number is incompatible with string</span>
 </code></pre></div>
-<p>It&#39;s unclear to me what the expected behavior is here.</p></li>
+<p>It&#39;s unclear to me what the expected behavior is here. Mixing these annotations <em>could</em> be a means of marking some keys as required, but if that&#39;s the intention, it would only work when both the property-specific keys and map keys are strings: if the property-specific key isn&#39;t a string, Flow won&#39;t accept it at time of construction, and if the map keys aren&#39;t the same as the property-specific keys, you&#39;ll get an error on read or write.</p>
+
+<p>(I&#39;ve documented this behavior on <a class='external' target='_blank' href='https://github.com/facebook/flow/issues/187'>GitHub</a>.)</p></li>
 </ol>
 
-<h2>Type Reuse</h2>
+<p><h2  id='Type-Reuse'>Type Reuse<a class='anchor-wrap' href="#Type-Reuse" title="Permalink to this headline">¶</a></h2 ></p>
 
 <p>Lastly, I want to talk a bit about type reuse (across files) in Flow.</p>
 
-<p>In RCSS, we have an object that pops up across a few different modules. It stores both a CSS classname (as a string) and a style object (i.e., a map from CSS properties to strings or numbers). You could implement a type alias for this object like so:</p>
+<p>In RCSS, we have an object that pops up in a few different modules. It stores both a CSS class name (as a string) and a style object (i.e., a map from CSS properties to strings or numbers). You could implement a type alias for this object like so:</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">type</span> <span class="nx">StyleObjType</span> <span class="o">=</span> <span class="p">{</span>
   <span class="nx">className</span><span class="o">:</span> <span class="nx">string</span><span class="p">,</span>
   <span class="nx">style</span><span class="o">:</span> <span class="p">{</span> <span class="p">[</span><span class="nx">key</span><span class="o">:</span><span class="nx">string</span><span class="p">]</span><span class="o">:</span> <span class="nx">number</span> <span class="o">|</span> <span class="nx">string</span> <span class="p">}</span>
@@ -338,8 +344,8 @@ flow start --lib path/to/interfaces/
 <p>The fact that this object is used in multiple modules was problematic. I had a few choices:</p>
 
 <ol>
-<li>Redefine the type alias in every file that it was used.</li>
-<li>Define the type alias in an interface file, which is common to all files type checked by Flow.</li>
+<li>Redefine the type alias in every file.</li>
+<li>Define the type alias in an interface file, common to all files type checked by Flow.</li>
 <li><p>Export an object with this type from some other file and use <code>typeof</code> on that export. For example, I could create <code>style-obj-type.js</code> with:</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/* @flow */</span>
 
@@ -365,19 +371,19 @@ flow start --lib path/to/interfaces/
 
 <p>Clearly, each option is awkward in its own way. <a class='external' target='_blank' href='https://github.com/crm416/RCSS/blob/master/interfaces/objects.js'>I went with option #2</a>, but was sort of unhappy to have a single interface file with global type aliases. In a larger project, I could see this becoming inconvenient or difficult to maintain.</p>
 
-<p>In general, it&#39;d be nice if there was a better mechanism for sharing these kinds of type aliases across files. In particular, option #3 would be neat if I could export the alias, rather than this dummy object satisfying it.</p>
+<p>In general, it&#39;d be nice if there was a better mechanism for sharing these kinds of type aliases across files. Option #3 would be neat if I could export the alias, rather than this dummy object satisfying it.</p>
 
-<p>Things improve when you use <a class='external' target='_blank' href='http://flowtype.org/docs/classes.html#_'>ES6 Classes</a>, as the classes can be exported and their types reused with ease.</p>
+<p>Things improve when you use <a class='external' target='_blank' href='http://flowtype.org/docs/classes.html'>ES6 Classes</a>, as the classes can be exported and their types reused with ease.</p>
 
-<h2>In Conclusion</h2>
+<p><h2  id='In-Conclusion'>In Conclusion<a class='anchor-wrap' href="#In-Conclusion" title="Permalink to this headline">¶</a></h2 ></p>
 
-<p>At a high level, my experience with Flow was positive and I look forward to using it again. Admittedly, though, the project felt pretty raw, with plenty of &#39;gotchas&#39; scattered throughout the codebase.</p>
+<p>I had a positive experience with Flow and look forward to using it again. Admittedly, though, the project felt raw, with a few &#39;gotchas&#39; scattered throughout the codebase.</p>
 
 <p>Much of this could be solved with better documentation and, with any luck, I&#39;ll be sending over some pull requests in the near future (<a target="_blank" href="https://github.com/facebook/flow/pull/182">one down!</a>).</p>
 
-<p>Additionally, many of the issues I described here have already been noted by the community, which seems to be growing and going strong. If Flow is run half as well as React, I&#39;m sure it will continue to prosper as an open-source project.</p>
+<p>Even better, many of the issues I described here have already been noted by the community, which seems to be growing and going strong. If Flow is run half as well as React, I&#39;m sure it will continue to prosper as an open-source project.</p>
 
-<h2>Appendix: Other Cool Features</h2>
+<p><h2  id='Appendix-Other-Cool-Features'>Appendix: Other Cool Features<a class='anchor-wrap' href="#Appendix-Other-Cool-Features" title="Permalink to this headline">¶</a></h2 ></p>
 
 <p>If you&#39;re interested, here are some other cool features of Flow that I didn&#39;t spend much time on in this post:</p>
 
@@ -385,6 +391,8 @@ flow start --lib path/to/interfaces/
 <li><a href="http://flowtype.org/docs/functions.html#polymorphic-functions">Polymorphic functions</a></li>
 <li><a href="http://flowtype.org/docs/nullable-types.html#_">Maybe types</a></li>
 <li><a href="http://flowtype.org/docs/classes.html#_">ES6 Classes</a></li>
+<li><a href="http://flowtype.org/docs/react-example.html#property-use">React PropTypes integration</a></li>
+<li><a href="http://flowtype.org/docs/existing.html#weak-mode">Weak mode</a></li>
 </ul>
 
           <p class="date">Posted on December 12, 2014.<p>
