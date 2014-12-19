@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <meta name="description" content="Charlie Marsh is a programmer and student at Princeton University with major interests in functional programming and machine learning.">
+  <meta name="viewport" content="width=device-width">
+  <title>Bitcoin Script: Building a Playground for the Browser | Charlie Marsh</title>
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans">
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Source+Code+Pro">
+  <link href="/static/css/bootstrap.css" rel="stylesheet" type="text/css" />
+  <link href="/static/css/sprites.css" rel="stylesheet" type="text/css" />
+  <link href="/static/css/styles.css" rel="stylesheet" type="text/css" />
+  <link href="/static/css/syntax.css" rel="stylesheet" type="text/css" />
+  <link href="https://plus.google.com/u/0/100601164815113053596/" rel='author'>
+  <script type="text/javascript">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-36552582-2', 'princeton.edu');
+    ga('send', 'pageview');
+  </script>
+</head>
+
+  <body class="index">
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span2 hidden-phone"></div>
+        <div class="span2 hidden-phone" style="position:fixed">
+          <h1 style="font-size:50px">
+  <a class="blank" href="/">
+    Charlie<br>Marsh
+  </a>
+</h1>
+<p>
+  <a class="implicit" href="/">Home</a> &sdot; <a class="implicit" href="/static/pdf/Charles_Marsh_CV.pdf">CV</a>&sdot; <a class="implicit" href="/about/">About</a>
+</p>
+<h2>
+  Programmer,<br>student.
+</h2>
+<p>I'm into functional<br>programming,<br>machine learning,<br> and other fun stuff.<p>
+<p>Find me on:</p>
+<a href="mailto:crmarsh@princeton.edu"><img class="icon" src="/static/img/email.png"></a>
+<a href="http://www.github.com/crm416"><img class="icon" src="/static/img/github.png"></a>
+<a href="http://stackoverflow.com/users/1450892/charles-marsh"><img class="icon" src="/static/img/stackoverflow.png"></a>
+<a href="https://www.twitter.com/crm416"><img class="icon" src="/static/img/twitter.png"></a>
+</div>
+<div class="span2 visible-phone">
+  <div>
+    <p style="font-size:25px"><a class="blank" href="/">Charlie Marsh</a>  <div style="margin-top:-10px"><code class="custom"><span class="code_red">type</span> <span class="code_blue">blog</span></code></div>
+  </div>
+  <hr />
+</div>
+
+          <div class="span9 offset1" style="padding-left:20px">
+          <h1>The Bitcoin Script Playground</h1>
+
+<p>This semester, I&#39;ve been taking a course on <a href="">Bitcoin and Cryptocurrencies</a>, offered by Princeton&#39;s <a href="">Center for Information Technology Policy</a>, and co-taught by <a href="">Arvind Narayanan</a> and <a href="">Joseph Bonneau</a> (with help from <a href="">Ed Felten</a> and <a href="">Andrew Miller</a>).</p>
+
+<p>Inspired by the course, I spent some time this semester on a Bitcoin Script-to-JavaScript compiler and a real-time playground for the browser: the <a href="http://www.crmarsh.com/script-playground/">Script Playground</a>. It&#39;s a great way to familiarize yourself with the semantics of and philosophies behind Bitcoin Script. The underlying source is available on <a href="http://www.github.com/crm416/script">GitHub</a> and as a module on <a href="TODO">npm</a>.</p>
+
+<p>In this post, I&#39;ll explain some of the core principles and functionality behind Script before introducing the Script Playground and a few examples.</p>
+
+<p>(If you have a good handle on Script, feel free to <a href="#Why-Build-a-Playground">skip ahead</a>.)</p>
+
+<p><h2  id='What-is-Script'>What is Script?<a class='anchor-wrap' href="#What-is-Script" title="Permalink to this headline">¶</a></h2 ></p>
+
+<p>Script is a simple stack-based programming language used by Bitcoin to validate transactions.</p>
+
+<p>Script programs are processed left-to-right, with each operation modifying a global stack. On termination, the script is either considered valid (indicated by the presence of a 1 on top of the stack) or invalid (anything else).</p>
+
+<p>As an example, this script pushes a 0 onto the stack, increments it, and terminates. As 0 + 1 = 1 is on top of the stack, this script will run successfully:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">OP_0 OP_1ADD
+</code></pre></div>
+<p>Pretty simple.</p>
+
+<p><h3  id='In-the-Context-of-Bitcoin'>In the Context of Bitcoin<a class='anchor-wrap' href="#In-the-Context-of-Bitcoin" title="Permalink to this headline">¶</a></h3 ></p>
+
+<p>Script is used to verify that the spender of some Bitcoins actually owns them. In other words, scripts validate transactions.</p>
+
+<p>Each Bitcoin transaction requires two scripts: <em>ScriptPubKey</em> and <em>ScriptSig</em>. The former is included as part of the transaction when it is broadcast to the network and typically encodes the destination address <em>D</em> of the Bitcoins involved. The latter is provided when those Bitcoins are spent in the future by the owner of address <em>D</em> and typically provides some evidence that the owner actually owns that address (i.e., by signing a message with its private key).</p>
+
+<p>To validate the spending of Bitcoins, miners concatenate the <em>ScriptSig</em> and <em>ScriptPubKey</em>. If the concatenated program is valid, the transaction is valid, and vice-versa. For this reason, these scripts are sometimes referred to as the &quot;unlocking&quot; and &quot;locking&quot; scripts, respectively, as the <em>ScriptPubKey</em> is provided to lock some Bitcoins to an address, and the <em>ScriptSig</em>, to unlock them in the future.</p>
+
+<p><h3  id='Simple-By-Design'>Simple By Design<a class='anchor-wrap' href="#Simple-By-Design" title="Permalink to this headline">¶</a></h3 ></p>
+
+<p>Script is <a href="https://en.bitcoin.it/wiki/Script">purposefully</a> not Turing-complete. It contains no loops (it&#39;s only form of control flow is through if-else statements) and the instruction set is limited to the bare necessities: some stack manipulation functions, some arithmetic functions, some cryptographic functions, and little else.</p>
+
+<p>This simplicity is a feature, not a flaw.</p>
+
+<p>As scripts are used to validate transactions, miners across the network have to execute them in bulk to compose and validate blocks. If the Script language allowed for intense computation, miners would be disincentivized from validating transactions due to the costs of computing.</p>
+
+<p>At the very least, these miners would be incurring an unnecessary cost, as Script&#39;s simplicity is sufficient for covering most of what we want to do in transaction validation. This cost would make mining less attractive, and as the attractivity of mining is crucial to maintaining a high hash rate across the network (and thus securing the network), this simplicity is a good thing.</p>
+
+<p><h3  id='In-Practice'>In Practice<a class='anchor-wrap' href="#In-Practice" title="Permalink to this headline">¶</a></h3 ></p>
+
+<p>In practice, Bitcoin scripts typically take one of a handful of forms, e.g.:</p>
+
+<ul>
+<li><a href="https://bitcoin.org/en/developer-guide#pay-to-public-key-hash-p2pkh">P2PKH</a>: the <em>ScriptSig</em> requires a signature and the public key from which it was generated, while the <em>ScriptPubKey</em> verifies that the public key matches the desired address and the signature is valid.</li>
+<li><a href="https://bitcoin.org/en/developer-guide#pay-to-public-key-hash-p2pkh">Multisig</a>: similar to the above, but requires M-of-N signatures to be valid.</li>
+</ul>
+
+<p>In fact, miners will <a href="https://bitcoin.org/en/developer-guide#non-standard-transactions">reject</a> transactions that veer from the list of standard Script formats. In Bitcoin jargon, these are referred to as &quot;non-standard transactions&quot;.</p>
+
+<p><h2  id='Why-Build-a-Playground'>Why Build a Playground?<a class='anchor-wrap' href="#Why-Build-a-Playground" title="Permalink to this headline">¶</a></h2 ></p>
+
+<p>Script is an interesting facet of Bitcoin.</p>
+
+<p>First, the language is intentionally simple, which makes you wonder just how far you can push it.</p>
+
+<p>Second, Script is a good mechanism for reinforcing the principles behind Bitcoin. For example, Script&#39;s limited instruction set reinforces an understanding of miner incentives, while its multi-signature support demonstrates interesting use-cases for Bitcoin.</p>
+
+<p>For these reasons, I wanted to make it possible to play with Script in the most accessible of settings: the browser. The finished product is available at <a href="http://www.crmarsh.com/script-playground/">crmarsh.com/script-playground/</a>, with the source free to view on <a href="https://github.com/crm416/script">GitHub</a>.</p>
+
+<p><h3  id='Functionality'>Functionality<a class='anchor-wrap' href="#Functionality" title="Permalink to this headline">¶</a></h3 ></p>
+
+<p>My implementation of Script covers all of the enabled opcodes listed on the <a href="https://en.bitcoin.it/wiki/Script">Bitcoin Wiki</a>, apart from the reserved words, altstack commands, pseudo-words, and <code>OP_CODESEPARATOR</code>.</p>
+
+<p>However, it differs from Bitcoin&#39;s implementation in a few ways:</p>
+
+<ol>
+<li>It always requires a terminating opcode. So, while Bitcoin might evaluate <code>OP_TRUE</code> as valid, my implementation requires you to write <code>OP_TRUE OP_VERIFY</code>.</li>
+<li>It pushes any hex data to the stack. So, it ignores the <code>OP_PUSHDATA</code> commands and instead pushes any hex-formatted data to the stack (e.g., <code>0x05</code> or <code>fde5a</code>). Further, this hex data can be of arbitrary length.</li>
+<li>Unlike in the [official implementation], <code>OP_CHECKMULTISIG</code> does <em>not</em> pop an extra, arbitrary value off the stack (as this is considered a bug and would only serve to confuse new users).</li>
+<li>It generates and validates signatures using a nonce, rather than hashing transaction inputs and outputs.</li>
+</ol>
+
+<p>Each of these changes was made so as to make this implementation easier to use and understand.</p>
+
+<p><h3  id='Technology'>Technology<a class='anchor-wrap' href="#Technology" title="Permalink to this headline">¶</a></h3 ></p>
+
+<p>The Script playground compiles Script programs down to JavaScript using  <a href="http://zaach.github.io/jison/">Jison</a>, a JavaScript parser generator, with the grammar defined <a href="https://github.com/crm416/script/blob/master/lib/script.jison">here</a>. The implementation is built to run in Node, and is transpiled for use in the browser with Browserify.</p>
+
+<p>The live editor itself is based on my friend <a href="http://joelburget.com/">Joel Burget&#39;s</a> <a href="github.com/joelburget/react-live-editor">react-live-editor</a>, which is in-turn based on <a href="http://codemirror.net/">CodeMirror</a> for real-time updates and editing.</p>
+
+<p><h3  id='An-Example-Testing-for-Primality'>An Example: Testing for Primality<a class='anchor-wrap' href="#An-Example-Testing-for-Primality" title="Permalink to this headline">¶</a></h3 ></p>
+
+<p>As my implementation is built for Node, it&#39;s really easy to play around with Script using all the expressive power of JavaScript.</p>
+
+<p>As an example, consider a <em>ScriptPubKey</em> that is only unlocked if the redeemer provides a three-digit prime number. We can programmatically generate the <em>ScriptPubKey</em> in JavaScript and then evaluate some <em>ScriptSig</em> candidates, all within the same module.</p>
+
+<p>As Script&#39;s division and remainder operators are disabled in Bitcoin (and thus disabled in my implementation), the best we can do is generate all the set of prime numbers in [100, 999] and evaluate whether the <em>ScriptSig</em> is in that set. Since the <em>ScriptPubKey</em> is public, we won&#39;t want to include the actual primes; instead, we&#39;ll include the hash of each prime and evaluate the hash of the <em>ScriptSig</em> for equality.</p>
+
+<p>The final evaluation function looks like this:</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">unlock</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../index.js&#39;</span><span class="p">).</span><span class="nx">unlock</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">hexBase</span> <span class="o">=</span> <span class="mi">16</span><span class="p">;</span>
+<span class="kd">function</span> <span class="nx">isPrime</span><span class="p">(</span><span class="nx">scriptSig</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Find primes in [100, 999]</span>
+    <span class="kd">var</span> <span class="nx">minValue</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">maxValue</span> <span class="o">=</span> <span class="mi">999</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">primes</span> <span class="o">=</span> <span class="nx">getPrimes</span><span class="p">(</span><span class="nx">maxValue</span><span class="p">);</span>
+
+    <span class="c1">// Check for equality of hashes</span>
+    <span class="kd">var</span> <span class="nx">scriptPubKey</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">primes</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">commands</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s1">&#39;OP_DUP&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;OP_SHA256&#39;</span><span class="p">,</span>
+            <span class="nx">sha256</span><span class="p">(</span><span class="nx">primes</span><span class="p">[</span><span class="nx">i</span><span class="p">]),</span>
+            <span class="s1">&#39;OP_EQUAL&#39;</span><span class="p">,</span>
+        <span class="p">];</span>
+        <span class="c1">// Keep a running OR tally of whether we&#39;ve hit a match</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">scriptPubKey</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">commands</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s1">&#39;OP_ROT&#39;</span><span class="p">);</span>
+            <span class="nx">commands</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s1">&#39;OP_BOOLOR&#39;</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="nx">commands</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s1">&#39;OP_SWAP&#39;</span><span class="p">);</span>
+        <span class="nx">scriptPubKey</span> <span class="o">+=</span> <span class="nx">commands</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="c1">// Verify that the value is in [100, 999]</span>
+    <span class="kd">var</span> <span class="nx">conclusion</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">&#39;0x&#39;</span> <span class="o">+</span> <span class="nx">minValue</span><span class="p">.</span><span class="nx">toString</span><span class="p">(</span><span class="nx">hexBase</span><span class="p">),</span>
+        <span class="s1">&#39;0x&#39;</span> <span class="o">+</span> <span class="nx">maxValue</span><span class="p">.</span><span class="nx">toString</span><span class="p">(</span><span class="nx">hexBase</span><span class="p">),</span>
+        <span class="s1">&#39;OP_WITHIN&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;OP_BOOLAND&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;OP_VERIFY&#39;</span>
+    <span class="p">];</span>
+    <span class="nx">scriptPubKey</span> <span class="o">+=</span> <span class="nx">conclusion</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">);</span>
+
+    <span class="c1">// Concatenate and run (scriptSig, scriptPubKey)</span>
+    <span class="k">return</span> <span class="nx">unlock</span><span class="p">(</span><span class="nx">scriptSig</span><span class="p">,</span> <span class="nx">scriptPubKey</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>It&#39;s fun to test and question the limits of Script&#39;s expressiveness. What commands would it take, for example, to write a scriptPubKey that doesn&#39;t need to precompute primes? (Such a script could be used to implement a <a href="">useful proof-of-work</a> scheme.)</p>
+
+<p>Give it a shot yourself in the <a href="http://www.crmarsh.com/script-playground/">playground</a>, or download the <a href="TODO">script module from npm</a>.</p>
+
+          <p class="date">Posted on December 16, 2014.<p>
+          <br>
+          <hr />
+<center>
+&copy; 2014 Charles Marsh
+<a href="/feed.xml" style="padding-bottom:15px">
+  <img class="icon" src="/static/img/rss.png">
+</a>
+</center>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
