@@ -46,10 +46,10 @@
 </h2>
 <p>I'm into functional<br>programming,<br>machine learning,<br> and other fun stuff.<p>
 <p>Find me on:</p>
-<a href="mailto:crmarsh@princeton.edu"><img class="icon" src="/static/img/email.png"></a>
-<a href="http://www.github.com/crm416"><img class="icon" src="/static/img/github.png"></a>
-<a href="http://stackoverflow.com/users/1450892/charles-marsh"><img class="icon" src="/static/img/stackoverflow.png"></a>
-<a href="https://www.twitter.com/crm416"><img class="icon" src="/static/img/twitter.png"></a>
+<a href="mailto:crmarsh@princeton.edu"><img class="icon" src="/static/img/icon/email.png"></a>
+<a href="http://www.github.com/crm416"><img class="icon" src="/static/img/icon/github.png"></a>
+<a href="http://stackoverflow.com/users/1450892/charles-marsh"><img class="icon" src="/static/img/icon/stackoverflow.png"></a>
+<a href="https://www.twitter.com/crm416"><img class="icon" src="/static/img/icon/twitter.png"></a>
 </div>
 <div class="span2 visible-phone">
   <div>
@@ -76,7 +76,6 @@
 <p>The MediaWiki API returns a JSON (or XML, etc.) response with the information you&#39;ve queried. But the response is pretty cryptic: to get the <em>actual</em> information you&#39;re looking for, you need to access the proper keys and work some other magic.</p>
 
 <p>For example, here&#39;s the beginning of the JSON response for <a href="http://en.wikipedia.org/wiki/Michael_Jordan">Michael Jordan&#39;s Wikipedia page</a>:</p>
-
 <div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">[</span>
     <span class="p">[</span>
         <span class="s2">&quot;parse&quot;</span><span class="p">,</span>
@@ -87,28 +86,26 @@
             <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Michael Jordan&quot;</span>
         <span class="p">}</span>
     <span class="p">]</span>
-<span class="p">]</span></code></pre></div>
-
+<span class="p">]</span>
+</code></pre></div>
 <p>Note that the text itself is also still in HTML.</p>
 
 <p>The methods in <em>wikipedia.py</em> are designed to extract the information (i.e., the &quot;<em>&quot; field above) and parse the HTML, with some help from the *HTMLParser</em> library. In the above case, our method looks something like this:</p>
-
-<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">return</span> <span class="n">cleanHTMLSection</span><span class="p">(</span><span class="n">cleanWikiSection</span><span class="p">(</span><span class="n">json_response</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="s">u&#39;text&#39;</span><span class="p">][</span><span class="s">u&#39;*&#39;</span><span class="p">]))</span></code></pre></div>
-
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">return</span> <span class="n">cleanHTMLSection</span><span class="p">(</span><span class="n">cleanWikiSection</span><span class="p">(</span><span class="n">json_response</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="s">u&#39;text&#39;</span><span class="p">][</span><span class="s">u&#39;*&#39;</span><span class="p">]))</span>
+</code></pre></div>
 <p>Where <em>cleanWikiSection</em> is reponsible for removing extraneous information from the page itself, and <em>cleanHTMLSection</em> is responsible for converting the HTML to plaintext.</p>
 
 <p><h2  id='BeautifulSoup-Traversing-the-Parse-Tree'>BeautifulSoup: Traversing the Parse Tree<a class='anchor-wrap' href="#BeautifulSoup-Traversing-the-Parse-Tree" title="Permalink to this headline">¶</a></h2 ></p>
 
 <p>In some cases, <em>wikipedia.py</em> also uses BeautifulSoup to explore the target page. For example, say we want to extract information from the table below (again, from Michael Jordan&#39;s Wikipedia page.)</p>
 
-<p><img src="../static/img/wikipedia_table.png" alt="Michael Jordan" class="center"></p>
+<p><img src="../static/img/wikipedia/table.png" alt="Michael Jordan" class="center"></p>
 
 <p>We do some fairly low-level searching in the table to check every row and extract information based on the row&#39;s content formatting. At this point, <em>wikipedia.py</em> can extract rows with one-to-one (e.g., &quot;Nationality: American&quot;) and one-to-many (e.g., &quot;Career highlights and awards: 6x NBA Champion...&quot;) formats.</p>
 
 <p>The output for MJ&#39;s table is as follows:</p>
-
-<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="p">[(</span><span class="s">&#39;Born&#39;</span><span class="p">,</span> <span class="s">&#39;February 17, 1963&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;Nationality&#39;</span><span class="p">,</span> <span class="s">&#39;American&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;Listed height&#39;</span><span class="p">,</span> <span class="s">&#39;6ft6in&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;Listed weight&#39;</span><span class="p">,</span> <span class="s">&#39;216lb&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;High school&#39;</span><span class="p">,</span> <span class="s">&#39;Emsley A. Laney&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;College&#39;</span><span class="p">,</span> <span class="s">&#39;North Carolina&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;NBA Draft&#39;</span><span class="p">,</span> <span class="s">&#39;1984 / Round: 1 / Pick: 3rd overall&#39;</span><span class="p">),</span> <span class="o">...</span><span class="p">]</span></code></pre></div>
-
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="p">[(</span><span class="s">&#39;Born&#39;</span><span class="p">,</span> <span class="s">&#39;February 17, 1963&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;Nationality&#39;</span><span class="p">,</span> <span class="s">&#39;American&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;Listed height&#39;</span><span class="p">,</span> <span class="s">&#39;6ft6in&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;Listed weight&#39;</span><span class="p">,</span> <span class="s">&#39;216lb&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;High school&#39;</span><span class="p">,</span> <span class="s">&#39;Emsley A. Laney&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;College&#39;</span><span class="p">,</span> <span class="s">&#39;North Carolina&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;NBA Draft&#39;</span><span class="p">,</span> <span class="s">&#39;1984 / Round: 1 / Pick: 3rd overall&#39;</span><span class="p">),</span> <span class="o">...</span><span class="p">]</span>
+</code></pre></div>
 <p><h2  id='In-Conclusion'>In Conclusion<a class='anchor-wrap' href="#In-Conclusion" title="Permalink to this headline">¶</a></h2 ></p>
 
 <p>Feel free to fork, comment, criticise, or (best of all) get in touch. This was created as a sub-project and is by no means perfect, but I certainly hope it can be useful to some.</p>
@@ -119,7 +116,7 @@
 <center>
 &copy; 2014 Charles Marsh
 <a href="/feed.xml" style="padding-bottom:15px">
-  <img class="icon" src="/static/img/rss.png">
+  <img class="icon" src="/static/img/icon/rss.png">
 </a>
 </center>
         </div>

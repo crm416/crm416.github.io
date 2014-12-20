@@ -46,10 +46,10 @@
 </h2>
 <p>I'm into functional<br>programming,<br>machine learning,<br> and other fun stuff.<p>
 <p>Find me on:</p>
-<a href="mailto:crmarsh@princeton.edu"><img class="icon" src="/static/img/email.png"></a>
-<a href="http://www.github.com/crm416"><img class="icon" src="/static/img/github.png"></a>
-<a href="http://stackoverflow.com/users/1450892/charles-marsh"><img class="icon" src="/static/img/stackoverflow.png"></a>
-<a href="https://www.twitter.com/crm416"><img class="icon" src="/static/img/twitter.png"></a>
+<a href="mailto:crmarsh@princeton.edu"><img class="icon" src="/static/img/icon/email.png"></a>
+<a href="http://www.github.com/crm416"><img class="icon" src="/static/img/icon/github.png"></a>
+<a href="http://stackoverflow.com/users/1450892/charles-marsh"><img class="icon" src="/static/img/icon/stackoverflow.png"></a>
+<a href="https://www.twitter.com/crm416"><img class="icon" src="/static/img/icon/twitter.png"></a>
 </div>
 <div class="span2 visible-phone">
   <div>
@@ -85,7 +85,7 @@
 <li>After you&#39;ve received your activation email, head to the <a href="https://console.aws.amazon.com/console/home?#">AWS management console</a> (this link requires you to be logged in to AWS). Click on the icon labelled &#39;EC2&#39; (orange, below).</li>
 </ul>
 
-<p><img src="../static/img/aws_portal.png" alt="AWS Portal" class="center" width="700"></p>
+<p><img src="../static/img/aws/portal.png" alt="AWS Portal" class="center" width="700"></p>
 
 <p><em>For those interested, &#39;EC2&#39; stands for <em>Elastic Cloud Compute</em>. The service itself allows users to rent out virtual computers on which they can boot up their own images. Basically, we&#39;re booting onto some random CPU in some Amazon-owned datacenter somewhere in America.</em></p>
 
@@ -93,7 +93,7 @@
 <li>On the next page, hit the big blue &#39;Launch Instance&#39; button, as seen below.</li>
 </ul>
 
-<p><img src="../static/img/aws_launch_instance.png" alt="Launch instance" class="center"></p>
+<p><img src="../static/img/aws/launch_instance.png" alt="Launch instance" class="center"></p>
 
 <ul>
 <li>Next, we proceed with the &#39;Classic Wizard&#39;. It&#39;s at this point that we have to select our disk image. Personally, I like using Ubuntu, so the rest of this tutorial will assume that you select <em>Ubuntu Server 13.04</em> (64-bit).</li>
@@ -101,13 +101,13 @@
 <li>Click through and launch your instance.</li>
 </ul>
 
-<p><img src="../static/img/aws_final.png" alt="Final configuration" class="center" width="700"></p>
+<p><img src="../static/img/aws/final.png" alt="Final configuration" class="center" width="700"></p>
 
 <ul>
 <li>Wait until your instance state goes from <em>pending</em> to <em>active</em>. For me, that took about 2-3 minutes. When you see something like this, you&#39;re golden.</li>
 </ul>
 
-<p><img src="../static/img/aws_ready.png" alt="Instance ready" class="center" width="700"></p>
+<p><img src="../static/img/aws/ready.png" alt="Instance ready" class="center" width="700"></p>
 
 <p><h2  id='Getting-Onto-Your-Server'>Getting Onto Your Server<a class='anchor-wrap' href="#Getting-Onto-Your-Server" title="Permalink to this headline">¶</a></h2 ></p>
 
@@ -118,7 +118,7 @@
 <li><p>Get your EC2 name (something of the form *.compute.amazonaws.com). It&#39;ll look like this:</p></li>
 </ul>
 
-<p><img src="../static/img/aws_instance_name.png" alt="Instance name" class="center"></p>
+<p><img src="../static/img/aws/instance_name.png" alt="Instance name" class="center"></p>
 
 <ul>
 <li><p>Now, we can go ahead and SSH in. Issue the <a href="http://stackoverflow.com/questions/6394762/ssh-access-to-amazon-ec2-instance#6407649">following command</a>:</p>
@@ -130,7 +130,7 @@
 <li><p>Success! (I hope...)</p></li>
 </ul>
 
-<p><img src="../static/img/aws_successful_login.png" class="center" alt="Successful login"></p>
+<p><img src="../static/img/aws/successful_login.png" class="center" alt="Successful login"></p>
 
 <p><h2  id='Configuring-Your-Account'>Configuring Your Account<a class='anchor-wrap' href="#Configuring-Your-Account" title="Permalink to this headline">¶</a></h2 ></p>
 
@@ -216,7 +216,7 @@ alias aws=&#39;ssh crmarsh@$AWS&#39;
 <center>
 &copy; 2014 Charles Marsh
 <a href="/feed.xml" style="padding-bottom:15px">
-  <img class="icon" src="/static/img/rss.png">
+  <img class="icon" src="/static/img/icon/rss.png">
 </a>
 </center>
         </div>

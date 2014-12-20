@@ -46,10 +46,10 @@
 </h2>
 <p>I'm into functional<br>programming,<br>machine learning,<br> and other fun stuff.<p>
 <p>Find me on:</p>
-<a href="mailto:crmarsh@princeton.edu"><img class="icon" src="/static/img/email.png"></a>
-<a href="http://www.github.com/crm416"><img class="icon" src="/static/img/github.png"></a>
-<a href="http://stackoverflow.com/users/1450892/charles-marsh"><img class="icon" src="/static/img/stackoverflow.png"></a>
-<a href="https://www.twitter.com/crm416"><img class="icon" src="/static/img/twitter.png"></a>
+<a href="mailto:crmarsh@princeton.edu"><img class="icon" src="/static/img/icon/email.png"></a>
+<a href="http://www.github.com/crm416"><img class="icon" src="/static/img/icon/github.png"></a>
+<a href="http://stackoverflow.com/users/1450892/charles-marsh"><img class="icon" src="/static/img/icon/stackoverflow.png"></a>
+<a href="https://www.twitter.com/crm416"><img class="icon" src="/static/img/icon/twitter.png"></a>
 </div>
 <div class="span2 visible-phone">
   <div>
@@ -128,7 +128,6 @@
 <p>However, it differs from Bitcoin&#39;s implementation in a few ways:</p>
 
 <ol>
-<li>It always requires a terminating opcode. So, while Bitcoin might evaluate <code>OP_TRUE</code> as valid, my implementation requires you to write <code>OP_TRUE OP_VERIFY</code>.</li>
 <li>It pushes any hex data to the stack. So, it ignores the <code>OP_PUSHDATA</code> commands and instead pushes any hex-formatted data to the stack (e.g., <code>0x05</code> or <code>fde5a</code>). Further, this hex data can be of arbitrary length.</li>
 <li>Unlike in the official implementation, <code>OP_CHECKMULTISIG</code> does <em>not</em> pop an extra, arbitrary value off the stack (as this is considered a bug and would only serve to confuse new users).</li>
 <li>It generates and validates signatures using a nonce, rather than hashing transaction inputs and outputs.</li>
@@ -202,7 +201,7 @@
 <center>
 &copy; 2014 Charles Marsh
 <a href="/feed.xml" style="padding-bottom:15px">
-  <img class="icon" src="/static/img/rss.png">
+  <img class="icon" src="/static/img/icon/rss.png">
 </a>
 </center>
         </div>

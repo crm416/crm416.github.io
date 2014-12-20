@@ -46,10 +46,10 @@
 </h2>
 <p>I'm into functional<br>programming,<br>machine learning,<br> and other fun stuff.<p>
 <p>Find me on:</p>
-<a href="mailto:crmarsh@princeton.edu"><img class="icon" src="/static/img/email.png"></a>
-<a href="http://www.github.com/crm416"><img class="icon" src="/static/img/github.png"></a>
-<a href="http://stackoverflow.com/users/1450892/charles-marsh"><img class="icon" src="/static/img/stackoverflow.png"></a>
-<a href="https://www.twitter.com/crm416"><img class="icon" src="/static/img/twitter.png"></a>
+<a href="mailto:crmarsh@princeton.edu"><img class="icon" src="/static/img/icon/email.png"></a>
+<a href="http://www.github.com/crm416"><img class="icon" src="/static/img/icon/github.png"></a>
+<a href="http://stackoverflow.com/users/1450892/charles-marsh"><img class="icon" src="/static/img/icon/stackoverflow.png"></a>
+<a href="https://www.twitter.com/crm416"><img class="icon" src="/static/img/icon/twitter.png"></a>
 </div>
 <div class="span2 visible-phone">
   <div>
@@ -61,7 +61,7 @@
           <div class="span9 offset1" style="padding-left:20px">
           <h1>(More Than) Doubling SVG FPS Rates at Khan Academy</h1>
 
-<p>At Khan Academy, we put a lot of effort into producing interactive math content (e.g., <a href="https://www.khanacademy.org/math/basic-geo/basic-geo-coordinate-plane/basic-geo-shapes-on-a-plane/e/drawing-polygons">Drawing Polygons</a>).</p>
+<p>At Khan Academy, we put a lot of effort into our interactive math content (e.g., <a href="https://www.khanacademy.org/math/basic-geo/basic-geo-coordinate-plane/basic-geo-shapes-on-a-plane/e/drawing-polygons">Drawing Polygons</a>).</p>
 
 <p>This kind of interaction is particularly important on touch devices: to create an engaging mobile experience, we strive to provide interactive content that feels effortless and fun—tightening the feedback loop as much as possible and enforcing the illusion of complete control.</p>
 
@@ -77,9 +77,9 @@
 
 <p><em>(And better yet, much of this has already shipped!)</em></p>
 
-<h2>Benchmarks</h2>
+<p><h2  id='Benchmarks'>Benchmarks<a class='anchor-wrap' href="#Benchmarks" title="Permalink to this headline">¶</a></h2 ></p>
 
-<p>Let&#39;s first lay out some benchmarks and background. (If you just want numbers and pictures, you can skip ahead to the <a href="#-The-Results">results</a> section.)</p>
+<p>Let&#39;s first lay out some benchmarks and background. (If you just want numbers and pictures, you can skip ahead to the <a href="#The-Results">results</a> section.)</p>
 
 <p>On the most recent iPad Mini (with a retina display), I clocked the following FPS numbers for our interactive exercises using <a href="https://developer.apple.com/library/mac/documentation/developertools/conceptual/instrumentsuserguide/MeasuringGraphicsPerformanceinYouriOSDevice/MeasuringGraphicsPerformanceinYouriOSDevice.html">Instruments</a> on OS X. For each shape mentioned below, I had it follow my finger&#39;s touch around the canvas (as in <a href="https://www.khanacademy.org/math/basic-geo/basic-geo-coordinate-plane/basic-geo-shapes-on-a-plane/e/drawing-polygons">Drawing Polygons</a>) at maximum speed:</p>
 
@@ -94,7 +94,7 @@
 
 <p>It&#39;s worth noting that our existing interactive content used SVG (with <a href="raphaeljs.com">Raphael</a>).</p>
 
-<h2>How Browsers Work</h2>
+<p><h2  id='How-Browsers-Work'>How Browsers Work<a class='anchor-wrap' href="#How-Browsers-Work" title="Permalink to this headline">¶</a></h2 ></p>
 
 <p>(If you&#39;re doing <em>any</em> perf-related front-end work, I highly recommend you read <a href="http://www.html5rocks.com/en/tutorials/speed/high-performance-animations/">High Performance Animations</a> by Paul Lewis and Paul Irish. Below, I&#39;ll be referencing the concepts described in this article.)</p>
 
@@ -111,19 +111,19 @@
 
 <p>Sticking to the four properties above (i.e., linear transformations and opacity) lets the browser avoid these expensive tasks and instead merely move existing, painted pixels around the screen (i.e., &quot;composite layers&quot;).</p>
 
-<h2>The Problem With SVG</h2>
+<p><h2  id='The-Problem-With-SVG'>The Problem With SVG<a class='anchor-wrap' href="#The-Problem-With-SVG" title="Permalink to this headline">¶</a></h2 ></p>
 
 <p>To achieve silky-smooth animation, then, you should obviously stick to these properties. And at Khan Academy, we generally did (with a few exceptions).</p>
 
 <p>However, <strong>SVG doesn&#39;t provide these same performance guarantees</strong>. In other words, applying linear transformations to SVG elements <em>does</em> trigger re-layout and re-painting. Just take a look at <a href="http://jsfiddle.net/to83thbt/">this Fiddle</a> and the timeline it produces in Chrome—see the purple layout events followed by green paint events?</p>
 
-<p><img src="../static/img/svg_timeline.png" alt="Timeline" class="center"></p>
+<p><img src="../static/img/svg-performance/timeline.png" alt="Timeline" class="center"></p>
 
 <p><em>(Aside: This came as something of a surprise to me. When I spoke with <a href="http://www.paulirish.com/">Paul Irish</a> during Hack Week, he said that there wasn&#39;t any particular reason that SVG nodes had to behave differently than DOM nodes here, but that most browsers didn&#39;t have particularly good SVG implementations.)</em></p>
 
 <p>In simplest terms: while we&#39;d like our machine to do no more than shift pixels around the screen, our SVG nodes were demanding expensive re-computation and re-painting, leading to a sub-par experience on resource-constrained devices.</p>
 
-<h2>Exploiting CSS Transforms</h2>
+<p><h2  id='Exploiting-CSS-Transforms'>Exploiting CSS Transforms<a class='anchor-wrap' href="#Exploiting-CSS-Transforms" title="Permalink to this headline">¶</a></h2 ></p>
 
 <p>During the profiling process, my colleagues <a href="https://twitter.com/ariabuckles">Aria Toole</a> and <a href="http://andymatuschak.org/">Andy Matuschak</a> had an interesting idea: Why don&#39;t we just wrap each individual SVG element in its own DOM node? Then, when we need to transform the underlying SVG, we can just apply an analogous CSS transform to the outer DOM node.</p>
 
@@ -149,7 +149,7 @@
 
 <p>So, for Hack Week, I gave it a shot.</p>
 
-<h3>Implementation Details</h3>
+<p><h3  id='Implementation-Details'>Implementation Details<a class='anchor-wrap' href="#Implementation-Details" title="Permalink to this headline">¶</a></h3 ></p>
 
 <p>The bulk of the work was in adding a layer of abstraction on top of our existing graphing code, mostly to handle the disparity between interacting with the outer DOM node and the underlying SVG element. For example, while you want transforms to be applied to the outer DOM node, other attribute changes (e.g., changing a circle&#39;s color from red to blue) should be propagated to the underlying SVG.</p>
 
@@ -159,7 +159,7 @@
 
 <p>This was a process of removing jank from our existing graphing code and deconstructing all of our animation into simple linear transforms—and doing so with as few hacks as possible, given that I wanted this to ship eventually.</p>
 
-<p><h2  id='-The-Results'>The Results<a class='anchor-wrap' href="#-The-Results" title="Permalink to this headline">¶</a></h2 ></p>
+<p><h2  id='The-Results'>The Results<a class='anchor-wrap' href="#The-Results" title="Permalink to this headline">¶</a></h2 ></p>
 
 <p>Recall the benchmarks I introduced earlier:</p>
 
@@ -183,13 +183,13 @@
 
 <p>To further hammer home the difference, check out these GIFs, taken in Chrome with &quot;Show paint rectangles&quot; enabled. First, in our previous implementation (note that the green rectangles indicate re-painting activity required by the browser):</p>
 
-<p><img src="../static/img/svg_demo_old.gif" alt="Timeline" class="center"></p>
+<p><img src="../static/img/svg-performance/demo_old.gif" alt="Timeline" class="center"></p>
 
 <p>And with these improvements, the green rectangles disappear:</p>
 
-<p><img src="../static/img/svg_demo_new.gif" alt="Timeline" class="center" ></p>
+<p><img src="../static/img/svg-performance/demo_new.gif" alt="Timeline" class="center" ></p>
 
-<h2>The Future</h2>
+<p><h2  id='The-Future'>The Future<a class='anchor-wrap' href="#The-Future" title="Permalink to this headline">¶</a></h2 ></p>
 
 <p>My hope it that, at some point in this post, you asked yourself: &quot;Why don&#39;t you just re-write all of your graphing tools to use HTML5 Canvas or WebGL?&quot; Because that would be a great question! Moving to more performant animation technologies is certainly on our road map, but it&#39;s more of a several-month project, whereas my goal here was to get some immediate benefit and touch as little of the codebase as possible.</p>
 
@@ -199,11 +199,11 @@
 
 <p><em><strong>P.S.: Thanks, Khan Academy! As some of you may know, I was a summer intern at KA in 2014. I had an absolute blast, learning and growing an immense amount from an amazing team with an amazing culture. KA is truly a special company, both in mission and the individuals that comprise it. I&#39;m thrilled that I was able to make it out for Hack Week. Thanks for having me—and hope to see you all again soon!</strong></em></p>
 
-<h2>P.S. The Gory Bits</h2>
+<p><h2  id='PS-The-Gory-Bits'>P.S. The Gory Bits<a class='anchor-wrap' href="#PS-The-Gory-Bits" title="Permalink to this headline">¶</a></h2 ></p>
 
 <p>There were a few more minor pain-points in the implementation. I&#39;ll go over them pretty quickly:</p>
 
-<h3>Replacing &lt;path&gt; elements.</h3>
+<p><h3  id='Replacing-path-elements'>Replacing &lt;path&gt; elements.<a class='anchor-wrap' href="#Replacing-path-elements" title="Permalink to this headline">¶</a></h3 ></p>
 
 <p>SVG <code>&lt;path&gt;</code> elements couldn&#39;t be scaled and rotated in the same way for a number of reasons (aspect ratios would get all messed), but they could be <em>translated</em> with ease. We use paths heavily in our polygon implementation, which draws the boundary and interior with a <code>&lt;path&gt;</code>, and features two key interactions:</p>
 
@@ -214,11 +214,11 @@
 
 <p>My first change was to replace the polygon&#39;s boundary with a set of <code>&lt;line&gt;</code> elements which could be easily transformed with CSS. Then, I had our DOM-node-wrapped <code>&lt;path&gt;</code> elements detect whether a provided transform was a translation, and, if so, merely translate the DOM nodes (and completely re-draw itself for non-translations). This gave us excellent performance for interaction (1), but sub-par perf for (2). Luckily for us, the interior of the polygon is completely opaque in (2)—why animate what the user can&#39;t see? Instead of transforming the interior path onMove, I instead had the path re-draw only onMoveEnd. Major hacks, but the payoff was worth it.</p>
 
-<h3>Maintaining origin.</h3>
+<p><h3  id='Maintaining-origin'>Maintaining origin.<a class='anchor-wrap' href="#Maintaining-origin" title="Permalink to this headline">¶</a></h3 ></p>
 
 <p>In order to avoid clipping, we couldn&#39;t have the outer <code>&lt;div&gt;</code> hug too tightly to the underlying <code>&lt;svg&gt;</code>. Thus, I had to add some padding to the outer <code>&lt;div&gt;</code>. This had the unfortunate effect of messing up the origin for transforms, so rotations and scaling transformations caused unexpected behavior. Taking some care to set the <code>transform-origin</code> of the outer <code>&lt;div&gt;</code> preserved the abstraction.</p>
 
-<h3>Handling the asymmetry between the SVG and CSS transform APIs.</h3>
+<p><h3  id='Handling-the-asymmetry-between-the-SVG-and-CSS-transform-APIs'>Handling the asymmetry between the SVG and CSS transform APIs.<a class='anchor-wrap' href="#Handling-the-asymmetry-between-the-SVG-and-CSS-transform-APIs" title="Permalink to this headline">¶</a></h3 ></p>
 
 <p>For example, SVG transforms are unit-less, while CSS transforms <em>require</em> units (e.g., <code>transform=&quot;translate(4, 5)&quot;</code> vs. <code>transform=&quot;translate(4px, 5px)&quot;</code>.</p>
 
@@ -228,7 +228,7 @@
 <center>
 &copy; 2014 Charles Marsh
 <a href="/feed.xml" style="padding-bottom:15px">
-  <img class="icon" src="/static/img/rss.png">
+  <img class="icon" src="/static/img/icon/rss.png">
 </a>
 </center>
         </div>
