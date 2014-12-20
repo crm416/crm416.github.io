@@ -188,8 +188,9 @@ var ScriptPlayground = React.createClass({displayName: 'ScriptPlayground',
       React.createElement("div", {className: "footer"}, 
         React.createElement("div", {className: "container-fluid", style: {textAlign: 'center'}}, 
           React.createElement("p", {style: {margin: 5}}, 
-            "Created by ", React.createElement("a", {href: "https://www.princeton.edu/~crmarsh"}, "Charlie Marsh"), "." + ' ' +
-            "Code and documentation available on ", React.createElement("a", {href: "https://www.github.com/crm416/script"}, "GitHub"), "."
+            "Created by ", React.createElement("a", {target: "_blank", href: "http://crmarsh.com/"}, "Charlie Marsh"), "." + ' ' +
+            "See my ", React.createElement("a", {target: "_blank", href: "http://crmarsh.com/script/"}, "blog post"), " for more." + ' ' +
+            "Source available on ", React.createElement("a", {target: "_blank", href: "https://www.github.com/crm416/script"}, "GitHub"), " and ", React.createElement("a", {target: "_blank", href: "https://www.npmjs.com/package/bitcoin-script"}, "npm"), "."
           )
         )
       );
@@ -40901,6 +40902,14 @@ case 1:
 
             var js = beautify($$[$0-1]);
             var evaluate = new Function('stack', js);
+
+            // If the script is non-terminating, add an OP_VERIFY at the end
+            var terminates = evaluate(new ScriptStack()) != null;
+            if (!terminates) {
+                js = beautify($$[$0-1] + '; return stack.OP_VERIFY();');
+                evaluate = new Function('stack', js);
+            }
+
             return {
                 value: evaluate(new ScriptStack()),
                 code: js
