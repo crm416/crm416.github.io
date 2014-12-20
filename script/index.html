@@ -134,6 +134,13 @@
 
 <p>Each of these changes was made so as to make this implementation easier to use and understand.</p>
 
+<p>In addition to the Script implementation itself, the Playground also includes:</p>
+
+<ul>
+<li>A utility for generating (signature, public key) pairs, which you can drop into your scripts to test out the signature verification commands.</li>
+<li>A permalink button for generating shareable URLs with your scripts embedded, creating a GitHub gist-like experience.</li>
+</ul>
+
 <p><h3  id='Technology'>Technology<a class='anchor-wrap' href="#Technology" title="Permalink to this headline">¶</a></h3 ></p>
 
 <p>The Script playground compiles Script programs down to JavaScript using  <a class='external' target='_blank' href='http://zaach.github.io/jison/'>Jison</a>, a JavaScript parser generator, with the grammar defined <a class='external' target='_blank' href='https://github.com/crm416/script/blob/master/lib/script.jison'>here</a>. The implementation is built to run in Node, and is transpiled for use in the browser with Browserify.</p>
