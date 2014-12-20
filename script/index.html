@@ -69,9 +69,9 @@
 
 <p>In this post, I&#39;ll explain some of the core principles and functionality behind Script before introducing the Script Playground and a few examples.</p>
 
-<p>(If you have a good handle on Script, feel free to <a href="#Why-Build-a-Playground">skip ahead</a>.)</p>
-
 <p><h2  id='What-is-Script'>What is Script?<a class='anchor-wrap' href="#What-is-Script" title="Permalink to this headline">¶</a></h2 ></p>
+
+<p>(If you have a good handle on Script, feel free to <a href="#Why-Build-a-Playground">skip ahead</a>.)</p>
 
 <p>Script is a simple stack-based programming language used by Bitcoin to validate transactions.</p>
 
@@ -92,11 +92,11 @@
 
 <p><h3  id='Simple-By-Design'>Simple By Design<a class='anchor-wrap' href="#Simple-By-Design" title="Permalink to this headline">¶</a></h3 ></p>
 
-<p>Script is <a class='external' target='_blank' href='https://en.bitcoin.it/wiki/Script'>purposefully</a> not Turing-complete. It contains no loops (it&#39;s only form of control flow is through if-else statements) and the instruction set is limited to the bare necessities: some stack manipulation functions, some arithmetic functions, some cryptographic functions, and little else.</p>
+<p>Script is <a class='external' target='_blank' href='https://en.bitcoin.it/wiki/Script'>purposefully</a> not Turing-complete. It contains no loops (it&#39;s only form of control flow is through if-else statements) and the instruction set is limited to the bare necessities: stack manipulation, arithmetic, cryptography, and little else.</p>
 
 <p>This simplicity is a feature, not a flaw.</p>
 
-<p>As scripts are used to validate transactions, miners across the network have to execute them in bulk to compose and validate blocks. If the Script language allowed for intense computation, miners would be disincentivized from validating transactions due to the costs of computing.</p>
+<p>As scripts are used to validate transactions, miners across the network have to execute them in bulk to compose and validate blocks. If the Script language allowed for intense computation, miners would be disincentivized from validating transactions because of the costs of computing.</p>
 
 <p>At the very least, these miners would be incurring an unnecessary cost, as Script&#39;s simplicity is sufficient for covering most of what we want to do in transaction validation. This cost would make mining less attractive, and as the attractivity of mining is crucial to maintaining a high hash rate across the network (and thus securing the network), this simplicity is a good thing.</p>
 
@@ -144,7 +144,7 @@
 
 <p><h3  id='An-Example-Testing-for-Primality'>An Example: Testing for Primality<a class='anchor-wrap' href="#An-Example-Testing-for-Primality" title="Permalink to this headline">¶</a></h3 ></p>
 
-<p>As my implementation is built for Node, it&#39;s really easy to play around with Script using all the expressive power of JavaScript.</p>
+<p>Because my implementation is built for Node, it&#39;s really easy to play around with Script using all the expressive power of JavaScript.</p>
 
 <p>As an example, consider a <em>ScriptPubKey</em> that is only unlocked if the redeemer provides a three-digit prime number. We can programmatically generate the <em>ScriptPubKey</em> in JavaScript and then evaluate some <em>ScriptSig</em> candidates, all within the same module.</p>
 
