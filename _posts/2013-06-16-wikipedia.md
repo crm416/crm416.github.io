@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "A Human-Friendly API for Wikipedia"
-date:   2013-06-16
+title: "A Human-Friendly API for Wikipedia"
+date: 2013-06-16
 permalink: wikipedia
 ---
 
@@ -23,7 +23,7 @@ The MediaWiki API returns a JSON (or XML, etc.) response with the information yo
 
 For example, here's the beginning of the JSON response for [Michael Jordan's Wikipedia page](http://en.wikipedia.org/wiki/Michael_Jordan):
 
-{% highlight json %}
+```json
 [
     [
         "parse",
@@ -35,15 +35,15 @@ For example, here's the beginning of the JSON response for [Michael Jordan's Wik
         }
     ]
 ]
-{% endhighlight %}
+```
 
 Note that the text itself is also still in HTML.
 
 The methods in *wikipedia.py* are designed to extract the information (i.e., the "*" field above) and parse the HTML, with some help from the *HTMLParser* library. In the above case, our method looks something like this:
 
-{% highlight python %}
+```python
 return cleanHTMLSection(cleanWikiSection(json_response[0][1][u'text'][u'*']))
-{% endhighlight %}
+```
 
 Where *cleanWikiSection* is reponsible for removing extraneous information from the page itself, and *cleanHTMLSection* is responsible for converting the HTML to plaintext.
 
@@ -51,15 +51,15 @@ Where *cleanWikiSection* is reponsible for removing extraneous information from 
 
 In some cases, *wikipedia.py* also uses BeautifulSoup to explore the target page. For example, say we want to extract information from the table below (again, from Michael Jordan's Wikipedia page.)
 
-<img src="../static/img/wikipedia_table.png" alt="Michael Jordan" class="center">
+<img src="../static/img/wikipedia/table.png" alt="Michael Jordan" class="center">
 
 We do some fairly low-level searching in the table to check every row and extract information based on the row's content formatting. At this point, *wikipedia.py* can extract rows with one-to-one (e.g., "Nationality: American") and one-to-many (e.g., "Career highlights and awards: 6x NBA Champion...") formats.
 
 The output for MJ's table is as follows:
 
-{% highlight python %}
+```python
 [('Born', 'February 17, 1963'), ('Nationality', 'American'), ('Listed height', '6ft6in'), ('Listed weight', '216lb'), ('High school', 'Emsley A. Laney'), ('College', 'North Carolina'), ('NBA Draft', '1984 / Round: 1 / Pick: 3rd overall'), ...]
-{% endhighlight %}
+```
 
 {% anchor h2 %}In Conclusion{% endanchor %}
 

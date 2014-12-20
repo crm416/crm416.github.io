@@ -13,7 +13,7 @@ After playing a number of poorly-made iPhone quiz games, I decided to roll my ow
 
 <!--break-->
 
-<img src="../static/img/hack_home.png" alt="Quizzler Homescreen" class="center" width="315">
+<img src="../static/img/hack/home.png" alt="Quizzler Homescreen" class="center" width="315">
 
 _Credit to [Karen Dessire](http://dribbble.com/hrtislove) for the [Playing With Science](http://dribbble.com/shots/921928-Playing-With-Science?list=users) icons on the home screen!_
 
@@ -32,10 +32,10 @@ In terms of technical complexity, Quizzler consists of two major components:
 
 Here's the app in action:
 
-<img src="../static/img/hack_demo.png" alt="Quizzler In Action" class="center" width="315">
+<img src="../static/img/hack/demo.png" alt="Quizzler In Action" class="center" width="315">
 
 And, at the end of the session, here's the results screen:
 
-<img src="../static/img/hack_results.png" alt="Quizzler Results" class="center" width="315">
+<img src="../static/img/hack/results.png" alt="Quizzler Results" class="center" width="315">
 
 

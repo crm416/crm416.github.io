@@ -68,7 +68,7 @@ After settling on a browser-based game, we went all-in on [React](http://faceboo
 
 One of my more demoable contributions was the implementation of fun HTML5 Canvas-based effects to simulate snowfall, rainfall, fog, and spell casting (see below, or the embedded video above for the weather effects), the code for which can be found [here](https://github.com/Khan/KhanQuest/blob/master/src/sprites/animation.jsx).
 
-<img src="/static/img/fire.gif" alt="Fire animation" class="center">
+<img src="/static/img/khanquest/fire.gif" alt="Fire animation" class="center">
 
 Beyond that, I also took care of a grab-bag of UI implementations (e.g., the spellbook and transition animations), game mechanics (e.g., the 'unused spells grow in strength' behavior), and core features (e.g., [Perseus](https://github.com/Khan/perseus) exercise rendering via the Khan Academy API).
 
@@ -80,5 +80,5 @@ Jokes aside, I consider this my best hackathon experience yet—one that I'll lo
 
 _P.S.: In parting, I leave you with a hilarious GIF from an early rendition of the game._
 
-<img src="/static/img/map-glitch.gif" alt="Map glitch" class="center">
+<img src="/static/img/khanquest/map-glitch.gif" alt="Map glitch" class="center">
 
