@@ -64,7 +64,7 @@
 
 <p>Inspired by the course, I spent some time this semester on a Bitcoin Script-to-JavaScript compiler and a real-time playground for the browser: the <a class='external' target='_blank' href='http://www.crmarsh.com/script-playground/'>Script Playground</a>. It&#39;s a great way to familiarize yourself with the semantics of and philosophies behind Bitcoin Script.</p>
 
-<p>The underlying (ES6) source is available on <a class='external' target='_blank' href='http://www.github.com/crm416/script'>GitHub</a> and as the <a class='external' target='_blank' href='https://www.npmjs.com/package/bitcoin-script'>bitcoin-script</a> package on npm.</p>
+<p>The ES6 source is available on <a class='external' target='_blank' href='http://www.github.com/crm416/script'>GitHub</a>; you can also download the interpreter as the <a class='external' target='_blank' href='https://www.npmjs.com/package/bitcoin-script'>bitcoin-script</a> package on npm.</p>
 
 <p>In this post, I&#39;ll explain some of the core principles and functionality behind Script before introducing the Script Playground and a few examples.</p>
 
@@ -122,7 +122,7 @@
 
 <p><h3  id='Functionality'>Functionality<a class='anchor-wrap' href="#Functionality" title="Permalink to this headline">¶</a></h3 ></p>
 
-<p>My implementation of Script covers all of the enabled opcodes listed on the <a class='external' target='_blank' href='https://en.bitcoin.it/wiki/Script'>Bitcoin Wiki</a>, apart from the reserved words, altstack commands, pseudo-words, and <code>OP_CODESEPARATOR</code>.</p>
+<p>My implementation of Script covers all of the enabled opcodes listed on the <a class='external' target='_blank' href='https://en.bitcoin.it/wiki/Script'>Bitcoin Wiki</a>, apart from the reserved words, altstack commands, pseudo-words, and <code>OP_CODESEPARATOR</code>. In particular, it&#39;s worth noting that my implementation allows for the use of disabled commands, like <code>OP_MUL</code>, by passing in <code>true</code> as the second argument to any of the exported functions. (The Script Playground has this behavior enabled by default.)</p>
 
 <p>However, it differs from Bitcoin&#39;s implementation in a few ways:</p>
 
@@ -153,7 +153,7 @@
 
 <p>As an example, consider a <em>ScriptPubKey</em> that is only unlocked if the redeemer provides a three-digit prime number. We can programmatically generate the <em>ScriptPubKey</em> in JavaScript and then evaluate some <em>ScriptSig</em> candidates, all within the same module.</p>
 
-<p>As Script&#39;s division and remainder operators are disabled in Bitcoin (and thus disabled in my implementation), the best we can do is generate all the set of prime numbers in [100, 999] and evaluate whether the <em>ScriptSig</em> is in that set. Since the <em>ScriptPubKey</em> is public, we won&#39;t want to include the actual primes; instead, we&#39;ll include the hash of each prime and evaluate the hash of the <em>ScriptSig</em> for equality.</p>
+<p>As Script&#39;s division and remainder operators are disabled in Bitcoin, the best we can do (whilst remaining in the realm of enabled operators) is generate all the set of prime numbers in [100, 999] and evaluate whether the <em>ScriptSig</em> is in that set. Since the <em>ScriptPubKey</em> is public, we won&#39;t want to include the actual primes; instead, we&#39;ll include the hash of each prime and evaluate the hash of the <em>ScriptSig</em> for equality.</p>
 
 <p>The final evaluation function looks like this:</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">unlock</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../index.js&#39;</span><span class="p">).</span><span class="nx">unlock</span><span class="p">;</span>
@@ -197,9 +197,58 @@
     <span class="k">return</span> <span class="nx">unlock</span><span class="p">(</span><span class="nx">scriptSig</span><span class="p">,</span> <span class="nx">scriptPubKey</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>It&#39;s fun to test and question the limits of Script&#39;s expressiveness. What commands would it take, for example, to write a scriptPubKey that doesn&#39;t need to precompute primes? (Such a script could be used to implement a <a class='external' target='_blank' href='http://en.wikipedia.org/wiki/Primecoin#Proof-of-work_system'>useful proof-of-work</a> scheme.)</p>
+<p>It&#39;s fun to test the limits of Script&#39;s expressiveness.</p>
 
-<p>Give it a shot yourself in the <a class='external' target='_blank' href='http://www.crmarsh.com/script-playground/'>playground</a>, or download the <a class='external' target='_blank' href='https://www.npmjs.com/package/bitcoin-script'>bitcoin-script</a> module from npm.</p>
+<p>Unfortunately, this example isn&#39;t very useful. In the real world, the goal of such a script would be to incentivize individuals to find large primes: in return for their effort, they could unlock the script and claim some Bitcoin (this is in the realm of a <a class='external' target='_blank' href='http://en.wikipedia.org/wiki/Primecoin#Proof-of-work_system'>useful proof-of-work system</a>).</p>
+
+<p>But by computing all the primes in advance, we defeat the purpose, as all the work is being done twice: once by the individual that issues the challenge, and once by the individual that solves it.</p>
+
+<p><h3  id='Avoiding-Precomputation'>Avoiding Precomputation<a class='anchor-wrap' href="#Avoiding-Precomputation" title="Permalink to this headline">¶</a></h3 ></p>
+
+<p>What commands would it take, then, to write a <em>ScriptPubKey</em> that doesn&#39;t need to precompute primes?</p>
+
+<p>A test for divisability would be sufficient and, indeed, this is possible with the <code>OP_MOD</code> command. <code>OP_MOD</code> is disabled in the Bitcoin Script spec, but can be enabled in my implementation by switching a flag.</p>
+
+<p>Here&#39;s the revised code which is much more useful, as the burden of producing a prime number is placed on the unlocker:</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="p">{</span> <span class="nx">sha256</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../src/crypto.js&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="p">{</span> <span class="nx">unlock</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../src/index.js&#39;</span><span class="p">);</span>
+
+<span class="cm">/*</span>
+<span class="cm"> * This function only unlocks if the user supplies a three-digit prime number.</span>
+<span class="cm"> */</span>
+<span class="kd">function</span> <span class="nx">isPrime</span><span class="p">(</span><span class="nx">scriptSig</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">minValue</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">maxValue</span> <span class="o">=</span> <span class="mi">999</span><span class="p">;</span>
+
+    <span class="kd">var</span> <span class="nx">scriptPubKey</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">sqrt</span><span class="p">(</span><span class="nx">maxValue</span><span class="p">);</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">commands</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s1">&#39;OP_DUP&#39;</span><span class="p">,</span>
+            <span class="nx">i</span><span class="p">,</span>
+            <span class="s1">&#39;OP_MOD&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;OP_0&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;OP_EQUAL&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;OP_IF&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;OP_RETURN&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;OP_ENDIF&#39;</span>
+        <span class="p">];</span>
+
+        <span class="nx">scriptPubKey</span> <span class="o">+=</span> <span class="nx">commands</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="c1">// Verify that the value is in [100, 999]</span>
+    <span class="kd">var</span> <span class="nx">hexBase</span> <span class="o">=</span> <span class="mi">16</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">conclusion</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">&#39;0x&#39;</span> <span class="o">+</span> <span class="nx">minValue</span><span class="p">.</span><span class="nx">toString</span><span class="p">(</span><span class="nx">base</span><span class="p">),</span>
+        <span class="s1">&#39;0x&#39;</span> <span class="o">+</span> <span class="nx">maxValue</span><span class="p">.</span><span class="nx">toString</span><span class="p">(</span><span class="nx">base</span><span class="p">),</span>
+        <span class="s1">&#39;OP_WITHIN&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;OP_VERIFY&#39;</span>
+    <span class="p">];</span>
+
+    <span class="nx">scriptPubKey</span> <span class="o">+=</span> <span class="nx">conclusion</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nx">unlock</span><span class="p">(</span><span class="nx">scriptSig</span><span class="p">,</span> <span class="nx">scriptPubKey</span><span class="p">,</span> <span class="cm">/* enableDisabled */</span> <span class="kc">true</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>I&#39;d encourage you to play around with your own scripts in the <a class='external' target='_blank' href='http://www.crmarsh.com/script-playground/'>playground</a> and see what you can come up with. Alternatively, you can download the <a class='external' target='_blank' href='https://www.npmjs.com/package/bitcoin-script'>bitcoin-script</a> package from npm.</p>
 
           <p class="date">Posted on December 16, 2014.<p>
           <br>
