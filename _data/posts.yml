@@ -1,13 +1,15 @@
 - year: 2014
   posts:
+    - name: Exploring Flow, Facebook's JavaScript Type Checker
+      url: /flow/
     - name: Speeding Up SVGs with CSS Transforms at Khan Academy
-      url: ../svg-performance/
+      url: /svg-performance/
 
     - name: Rendering React Components on the Server
-      url: ../react-ssr/
+      url: /react-ssr/
 
     - name: "Styling React Components: How to Escape Selector Hell (talk delivered @ Khan Academy)"
-      url: ../static/pdf/Styling_React_Components.pdf
+      url: /static/pdf/Styling_React_Components.pdf
 
     - name: An Overly Thorough Guide to Python Class Attributes (featured in Python Weekly)
       url: http://www.toptal.com/python/python-class-attributes-an-overly-thorough-guide
@@ -21,39 +23,39 @@
       url: https://www.toptal.com/python/why-are-there-so-many-pythons
 
     - name: "Compiling to JavaScript: A Case-by-Case Guide to the *Scripts"
-      url: ../compiling_to_js/
+      url: /compiling_to_js/
 
     - name: "PhantomJS: Common Gotchas for Beginners"
-      url: ../phantomjs/
+      url: /phantomjs/
 
     - name: The Idiot-Proof Guide to Setting Up Your Personal AWS Instance
-      url: ../aws/
+      url: /aws/
 
     - name: An Introduction to Rule Optimization in Software Defined Networking (SDN)
-      url: ../intro_to_sdn/
+      url: /intro_to_sdn/
 
     - name: Prefix vs. Ternary Rules in SDN
-      url: ../prefix_vs_ternary/
+      url: /prefix_vs_ternary/
 
     - name: Setting Up an OCaml Development Environment on Mac OS X
-      url: ../ocaml_dev_environment/
+      url: /ocaml_dev_environment/
 
     - name: Programming Languages and the Solutions they Suggest
-      url: ../programming_languages/
+      url: /programming_languages/
 
 - year: 2012
   posts:
     - name: First Thoughts on OCaml
-      url: ../intro_to_ocaml/
+      url: /intro_to_ocaml/
 
     - name: A Primer on Streams and Lazy Computation
-      url: ../streams/
+      url: /streams/
 
     - name: "Binomial Heaps: Merge Better"
-      url: ../binomial_heaps/
+      url: /binomial_heaps/
 
     - name: Performance Improvements in iOS
-      url: ../ios_performance/
+      url: /ios_performance/
 
     - name: NP != NOT P
-      url: ../np_vs_not_p/
+      url: /np_vs_not_p/
