@@ -72,7 +72,7 @@
 <ul>
 <li>  <strong>Exact</strong>: Self-explanatory. The packet header needs to match the predicate exactly. </li>
 <li>  <strong>Range</strong>: In this case, the packet header must lie in some range, e.g. [0,100] would match any packet header with a value between 0 and 100.</li>
-<li>  <strong>Prefix-based</strong>: These predicates are trailed by wildcard characters &#39;<em>&#39;, which indicate that you need to match exactly up until the &#39;\</em>&#39;, after which you can have whatever you like. For example: if your pattern is &#39;10**&#39;, then this would match &#39;1000&#39;, &#39;1011&#39;, &#39;1010&#39;, and &#39;1001&#39;.</li>
+<li>  <strong>Prefix-based</strong>: These predicates are trailed by wildcard characters &#39;*&#39;, which indicate that you need to match exactly up until the &#39;*&#39;, after which you can have whatever you like. For example: if your pattern is &#39;10**&#39;, then this would match &#39;1000&#39;, &#39;1011&#39;, &#39;1010&#39;, and &#39;1001&#39;.</li>
 <li>  <strong>Ternary</strong>: In this case, you can have &#39;*&#39; wildcards at <em>any</em> position. For example: if your pattern is &#39;1*01&#39;, then this would match &#39;1101&#39; and &#39;1001&#39;.</li>
 </ul>
 
@@ -99,13 +99,12 @@
 <p>The algorithm is very clever—I&#39;m a huge fan of reducing one problem to another.</p>
 
           <p class="date">Posted on March 11, 2013.<p>
-          <br>
           <hr />
 <center>
-&copy; 2014 Charles Marsh
-<a href="/feed.xml" style="padding-bottom:15px">
-  <img class="icon" src="/static/img/icon/rss.png">
-</a>
+  &copy; 2015 Charles Marsh
+  <a href="/feed.xml" style="padding-bottom:15px">
+    <img class="icon" src="/static/img/icon/rss.png">
+  </a>
 </center>
         </div>
       </div>
