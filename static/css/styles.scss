@@ -1,9 +1,12 @@
 ---
 ---
 
+@import url("stackicons.css");
+
 $codeblue:rgb(96,217,239);
 $codered:rgb(241,39,111);
 $codeorange:rgb(253,151,33);
+$darkblue:#0000aa;
 
 /* Major elements */
 
@@ -79,19 +82,24 @@ hr {
 /* Hyperlinks */
 
 a {
-    text-decoration:none;
-    color:$codeblue;
+    text-decoration: none;
+    border-bottom: 1px solid #CCC;
+    color: inherit;
 
     &.implicit, &.blank, &.blank:hover {
-        color:inherit
+        color: inherit;
+        border-bottom: none;
     }
 
     &:hover {
-        color:$codeorange;
-        text-decoration:none;
+        color: $codeblue;
+        border-bottom: 1px solid $codeblue; // 1px solid #005580;
+        text-decoration: none;
 
-        &.implicit {color:$codeblue !important};
-        &.blank {color:inherit};
+        &.implicit {
+            color: $codeblue !important;
+            border-bottom: none;
+        };
     }
 }
 
@@ -101,10 +109,12 @@ a.anchor-wrap {
     margin-left: 6px;
     padding: 0 4px 0 4px;
     text-decoration: none !important;
+    border-bottom: none;
 
     &:hover {
         background-color: #ccc;
         color: white !important;
+        border-bottom: none;
     }
 }
 
@@ -167,21 +177,24 @@ code { padding: 0 3px 0 3px; font-size:14px}
 /* Images */
 
 img {
-    border:2px solid #CCC;
-    border-radius:3px
+    border: 2px solid #CCC;
+    border-radius: 3px
 }
 
 img.blank, img.icon {
-    border:0;
+    border-radius: 0;
+    border: 0;
 }
 
-img.icon:hover {
-    opacity:0.6;
+img.icon {
+    height: 50px;
+    width: 50px;
 }
 
 /* Forms */
+
 input.fade:hover {
-    opacity:0.6;
+    opacity: 0.6;
 }
 
 /* Positioning elements */
@@ -193,27 +206,8 @@ input.fade:hover {
 }
 
 .container-fluid {
-  max-width: 980px;
-  margin: 0 auto;
-}
-
-/* Highlighting */
-
-div.zoom {
-    display: inline-block;
-    text-align: center;
-    animation: fade-in 2s ease-in;
-    -webkit-animation: fade-in 3s ease;
-    width: 100%;
-    transition: transform 250ms cubic-bezier(.25, -1.5, .5, 2);
-    -webkit-transition: -webkit-transform 250ms cubic-bezier(.25, -1.5, .5, 2);
-    -ms-transition: -ms-transform 250ms cubic-bezier(.25, -1.5, .5, 2);
-}
-
-div.zoom:hover {
-    transform: scale(1.10);
-    -webkit-transform: scale(1.05);
-    -ms-transform: scale(1.10);
+    max-width: 980px;
+    margin: 0 auto;
 }
 
 /* Specific classes */
@@ -229,11 +223,13 @@ div.read-more {
     text-align: center;
 
     a {
+        color: $codeblue;
         border: solid 1px $codeblue;
         padding: 2px 4px;
     }
 
     a:hover {
+        color: $codeorange;
         border: solid 1px $codeorange;
     }
 }
@@ -242,4 +238,8 @@ div.read-more {
 .highlight .err {
     color: black !important;
     background-color: transparent !important;
+}
+
+.note {
+    color: grey;
 }
