@@ -140,17 +140,17 @@ code { padding: 0 3px 0 3px; font-size:14px}
 
 /* Custom code coloring */
 
-.code_red {
+.code-red {
     display:inline;
     color:$codered;
 }
 
-.code_blue {
+.code-blue {
     display:inline;
     color:$codeblue;
 }
 
-.code_orange {
+.code-orange {
     display:inline;
     color:$codeorange !important;
 }
@@ -248,13 +248,13 @@ div.read-more {
 
 /* Specific sidebar wrappers */
 #wrapper {
-    padding-left: 260px;
+    padding-left: 245px;
     transition: all 0.4s ease 0s;
 }
 
 #sidebar-wrapper {
-    margin-left: -260px;
-    left: 260px;
+    margin-left: -245px;
+    left: 245px;
     position: fixed;
     z-index: 1000;
     transition: all 0.4s ease 0s;
@@ -264,7 +264,7 @@ div.read-more {
     width: 100%;
 }
 
-@media (max-width:800px) {
+@media (max-width:950px) {
     #wrapper {
         padding-left: 0;
     }
@@ -275,13 +275,17 @@ div.read-more {
 
     #wrapper.active {
         position: relative;
-        left: 260px;
+        left: 245px;
     }
 
     #wrapper.active #sidebar-wrapper {
-        left: 260px;
-        width: 260px;
+        left: 245px;
+        width: 245px;
         transition: all 0.4s ease 0s;
     }
+}
 
+.col-fixed {
+    width: 200px;
+    float: left;
 }
