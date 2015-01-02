@@ -2,26 +2,34 @@
   {% include header.html %}
 
   <body class="index">
-    <div class="container-fluid">
-      <div class="row-fluid">
-        <div class="span2 hidden-phone"></div>
-        <div class="span2 hidden-phone" style="position:fixed">
-          {% include sidebar.html %}
-          <div class="span9 offset1" style="padding-left:20px">
-          <!-- using the split filter -->
-          {% for post in site.posts %}
-          {% if post.content contains '<!--break-->' %}
-          <div class="post-preview">
-            <h1><a href="{{post.url}}" class="implicit">{{ post.excerpt | markdownify | split:'</h1>' | first | strip_html }}</a></h1>
-            {{ post.excerpt | markdownify | split:'</h1>' | last }}
-            <div class='read-more' style='text-align:center'><a href="{{ post.url }}">Read more</a></div>
+    <div id="wrapper">
+      <div id="sidebar-wrapper">
+        <div style="margin-left:40px">
+        {% include sidebar.html %}
+        </div>
+      </div>
+      <div id="page-content-wrapper">
+        <div class="page-content">
+          <div class="container-fluid" style="float:left">
+            <div class="row">
+              <div class="col-md-10">
+                {% for post in site.posts %}
+                {% if post.content contains '<!--break-->' %}
+                <div class="post-preview">
+                  <h1><a href="{{post.url}}" class="implicit">{{ post.excerpt | markdownify | split:'</h1>' | first | strip_html }}</a></h1>
+                  {{ post.excerpt | markdownify | split:'</h1>' | last }}
+                  <div class='read-more' style='text-align:center'><a href="{{ post.url }}">Read more</a></div>
+                </div>
+                {% if forloop.last %}
+                  <br>
+                  {% include rss.html %}
+                {% endif %}
+                {% endif %}
+                {% endfor %}
+              </div>
+            </div>
           </div>
-          {% if forloop.last %}
-            <br>
-            {% include rss.html %}
-          {% endif %}
-          {% endif %}
-          {% endfor %}
+        </div>
       </div>
     </div>
   </body>

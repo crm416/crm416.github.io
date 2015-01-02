@@ -1,8 +1,6 @@
 ---
 ---
 
-@import url("stackicons.css");
-
 $codeblue:rgb(96,217,239);
 $codered:rgb(241,39,111);
 $codeorange:rgb(253,151,33);
@@ -77,6 +75,10 @@ h3 {
 hr {
     border: 1;
     width: 80%;
+}
+
+div, ul, li {
+    font-size:16px;
 }
 
 /* Hyperlinks */
@@ -242,4 +244,44 @@ div.read-more {
 
 .note {
     color: grey;
+}
+
+/* Specific sidebar wrappers */
+#wrapper {
+    padding-left: 260px;
+    transition: all 0.4s ease 0s;
+}
+
+#sidebar-wrapper {
+    margin-left: -260px;
+    left: 260px;
+    position: fixed;
+    z-index: 1000;
+    transition: all 0.4s ease 0s;
+}
+
+#page-content-wrapper {
+    width: 100%;
+}
+
+@media (max-width:800px) {
+    #wrapper {
+        padding-left: 0;
+    }
+
+    #sidebar-wrapper {
+        left: 0;
+    }
+
+    #wrapper.active {
+        position: relative;
+        left: 260px;
+    }
+
+    #wrapper.active #sidebar-wrapper {
+        left: 260px;
+        width: 260px;
+        transition: all 0.4s ease 0s;
+    }
+
 }

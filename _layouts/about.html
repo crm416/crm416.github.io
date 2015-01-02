@@ -14,36 +14,42 @@
   </head>
 
   <body class="index">
-    <div class="container-fluid">
-      <div class="row-fluid">
-        <div class="span2 hidden-phone"></div>
-        <div class="span2 hidden-phone" style="position:fixed">
-          {% include sidebar.html %}
-
-          <div class="span9 offset1">
-            <h1>About Me</h1>
-            I'm a Senior at Princeton University majoring in Computer Science with big interests in machine learning, natural language processing, and functional programming. More personally, I've lived in London, England for the last 13 years (although I've mostly been at university in New Jersey for the last three). That means I'm both British and American; but no, I do not have a British accent.
-            <h2>Where I've Worked</h2>
-            <section>
-              <table style="border-collapse:separate; border-spacing:10px">
-                {% for job in site.data.jobs %}
-                <tr>
-                  <td rowspan="2" align="center"><div><img class="icon" src="{{ job.img }}" alt="{{ job.company }}" align="middle"></div></td>
-                  <td style="font-weight:bold">{{ job.company }}</td>
-                </tr>
-                <tr>
-                  <td>{{ job.title }}, {{ job.team }} [{{ job.dates }}]</td>
-                </tr>
-                {% unless forloop.last %}
-                  <tr class="spacer"><td></td></tr>
-                {% endunless %}
-                {% endfor %}
-              </table>
-            </section>
-            <br><br>
-            {% include rss.html %}
+    <div id="wrapper">
+      <div id="sidebar-wrapper">
+        <div style="margin-left:40px">
+        {% include sidebar.html %}
+        </div>
+      </div>
+      <div id="page-content-wrapper">
+        <div class="page-content">
+          <div class="container-fluid" style="float:left">
+            <div class="row">
+              <div class="col-lg-12">
+                <h1>About Me</h1>
+                I'm a senior at Princeton University majoring in computer science with big interests in machine learning, natural language processing, and functional programming. I've lived in London, England for the last 13 years (although I've mostly been at university in New Jersey for the last four), spending my last two summers at Microsoft (in Seattle, WA) and Khan Academy (in Mountain View, CA).
+                <h2>Where I've Worked</h2>
+                <section>
+                  <table style="border-collapse:separate; border-spacing:10px">
+                    {% for job in site.data.jobs %}
+                    <tr>
+                      <td rowspan="2" align="center"><div><img class="icon" src="{{ job.img }}" alt="{{ job.company }}" align="middle"></div></td>
+                      <td style="font-weight:bold">{{ job.company }}</td>
+                    </tr>
+                    <tr>
+                      <td>{{ job.title }}, {{ job.team }} [{{ job.dates }}]</td>
+                    </tr>
+                    {% unless forloop.last %}
+                      <tr class="spacer"><td></td></tr>
+                    {% endunless %}
+                    {% endfor %}
+                  </table>
+                </section>
+                {% include rss.html %}
+              </div>
+            </div>
           </div>
         </div>
       </div>
+    </div>
   </body>
 </html>
