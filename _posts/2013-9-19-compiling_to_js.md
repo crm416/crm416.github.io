@@ -7,7 +7,9 @@ permalink: compiling_to_js
 
 # Compiling to JS: Comparing TypeScript, CoffeeScript, etc.
 
-It seems like all the cool languages these days are compiling to JavaScript. (_I joke, but replace 'cool' with 'relevant' and you might have a reasonable heuristic for evaluating the modernity of a programming language._) [Jeremy Ashkenas](https://github.com/jashkenas) (CoffeeScript creator) has a great [list](https://github.com/jashkenas/coffee-script/wiki/List-of-languages-that-compile-to-JS) of what seems like hundreds of languages, each of which helps prove my point.
+It seems like all the cool languages these days are compiling to JavaScript. (I joke, but replace 'cool' with 'relevant' and you might have a reasonable heuristic for evaluating the modernity of a programming language.)
+
+[Jeremy Ashkenas](https://github.com/jashkenas), the creator of CoffeeScript, has a great [list](https://github.com/jashkenas/coffee-script/wiki/List-of-languages-that-compile-to-JS) of what seems like hundreds of languages, each of which helps prove my point.
 
 <!--break-->
 

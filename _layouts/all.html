@@ -12,9 +12,9 @@
           {% for post in site.posts %}
           {% if post.content contains '<!--break-->' %}
           <div class="post-preview">
-            <h1><a href="/{{post.url}}" class="implicit">{{ post.content | split:'</h1>' | first | strip_html }}</a></h1>
-            {{ post.content | split:'</h1>' | last | split:'<!--break-->' | first }}
-            <div class='read-more' style='text-align:center'><a href="/{{ post.url }}">Read more</a></div>
+            <h1><a href="{{post.url}}" class="implicit">{{ post.excerpt | markdownify | split:'</h1>' | first | strip_html }}</a></h1>
+            {{ post.excerpt | markdownify | split:'</h1>' | last }}
+            <div class='read-more' style='text-align:center'><a href="{{ post.url }}">Read more</a></div>
           </div>
           {% if forloop.last %}
             <br>

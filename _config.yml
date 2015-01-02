@@ -1,3 +1,4 @@
 name: type blog
 markdown: redcarpet
 highlighter: pygments
+excerpt_separator: <!--break-->
