@@ -223,6 +223,13 @@ h3.item {
 
 div.read-more {
     text-align: center;
+    @media (max-width: 767px) {
+        margin-top: 15px;
+        margin-bottom: 40px;
+    }
+    @media (min-width: 768px) {
+        margin-top: 30px;
+    }
 
     a {
         color: $codeblue;
