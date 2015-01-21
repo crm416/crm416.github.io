@@ -177,6 +177,13 @@ h3.item {
 
 div.read-more {
   text-align: center; }
+  @media (max-width: 767px) {
+    div.read-more {
+      margin-top: 15px;
+      margin-bottom: 40px; } }
+  @media (min-width: 768px) {
+    div.read-more {
+      margin-top: 30px; } }
   div.read-more a {
     color: #60d9ef;
     border: solid 1px #60d9ef;
