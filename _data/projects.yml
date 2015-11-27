@@ -3,7 +3,7 @@
   url: /script-playground/
 
 - name: Jasper
-  description: An open source platform for developing always-on, voice-controlled applications, built on top of a Raspberry Pi. The <a href="https://github.com/jasperproject/jasper-client">GitHub repository</a> has over 1200 stars and 300 forks. (See our coverage in <a href="http://www.wired.com/2014/04/out-in-the-open-jasper/">WIRED</a>, <a href="http://www.forbes.com/sites/davealtavilla/2014/04/09/princeton-wiz-kids-create-open-source-api-for-device-voice-control-assistant-runs-on-raspberry-pi/">Forbes</a>, and <a href="http://lifehacker.com/jasper-adds-voice-control-to-your-raspberry-pi-projects-1560145451">Lifehacker</a>.)
+  description: An open source platform for developing always-on, voice-controlled applications, built on top of a Raspberry Pi. The <a href="https://github.com/jasperproject/jasper-client">GitHub repository</a> has over 1800 stars and 500 forks. (See our coverage in <a href="http://www.wired.com/2014/04/out-in-the-open-jasper/">WIRED</a>, <a href="http://www.forbes.com/sites/davealtavilla/2014/04/09/princeton-wiz-kids-create-open-source-api-for-device-voice-control-assistant-runs-on-raspberry-pi/">Forbes</a>, and <a href="http://lifehacker.com/jasper-adds-voice-control-to-your-raspberry-pi-projects-1560145451">Lifehacker</a>.)
   url: http://jasperproject.github.io
 
 - name: KhanQuest

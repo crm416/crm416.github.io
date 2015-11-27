@@ -1,5 +1,12 @@
 - company: Khan Academy
-  title: Software Development Engineer (Intern)
+  title: Software Engineer
+  team: Mobile Team
+  dates: Present
+  description: Bringing a free, world-class education to Android devices everywhere.
+  img: /static/img/about/Khan_logo.png
+
+- company: Khan Academy
+  title: Software Engineer (Intern)
   team: Content Tools Team
   dates: Summer 2014
   description: Created interactive exercise tools based on React.
