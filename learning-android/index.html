@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <meta name="description" content="Charlie Marsh is a software engineer and student at Princeton University with major interests in JavaScript and cryptocurrencies.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lessons Learned Learning Android in a Production Setting | Charlie Marsh</title>
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans" />
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Source+Code+Pro" />
+  <link href="/static/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+  <link href="/static/css/stackicons-min.css" rel="stylesheet" type="text/css" />
+  <link href="/static/css/styles.css" rel="stylesheet" type="text/css" />
+  <link href="/static/css/styles-mobile.css" rel="stylesheet" type="text/css" media="(max-width: 767px)" />
+  <link href="/static/css/syntax.css" rel="stylesheet" type="text/css" />
+  <link href="https://plus.google.com/u/0/100601164815113053596/" rel='author'>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-36552582-3', 'auto');
+    ga('send', 'pageview');
+  </script>
+</head>
+
+
+  <body class="index">
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 hidden-xs">
+          <div class="row">
+            <div class="col-sm-offset-1 col-sm-11">
+              <div style="position:fixed">
+                <h1 style="font-size:50px">
+  <a class="blank" href="/">
+    Charlie<br>Marsh
+  </a>
+</h1>
+<p>
+  <a class="implicit" href="/">Home</a> &sdot; <a class="implicit" href="/static/pdf/Charles_Marsh_CV.pdf">CV</a>&sdot; <a class="implicit" href="/about/">About</a>
+</p>
+<h2>
+  Software<br>engineer.
+</h2>
+<p>I work on the mobile<br>team at <b>Khan Academy</b>.<br><br>Mostly <b>Android</b>, with a<br>little bit of <b>JavaScript</b>.<br><p>
+<nav class="st-shape-r4 st-multi-color" style="font-size: 15px; margin-right: -5em; margin-top: 20px">
+  <a target="_blank" title="Email" style="border-bottom:none" class="st-icon-email2" href="mailto:charlie@khanacademy.org"><span></span>Email</a>
+  <a target="_blank" title="GitHub" style="border-bottom:none" class="st-icon-github-alt" href="http://www.github.com/crm416"><span></span>GitHub</a>
+  <a target="_blank" title="Stack Overflow" style="border-bottom:none" class="st-icon-stackoverflow" href="http://stackoverflow.com/users/1450892/charles-marsh"><span></span>Stack Overflow</a>
+  <a target="_blank" title="Twitter" style="border-bottom:none" class="st-icon-twitter" href="https://www.twitter.com/crm416">Twitter</a>
+</nav>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-9">
+          <h1>Learning Android, From Scratch</h1>
+
+<p>Back in August, a few weeks before I&#39;d joined <a href="https://www.khanacademy.org">Khan Academy</a>  full-time, our Head of Engineering, <a href="http://bjk5.com/">Ben Kamens</a>, shot me an email asking if I had any interest in working on the <a href="https://play.google.com/store/apps/details?id=org.khanacademy.android">Android</a> team.</p>
+
+<p>I&#39;d never touched Android before, but I was pleasantly surprised to see that email, since the vision of bringing Khan Academy to Android devices had intrigued me for a while. If you imagine a world in which every student, everywhere has access to a free, world-class tutor in their pocket, Android is a big part of it. Joining the team struck me as a fantastic opportunity for impact.</p>
+
+<p>So, I conveyed my excitement to Ben; but I couldn&#39;t help but ask:</p>
+
+<blockquote>
+<p>Is it an issue that I have no experience developing on Android?</p>
+</blockquote>
+
+<p>In his response, Ben explained that this would be part of a long-term effort to scale up Khan Academy&#39;s Android expertise. And that it was expected that there&#39;d be a significant learning curve to getting me up and running on the platform.</p>
+
+<p>Three months later, and I&#39;ve built out new features, fixed nasty bugs, and grown to the point where I can meaningfully contribute to our team&#39;s technical discussions, as an Android voice. All having started from scratch in mid-September.</p>
+
+<p>It&#39;s a wonderfully weird feeling.</p>
+
+<!--break-->
+
+<p><h2  id='Ramping-Up'>Ramping Up<a class='anchor-wrap' href="#Ramping-Up" title="Permalink to this headline">¶</a></h2 ></p>
+
+<p>In this post, <strong>I&#39;d like to draw on some of the lessons I&#39;ve learned from my experience—that of ramping up on Android development in the context of a <em>professional</em>, <em>production</em> application</strong>; one that consisted of thousands of lines of code and relied on dozens of then-mysterious technologies on the day I arrived.</p>
+
+<p>Learning a new technology is always challenging. There are moments of confusion and moments of frustration. And learning a new technology in the context of a mature codebase (rather than a toy app, or a tutorial, or a side project) brings with it its own set of challenges—its own moments of confusion and frustration.</p>
+
+<p>My hope is that following the tips in this post will make that process a little easier, both for Android developers and the wider engineering community, since some of these lessons generalize.</p>
+
+<p>(Oh, and as a caveat: My best resource, by far, has been my wonderful colleagues at Khan Academy, who have gone out of their way to help me ramp up. I can&#39;t thank them enough for all their help, from the pairing sessions to the code reviews to the pats on the back. The best advice I can give any learner is to surround yourself with great people. But for the rest of this post, I&#39;ll try to stick to things that are actionable on an individual level.)</p>
+
+<p><h2  id='The-OnDemand-Learning-Problem'>The On-Demand Learning Problem<a class='anchor-wrap' href="#The-OnDemand-Learning-Problem" title="Permalink to this headline">¶</a></h2 ></p>
+
+<p>To start, I&#39;d like to draw a distinction between what I see as two very different learning scenarios.</p>
+
+<p>The first is that of <strong>on-demand learning</strong>, in which one is trying to learn how to do something specific to solve a present or even pressing problem, like implement a specific feature or fix a specific bug.</p>
+
+<p>The second is that of <strong>ongoing</strong> or <strong>regular learning</strong>, where findings typically don&#39;t lead to direct action, but instead contribute to a broader or deeper understanding of a platform or concept.</p>
+
+<p>When you&#39;re new to a codebase, on-demand learning often (but not always) consists of: (1) reading an issue or feature spec, (2) grokking the existing code, and (3) Googling for explanations, answers, or, at a minimum, hints that will help you solve the problem.</p>
+
+<p>(Ongoing learning can, of course, take many different forms, such as: monitoring digests, listening to conference talks, etc.)</p>
+
+<p>Unfortunately, in Android-land, the quality of resources available for on-demand learning is very much lacking. <strong>In other words: when you&#39;ve hit a wall and you&#39;re looking for a specific answer, it&#39;s often difficult to track one down online</strong>.</p>
+
+<p>To me, this complaint stems from the <em>fragmentation</em> of the Android API. Many of the top-ranking StackOverflow answers and blog posts that I find are several years old, advocating for solutions that have since been deprecated. Others still rely on newer API features that are unuseable if you want to support a reasonable minimum SDK version. The fragmentation cuts both ways.</p>
+
+<p>As a separate point: learning in this kind of on-demand style, especially via StackOverflow posts, tends to promote something of a lackluster understanding of a problem, or even a <a href="https://en.wikipedia.org/wiki/Cargo_cult_programming">cargo cultish</a> adoption of a solution (I&#39;ve certainly found myself guilty of this).</p>
+
+<p>If you are taking the Google approach, then, the ideal situation is that one of the few high-quality blogs (like <a href="http://blog.danlew.net/">Dan Lew&#39;s</a>) has covered the topic you&#39;re working on and provided a realistic, elegant solution with strong backwards compatibility and a focus on foundational understanding. Of course, that&#39;s something of a rarity.</p>
+
+<p><h3  id='Whats-Up-Docs'>What&#39;s Up, Docs?<a class='anchor-wrap' href="#Whats-Up-Docs" title="Permalink to this headline">¶</a></h3 ></p>
+
+<p>The other natural place to turn to for this kind of on-demand insight would be the Android docs. And they&#39;re decent, albeit fragmented in their own way, given that there&#39;s <a href="https://developer.android.com/training/index.html">Training</a>, <a href="https://developer.android.com/guide/index.html">API Guides</a>, the <a href="https://developer.android.com/reference/android/app/ActionBar.html">Class Overviews</a> in the API reference, and the <a href="http://android-developers.blogspot.com/">Developer Blog</a>.</p>
+
+<p>While the docs and their related resources <em>can</em> be very useful, in my experience, they often focus either too heavily on a single, toy use-case (e.g., using <code>CoordinatorLayout</code> with an <code>AppBarLayout</code>—but never with anything else), or spend much of their time describing what something does, rather than <em>how</em> it does it (this is especially true of the Developer Blog, where I tend to find announcements of new API features, but few deep dives).</p>
+
+<p>I don&#39;t want to sell the docs too short—I&#39;ve found some satisfying answers in well-written Class Overviews, and when you <em>do</em> find a good piece of documentation, the understanding it imparts will usually beat out that of a StackOverflow answer—but they&#39;re far from sufficient in <em>every</em> case.</p>
+
+<p><h3  id='Going-Straight-to-the-Source'>Going Straight to the Source<a class='anchor-wrap' href="#Going-Straight-to-the-Source" title="Permalink to this headline">¶</a></h3 ></p>
+
+<p>Luckily for us, Android is <a href="https://source.android.com/source/index.html">open source</a>. Which means that whenever you&#39;re confused, you have the option to step into the source and figure things out on your own, bypassing Google and/or the docs altogether.</p>
+
+<p>The benefits of having open, unfettered access to the platform source code simply cannot be overstated (especially if you agree with my comments above). Grepping through the source is a habit that you should get into early on, since it only becomes easier over time. And it&#39;s worth stating explicitly: <strong>reading the source is not just a great way to learn, but rather, the <em>only</em> way to attain <em>true</em> mastery over a concept</strong>.</p>
+
+<p>In that light, I&#39;d recommend reading the source not as a last resort, but as an <strong>initial attack vector</strong> (in tandem with, perhaps, the API reference).</p>
+
+<p>I&#39;ve even gone as far as considering the unrigorous, catchall Googling of a problem statement (e.g., &quot;How to listen for scrollview end scroll event&quot;) to be a bad habit. It&#39;s a hard one to kick as a beginner, but preferring a combination of documentation and source will promote long-term, deep understanding, rather than piecemeal or bespoke knowledge acquisiton. (Plus, though you may not expect it: it&#39;ll often save you time over the StackOverflow &#39;shortcut&#39;.)</p>
+
+<p>I typically access the Android source through Android Studio directly (&#39;Find Usages&#39; will take you there, and will even decompile classes from the <a href="http://android-developers.blogspot.com/2015/05/android-design-support-library.html">Design Support Library</a>). Alternatively, <a href="http://androidxref.com/">AndroidXRef</a> is useful for performing generalized symbol search across the Android Open Source Project, as is Roman Nurik&#39;s <a href="https://chrome.google.com/webstore/detail/android-sdk-search/hgcbffeicehlpmgmnhnkjbjoldkfhoin?hl=en">Android SDK Search</a> Chrome plugin, which adds SDK search functionality to your Chrome Omnibox.</p>
+
+<p><h2  id='Ongoing-Learning-Conference-Talks--Podcasts'>Ongoing Learning: Conference Talks &amp; Podcasts<a class='anchor-wrap' href="#Ongoing-Learning-Conference-Talks--Podcasts" title="Permalink to this headline">¶</a></h2 ></p>
+
+<p>In addition to relying more and more on the source (and less and less on Google), I&#39;ve also put a premium on engaging in ongoing learning efforts from Week 1.</p>
+
+<p>For me, this has taken the form of (1) <strong>watching conference talks</strong> and (2) <strong>listening to podcasts</strong>. Since these mediums consist of long-form content, and the resources tend to be more recent, they can go deep and focus on realistic scenarios.</p>
+
+<p>In particular, I&#39;ve cranked through a bunch of the talks from <a href="https://www.youtube.com/watch?v=s3Zc6KvyYvU">Droidcon 2015</a> and episodes of the <a href="fragmentedpodcast.com">Fragmented podcast</a> (especially those featuring guests like <a href="http://fragmentedpodcast.com/episodes/6/">Jake Wharton</a>, <a href="http://fragmentedpodcast.com/episodes/20/">Hadi Hariri</a>, and <a href="http://fragmentedpodcast.com/episodes/3/">Dan Lew</a>). Both are great resources.</p>
+
+<p>(My colleagues have also recommended subscribing to <a href="http://androidweekly.net/">Android Weekly</a> and monitoring <a href="reddit.com/r/androiddev">/r/androiddev</a>, though these aren&#39;t practices that I&#39;ve regularized yet.)</p>
+
+<p><strong>Engaging with this kind of material on a consistent, ongoing basis—from an early date—has been the best investment I&#39;ve made during the learning process</strong>. While this approach won&#39;t scale well to solving a specific problem (you typically won&#39;t want to interrupt your debugging session by watching a one-hour video), it&#39;s incredibly useful for accelerating your learning curve more generally.</p>
+
+<p>In fact, if you&#39;re ramping up in a professional setting, <strong>I&#39;d recommend that you start consuming this stuff as early as possible</strong>. While it may seem strange to recommend expert-level content to a platform beginner, this technique does have a few interesting effects, including:</p>
+
+<ol>
+<li><p><strong>Familiarizing you with a ton of platform-specific vocabulary, concepts, tools, and practices</strong>.</p>
+
+<p>There&#39;s a ton of value in the simple act of listening to Android experts talk about Android. Certain technologies, tools, or concepts get mentioned repeatedly, like <a href="https://google.github.io/dagger/">Dagger</a>, <a href="https://jakewharton.github.io/butterknife/">ButterKnife</a>, <a href="https://developer.android.com/tools/support-library/features.html#v7-appcompat">AppCompat</a>, etc. You begin to notice, and their use-cases and usefulnesses start to take shape in your mind.</p></li>
+<li><p><strong>Giving you a deep understanding of an array of topics</strong>.</p>
+
+<p>That is, whichever topics are explicitly covered by the speakers. This knowledge tends to come in handy down the road, if not immediately. When I had to implement some complex click-interception behavior, I was pretty glad I&#39;d seen <a href="https://www.youtube.com/watch?v=usBaTHZdXSI"><em>Making Sense of the Touch System</em></a> the week before.</p></li>
+<li><p><strong>Helping you identify Android experts</strong>.</p>
+
+<p>The bar tends to be high for appearing at a conference or on a podcast, so the individuals involved are often worth following.</p></li>
+</ol>
+
+<p>If you find the right resources, you can create an incredible feedback loop whereby listening to experts will help you improve as a developer, and improving as a developer will make what they have to say more accessible and more interesting.</p>
+
+<p><h2  id='Tooling'>Tooling<a class='anchor-wrap' href="#Tooling" title="Permalink to this headline">¶</a></h2 ></p>
+
+<p>Every new technology seems to bring with it additional tools to be mastered. Thankfully, with Android, there&#39;s really just one: <a href="https://developer.android.com/tools/studio/index.html">Android Studio</a>.</p>
+
+<p><h3  id='Mastering-Android-Studio'>Mastering Android Studio<a class='anchor-wrap' href="#Mastering-Android-Studio" title="Permalink to this headline">¶</a></h3 ></p>
+
+<p>If you&#39;ve worked with the IntelliJ IDEA platform before, then you&#39;ll Android Studio to be familiar. If you haven&#39;t, then let me just say: it&#39;s incredible. And its navigational and refactoring commands will make you so, so much more productive. (I say this as a Sublime convert.)</p>
+
+<p>As a newcomer, some of the practices I&#39;ve tried to instill in my own development process (a few of which I credit to <a href="fragmentedpodcast.com">Fragmented</a>) include:</p>
+
+<ul>
+<li><strong>Avoiding the mouse/trackpad</strong> and, instead, relying on keyboard shortcuts for navigation and the like. (The <a href="https://plugins.jetbrains.com/plugin/4455?pr=clion">Key promoter</a> plugin can be useful for discouraging mouse reliance.)</li>
+<li><strong>Using targeted search commands</strong> (&#39;Search by File&#39;, &#39;Search by Class&#39;, &#39;Search by Symbol&#39;, etc.) in lieu of the default &#39;Find&#39; action.</li>
+<li><strong>Abusing &#39;Find Usages&#39;/&#39;Find Declaration&#39;</strong>. I personally use this command non-stop (either by right-clicking or with Apple + B on OS X), which has the nice side effect of encouraging me to go as deep as the Android Source when debugging.</li>
+<li><strong>Disabling tabs</strong>, either through the settings pane or by entering Zen Mode, to encourage heavier reliance on navigational shortcuts, like &#39;Last Edit Location&#39; and &#39;Recently Edited Files&#39;. (This tip comes from <a href="http://fragmentedpodcast.com/episodes/6/">Jake Wharton</a>.)</li>
+</ul>
+
+<p>Familiarizing yourself with this one tool will take you a very, very long way. Even prominent Android developers Jake Wharton and Dan Lew use relatively vanilla setups (per their <a href="fragmentedpodcast.com">Fragmented</a> interviews), so, evidently, there&#39;s little need to go deep into the woods with arcane tools or plugins.</p>
+
+<p><em>Aside: Beyond Android Studio, the only other software I use is <a href="genymotion.com">Genymotion</a> (a replacement for the default Android emulator) and, occasionally, <a href="https://facebook.github.io/stetho/">Stetho</a> (a debug bridge built by Facebook that lets you debug your app via Chrome DevTools).</em></p>
+
+<p><h3  id='Cutting-Down-on-Build-Time'>Cutting Down on Build Time<a class='anchor-wrap' href="#Cutting-Down-on-Build-Time" title="Permalink to this headline">¶</a></h3 ></p>
+
+<p>Finally, I want to recommend that newcomers—especially those learning in a production setting—focus on cutting down build time.</p>
+
+<p>When you&#39;re working on a big app, builds will not only eat up a few minutes of your time, but can often serve as painful distractions, interrupting your Flow and encouraging you to context switch (also known as the &#39;Oh, I&#39;ll just open up Twitter while the app is building&#39; problem).</p>
+
+<p>While it&#39;s unlikely that you&#39;ll be rewriting your build system, there are simpler ways for beginners to make their lives easier here. For example, you might consider:</p>
+
+<ul>
+<li>Setting up a test activity (or even an entire test application) to render an in-progress UI component with stub data.</li>
+<li>Writing unit tests that can run without building to a device (e.g., by testing your SDK-agnostic code in an SDK-agnostic way, or using tools like <a href="robolectric.org">Robolectric</a>).</li>
+</ul>
+
+<p>This is something I wish I&#39;d done better—I&#39;ve spent a ton of time waiting around for our app to build when an upfront investment (i.e., to setup a test activity or test app) would&#39;ve paid off tenfold.</p>
+
+<p><em>Aside: <a href="https://sites.google.com/a/android.com/tools/tech-docs/instant-run">Instant Run</a> may solve this problem yet, though there&#39;s still something to be said for testing your code in isolated environments.</em></p>
+
+<p><h2  id='Whats-Next'>What&#39;s Next<a class='anchor-wrap' href="#Whats-Next" title="Permalink to this headline">¶</a></h2 ></p>
+
+<p>Two weeks ago, we had our Khan Academy mobile team summit, where we took some time as a team to brainstorm, strategize, and catch up. As we began to form our vision for the year ahead, I was struck by the distinct feeling that, for me, the training wheels are off. And to feel that way after just a few weeks is pretty great. (Again: thanks and credit to my team for making that possible.)</p>
+
+<p>But—I&#39;m still not sure that I&#39;d consider myself an &#39;Android engineer&#39;. That&#39;s not to say that I haven&#39;t earned the title, or that I haven&#39;t hit some sort of bar. But rather, that this experience has underscored the feeling I have that I don&#39;t need to be a &#39;[blank] engineer&#39;; that new things are learnable, given the right mindset.</p>
+
+<p>For the foreseeable future, though, I&#39;ll be all Android, all the time. So stay tuned.</p>
+
+<p class="note">Thanks to <a target="_blank" href="http://www.shubhro.com">Shubhro Saha</a> and Ben Komalo for providing feedback on earlier drafts of this post.</p>
+
+          <p class="date">Posted on November 30, 2015.</p>
+          <div class="hidden-xs">
+  <hr />
+  <center style="padding-bottom: 10px">
+    &copy; 2015 Charles Marsh
+    <nav style="display: inline" class="nav-social st-shape-r4">
+      <a target="_blank" title="RSS" style="border-bottom:none; margin-top: -14px" class="st-icon-rss" href="/feed.xml">RSS</a>
+    </nav>
+  </center>
+</div>
+<div class="visible-xs" style="height:10px"></div>
+          <div class="read-more visible-xs" style="text-align:center; margin-top:0; margin-bottom:25px"><a href="/">Home</a></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
