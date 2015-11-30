@@ -109,5 +109,11 @@
     <description>Learn the tips and tricks to suceed in your undergraduate Independent Work.</description>
     <guid>http://www.crmarsh.com/independent_work/</guid>
   </item>
+  <item>
+    <title>Lessons Learned Learning Android in a Production Setting</title>
+    <link>http://www.crmarsh.com/learning-android/</link>
+    <description>Lessons learned from my experience over the last few months ramping up on Android development in the context of a productionized application and a mature codebase.</description>
+    <guid>http://www.crmarsh.com/learning-android/</guid>
+  </item>
 </channel>
 </rss>
