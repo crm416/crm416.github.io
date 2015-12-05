@@ -1,13 +1,14 @@
 ---
 layout: post
-title: "Lessons Learned Learning Android in a Production Setting"
+title: "Learning Android in a Production Setting"
 date: 2015-11-30
 permalink: learning-android
+description: "A few months ago, I started working on the Android team at Khan Academy—with no prior Android experience. In this post, I wanna share some of the lessons I learned ramping up on Android in a production setting."
 ---
 
-# Android, From Scratch
+# Android, From Scratch: Lessons Learning
 
-Back in August, a few weeks before I'd joined [Khan Academy](https://www.khanacademy.org)  full-time, our Head of Engineering, [Ben Kamens](http://bjk5.com/), shot me an email asking if I had any interest in working on the [Android](https://play.google.com/store/apps/details?id=org.khanacademy.android) team.
+Back in August, a few weeks before I'd joined [Khan Academy](https://www.khanacademy.org) full-time, our Head of Engineering, [Ben Kamens](http://bjk5.com/), shot me an email asking if I had any interest in working on the [Android](https://play.google.com/store/apps/details?id=org.khanacademy.android) team.
 
 I'd never touched Android before, but I was pleasantly surprised to see that email, since the vision of bringing Khan Academy to Android devices had intrigued me for a while. If you imagine a world in which every student, everywhere has access to a free, world-class tutor in their pocket, Android is a big part of it. Joining the team struck me as a fantastic opportunity for impact.
 
@@ -15,7 +16,7 @@ So, I conveyed my excitement to Ben; but I couldn't help but ask:
 
 > Is it an issue that I have no experience developing on Android?
 
-In his response, Ben explained that this would be part of a long-term effort to scale up Khan Academy's Android expertise. And that it was expected that there'd be a significant learning curve to getting me up and running on the platform.
+In his response, Ben explained that this move would be part of a long-term effort to scale up Khan Academy's Android expertise. And that it was expected that there'd be a significant learning curve to getting me up and running on the platform.
 
 Three months later, and I've built out new features, fixed nasty bugs, and grown to the point where I can meaningfully contribute to our team's technical discussions, as an Android voice. All having started from scratch in mid-September.
 
@@ -81,7 +82,7 @@ For me, this has taken the form of (1) **watching conference talks** and (2) **l
 
 In particular, I've cranked through a bunch of the talks from [Droidcon 2015](https://www.youtube.com/watch?v=s3Zc6KvyYvU) and episodes of the [Fragmented podcast](fragmentedpodcast.com) (especially those featuring guests like [Jake Wharton](http://fragmentedpodcast.com/episodes/6/), [Hadi Hariri](http://fragmentedpodcast.com/episodes/20/), and [Dan Lew](http://fragmentedpodcast.com/episodes/3/)). Both are great resources.
 
-(My colleagues have also recommended subscribing to [Android Weekly](http://androidweekly.net/) and monitoring [/r/androiddev](reddit.com/r/androiddev), though these aren't practices that I've regularized yet.)
+(My colleagues have also recommended subscribing to <a href="http://androidweekly.net/" target="_blank">Android Weekly</a> and monitoring <a href="https://www.reddit.com/r/androiddev" target="_blank">/r/androiddev</a>, though these aren't practices that I've regularized yet.)
 
 **Engaging with this kind of material on a consistent, ongoing basis—from an early date—has been the best investment I've made during the learning process**. While this approach won't scale well to solving a specific problem (you typically won't want to interrupt your debugging session by watching a one-hour video), it's incredibly useful for accelerating your learning curve more generally.
 
@@ -137,7 +138,7 @@ _Aside: [Instant Run](https://sites.google.com/a/android.com/tools/tech-docs/ins
 
 Two weeks ago, we had our Khan Academy mobile team summit, where we took some time as a team to brainstorm, strategize, and catch up. As we began to form our vision for the year ahead, I was struck by the distinct feeling that, for me, the training wheels are off. And to feel that way after just a few weeks is pretty great. (Again: thanks and credit to my team for making that possible.)
 
-But—I'm still not sure that I'd consider myself an 'Android engineer'. That's not to say that I haven't earned the title, or that I haven't hit some sort of bar. But rather, that this experience has underscored the feeling I have that I don't need to be a '[blank] engineer'; that new things are learnable, given the right mindset.
+But—I'm still not sure that I'd consider myself an 'Android engineer'. That's not to say that I'm yet to earn the title, but rather, that this experience has underscored the feeling I have that I don't need to be a '[blank] engineer'; that new things are learnable, given the right mindset.
 
 For the foreseeable future, though, I'll be all Android, all the time. So stay tuned.
 
