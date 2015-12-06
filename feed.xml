@@ -115,5 +115,11 @@
     <description>Lessons learned from my experience over the last few months ramping up on Android development in the context of a productionized application and a mature codebase.</description>
     <guid>http://www.crmarsh.com/learning-android/</guid>
   </item>
+  <item>
+    <title>Getting up and Running with Robolectric</title>
+    <link>http://www.crmarsh.com/configuring-robolectric/</link>
+    <description>A collection of tips and tricks for getting around your Robolectric integration battles.</description>
+    <guid>http://www.crmarsh.com/configuring-robolectric/</guid>
+  </item>
 </channel>
 </rss>
