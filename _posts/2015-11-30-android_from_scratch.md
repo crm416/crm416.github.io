@@ -6,7 +6,7 @@ permalink: learning-android
 description: "A few months ago, I started working on the Android team at Khan Academy—with no prior Android experience. In this post, I wanna share some of the lessons I learned ramping up on Android in a production setting."
 ---
 
-# Android, From Scratch: Lessons Learning
+# Learning Android in Production
 
 Back in August, a few weeks before I'd joined [Khan Academy](https://www.khanacademy.org) full-time, our Head of Engineering, [Ben Kamens](http://bjk5.com/), shot me an email asking if I had any interest in working on the [Android](https://play.google.com/store/apps/details?id=org.khanacademy.android) team.
 
