@@ -1,12 +1,12 @@
 ---
 layout: post
-title: "Getting Up and Running with Robolectric"
+title: "Getting up and Running with Robolectric"
 date: 2015-12-07
 description: "A collection of tips and tricks for getting around your Robolectric integration battles."
 permalink: configuring-robolectric
 ---
 
-# Getting Up and Running with Robolectric
+# Getting up and Running with Robolectric
 
 [Robolectric](http://robolectric.org/) is a useful tool for testing code that touches parts of the Android SDK _without having to build to a device_, made possible by Robolectric's reimplementation and "de-fanging" of parts of the Android SDK, which allows them to run on a regular JVM, rather than an emulator.
 

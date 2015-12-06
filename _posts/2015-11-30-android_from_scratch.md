@@ -24,7 +24,7 @@ It's a wonderfully weird feeling.
 
 <!--break-->
 
-{% anchor h2 %}Ramping Up{% endanchor %}
+{% anchor h2 %}Ramping up{% endanchor %}
 
 In this post, **I'd like to draw on some of the lessons I've learned from my experience—that of ramping up on Android development in the context of a _professional_, _production_ application**; one that consisted of thousands of lines of code and relied on dozens of then-mysterious technologies on the day I arrived.
 
@@ -54,7 +54,7 @@ As a separate point: learning in this kind of on-demand style, especially via St
 
 If you are taking the Google approach, then, the ideal situation is that one of the few high-quality blogs (like [Dan Lew's](http://blog.danlew.net/)) has covered the topic you're working on and provided a realistic, elegant solution with strong backwards compatibility and a focus on foundational understanding. Of course, that's something of a rarity.
 
-{% anchor h3 %}What's Up, Docs?{% endanchor %}
+{% anchor h3 %}What's up, Docs?{% endanchor %}
 
 The other natural place to turn to for this kind of on-demand insight would be the Android docs. And they're decent, albeit fragmented in their own way, given that there's [Training](https://developer.android.com/training/index.html), [API Guides](https://developer.android.com/guide/index.html), the [Class Overviews](https://developer.android.com/reference/android/app/ActionBar.html) in the API reference, and the [Developer Blog](http://android-developers.blogspot.com/).
 

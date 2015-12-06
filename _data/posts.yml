@@ -1,6 +1,6 @@
 - year: 2015
   posts:
-    - name: Getting Up and Running with Robolectric
+    - name: Getting up and Running with Robolectric
       url: /configuring-robolectric/
     - name: Learning Android in a Production Setting
       url: /learning-android/
@@ -14,7 +14,7 @@
       coverage: Hacker News
       url: /script/
 
-    - name: Speeding Up SVGs with CSS Transforms at Khan Academy
+    - name: Speeding up SVGs with CSS Transforms at Khan Academy
       coverage: Hacker News
       url: /svg-performance/
 
@@ -45,7 +45,7 @@
     - name: "PhantomJS: Common Gotchas for Beginners"
       url: /phantomjs/
 
-    - name: The Idiot-Proof Guide to Setting Up Your Personal AWS Instance
+    - name: The Idiot-Proof Guide to Setting up Your Personal AWS Instance
       url: /aws/
 
     - name: An Introduction to Rule Optimization in Software Defined Networking
@@ -54,7 +54,7 @@
     - name: Prefix vs. Ternary Rules in SDN
       url: /prefix_vs_ternary/
 
-    - name: Setting Up an OCaml Development Environment on Mac OS X
+    - name: Setting up an OCaml Development Environment on Mac OS X
       url: /ocaml_dev_environment/
 
     - name: Programming Languages and the Solutions they Suggest

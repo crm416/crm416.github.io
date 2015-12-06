@@ -1,11 +1,11 @@
 ---
 layout: post
-title:  "Setting Up Your OCaml Development Environment on OS X"
+title:  "Setting up Your OCaml Development Environment on OS X"
 date:   2013-05-29
 permalink: ocaml_dev_environment
 ---
 
-# Setting Up Your OCaml Development Environment on OS X
+# Setting up Your OCaml Development Environment on OS X
 
 Last fall, I began exploring the subject of functional programming as part of [Professor David Walker’s](http://www.cs.princeton.edu/~dpw/) [COS 326 at Princeton](http://www.cs.princeton.edu/~dpw/courses/cos326-12/info.php). Throughout the course, we did all of our programing in OCaml. I also spent the past spring using OCaml for my CS Independent Work. So in total, I’ve spent a reasonable amount of time around the language, and I think it’s fantastic: it’s got a great module system, plenty of useful open source tools, etc.
 
@@ -46,7 +46,7 @@ OCaml version 4.00.1
 - : int = 5
 {% endhighlight %}
 
-{% anchor h2 %}Setting Up Your Development Environment{% endanchor %}
+{% anchor h2 %}Setting up Your Development Environment{% endanchor %}
 
 Next, you’ll want a high-quality editor that’s well integrated with the OCaml language. I’ve played around with three different editors/environments, all of which have had their pros and cons. Anyway, the process for setting up such environments is as follows:
 

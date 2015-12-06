@@ -39,7 +39,7 @@ As stated above, a binomial heap is just a list of binomial trees. How many bino
 
 If we have a heap with 13 items, we can express this in binary as 1101. This would translate to a binary tree of degree 3, a tree of degree 2, and a tree of degree 0 (with 2^3 + 2^2 + 2^0 = 8 + 4 + 1 items respectively = 13 total items).
 
-{% anchor h2 %}Merging With Binomial Heaps{% endanchor %}
+{% anchor h2 %}Merging with Binomial Heaps{% endanchor %}
 
 We can use the binary analogy to explain the Log N merge operation as well. Merging two binomial heaps is really just binary addition: for each digit i, if both heaps have a tree of degree i, then we merge them and carry-over the resulting tree of degree i + 1, carrying this process through. Since each merge is constant, and heaps of N items have at most Log N binary digits, we’re performing Log N constant-time tree merges for our heap merge—this gives us the Log N merge operation we were looking for.
 
