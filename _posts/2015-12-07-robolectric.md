@@ -14,6 +14,8 @@ I recently integrated Robolectric into our app at [Khan Academy](https://play.go
 
 Setup was relatively painless, but I did hit a few snags along the way. In this post, I'll outline those snags—and how we got around them—to save you time and effort in your own Robolectric integration battle.
 
+<!--break-->
+
 {% anchor h2 %}Config{% endanchor %}
 
 When using Robolectric with Gradle, you need to annotate your test suites like so:
