@@ -8,7 +8,7 @@ permalink: configuring-robolectric
 
 # Getting up and Running with Robolectric
 
-[Robolectric](http://robolectric.org/) is a useful tool for testing code that touches parts of the Android SDK _without having to build to a device_, made possible by Robolectric's reimplementation and "de-fanging" of parts of the Android SDK, which allows them to run on a regular JVM, rather than an emulator.
+[Robolectric](http://robolectric.org/) is a useful tool for testing code that touches parts of the Android SDK _without building to a device_, made possible by Robolectric's reimplementation and "de-fanging" of parts of the Android SDK, which allows them to run on a regular JVM, rather than an emulator.
 
 I recently integrated Robolectric into our app at [Khan Academy](https://play.google.com/store/apps/details?id=org.khanacademy.android)—we've been looking into ways to let us write more and more efficient tests, and Robolectric fit the bill nicely (at least for some cases—many tests are best left as functional or integration tests; but I won't get into that here).
 
@@ -28,7 +28,7 @@ public class FooTest {
 }
 ```
 
-Unfortunately, our basic debug build didn't play well with Robolectric for two reasons:
+Unfortunately, our standard debug build didn't play well with Robolectric for two reasons:
 
 1. Robolectric tests against your `targetSdkVersion`. We target API 22, which Robolectric doesn't support yet (although API 22 support is already available in [3.1-SNAPSHOT](https://github.com/robolectric/robolectric/pull/2030)).
 2. Robolectric relies on your `applicationId` to locate your resource and asset directories, and gets tripped up if your debug build uses a custom application ID (e.g., we use `org.khanacademy.android.debug`, rather than `org.khanacademy.android`).
