@@ -121,5 +121,11 @@
     <description>A collection of tips and tricks for getting around your Robolectric integration battles.</description>
     <guid>http://www.crmarsh.com/configuring-robolectric/</guid>
   </item>
+    <item>
+    <title>Reviewing Code from Both Sides</title>
+    <link>http://www.crmarsh.com/code-review/</link>
+    <description>Reflections on learning to review code, and how the medium in which you read code can influence the comments you generate.</description>
+    <guid>http://www.crmarsh.com/code-review/</guid>
+  </item>
 </channel>
 </rss>
