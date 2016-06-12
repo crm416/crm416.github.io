@@ -122,10 +122,15 @@
     <guid>http://www.crmarsh.com/configuring-robolectric/</guid>
   </item>
     <item>
-    <title>Reviewing Code from Both Sides</title>
+  <title>Reviewing Code from Both Sides</title>
     <link>http://www.crmarsh.com/code-review/</link>
     <description>Reflections on learning to review code, and how the medium in which you read code can influence the comments you generate.</description>
     <guid>http://www.crmarsh.com/code-review/</guid>
+  </item>
+  <title>Writing a Reproducible Test Plan</title>
+    <link>http://www.crmarsh.com/test-plans/</link>
+    <description>Reflections on learning to write a good test plan, with a focus on reproducibility.</description>
+    <guid>http://www.crmarsh.com/test-plans/</guid>
   </item>
 </channel>
 </rss>
