@@ -2,7 +2,7 @@
 layout: post
 title: "KhanQuest: Bringing Khan Academy-based Learning to a Fantasy Video Game"
 date: 2014-07-20
-permalink: khanquest
+permalink: khanquest/
 ---
 
 # KhanQuest: A Young Person's Illustrated Video Game

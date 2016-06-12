@@ -3,7 +3,7 @@ layout: post
 title: "Reviewing Code from Both Sides"
 date: 2016-02-22
 description: "Code review is critical to our engineering culture at Khan Academy. But where you look at code can greatly influence your comments."
-permalink: code-review
+permalink: code-review/
 ---
 
 # Reviewing Code from Both Sides

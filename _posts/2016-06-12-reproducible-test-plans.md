@@ -3,7 +3,7 @@ layout: post
 title: "Writing a Reproducible Test Plan"
 date: 2016-06-12
 description: "A focus on reproducibility tends to result in the most high-value test plans."
-permalink: test-plans
+permalink: test-plans/
 ---
 
 # Writing a Reproducible Test Plan

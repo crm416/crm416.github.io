@@ -2,7 +2,7 @@
 layout: post
 title:  "Rule Optimization in Software-Defined Networks"
 date:   2013-02-25
-permalink: intro_to_sdn
+permalink: intro_to_sdn/
 ---
 
 # Rule Optimization in Software-Defined Networks

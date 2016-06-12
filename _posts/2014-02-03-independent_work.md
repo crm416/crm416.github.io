@@ -2,7 +2,7 @@
 layout: post
 title:  "A Guide to CS Independent Work at Princeton"
 date:   2014-02-03
-permalink: independent_work
+permalink: independent_work/
 ---
 
 # A Guide to CS Independent Work at Princeton

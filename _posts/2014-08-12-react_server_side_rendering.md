@@ -3,7 +3,7 @@ layout: post
 title: Rendering React Components on the Server
 date: 2014-08-12
 description: "A guide to server-side rendering with React, starting from first principles."
-permalink: react-ssr
+permalink: react-ssr/
 ---
 
 # Rendering React Components on the Server

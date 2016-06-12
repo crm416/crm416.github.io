@@ -2,7 +2,7 @@
 layout: post
 title:  "Compiling to JavaScript: A Case-by-Case Guide to the *Scripts"
 date:   2013-09-19
-permalink: compiling_to_js
+permalink: compiling_to_js/
 ---
 
 # Compiling to JS: Comparing TypeScript, CoffeeScript, etc.

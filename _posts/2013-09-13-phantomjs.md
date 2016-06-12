@@ -2,7 +2,7 @@
 layout: post
 title:  "Getting Started with PhantomJS: Common Gotchas for Beginners"
 date:   2013-09-13
-permalink: phantomjs
+permalink: phantomjs/
 description: "Considering PhantomJS? Save yourself hours of troublesome debugging and indecipherable error messages by avoiding these common errors, mistakes, and misunderstandings."
 ---
 

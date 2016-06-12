@@ -2,7 +2,7 @@
 layout: post
 title:  "iOS Performance: Shadows with Bezier Paths"
 date:   2012-11-24
-permalink: ios_performance
+permalink: ios_performance/
 ---
 
 # iOS Performance: Shadows with Bezier Paths

@@ -2,7 +2,7 @@
 layout: post
 title: "A Human-Friendly API for Wikipedia"
 date: 2013-06-16
-permalink: wikipedia
+permalink: wikipedia/
 ---
 
 # A Human-Friendly API for Wikipedia

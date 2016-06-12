@@ -2,7 +2,7 @@
 layout: post
 title:  "True Parallelism in OCaml"
 date:   2013-01-17
-permalink: ocaml_parallelism
+permalink: ocaml_parallelism/
 ---
 
 # True Parallelism in OCaml

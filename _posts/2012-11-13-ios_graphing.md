@@ -2,7 +2,7 @@
 layout: post
 title:  "A Dynamic Graphing Interface for iOS"
 date:   2012-11-13
-permalink: ios_graphing
+permalink: ios_graphing/
 ---
 
 # A Dynamic Graphing Interface for iOS

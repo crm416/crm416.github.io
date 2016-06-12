@@ -2,7 +2,7 @@
 layout: post
 title: "Learning Android in a Production Setting"
 date: 2015-11-30
-permalink: learning-android
+permalink: learning-android/
 description: "A few months ago, I started working on the Android team at Khan Academy—with no prior Android experience. In this post, I wanna share some of the lessons I learned ramping up on Android in a production setting."
 ---
 

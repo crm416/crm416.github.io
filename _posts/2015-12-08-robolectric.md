@@ -3,7 +3,7 @@ layout: post
 title: "Getting up and Running with Robolectric"
 date: 2015-12-08
 description: "A collection of tips and tricks for getting around your Robolectric integration battles, drawn from our own experience on the Khan Academy Android team."
-permalink: configuring-robolectric
+permalink: configuring-robolectric/
 ---
 
 # Getting up and Running with Robolectric

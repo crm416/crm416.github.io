@@ -2,7 +2,7 @@
 layout: post
 title:  "Quizzler: NLP-based Quiz Question Generation"
 date:   2013-08-04
-permalink: hack
+permalink: hack/
 ---
 
 # Quizzler

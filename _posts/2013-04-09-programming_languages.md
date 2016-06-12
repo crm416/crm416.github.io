@@ -2,7 +2,7 @@
 layout: post
 title:  "Kernighan: Programming Languages and the Solutions They Suggest"
 date:   2013-04-09
-permalink: programming_languages
+permalink: programming_languages/
 ---
 
 
