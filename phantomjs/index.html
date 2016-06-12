@@ -89,9 +89,9 @@
 
 <p><code>page.evaluate</code> takes, as argument, a function to-be executed in the context of the webpage. This is incredibly useful. Further, <code>page.evaluate</code> can return a result from the webpage back to your PhantomJS program. Say, for example, that you&#39;d like to grab the text of an element on the current page with ID &quot;foo&quot;:</p>
 
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="nx">page</span><span class="p">.</span><span class="nx">evaluate</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="nx">page</span><span class="p">.</span><span class="nx">evaluate</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">return</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#foo&quot;</span><span class="p">).</span><span class="nx">text</span><span class="p">;</span>
-<span class="p">});</span></code></pre></div>
+<span class="p">});</span></code></pre></figure>
 
 <p>You could then use <code>foo</code> in your PhantomJS program, successfully extracting the value from the webpage. <em>Note: return values are limited to simple objects, rather than, say, functions.</em></p>
 
@@ -99,9 +99,9 @@
 
 <p>Actually, the code snippet above might not work as expected. I&#39;ll repeat it here for clarity:</p>
 
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="nx">page</span><span class="p">.</span><span class="nx">evaluate</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="nx">page</span><span class="p">.</span><span class="nx">evaluate</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">return</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#foo&quot;</span><span class="p">).</span><span class="nx">text</span><span class="p">;</span>
-<span class="p">});</span></code></pre></div>
+<span class="p">});</span></code></pre></figure>
 
 <p>The problem? The active webpage might not have jQuery loaded.</p>
 
@@ -109,13 +109,13 @@
 
 <p>Here&#39;s the revised code (credit to the <a href="https://github.com/ariya/phantomjs/wiki/Page-Automation">PhantomJS docs</a>):</p>
 
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">page</span><span class="p">.</span><span class="nx">includeJs</span><span class="p">(</span><span class="s2">&quot;http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">page</span><span class="p">.</span><span class="nx">includeJs</span><span class="p">(</span><span class="s2">&quot;http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="nx">page</span><span class="p">.</span><span class="nx">evaluate</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
         <span class="k">return</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#foo&quot;</span><span class="p">).</span><span class="nx">text</span><span class="p">;</span>
     <span class="p">});</span>
     <span class="c1">// do what you gotta do with &#39;foo&#39;</span>
     <span class="c1">// ...</span>
-<span class="p">});</span></code></pre></div>
+<span class="p">});</span></code></pre></figure>
 
 <p><h2  id='Consolelogging-from-your-web-browser'>Console.logging from your web browser<a class='anchor-wrap' href="#Consolelogging-from-your-web-browser" title="Permalink to this headline">¶</a></h2 ></p>
 
@@ -123,15 +123,15 @@
 
 <p>Specifically, <strong>the following code does nothing</strong> because &quot;Hello, World!&quot; is printed in the context of the browser:</p>
 
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">page</span><span class="p">.</span><span class="nx">evaluate</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">page</span><span class="p">.</span><span class="nx">evaluate</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Hello, World!&quot;</span><span class="p">)</span>
-<span class="p">});</span></code></pre></div>
+<span class="p">});</span></code></pre></figure>
 
 <p>So, what if you want to log messages to your terminal from within your webpage? The trick is to use the <code>page.onConsoleMessage</code> event and echo any messages printed in the browser out to your terminal. Try this:</p>
 
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">page</span><span class="p">.</span><span class="nx">onConsoleMessage</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">msg</span><span class="p">)</span> <span class="p">{</span>
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">page</span><span class="p">.</span><span class="nx">onConsoleMessage</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">msg</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">msg</span><span class="p">);</span>
-<span class="p">};</span></code></pre></div>
+<span class="p">};</span></code></pre></figure>
 
 <p>For more, see my <a href="http://stackoverflow.com/questions/18115888/phantomjs-not-returning-results/18131369#18131369">StackOverflow answer</a>.</p>
 
@@ -139,18 +139,18 @@
 
 <p>PhantomJS beginners constantly ask how they can wait for something to appear on their webpage before acting. For example, maybe they want a banner to appear and then extract some text from it. Say &quot;#foo&quot; is now a div that loads a few seconds after the page has appeared. If you simply use the following code, you&#39;ll get unexpected results, as the banner may not be loaded at the time of query:</p>
 
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">page</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;webpage&#39;</span><span class="p">).</span><span class="nx">create</span><span class="p">();</span>
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">page</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;webpage&#39;</span><span class="p">).</span><span class="nx">create</span><span class="p">();</span>
 <span class="nx">page</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s1">&#39;http://www.sample.com&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="nx">page</span><span class="p">.</span><span class="nx">evaluate</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
         <span class="k">return</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#foo&quot;</span><span class="p">).</span><span class="nx">text</span><span class="p">;</span>
     <span class="p">});</span>
     <span class="c1">// ...</span>
     <span class="nx">phantom</span><span class="p">.</span><span class="nx">exit</span><span class="p">();</span>
-<span class="p">});</span></code></pre></div>
+<span class="p">});</span></code></pre></figure>
 
 <p>Instead, you should use <a href="https://github.com/ariya/phantomjs/blob/master/examples/waitfor.js">waitFor.js</a>, a nice JavaScript snippet provided by the PhantomJS guys. This function is pretty simple, but very, very useful. Essentially, it queries the page every few seconds (the exact interval is an optional parameter), executing a user-specified function when a certain condition has been met. Expanding on the previous example, our code might look like the following (excluding the lengthy definition of <a href="https://github.com/ariya/phantomjs/blob/master/examples/waitfor.js">waitFor</a>):</p>
 
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">page</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;webpage&#39;</span><span class="p">).</span><span class="nx">create</span><span class="p">();</span>
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">page</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;webpage&#39;</span><span class="p">).</span><span class="nx">create</span><span class="p">();</span>
 <span class="nx">page</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s1">&#39;http://www.sample.com&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="nx">waitFor</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
             <span class="c1">// Check in the page if a specific element is now visible</span>
@@ -165,7 +165,7 @@
             <span class="nx">phantom</span><span class="p">.</span><span class="nx">exit</span><span class="p">();</span>
         <span class="p">});</span>
     <span class="p">});</span>
-<span class="p">});</span></code></pre></div>
+<span class="p">});</span></code></pre></figure>
 
 <p><h2  id='Going-Forward'>Going Forward<a class='anchor-wrap' href="#Going-Forward" title="Permalink to this headline">¶</a></h2 ></p>
 

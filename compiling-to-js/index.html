@@ -83,15 +83,15 @@ I see <a href="http://coffeescript.org">CoffeeScript</a> as the poster child of 
 
 <p>Here&#39;s an example of these list comprehensions:</p>
 
-<div class="highlight"><pre><code class="language-coffeescript" data-lang="coffeescript"><span class="nv">even_nums = </span><span class="p">(</span><span class="nx">i</span> <span class="k">for</span> <span class="nx">i</span> <span class="k">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">..</span><span class="mi">10</span><span class="p">]</span> <span class="k">when</span> <span class="nx">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+<figure class="highlight"><pre><code class="language-coffeescript" data-lang="coffeescript"><span class="nv">even_nums = </span><span class="p">(</span><span class="nx">i</span> <span class="k">for</span> <span class="nx">i</span> <span class="k">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">..</span><span class="mi">10</span><span class="p">]</span> <span class="k">when</span> <span class="nx">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
 <span class="nv">odd_nums = </span><span class="p">(</span><span class="nx">i</span> <span class="k">for</span> <span class="nx">i</span> <span class="k">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">..</span><span class="mi">10</span><span class="p">]</span> <span class="k">when</span> <span class="nx">i</span> <span class="o">not</span> <span class="k">in</span> <span class="nx">even_nums</span><span class="p">)</span>
 
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="nx">even_nums</span> <span class="c1">## prints &#39;0, 2, 4, 6, 8&#39;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="nx">odd_nums</span> <span class="c1">## prints &#39;1, 3, 5, 7, 9&#39;</span></code></pre></div>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="nx">odd_nums</span> <span class="c1">## prints &#39;1, 3, 5, 7, 9&#39;</span></code></pre></figure>
 
 <p>If this doesn&#39;t look impressive on its own, check out the corresponding JavaScript:</p>
 
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">even_nums</span><span class="p">,</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">odd_nums</span><span class="p">,</span>
     <span class="nx">__indexOf</span> <span class="o">=</span> <span class="p">[].</span><span class="nx">indexOf</span> <span class="o">||</span> <span class="kd">function</span><span class="p">(</span><span class="nx">item</span><span class="p">)</span> <span class="p">{</span> <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">l</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">l</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="k">if</span> <span class="p">(</span><span class="nx">i</span> <span class="k">in</span> <span class="k">this</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">===</span> <span class="nx">item</span><span class="p">)</span> <span class="k">return</span> <span class="nx">i</span><span class="p">;</span> <span class="p">}</span> <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="p">};</span>
 
@@ -121,7 +121,7 @@ I see <a href="http://coffeescript.org">CoffeeScript</a> as the poster child of 
 
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">odd_nums</span><span class="p">);</span>
 
-<span class="p">}).</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">);</span></code></pre></div>
+<span class="p">}).</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">);</span></code></pre></figure>
 
 <p>Why use CoffeeScript? It&#39;s just a pleasure. The syntax takes away the worst parts of JavaScript. The language appears more functional and less disgusting.</p>
 
@@ -133,7 +133,7 @@ I see <a href="http://coffeescript.org">CoffeeScript</a> as the poster child of 
 
 <p>Lets see this type safety in action:</p>
 
-<div class="highlight"><pre><code class="language-ts" data-lang="ts"><span class="kr">interface</span> <span class="nx">Point</span> <span class="p">{</span>
+<figure class="highlight"><pre><code class="language-ts" data-lang="ts"><span class="kr">interface</span> <span class="nx">Point</span> <span class="p">{</span>
     <span class="nx">x</span>: <span class="kt">number</span><span class="p">;</span>
     <span class="nx">y</span>: <span class="kt">number</span><span class="p">;</span>
 <span class="p">}</span>
@@ -158,13 +158,13 @@ I see <a href="http://coffeescript.org">CoffeeScript</a> as the poster child of 
 <span class="kd">var</span> <span class="nx">bad_point</span>: <span class="kt">Point</span> <span class="o">=</span> <span class="p">{</span>
     <span class="nx">x</span>: <span class="kt">3</span>
 <span class="p">};</span>
-<span class="c1">// type error: missing property &#39;y&#39; from type Point</span></code></pre></div>
+<span class="c1">// type error: missing property &#39;y&#39; from type Point</span></code></pre></figure>
 
 <p>TypeScript also amplifies some of the functional flavor of JavaScript (albeit, less-so than CoffeeScript), mainly by adding the &#39;Fat Arrow&#39; <code>(arg) =&gt; { // use arg }</code> lambdas. For example:</p>
 
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="nx">myevent</span><span class="p">,</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="nx">myevent</span><span class="p">,</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
     <span class="c1">// Handle the event...</span>
-<span class="p">})</span></code></pre></div>
+<span class="p">})</span></code></pre></figure>
 
 <p>(<em>Note: the &#39;Fat Arrow&#39; is part of <a href="http://wiki.ecmascript.org/doku.php?id=harmony:arrow_function_syntax">ECMAScript 6 specification</a> and thus will eventually be supported by all JavaScript engines. <a href="http://robcee.net/2013/fat-arrow-functions-in-javascript/">Firefox</a> already supports it.</em>)</p>
 
@@ -177,10 +177,10 @@ I see <a href="http://coffeescript.org">CoffeeScript</a> as the poster child of 
 
 <p>I actually see LiveScript and CoffeeScript as a bit of a toss-up. If you&#39;re <em>really</em> into functional programming, you might prefer LiveScript. For example, one differentiating factor: LiveScript allows for <a href="http://en.wikipedia.org/wiki/Currying">function currying</a> (i.e., partial application of functions). Watch us define the <code>increment</code> function as adding one:</p>
 
-<div class="highlight"><pre><code class="language-livescript" data-lang="livescript"><span class="nv">add = </span><span class="nf">(x, y) --&gt;</span> <span class="nx">x</span> <span class="o">+</span> <span class="nx">y</span>
+<figure class="highlight"><pre><code class="language-livescript" data-lang="livescript"><span class="nv">add = </span><span class="nf">(x, y) --&gt;</span> <span class="nx">x</span> <span class="o">+</span> <span class="nx">y</span>
 <span class="nx">add</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">9</span>       <span class="c1">##=&gt; 20</span>
 <span class="nv">increment = </span><span class="nx">add</span> <span class="mi">1</span>
-<span class="nx">increment</span> <span class="mi">11</span>    <span class="c1">##=&gt; 12</span></code></pre></div>
+<span class="nx">increment</span> <span class="mi">11</span>    <span class="c1">##=&gt; 12</span></code></pre></figure>
 
 <p>In general, LiveScript has a strong functional lean. If that&#39;s for you, check it out.</p>
 
@@ -190,9 +190,9 @@ I see <a href="http://coffeescript.org">CoffeeScript</a> as the poster child of 
 
 <p>At its core, RedScript wants to be a Ruby-flavored JavaScript. This makes it very easy to extend our analogy! <strong>CoffeeScript : Python :: TypeScript : OCaml :: LiveScript : Haskell :: RedScript : Ruby</strong>. For example, here&#39;s some valid RedScript that strongly resembles Ruby:</p>
 
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mi">0</span><span class="o">.</span><span class="n">.</span><span class="mi">5</span>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mi">0</span><span class="o">.</span><span class="n">.</span><span class="mi">5</span>
   <span class="nb">puts</span> <span class="n">i</span>
-<span class="k">end</span></code></pre></div>
+<span class="k">end</span></code></pre></figure>
 
 <p>Actually, I lied: this not only &quot;strongly resembles&quot; Ruby—it <em>is</em> <a href="http://www.tutorialspoint.com/ruby/ruby_loops.htm">valid</a> Ruby.</p>
 

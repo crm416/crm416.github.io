@@ -71,12 +71,12 @@
 
 <p>OCaml makes it unbelievably easy to define new types. As a simple example, say we&#39;re making a phone book and we need to define a type for entries in said book. For each entry, we&#39;d want a <em>first name</em>, a <em>last name</em>, and a <em>phone number</em>. For demonstration&#39;s sake, lets say we also want an <em>age</em>. All of this would be pretty straightforward in OCaml:</p>
 
-<div class="highlight"><pre><code class="language-ocaml" data-lang="ocaml"><span class="k">type</span> <span class="n">first_name</span> <span class="o">=</span> <span class="kt">string</span>
+<figure class="highlight"><pre><code class="language-ocaml" data-lang="ocaml"><span class="k">type</span> <span class="n">first_name</span> <span class="o">=</span> <span class="kt">string</span>
 <span class="k">type</span> <span class="n">last_name</span> <span class="o">=</span> <span class="kt">string</span>
 <span class="k">type</span> <span class="n">full_name</span> <span class="o">=</span> <span class="n">first_name</span> <span class="o">*</span> <span class="n">last_name</span>
 <span class="k">type</span> <span class="n">age</span> <span class="o">=</span> <span class="kt">int</span>
 <span class="k">type</span> <span class="n">phone_number</span> <span class="o">=</span> <span class="kt">string</span>
-<span class="k">type</span> <span class="n">entry</span> <span class="o">=</span> <span class="n">full_name</span> <span class="o">*</span> <span class="n">age</span> <span class="o">*</span> <span class="n">phone_number</span></code></pre></div>
+<span class="k">type</span> <span class="n">entry</span> <span class="o">=</span> <span class="n">full_name</span> <span class="o">*</span> <span class="n">age</span> <span class="o">*</span> <span class="n">phone_number</span></code></pre></figure>
 
 <p>The &#39;*&#39; operator allows us to create tuples. So &#39;int * int&#39; indicates a tuple of two integers. Also note that we can use our types when defining types later on (e.g., &#39;full_name = first_name * last_name&#39;).</p>
 
@@ -84,10 +84,10 @@
 
 <p>As an example from one of my <a href="https://github.com/crm416/OCaml-SAT-Solvers" title="SAT Solvers">recent projects</a>, what about the construction of a module to solve <a href="http://en.wikipedia.org/wiki/Boolean_satisfiability_problem">SAT problems</a> using statements in <a href="http://en.wikipedia.org/wiki/Conjunctive_normal_form">conjunctive normal form</a>. In Java, you would need to create a class ‘clause’, which has a private class ‘literal’, which might have a private class ‘symbol’—oh, and then you’d need to create a class CNF which has, as one of its fields, an array of clauses. I can see this boiling down to roughly 30 lines of code just for outlining your type definitions. In OCaml, we can cover all of this ground with:</p>
 
-<div class="highlight"><pre><code class="language-ocaml" data-lang="ocaml"><span class="k">type</span> <span class="n">symbol</span> <span class="o">=</span> <span class="kt">string</span>
+<figure class="highlight"><pre><code class="language-ocaml" data-lang="ocaml"><span class="k">type</span> <span class="n">symbol</span> <span class="o">=</span> <span class="kt">string</span>
 <span class="k">type</span> <span class="n">literal</span> <span class="o">=</span> <span class="n">symbol</span> <span class="o">*</span> <span class="kt">bool</span>
 <span class="k">type</span> <span class="n">clause</span> <span class="o">=</span> <span class="n">literal</span> <span class="kt">list</span>
-<span class="k">type</span> <span class="n">cnf</span> <span class="o">=</span> <span class="n">clause</span> <span class="kt">list</span></code></pre></div>
+<span class="k">type</span> <span class="n">cnf</span> <span class="o">=</span> <span class="n">clause</span> <span class="kt">list</span></code></pre></figure>
 
 <p>Again: easy to follow.</p>
 
@@ -95,7 +95,7 @@
 
 <!--?prettify lang=ml?-->
 
-<div class="highlight"><pre><code class="language-ocaml" data-lang="ocaml"><span class="k">type</span> <span class="n">tree</span> <span class="o">=</span> <span class="nc">Leaf</span> <span class="o">|</span> <span class="nc">Node</span> <span class="k">of</span> <span class="kt">int</span> <span class="o">*</span> <span class="n">tree</span> <span class="o">*</span> <span class="n">tree</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-ocaml" data-lang="ocaml"><span class="k">type</span> <span class="n">tree</span> <span class="o">=</span> <span class="nc">Leaf</span> <span class="o">|</span> <span class="nc">Node</span> <span class="k">of</span> <span class="kt">int</span> <span class="o">*</span> <span class="n">tree</span> <span class="o">*</span> <span class="n">tree</span></code></pre></figure>
 
 <p>This is saying that a tree is either a leaf, or a node with some value and two subtrees. That is the entire definition. Again, brilliant.</p>
 
@@ -103,7 +103,7 @@
 
 <p>We can make our tree generic with:</p>
 
-<div class="highlight"><pre><code class="language-ocaml" data-lang="ocaml"><span class="k">type</span> <span class="k">&#39;</span><span class="n">a</span> <span class="n">tree</span> <span class="o">=</span> <span class="nc">Leaf</span> <span class="o">|</span> <span class="nc">Node</span> <span class="k">of</span> <span class="k">&#39;</span><span class="n">a</span> <span class="o">*</span> <span class="k">&#39;</span><span class="n">a</span> <span class="n">tree</span> <span class="o">*</span> <span class="k">&#39;</span><span class="n">a</span> <span class="n">tree</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-ocaml" data-lang="ocaml"><span class="k">type</span> <span class="k">&#39;</span><span class="n">a</span> <span class="n">tree</span> <span class="o">=</span> <span class="nc">Leaf</span> <span class="o">|</span> <span class="nc">Node</span> <span class="k">of</span> <span class="k">&#39;</span><span class="n">a</span> <span class="o">*</span> <span class="k">&#39;</span><span class="n">a</span> <span class="n">tree</span> <span class="o">*</span> <span class="k">&#39;</span><span class="n">a</span> <span class="n">tree</span></code></pre></figure>
 
 <p>Think about how much time would be spent in Java handling the Integer or Object wrapper classes—all of that is ignored with the ‘a semantic in OCaml, which lets you fill in the type later (the type checker will still detect type mismatches! E.g., if you attempt to add a char tree as a subtree of an int tree, you will get a compile-time error). </p>
 
@@ -121,12 +121,12 @@
 
 <p>An example that really instilled in me an appreciation for OCaml came when attempting to check whether two lists are of equal length. The function looks like this: </p>
 
-<div class="highlight"><pre><code class="language-ocaml" data-lang="ocaml"><span class="k">let</span> <span class="n">equal_length</span> <span class="n">l1</span> <span class="n">l2</span> <span class="o">:</span> <span class="kt">bool</span> <span class="o">=</span>
+<figure class="highlight"><pre><code class="language-ocaml" data-lang="ocaml"><span class="k">let</span> <span class="n">equal_length</span> <span class="n">l1</span> <span class="n">l2</span> <span class="o">:</span> <span class="kt">bool</span> <span class="o">=</span>
   <span class="k">match</span> <span class="o">(</span><span class="n">l1</span><span class="o">,</span> <span class="n">l2</span><span class="o">)</span> <span class="k">with</span>
     <span class="o">(</span><span class="bp">[]</span><span class="o">,</span> <span class="bp">[]</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="bp">true</span>
   <span class="o">|</span> <span class="o">(</span><span class="bp">[]</span><span class="o">,</span> <span class="o">_)</span> <span class="o">-&gt;</span> <span class="bp">false</span>
   <span class="o">|</span> <span class="o">(_,</span> <span class="bp">[]</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="bp">false</span>
-  <span class="o">|</span> <span class="o">(_::</span><span class="n">tl1</span><span class="o">,</span> <span class="o">_::</span><span class="n">tl2</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">equal_length</span> <span class="n">tl1</span> <span class="n">tl2</span></code></pre></div>
+  <span class="o">|</span> <span class="o">(_::</span><span class="n">tl1</span><span class="o">,</span> <span class="o">_::</span><span class="n">tl2</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">equal_length</span> <span class="n">tl1</span> <span class="n">tl2</span></code></pre></figure>
 
 <p>The semantics can be ignored, but the basic premise is that we continue to pull one item at a time off the two lists until they are either both empty (in which case the lengths must be equal) or one is empty and the other is not (in which case the lengths must not be equal).</p>
 
@@ -134,10 +134,10 @@
 
 <p>OCaml is constantly training you to think recursively, like with the above. I can’t recall a single instance in which I’ve used a for-loop; instead, OCaml provides you with an awesome framework for exercising induction—indeed, in most cases, you’ll recur on the naturally recursive data structures that OCaml provides you with. For example, consider summing a tree of integers using the Tree definition above.</p>
 
-<div class="highlight"><pre><code class="language-ocaml" data-lang="ocaml"><span class="k">let</span> <span class="n">sum</span> <span class="n">tree</span> <span class="o">=</span>
+<figure class="highlight"><pre><code class="language-ocaml" data-lang="ocaml"><span class="k">let</span> <span class="n">sum</span> <span class="n">tree</span> <span class="o">=</span>
   <span class="k">match</span> <span class="n">tree</span> <span class="k">with</span>
     <span class="nc">Leaf</span> <span class="o">-&gt;</span> <span class="mi">0</span>
-  <span class="o">|</span> <span class="o">(</span><span class="k">value</span><span class="o">,</span> <span class="n">left</span><span class="o">,</span> <span class="n">right</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="k">value</span> <span class="o">+</span> <span class="n">sum</span> <span class="n">left</span> <span class="o">+</span> <span class="n">sum</span> <span class="n">right</span></code></pre></div>
+  <span class="o">|</span> <span class="o">(</span><span class="k">value</span><span class="o">,</span> <span class="n">left</span><span class="o">,</span> <span class="n">right</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="k">value</span> <span class="o">+</span> <span class="n">sum</span> <span class="n">left</span> <span class="o">+</span> <span class="n">sum</span> <span class="n">right</span></code></pre></figure>
 
 <p>Here, we’re taking the sum of a node and adding it to the sum of all nodes in each of the node’s two subtrees. Recursion is awesome.</p>
 

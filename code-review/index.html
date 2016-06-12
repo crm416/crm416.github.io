@@ -73,13 +73,13 @@
 
 <p>When reviewing in Phabricator, my comments tend towards smaller issues, be they style nits or more serious edits that nonetheless span just a handful of lines.</p>
 
-<p>Since the visible code is confined to the changed lines, it can be challenging to see the big picture; as such, the tenor of the review is often that of &#39;Thumbs up on the general structure, but we should iron out these wrinkles&#39;.</p>
+<p>Since the visible code is confined to the changed lines, it can be challenging to see the big picture; the tenor of the review is often that of &#39;Thumbs up on the general structure, but we should iron out these wrinkles&#39;.</p>
 
 <p>Yet, as a result of this focused presentation, simple oversights (leftover <code>console.log</code> statements et al.) are made much more obvious in the review tool than in an IDE, since they&#39;re surrounded by just a handful of changed lines and/or highlighted, rather than camouflaged within monotonous files.</p>
 
 <p><h3  id='Reviewing-in-an-IDE'>Reviewing in an IDE<a class='anchor-wrap' href="#Reviewing-in-an-IDE" title="Permalink to this headline">¶</a></h3 ></p>
 
-<p>When reviewing in Android Studio (my IDE of &#39;choice&#39; these days), I find it easier to identify opportunities for higher-level refactors and broader structural changes, since I can see the changed files in full, navigate with ease, and, more generally, rely on the same instincts I use when <em>writing</em> code.</p>
+<p>When reviewing in Android Studio or even Sublime, I find it easier to identify opportunities for higher-level refactors and broader structural changes, since I can see the changed files in full, navigate with ease, and, more generally, rely on the same instincts I use when <em>writing</em> code.</p>
 
 <p>In the familiar interface of the IDE, I&#39;m able to put myself in the <em>author&#39;s</em> shoes by moving things around, seeing how they fit together, and so forth. Better yet, I can actually try out my suggestions before presenting them to the author. This leads to fewer &#39;Maybe we could...&#39;-style caveats.</p>
 
@@ -89,7 +89,7 @@
 
 <p>Of course, these are generalizations, and as I&#39;ve grown, the lines have blurred. (In particular, my ability to make high-level observations on the basis of a Phrabicator-read alone has improved—a progression that&#39;s also been influenced by increased familiarity with the codebase.)</p>
 
-<p>Nonetheless, reading code from these two perspectives together has helped me deliver more wholistic reviews, as both sets of comments are useful in their own ways.</p>
+<p>Nevertheless, reading code from these two perspectives together has helped me deliver more wholistic reviews, as both sets of comments are useful in their own ways.</p>
 
 <p>My (loose) rule for the past few weeks has thus been to read through any non-trivial changes in both environments. This cuts both ways in that:</p>
 

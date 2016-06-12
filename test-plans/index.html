@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <meta name="description" content="A focus on reproducibility tends to result in the most high-value test plans.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Writing a Reproducible Test Plan | Charlie Marsh</title>
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans" />
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Source+Code+Pro" />
+  <link href="/static/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+  <link href="/static/css/stackicons-min.css" rel="stylesheet" type="text/css" />
+  <link href="/static/css/styles.css" rel="stylesheet" type="text/css" />
+  <link href="/static/css/styles-mobile.css" rel="stylesheet" type="text/css" media="(max-width: 767px)" />
+  <link href="/static/css/syntax.css" rel="stylesheet" type="text/css" />
+  <link href="https://plus.google.com/u/0/100601164815113053596/" rel='author'>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-36552582-3', 'auto');
+    ga('send', 'pageview');
+  </script>
+</head>
+
+
+  <body class="index">
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 hidden-xs">
+          <div class="row">
+            <div class="col-sm-offset-1 col-sm-11">
+              <div style="position:fixed">
+                <h1 style="font-size:50px">
+  <a class="blank" href="/">
+    Charlie<br>Marsh
+  </a>
+</h1>
+<p>
+  <a class="implicit" href="/">Home</a> &sdot; <a class="implicit" href="/static/pdf/Charles_Marsh_CV.pdf">CV</a>&sdot; <a class="implicit" href="/about/">About</a>
+</p>
+<h2>
+  Software<br>engineer.
+</h2>
+<p>I work on the mobile<br>team at <b>Khan Academy</b>.<br><br>Mostly <b>Android</b>, with a<br>little bit of <b>JavaScript</b>.<br><p>
+<nav class="st-shape-r4 st-multi-color" style="font-size: 15px; margin-right: -5em; margin-top: 20px">
+  <a target="_blank" title="Email" style="border-bottom:none" class="st-icon-email2" href="mailto:charlie@khanacademy.org"><span></span>Email</a>
+  <a target="_blank" title="GitHub" style="border-bottom:none" class="st-icon-github-alt" href="http://www.github.com/crm416"><span></span>GitHub</a>
+  <a target="_blank" title="Stack Overflow" style="border-bottom:none" class="st-icon-stackoverflow" href="http://stackoverflow.com/users/1450892/charles-marsh"><span></span>Stack Overflow</a>
+  <a target="_blank" title="Twitter" style="border-bottom:none" class="st-icon-twitter" href="https://www.twitter.com/crm416">Twitter</a>
+</nav>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-9">
+          <h1>Writing a Reproducible Test Plan</h1>
+
+<p>In my <a href="http://www.crmarsh.com/code-review">last post</a>, I wrote about improving as a code reviewer. In this post, I&#39;ll focus on a skill that, like code reviewing, is: (1) an important part of Real Engineering™, and (2) almost completely foreign to engineers coming straight out of school.</p>
+
+<p>That is: <strong>writing a good test plan</strong>.</p>
+
+<p>If your team uses Phabricator, then every diff should prompt you to include a <a href="https://secure.phabricator.com/book/phabricator/article/differential_test_plans/">test plan</a>, which Phab defines as: &quot;a repeatable list of steps which document what you have done to verify the behavior of a change.&quot;</p>
+
+<p>To me, the operative term is <strong>repeatable</strong> (though I prefer the term &quot;reproducible&quot;, since the goal isn&#39;t to have it be repeated necessarily, but rather, to construct it in a way such that it <em>could</em> be repeated). I don&#39;t want focus here on how to test thoroughly (which is an interesting topic in itself, but too ambitious to cover in a single post); rather, I want to focus on how to write a test plan that is <em>reproducible</em>, both by you, your reviewers, and any team members who may be unfamiliar with the code, be it today or far in the futureure (which is, coincidentally, our own bar at Khan Academy).</p>
+
+<p>But first—why bother?</p>
+
+<p><h2  id='Why-Reproducibility'>Why Reproducibility?<a class='anchor-wrap' href="#Why-Reproducibility" title="Permalink to this headline">¶</a></h2 ></p>
+
+<p>There are some obvious and non-obvious motivations for focusing on reproducibility in your test plan. The obvious, of course, is that a reproducible test plan allows your reviewers, along with any future readers, to... reproduce the plan (i.e., if they&#39;d like to verify correctness, whether in the context of a code review or a refactor).</p>
+
+<p>But there are also some less-obvious externalities that come with a focus on reproducibility. Namely, that:</p>
+
+<ol>
+<li>A focus on reproducibility will force you to <em>actually</em> run through the plan. If you&#39;re expected to include specific details (e.g., the specific URL of the specific page on which you tested your change), then you need to go collect them, which is best done by running through the plan. <strong>A focus on reproducibility can thus serve as a mechanism for keeping yourself honest in your own testing.</strong></li>
+<li>A focus on reproducibility will better reveal <em>how</em> you tested your change. Reproducible plans tend to be detailed plans—writing &quot;Make sure that it works&quot; is neither reproducible nor detailed. If your reviewers or future readers are wondering about behavior on a particular edge case, but it&#39;s covered in your reproducible test plan, that&#39;s a good sign. Similarly, if it&#39;s <em>not</em> covered, then by virtue of its exclusion within an otherwise detailed and reproducible plan, they&#39;ll know to poke around.</li>
+</ol>
+
+<p><h2  id='Towards-Reproducibility'>Towards Reproducibility<a class='anchor-wrap' href="#Towards-Reproducibility" title="Permalink to this headline">¶</a></h2 ></p>
+
+<p>So, how do we get there?</p>
+
+<p>Listing every step you take, in excruciating detail, is insufficient. The key is to provide detail where necessary and in the right quantity. Cutting corners is a good and necessary step; but you should strive to cut the right ones.</p>
+
+<p>Here are some of the guidelines I try to keep in mind when writing my own test plans.</p>
+
+<p><h3  id='Make-it-copypasteable'>Make it copy-pasteable<a class='anchor-wrap' href="#Make-it-copypasteable" title="Permalink to this headline">¶</a></h3 ></p>
+
+<p>In composing my own test plans, I tend to draw the line at <em>how</em> to do things, rather at <em>what</em> to do—outlining the processes, along with the intended actions.</p>
+
+<p>For example:</p>
+
+<ul>
+<li>&quot;Build the Perseus framework into Webapp&quot; is a description of what I want to do, but it does&#39;t tell the reviewer how to do it. And assuming that an engineer stumbling upon the diff knows how to do that may be an unsafe assumption. So, I typically annotate steps like that with the appropriate command, e.g.: &quot;Build Perseus into Webapp (run <code>make subperseus</code> from the Perseus repo)&quot;.</li>
+<li>&quot;Navigate to an exercise page&quot; is a description of what to do, but, again, doesn&#39;t tell the reviewer how to do it. Sure, the reader could figure it out eventually. But it becomes a one-click process when you modify the line to &quot;Navigate to an exercise page (e.g., <code>localhost:8080/...</code>)&quot;. This also removes any ambiguity as to <em>which</em> exercise page you tested.</li>
+<li>In the event that the code needs to be modified in some way so as to comprehensively test its behavior (e.g., by introducing additional logging that shouldn&#39;t make it to production, or replicating an error state with a <code>throw</code>), clarity is again key. Writing &quot;Modify the code to throw an error&quot; leaves it to the reviewer to figure out where and how the modifications should be made, while including a specific command to put at a specific line number in a specific file makes it effortless. Better yet, I&#39;ve had engineers at Khan Academy include Git patches in their test plans.</li>
+</ul>
+
+<p>The irony is that, unlike programming, reproducing a test plan should involve as much copy-pasting as possible. Your goal, as the author, is to remove the onus of &quot;how&quot; from the reviewer&#39;s shoulders.</p>
+
+<p><h3  id='Minimize-context-requirements'>Minimize context requirements<a class='anchor-wrap' href="#Minimize-context-requirements" title="Permalink to this headline">¶</a></h3 ></p>
+
+<p>Part of writing a reproducible test plan is making it clear what&#39;s actually being tested, and what the desired changes should be vis-à-vis the previous state of the codebase.</p>
+
+<p>This may sound obvious, but, for example, if you&#39;re fixing a bug, then of course your test plan by default won&#39;t include the bug occurring—since your goal was to fix it.</p>
+
+<p>A reader stumbling upon your test plan should be able to grok what&#39;s being tested. A few ways to make that easier:</p>
+
+<ul>
+<li>Document the previous, fixed behavior in the test plan. For example, along with &quot;Click the button; verify that the modal appears at the top&quot;, you could include: &quot;(previously, the modal would appear at the bottom)&quot;.</li>
+<li>For UI-focused changes, include screenshots or even screencaps. (I use <a href="http://www.cockos.com/licecap/">LICEcap</a> to quickly record GIFs.) As both an author and a reviewer, I find this to be a <em>tremendously</em> valuable practice. A picture speaks a thousand words, etc., etc.</li>
+<li>Though these may be better placed in the revision summary itself, including links to relevant Asana tasks or Fabric issues is also a great practice, as it creates a trail of breadcrumbs for any future Git archaeologist.</li>
+</ul>
+
+<p><h3  id='Leave-it-in-a-good-state'>Leave it in a good state<a class='anchor-wrap' href="#Leave-it-in-a-good-state" title="Permalink to this headline">¶</a></h3 ></p>
+
+<p>Your final test plan should reflect the final state of the diff.</p>
+
+<p>The nature of a reproducible test plan is such that it requires detail. And the nature of a good code review is such that details can change.</p>
+
+<p>Of course, if functionality changes across the lifecycle of the code review, then the test plan should be updated to match the new behavior. But more subtly, as files change, any line numbers or filenames referenced in the test plan should be kept up-to-date as well. Shipping a stale test plan will devalue it in the eyes of any future readers and introduce doubt into the integrity of the changes.</p>
+
+<p><h2  id='The-Reproducibility-Mindset'>The Reproducibility Mindset<a class='anchor-wrap' href="#The-Reproducibility-Mindset" title="Permalink to this headline">¶</a></h2 ></p>
+
+<p>Writing a reproducible plan requires empathy. Your natural tendency, especially when working in the same codebase for an extended period of time, is to assume that others will have the context and capabilities that you have at present. Of course, this is a faulty assumption—even you might struggle to reproduce your own test plans months down the road.</p>
+
+<p><strong>It&#39;s telling that I often find myself writing my best, most reproducible test plans when I&#39;m in a part of the codebase that is relatively unfamiliar to me.</strong> Since I&#39;m newly discovering the relevant testing mechanisms, code paths, and behaviors for the first time, my inclination is to include all of the information that I <em>didn&#39;t</em> have coming into the change. The odds are good that future readers may similarly lack context.</p>
+
+<p>As with so much else in software engineering, empathy is key. When you put yourself in the shoes of a newcomer to the codebase and empathize with your future readers, the test plan will flow.</p>
+
+          <p class="date">Posted on June 12, 2016.</p>
+          <div class="hidden-xs">
+  <hr />
+  <center style="padding-bottom: 10px">
+    &copy; 2016 Charles Marsh
+    <nav style="display: inline" class="nav-social st-shape-r4">
+      <a target="_blank" title="RSS" style="border-bottom:none; margin-top: -14px" class="st-icon-rss" href="/feed.xml">RSS</a>
+    </nav>
+  </center>
+</div>
+<div class="visible-xs" style="height:10px"></div>
+          <div class="read-more visible-xs" style="text-align:center; margin-top:0; margin-bottom:25px"><a href="/">Home</a></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
