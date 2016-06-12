@@ -2,7 +2,7 @@
 layout: post
 title:  "First Thoughts on OCaml"
 date:   2012-10-31
-permalink: intro_to_ocaml/
+permalink: intro-to-ocaml/
 ---
 
 # First Thoughts on OCaml

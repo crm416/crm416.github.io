@@ -15,9 +15,9 @@
   </item>
   <item>
     <title>What's Your Favorite Flavor (of JavaScript)?</title>
-    <link>http://www.crmarsh.com/compiling_to_js/</link>
+    <link>http://www.crmarsh.com/compiling-to-js/</link>
     <description>These days, it seems like all the hot languages compile to JavaScript. But each of these variants were conceived by different creators with different goals in mind. Which one is right for you?</description>
-    <guid>http://www.crmarsh.com/compiling_to_js/</guid>
+    <guid>http://www.crmarsh.com/compiling-to-js/</guid>
   </item>
   <item>
     <title>The Idiot-Proof Guide to Setting Up Your Personal EC2 Instance</title>
@@ -27,33 +27,33 @@
   </item>
   <item>
     <title>Binomial Heaps: Merge Better</title>
-    <link>http://www.crmarsh.com/binomial_heaps/</link>
+    <link>http://www.crmarsh.com/binomial-heaps/</link>
     <description>The other day, I was introduced to a really cool data structure: the binomial heap. You might be familiar with binary heaps, which use a binary tree to keep items in heap order; but binomial heaps are a little more obscure and, in some cases, more powerful.</description>
-    <guid>http://www.crmarsh.com/binomial_heaps/</guid>
+    <guid>http://www.crmarsh.com/binomial-heaps/</guid>
   </item>
   <item>
     <title>Setting Up Your OCaml Development Environment on OS X</title>
-    <link>http://www.crmarsh.com/ocaml_dev_environment/</link>
+    <link>http://www.crmarsh.com/ocaml-dev-environment/</link>
     <description>OCaml isn’t that widely used and, as a result, there aren’t very many good guides out there for setting up an OCaml development environment. In this post, I’ll provide a couple of choices for setting up such an environment when developing on a Mac with in-depth instructions.</description>
-    <guid>http://www.crmarsh.com/ocaml_dev_environment/</guid>
+    <guid>http://www.crmarsh.com/ocaml-dev-environment/</guid>
   </item>
   <item>
     <title>Kernighan: Programming Languages and the Solutions They Suggest</title>
-    <link>http://www.crmarsh.com/programming_languages/</link>
+    <link>http://www.crmarsh.com/programming-languages/</link>
     <description>I’m in Brian Kernighan’s Advanced Programming Techniques class at Princeton (COS 333). He’s a brilliant guy with an absurdly rich history in the field of programming. Here, I share some of his comments.</description>
-    <guid>http://www.crmarsh.com/programming_languages/</guid>
+    <guid>http://www.crmarsh.com/programming-languages/</guid>
   </item>
   <item>
     <title>First Thoughts on OCaml</title>
-    <link>http://www.crmarsh.com/intro_to_ocaml/</link>
+    <link>http://www.crmarsh.com/intro-to-ocaml/</link>
     <description>I’ve been learning to program in OCaml for one of my courses this semester (COS 326: Functional Programming) and I can't remember the last time I was this excited about anything CS-related.</description>
-    <guid>http://www.crmarsh.com/intro_to_ocaml/</guid>
+    <guid>http://www.crmarsh.com/intro-to-ocaml/</guid>
   </item>
   <item>
     <title>Rule Optimization in Software-Defined Networks</title>
-    <link>http://www.crmarsh.com/intro_to_sdn/</link>
+    <link>http://www.crmarsh.com/intro-to-sdn/</link>
     <description>Software-Defined Networking (SDN) is a hot new approach to networks. Here, I discuss some of the distinctive characteristics and challenges associated with SDNs.</description>
-    <guid>http://www.crmarsh.com/intro_to_sdn/</guid>
+    <guid>http://www.crmarsh.com/intro-to-sdn/</guid>
   </item>
   <item>
     <title>Streams and Lazy Computation</title>
@@ -63,9 +63,9 @@
   </item>
   <item>
     <title>True Parallelism in OCaml</title>
-    <link>http://www.crmarsh.com/ocaml_parallelism/</link>
+    <link>http://www.crmarsh.com/ocaml-parallelism/</link>
     <description>OCaml provides a nice library for multi-threading; however, under the hood, OCaml doesn't actually employ any parallelism at all! In this post, I outline an alternative model for parallel computation that utilizes separate UNIX processes.</description>
-    <guid>http://www.crmarsh.com/ocaml_parallelism/</guid>
+    <guid>http://www.crmarsh.com/ocaml-parallelism/</guid>
   </item>
   <item>
     <title>A Human-Friendly API for Wikipedia</title>
@@ -81,33 +81,33 @@
   </item>
   <item>
     <title>Prefix-Based vs. Ternary Predicate Matching</title>
-    <link>http://www.crmarsh.com/prefix_vs_ternary/</link>
+    <link>http://www.crmarsh.com/prefix-vs-ternary/</link>
     <description>In network switches, rules can be defined using various wildcard formats. I’ve been focusing on two specific and closely related variants. In this post, I'll outline two algorithms for compressing rules tables with these predicate formats.</description>
-    <guid>http://www.crmarsh.com/prefix_vs_ternary/</guid>
+    <guid>http://www.crmarsh.com/prefix-vs-ternary/</guid>
   </item>
   <item>
     <title>A Dynamic Graphing Interface for iOS</title>
-    <link>http://www.crmarsh.com/ios_graphing/</link>
+    <link>http://www.crmarsh.com/ios-graphing/</link>
     <description>In this post, I describe a small iOS interface I developed (just for kicks) that handles dynamic graphing.</description>
-    <guid>http://www.crmarsh.com/ios_graphing/</guid>
+    <guid>http://www.crmarsh.com/ios-graphing/</guid>
   </item>
   <item>
     <title>iOS Performance: Shadows with Bezier Paths</title>
-    <link>http://www.crmarsh.com/ios_performance/</link>
+    <link>http://www.crmarsh.com/ios-performance/</link>
     <description>iOS performance optimizations are often subtle but logical. Here, I discuss a specific fix I implemented for drawing shadow paths.</description>
-    <guid>http://www.crmarsh.com/ios_performance/</guid>
+    <guid>http://www.crmarsh.com/ios-performance/</guid>
   </item>
   <item>
     <title>Statistics in Basketball: What's a "Good" Player?</title>
-    <link>http://www.crmarsh.com/statistics_in_basketball/</link>
+    <link>http://www.crmarsh.com/statistics-in-basketball/</link>
     <description>Bill Simmons' The Book of Basketball got me thinking: what would we want the ultimate player metric to capture?</description>
-    <guid>http://www.crmarsh.com/statistics_in_basketball/</guid>
+    <guid>http://www.crmarsh.com/statistics-in-basketball/</guid>
   </item>
   <item>
     <title>A Guide to CS Independent Work at Princeton</title>
-    <link>http://www.crmarsh.com/independent_work/</link>
+    <link>http://www.crmarsh.com/independent-work/</link>
     <description>Learn the tips and tricks to suceed in your undergraduate Independent Work.</description>
-    <guid>http://www.crmarsh.com/independent_work/</guid>
+    <guid>http://www.crmarsh.com/independent-work/</guid>
   </item>
   <item>
     <title>Lessons Learned Learning Android in a Production Setting</title>

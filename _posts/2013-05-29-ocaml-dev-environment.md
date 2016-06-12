@@ -2,7 +2,7 @@
 layout: post
 title:  "Setting up Your OCaml Development Environment on OS X"
 date:   2013-05-29
-permalink: ocaml_dev_environment/
+permalink: ocaml-dev-environment/
 ---
 
 # Setting up Your OCaml Development Environment on OS X

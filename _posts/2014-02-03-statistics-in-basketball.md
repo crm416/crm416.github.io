@@ -2,7 +2,7 @@
 layout: post
 title:  "Statistics in Basketball: What's a \"Good\" Player?"
 date:   2014-02-03
-permalink: statistics_in_basketball/
+permalink: statistics-in-basketball/
 ---
 
 # Statistics in Basketball: What's a "Good" Player?

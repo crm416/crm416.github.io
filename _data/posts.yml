@@ -46,7 +46,7 @@
       url: https://www.toptal.com/python/why-are-there-so-many-pythons
 
     - name: "Compiling to JavaScript: A Case-by-Case Guide to the *Scripts"
-      url: /compiling_to_js/
+      url: /compiling-to-js/
 
     - name: "PhantomJS: Common Gotchas for Beginners"
       url: /phantomjs/
@@ -55,30 +55,30 @@
       url: /aws/
 
     - name: An Introduction to Rule Optimization in Software Defined Networking
-      url: /intro_to_sdn/
+      url: /intro-to-sdn/
 
     - name: Prefix vs. Ternary Rules in SDN
-      url: /prefix_vs_ternary/
+      url: /prefix-vs-ternary/
 
     - name: Setting up an OCaml Development Environment on Mac OS X
-      url: /ocaml_dev_environment/
+      url: /ocaml-dev-environment/
 
     - name: Programming Languages and the Solutions they Suggest
-      url: /programming_languages/
+      url: /programming-languages/
 
 - year: 2012
   posts:
     - name: First Thoughts on OCaml
-      url: /intro_to_ocaml/
+      url: /intro-to-ocaml/
 
     - name: A Primer on Streams and Lazy Computation
       url: /streams/
 
     - name: "Binomial Heaps: Merge Better"
-      url: /binomial_heaps/
+      url: /binomial-heaps/
 
     - name: Performance Improvements in iOS
-      url: /ios_performance/
+      url: /ios-performance/
 
     - name: NP != NOT P
-      url: /np_vs_not_p/
+      url: /np-vs-not-p/

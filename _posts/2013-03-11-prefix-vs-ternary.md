@@ -2,7 +2,7 @@
 layout: post
 title:  "Prefix-Based vs. Ternary Predicate Matching"
 date:   2013-03-11
-permalink: prefix_vs_ternary/
+permalink: prefix-vs-ternary/
 ---
 
 # Prefix-Based vs. Ternary Predicate Matching
