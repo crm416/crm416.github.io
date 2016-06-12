@@ -22,13 +22,13 @@ In particular: reading code in a code review tool (we use <a href="http://phabri
 
 When reviewing in Phabricator, my comments tend towards smaller issues, be they style nits or more serious edits that nonetheless span just a handful of lines.
 
-Since the visible code is confined to the changed lines, it can be challenging to see the big picture; as such, the tenor of the review is often that of 'Thumbs up on the general structure, but we should iron out these wrinkles'.
+Since the visible code is confined to the changed lines, it can be challenging to see the big picture; the tenor of the review is often that of 'Thumbs up on the general structure, but we should iron out these wrinkles'.
 
 Yet, as a result of this focused presentation, simple oversights (leftover `console.log` statements et al.) are made much more obvious in the review tool than in an IDE, since they're surrounded by just a handful of changed lines and/or highlighted, rather than camouflaged within monotonous files.
 
 {% anchor h3 %}Reviewing in an IDE{% endanchor %}
 
-When reviewing in Android Studio (my IDE of 'choice' these days), I find it easier to identify opportunities for higher-level refactors and broader structural changes, since I can see the changed files in full, navigate with ease, and, more generally, rely on the same instincts I use when _writing_ code.
+When reviewing in Android Studio or even Sublime, I find it easier to identify opportunities for higher-level refactors and broader structural changes, since I can see the changed files in full, navigate with ease, and, more generally, rely on the same instincts I use when _writing_ code.
 
 In the familiar interface of the IDE, I'm able to put myself in the _author's_ shoes by moving things around, seeing how they fit together, and so forth. Better yet, I can actually try out my suggestions before presenting them to the author. This leads to fewer 'Maybe we could...'-style caveats.
 
@@ -38,7 +38,7 @@ As an added bonus: an IDE can point out changes that your eyes would be strained
 
 Of course, these are generalizations, and as I've grown, the lines have blurred. (In particular, my ability to make high-level observations on the basis of a Phrabicator-read alone has improved—a progression that's also been influenced by increased familiarity with the codebase.)
 
-Nonetheless, reading code from these two perspectives together has helped me deliver more wholistic reviews, as both sets of comments are useful in their own ways.
+Nevertheless, reading code from these two perspectives together has helped me deliver more wholistic reviews, as both sets of comments are useful in their own ways.
 
 My (loose) rule for the past few weeks has thus been to read through any non-trivial changes in both environments. This cuts both ways in that:
 

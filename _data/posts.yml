@@ -1,5 +1,7 @@
 - year: 2016
   posts:
+    - name: Writing a Reproducible Test Plan
+      url: /test-plans/
     - name: Reviewing Code from Both Sides
       url: /code-review/
 - year: 2015
