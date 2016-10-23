@@ -1,3 +1,7 @@
+- name: Towards a Better Understanding of Noun Compound Interpretability
+  description: In this paper, we explore the question of "What makes a noun compound interpretable?", taking a computational linguistic approach. Submitted to the Princeton Computer Science department as a senior thesis, advised by Prof. Christiane Fellbaum.
+  url: /static/pdf/Charles_Marsh_Noun_Compound_Interpretability.pdf
+
 - name: An Overview of Boosting Techniques in the Online Learning Setting
   description: Boosting in the batch setting is a well-known machine learning technique with strong theoretical foundations and extensive use in practice. In this paper, we study the role of online boosting, in which we must ensemble online weak learners into a single online strong learner.
   url: /static/pdf/Charles_Marsh_Online_Boosting.pdf
