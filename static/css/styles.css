@@ -2,7 +2,7 @@
 /* Major elements */
 body {
   font-family: 'Open Sans',sans-serif;
-  color: #3c3c3c;
+  color: rgba(0, 0, 0, 0.8) !important;
   font-size: 100%; }
 
 blockquote p {
@@ -27,8 +27,10 @@ blockquote:before {
 h1, h2, h3, h4, p {
   font-family: 'Open Sans',sans-serif;
   line-height: 1.2em;
-  font-weight: 100;
   margin-top: 1em; }
+
+h1, h2, h3, h4 {
+  font-weight: bold; }
 
 li {
   font-weight: 100; }
@@ -42,7 +44,7 @@ p {
 
 h1 {
   font-size: 50px;
-  color: black; }
+  font-weight: bold; }
 
 h2 {
   font-size: 28px; }
@@ -87,7 +89,12 @@ a.anchor-wrap {
 
 /* Code snippets */
 pre, code, kbd, samp, .match-list {
-  font-family: 'Source Code Pro', sans-serif;
+  font-family: 'Source Code Pro', sans-serif; }
+
+code {
+  background-color: transparent; }
+
+pre, kbd, samp, .match-list {
   border-radius: 3px;
   background-color: #F8F8F8;
   border: 1px solid #CCC; }
@@ -124,7 +131,7 @@ code {
   color: #fd9721 !important; }
 
 .match-list {
-  padding: 0 3px 0 3px; }
+  padding: 5px 12px; }
 
 .match-list li {
   font-size: 16px;
