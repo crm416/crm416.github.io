@@ -4,8 +4,9 @@
   "description": "Personal blog of Charlie Marsh, deployed @ [crmarsh.com](http://www.crmarsh.com).",
   "main": "index.js",
   "scripts": {
-    "build": "rm -rf _site/ && jekyll build",
+    "build": "rm -rf _site/ && bundle exec jekyll build",
     "deploy": "gh-pages -b master -d _site",
+    "serve": "bundle exec jekyll serve",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

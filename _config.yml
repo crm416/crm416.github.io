@@ -8,6 +8,8 @@ author:
   name: 'Charlie Marsh'
   email: 'charlie@khanacademy.org'
 exclude:
+  - Gemfile
+  - Gemfile.lock
   - node_modules
   - package.json
   - README.md
