@@ -1,0 +1,24 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "description": "Personal blog of Charlie Marsh, deployed @ [crmarsh.com](http://www.crmarsh.com).",
+  "main": "index.js",
+  "scripts": {
+    "build": "jekyll build",
+    "deploy": "gh-pages -b master -d _site",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/crm416/blog.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/crm416/blog/issues"
+  },
+  "homepage": "https://github.com/crm416/blog#readme",
+  "dependencies": {
+    "gh-pages": "^1.0.0"
+  }
+}
