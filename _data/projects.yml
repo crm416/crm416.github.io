@@ -48,7 +48,7 @@
 
 - name: type blog
   description: This blog, and everything I've used to create it, from its origins with Syndicate to its current development with Jekyll.
-  url: https://github.com/crm416/blog
+  url: https://github.com/crm416/crm416.github.io/tree/main
 
 - name: OCaml Threads
   description: A threading module for mimicking parallelism in OCaml by marshalling data across multiple Unix processes. Includes some simple examples and benchmarks.
