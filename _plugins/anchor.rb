@@ -15,8 +15,10 @@ module Jekyll
       safeContent = content.rstrip.gsub(/[^\w\s]/,'').gsub(/[\s]/,'-')
 
       output = "<#{@tag} id='#{safeContent}'>"
+      output += "<a class='implicit' href=\"##{safeContent}\" title=\"Permalink to this headline\">"
       output += content.strip
-      output += "<a class='anchor-wrap' href=\"##{safeContent}\" title=\"Permalink to this headline\">¶</a></#{@tag}>"
+      output += "</a>"
+      output += "</#{@tag}>"
 
       output
     end

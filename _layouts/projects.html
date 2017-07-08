@@ -1,22 +1,11 @@
 <!DOCTYPE html>
-  {% include header.html %}
+  {% include head.html %}
 
   <body class="index">
     <div class="container-fluid">
       <div class="row">
-        <div class="col-sm-3 hidden-xs">
-          <div class="row">
-            <div class="col-sm-offset-1 col-sm-11">
-              <div style="position:fixed">
-                {% include sidebar.html %}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-sm-9">
-
-          <h1 id="projects">Projects <a class='anchor-wrap' href="#projects" title="Permalink to this headline">¶</a></h1>
+        <div class="col-sm-10 col-sm-offset-1 col-xs-12">
+          <h1 id="projects"><a class='implicit' href="#projects" title="Permalink to this headline">Projects</a></h1>
           <section>
             <div>
               {% for project in site.data.projects %}
@@ -26,7 +15,7 @@
             </div>
           </section>
 
-          <h1 class="category" id="papers">Papers <a class='anchor-wrap' href="#papers" title="Permalink to this headline">¶</a></h1>
+          <h1 class="category" id="papers"><a class='implicit' href="#papers" title="Permalink to this headline">Papers</a></h1>
           <section>
             <div>
               {% for paper in site.data.papers %}
@@ -36,7 +25,7 @@
             </div>
           </section>
 
-          <h1 class="category" id="posts">Posts <a class='anchor-wrap' href="#posts" title="Permalink to this headline">¶</a></h1>
+          <h1 class="category" id="posts"><a class='implicit' href="#posts" title="Permalink to this headline">Posts</a></h1>
           {% for collection in site.data.posts %}
           <div>{{  collection.year  }}:
           <ul class="posts-list">
@@ -47,7 +36,7 @@
           </div>
           {% endfor %}
 
-          <h2 class="category" id="non-programming">Non-Programming<a class='anchor-wrap' href="#non-programming" title="Permalink to this headline">¶</a></h2>
+          <h2 class="category" id="non-programming"><a class='implicit' href="#non-programming" title="Permalink to this headline">Non-Programming</a></h2>
           <ul class="posts-list">
             {% for post in site.data.non_programming %}
             <li><a target="_blank" href="{{ post.url }}">{{ post.name }}</a> [{{ post.year }}]</li>

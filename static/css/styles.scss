@@ -109,21 +109,6 @@ a {
     }
 }
 
-a.anchor-wrap {
-    color: white !important;
-    font-size: 1em;
-    margin-left: 6px;
-    padding: 0 4px 0 4px;
-    text-decoration: none !important;
-    border-bottom: none;
-
-    &:hover {
-        background-color: #ccc;
-        color: white !important;
-        border-bottom: none;
-    }
-}
-
 /* Code snippets */
 
 pre, code, kbd, samp, .match-list {

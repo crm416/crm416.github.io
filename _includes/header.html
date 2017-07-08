@@ -1,22 +1,26 @@
-<head>
-  <meta charset="utf-8">
-  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
-  <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.author.name }} is a full-stack software engineer at Khan Academy.{% endif %}">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{ page.title }} | {{ site.author.name }}</title>
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,600" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:300" rel="stylesheet">
-  <link href="/static/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-  <link href="/static/css/styles.css" rel="stylesheet" type="text/css" />
-  <link href="/static/css/styles-mobile.css" rel="stylesheet" type="text/css" media="(max-width: 767px)" />
-  <link href="/static/css/syntax.css" rel="stylesheet" type="text/css" />
-  <link href="https://plus.google.com/u/0/100601164815113053596/" rel='author'>
-  <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-    ga('create', 'UA-36552582-3', 'auto');
-    ga('send', 'pageview');
-  </script>
-</head>
+<div class="row">
+  <div class="col-sm-12 hidden-xs">
+    <center>
+      <h1
+        style="font-size:80px; margin-top: 0.5em;margin-bottom:0"
+      >
+        <a class="implicit" href="/">
+          {{ site.author.name }}
+        </a>
+      </h1>
+      <div style="margin-bottom: 12px">
+        <code style="font-size:18px">
+          <span class="code-red">type</span> <a class="implicit" href="/all/">blog</a> = <span class="code-orange">Post</span> <span class="code-red">of</span> (<span class="code-blue">string</span> <span class="code-red">*</span> <a class="implicit" href="/all/">blog</a>) | <a class="implicit code-orange" href="/">Home</a> | <a class="implicit code-orange" href="/about/">About</a>
+        </code>
+      </div>
+      <a target="_blank" href="mailto:{{ site.author.email }}">Email</a>
+      &sdot;
+      <a target="_blank" href="http://www.github.com/crm416">GitHub</a>
+      &sdot;
+      <a target="_blank" href="https://twitter.com/crm416">Twitter</a>
+      &sdot;
+      <a target="_blank" href="/static/pdf/Charles_Marsh_CV.pdf">Résumé</a>
+    </center>
+    <hr />
+  </div>
+</div>

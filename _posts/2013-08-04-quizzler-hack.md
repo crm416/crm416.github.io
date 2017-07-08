@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Quizzler: NLP-based Quiz Question Generation"
+short_title: Quizzler
 date: 2013-08-04
 permalink: hack/
 ---

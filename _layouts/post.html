@@ -1,12 +1,25 @@
 <!DOCTYPE html>
-  {% include header.html %}
+  {% include head.html %}
   <body class="index">
     <div class="container-fluid">
+      {% include header.html %}
       <div class="row">
         <div class="col-sm-10 col-sm-offset-1 col-xs-12">
-          <h1><a class="implicit" href="/">{% if page.short_title %}{{ page.short_title }}{% else %}{{ page.title }}{% endif %}</a></h1>
+          {% if page.short_title %}
+            {% assign title = page.short_title %}
+          {% else %}
+            {% assign title = page.title %}
+          {% endif %}
+          {% assign slug = title | replace: " ", "-" %}
+          <h1 style="margin-top: 0.25em" id="{{ slug }}">
+            <a class="implicit" href="#{{ slug }}">
+              {{ title }}
+            </a>
+          </h1>
           {{ content }}
-          <p class="date">Posted on {{ page.date | date: "%B %-d, %Y" }}.</p>
+          <p class="date">
+            Posted on {{ page.date | date: "%B %-d, %Y" }}.
+          </p>
           {% include footer.html %}
         </div>
       </div>

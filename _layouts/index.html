@@ -1,26 +1,11 @@
 <!DOCTYPE html>
-  {% include header.html %}
+  {% include head.html %}
   <body class="index">
     <div class="container-fluid">
+      {% include header.html %}
       <div class="row">
         <div class="col-sm-12 hidden-xs">
-          <center>
-            <h1 style="font-size:80px; margin-top: 0.5em;margin-bottom:0">{{ site.author.name }}</h1>
-            <div style="margin-bottom: 12px">
-              <code style="font-size:18px">
-                <span class="code-red">type</span> <a class="implicit" href="/all/">blog</a> = <span class="code-orange">Post</span> <span class="code-red">of</span> (<span class="code-blue">string</span> <span class="code-red">*</span> <a class="implicit" href="/all/">blog</a>) | <a class="implicit code-orange" href="/">Home</a> | <a class="implicit code-orange" href="/about/">About</a>
-              </code>
-            </div>
-            <a target="_blank" href="mailto:{{ site.author.email }}">Email</a>
-            &sdot;
-            <a target="_blank" href="http://www.github.com/crm416">GitHub</a>
-            &sdot;
-            <a target="_blank" href="https://twitter.com/crm416">Twitter</a>
-            &sdot;
-            <a target="_blank" href="/static/pdf/Charles_Marsh_CV.pdf">Résumé</a>
-          </center>
-          <hr />
-          <h2 style="font-weight: normal">
+          <h2 style="font-weight: normal; margin-top: 0.5em">
             Senior software engineer and engineering lead at <b><a target="_blank" href="https://www.khanacademy.org">Khan Academy</a></b>.<br><br>
 
             In the past: a Computer Science major at <b>Princeton</b> and an intern at <b>Microsoft</b> and <b>Facebook</b>.<br><br>
