@@ -25,8 +25,41 @@
   <body class="index">
     <div class="container-fluid">
       <div class="row">
+  <div class="col-sm-12 hidden-xs">
+    <center>
+      <h1
+        style="font-size:80px; margin-top: 0.5em;margin-bottom:0"
+      >
+        <a class="implicit" href="/">
+          Charlie Marsh
+        </a>
+      </h1>
+      <div style="margin-bottom: 12px">
+        <code style="font-size:18px">
+          <span class="code-red">type</span> <a class="implicit" href="/all/">blog</a> = <span class="code-orange">Post</span> <span class="code-red">of</span> (<span class="code-blue">string</span> <span class="code-red">*</span> <a class="implicit" href="/all/">blog</a>) | <a class="implicit code-orange" href="/">Home</a> | <a class="implicit code-orange" href="/about/">About</a>
+        </code>
+      </div>
+      <a target="_blank" href="mailto:charlie@khanacademy.org">Email</a>
+      &sdot;
+      <a target="_blank" href="http://www.github.com/crm416">GitHub</a>
+      &sdot;
+      <a target="_blank" href="https://twitter.com/crm416">Twitter</a>
+      &sdot;
+      <a target="_blank" href="/static/pdf/Charles_Marsh_CV.pdf">Résumé</a>
+    </center>
+    <hr />
+  </div>
+</div>
+
+      <div class="row">
         <div class="col-sm-10 col-sm-offset-1 col-xs-12">
-          <h1><a class="implicit" href="/">Compiling to JS: Comparing TypeScript, CoffeeScript, etc.</a></h1>
+          
+          
+          <h1 style="margin-top: 0.25em" id="Compiling-to-JS:-Comparing-TypeScript,-CoffeeScript,-etc.">
+            <a class="implicit" href="#Compiling-to-JS:-Comparing-TypeScript,-CoffeeScript,-etc.">
+              Compiling to JS: Comparing TypeScript, CoffeeScript, etc.
+            </a>
+          </h1>
           <p>It seems like all the cool languages these days are compiling to JavaScript. (I joke, but replace &#39;cool&#39; with &#39;relevant&#39; and you might have a reasonable heuristic for evaluating the modernity of a programming language.)</p>
 
 <p><a href="https://github.com/jashkenas">Jeremy Ashkenas</a>, the creator of CoffeeScript, has a great <a href="https://github.com/jashkenas/coffee-script/wiki/List-of-languages-that-compile-to-JS">list</a> of what seems like hundreds of languages, each of which helps prove my point.</p>
@@ -46,7 +79,7 @@
 
 <p>In this post, I&#39;d like to give readers some insight into why they might choose one of these languages over (1) JavaScript, and (2) the other *Scripts in contention.</p>
 
-<p><h2  id='CoffeeScript'>CoffeeScript<a class='anchor-wrap' href="#CoffeeScript" title="Permalink to this headline">¶</a></h2 >
+<p><h2  id='CoffeeScript'><a class='implicit' href="#CoffeeScript" title="Permalink to this headline">CoffeeScript</a></h2 >
 I see <a href="http://coffeescript.org">CoffeeScript</a> as the poster child of the *Scripts. Really, CoffeeScript aims to make your code more concise and more readable. The syntax doesn&#39;t use any of the &#39;{&#39; and &#39;(&#39; and &#39;;&#39; that plague JavaScript code, instead opting to use whitespace (a lá Python). Again, similar to Python, it&#39;s got great comprehensions that require 10x more JavaScript code to implement.</p>
 
 <p>Here&#39;s an example of these list comprehensions:</p>
@@ -93,7 +126,7 @@ I see <a href="http://coffeescript.org">CoffeeScript</a> as the poster child of 
 
 <p>Why use CoffeeScript? It&#39;s just a pleasure. The syntax takes away the worst parts of JavaScript. The language appears more functional and less disgusting.</p>
 
-<p><h2  id='TypeScript'>TypeScript<a class='anchor-wrap' href="#TypeScript" title="Permalink to this headline">¶</a></h2 ></p>
+<p><h2  id='TypeScript'><a class='implicit' href="#TypeScript" title="Permalink to this headline">TypeScript</a></h2 ></p>
 
 <p><a href="http://www.typescriptlang.org">TypeScript</a> is a Microsoft project that aims to add static typing and a better module and interface system to JavaScript. Essentially, you can define classes and interfaces (very easily) and then enforce type safety at compile time, saving you tens of hours of awful JavaScript debugging.</p>
 
@@ -138,7 +171,7 @@ I see <a href="http://coffeescript.org">CoffeeScript</a> as the poster child of 
 
 <p>So, why use TypeScript? If you&#39;re a fan of type safety and a static type system, it&#39;s a no-brainer. And for large projects, it can be a life-saver. At the same time, it retains some of JavaScript&#39;s verbosity. You do end up with plenty of <code>})})};</code>-style code. In the end, it&#39;s a matter of preference.</p>
 
-<p><h2  id='LiveScript'>LiveScript<a class='anchor-wrap' href="#LiveScript" title="Permalink to this headline">¶</a></h2 >
+<p><h2  id='LiveScript'><a class='implicit' href="#LiveScript" title="Permalink to this headline">LiveScript</a></h2 >
 <a href="http://livescript.net">LiveScript</a> is even <em>more</em> functional than CoffeeScript. To keep the analogies going, we might say that <strong>CoffeeScript : Python :: TypeScript : OCaml :: LiveScript : Haskell</strong>, or something like that.</p>
 
 <p>As in CoffeeScript, LiveScript uses whitespace and newlines as delimiters, rather than the brackets of JavaScript.</p>
@@ -152,7 +185,7 @@ I see <a href="http://coffeescript.org">CoffeeScript</a> as the poster child of 
 
 <p>In general, LiveScript has a strong functional lean. If that&#39;s for you, check it out.</p>
 
-<p><h2  id='RedScript'>RedScript<a class='anchor-wrap' href="#RedScript" title="Permalink to this headline">¶</a></h2 ></p>
+<p><h2  id='RedScript'><a class='implicit' href="#RedScript" title="Permalink to this headline">RedScript</a></h2 ></p>
 
 <p><a href="http://redscript.org">RedScript</a> appeared on HackerNews recently, and although it certainly hasn&#39;t reached widespread adoption, I&#39;ve included it here because I think it&#39;s a good example of how people are developing different &#39;flavors&#39; of JavaScript.</p>
 
@@ -166,7 +199,7 @@ I see <a href="http://coffeescript.org">CoffeeScript</a> as the poster child of 
 
 <p>If you&#39;re a Rubyist, try RedScript. It&#39;s as simple as that.</p>
 
-<p><h2  id='Conclusion'>Conclusion<a class='anchor-wrap' href="#Conclusion" title="Permalink to this headline">¶</a></h2 ></p>
+<p><h2  id='Conclusion'><a class='implicit' href="#Conclusion" title="Permalink to this headline">Conclusion</a></h2 ></p>
 
 <p>The languages described here are just a subset of the compile-to-JS family. But even with these four examples, we see:</p>
 
@@ -180,7 +213,9 @@ I see <a href="http://coffeescript.org">CoffeeScript</a> as the poster child of 
 
 <p>JavaScript is a cool language. I love the community and I enjoy using it. But the development of these higher-level languages is cool too. If anything, they further emphasize the importance and relevance of JavaScript: without JavaScript, these languages would cease to run.</p>
 
-          <p class="date">Posted on September 19, 2013.</p>
+          <p class="date">
+            Posted on September 19, 2013.
+          </p>
           <div class="hidden-xs">
   <hr />
   <center style="padding-bottom: 20px">

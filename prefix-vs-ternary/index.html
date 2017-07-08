@@ -25,8 +25,41 @@
   <body class="index">
     <div class="container-fluid">
       <div class="row">
+  <div class="col-sm-12 hidden-xs">
+    <center>
+      <h1
+        style="font-size:80px; margin-top: 0.5em;margin-bottom:0"
+      >
+        <a class="implicit" href="/">
+          Charlie Marsh
+        </a>
+      </h1>
+      <div style="margin-bottom: 12px">
+        <code style="font-size:18px">
+          <span class="code-red">type</span> <a class="implicit" href="/all/">blog</a> = <span class="code-orange">Post</span> <span class="code-red">of</span> (<span class="code-blue">string</span> <span class="code-red">*</span> <a class="implicit" href="/all/">blog</a>) | <a class="implicit code-orange" href="/">Home</a> | <a class="implicit code-orange" href="/about/">About</a>
+        </code>
+      </div>
+      <a target="_blank" href="mailto:charlie@khanacademy.org">Email</a>
+      &sdot;
+      <a target="_blank" href="http://www.github.com/crm416">GitHub</a>
+      &sdot;
+      <a target="_blank" href="https://twitter.com/crm416">Twitter</a>
+      &sdot;
+      <a target="_blank" href="/static/pdf/Charles_Marsh_CV.pdf">Résumé</a>
+    </center>
+    <hr />
+  </div>
+</div>
+
+      <div class="row">
         <div class="col-sm-10 col-sm-offset-1 col-xs-12">
-          <h1><a class="implicit" href="/">Prefix-Based vs. Ternary Predicate Matching</a></h1>
+          
+          
+          <h1 style="margin-top: 0.25em" id="Prefix-Based-vs.-Ternary-Predicate-Matching">
+            <a class="implicit" href="#Prefix-Based-vs.-Ternary-Predicate-Matching">
+              Prefix-Based vs. Ternary Predicate Matching
+            </a>
+          </h1>
           <p>As part of my independent work (described in my last post), I&#39;ve been looking at the different types of pattern matching that&#39;s permitted in flow tables for network switches. If you recall, the flow tables operate by matching packet fields on different patterns and performing the action associated with the matching pattern. The actions typically look like: DROP, FORWARD to port (n), etc. Here&#39;s a sample table:</p>
 <div class="highlight"><pre><code class="language-text" data-lang="text">[01**] -&gt; DROP
 [001*] -&gt; FWD
@@ -44,7 +77,7 @@
 
 <p>I&#39;ve been focusing on the last two variants, which are closely related. In fact, I want to talk about two algorithms for compressing rules tables with these predicate formats, both of which must be credited to Alex Liu at the University of Michigan.</p>
 
-<p><h2  id='The-Dynamic-Approach'>The Dynamic Approach<a class='anchor-wrap' href="#The-Dynamic-Approach" title="Permalink to this headline">¶</a></h2 ></p>
+<p><h2  id='The-Dynamic-Approach'><a class='implicit' href="#The-Dynamic-Approach" title="Permalink to this headline">The Dynamic Approach</a></h2 ></p>
 
 <p>We&#39;re going to focus on a single dimension (i.e., matching on a single field). This problem has been solved for the prefix-based case. The algorithm takes a dynamic programming approach, defining the concept of <em>consistency</em>: a rule table is <em>consistent</em> on a predicate <em>P</em> if, for every possible packet that matches <em>P</em>, the same rule is executed. For example, if your rule table is simply [*] -&gt; DROP, then your table is completely consistent on &#39;*&#39;.</p>
 
@@ -54,7 +87,7 @@
 
 <p>For the one-dimensional case, this dynamic programming algorithm manages to minimize the size (i.e., the cost) of the rule table.</p>
 
-<p><h2  id='BitWeaving'>Bit-Weaving<a class='anchor-wrap' href="#BitWeaving" title="Permalink to this headline">¶</a></h2 ></p>
+<p><h2  id='BitWeaving'><a class='implicit' href="#BitWeaving" title="Permalink to this headline">Bit-Weaving</a></h2 ></p>
 
 <p>To solve the ternary case, Liu employs some ingenuity (the inspiration for this blog post) in what he calls the Bit-Weaving Algorithm. Instead of tackling it as an entirely new problem, he manages to <strong>reduce the ternary case to the prefix-based case.</strong></p>
 
@@ -64,7 +97,9 @@
 
 <p>The algorithm is very clever—I&#39;m a huge fan of reducing one problem to another.</p>
 
-          <p class="date">Posted on March 11, 2013.</p>
+          <p class="date">
+            Posted on March 11, 2013.
+          </p>
           <div class="hidden-xs">
   <hr />
   <center style="padding-bottom: 20px">

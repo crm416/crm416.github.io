@@ -25,8 +25,41 @@
   <body class="index">
     <div class="container-fluid">
       <div class="row">
+  <div class="col-sm-12 hidden-xs">
+    <center>
+      <h1
+        style="font-size:80px; margin-top: 0.5em;margin-bottom:0"
+      >
+        <a class="implicit" href="/">
+          Charlie Marsh
+        </a>
+      </h1>
+      <div style="margin-bottom: 12px">
+        <code style="font-size:18px">
+          <span class="code-red">type</span> <a class="implicit" href="/all/">blog</a> = <span class="code-orange">Post</span> <span class="code-red">of</span> (<span class="code-blue">string</span> <span class="code-red">*</span> <a class="implicit" href="/all/">blog</a>) | <a class="implicit code-orange" href="/">Home</a> | <a class="implicit code-orange" href="/about/">About</a>
+        </code>
+      </div>
+      <a target="_blank" href="mailto:charlie@khanacademy.org">Email</a>
+      &sdot;
+      <a target="_blank" href="http://www.github.com/crm416">GitHub</a>
+      &sdot;
+      <a target="_blank" href="https://twitter.com/crm416">Twitter</a>
+      &sdot;
+      <a target="_blank" href="/static/pdf/Charles_Marsh_CV.pdf">Résumé</a>
+    </center>
+    <hr />
+  </div>
+</div>
+
+      <div class="row">
         <div class="col-sm-10 col-sm-offset-1 col-xs-12">
-          <h1><a class="implicit" href="/">Getting up and Running with Robolectric</a></h1>
+          
+          
+          <h1 style="margin-top: 0.25em" id="Getting-up-and-Running-with-Robolectric">
+            <a class="implicit" href="#Getting-up-and-Running-with-Robolectric">
+              Getting up and Running with Robolectric
+            </a>
+          </h1>
           <p><a href="http://robolectric.org/">Robolectric</a> is a useful tool for testing code that touches parts of the Android SDK <em>without building to a device</em>, made possible by Robolectric&#39;s reimplementation and &quot;de-fanging&quot; of parts of the Android SDK, which allows them to run on a regular JVM, rather than an emulator.</p>
 
 <p>I recently integrated Robolectric into our app at <a href="https://play.google.com/store/apps/details?id=org.khanacademy.android">Khan Academy</a>—we&#39;ve been looking into ways to let us write more and more efficient tests, and Robolectric fit the bill nicely (at least for some cases—many tests are best left as functional or integration tests; but I won&#39;t get into that here).</p>
@@ -35,7 +68,7 @@
 
 <!--break-->
 
-<p><h2  id='Config'>Config<a class='anchor-wrap' href="#Config" title="Permalink to this headline">¶</a></h2 ></p>
+<p><h2  id='Config'><a class='implicit' href="#Config" title="Permalink to this headline">Config</a></h2 ></p>
 
 <p>When using Robolectric with Gradle, you need to annotate your test suites like so:</p>
 <div class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@RunWith</span><span class="o">(</span><span class="n">RobolectricGradleTestRunner</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
@@ -58,7 +91,7 @@
     <span class="o">...</span>
 <span class="o">}</span>
 </code></pre></div>
-<p><h3  id='Reuse'>Reuse<a class='anchor-wrap' href="#Reuse" title="Permalink to this headline">¶</a></h3 ></p>
+<p><h3  id='Reuse'><a class='implicit' href="#Reuse" title="Permalink to this headline">Reuse</a></h3 ></p>
 
 <p>To guard against these values getting out of sync across our tests, we first extracted them into custom fields on our <code>BuildConfig</code> class. This was done by modifying our <code>build.gradle</code> to make use of the nifty <code>buildConfigField</code> argument:</p>
 <div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">buildTypes</span> <span class="o">{</span>
@@ -105,7 +138,7 @@
 
 <p>Alternatively, Robolectric supports the use of a <a href="http://robolectric.blogspot.com/2013/05/configuring-robolectric-20.html">global configuration file</a> to achieve a similar goal. But our solution felt a little cleaner to me, since it co-located all of our <code>BuildConfig</code> reads (plus, the global config file isn&#39;t very well documented—I couldn&#39;t get it to register with Robolectric, much less figure out which fields were configurable from within it).</p>
 
-<p><h2  id='Creating-a-Test-Application'>Creating a Test Application<a class='anchor-wrap' href="#Creating-a-Test-Application" title="Permalink to this headline">¶</a></h2 ></p>
+<p><h2  id='Creating-a-Test-Application'><a class='implicit' href="#Creating-a-Test-Application" title="Permalink to this headline">Creating a Test Application</a></h2 ></p>
 
 <p>We wanted to initialize a different set of application dependencies when running our Robolectric tests. This set would be distinct from the application dependencies we use when running a Debug build, so we couldn&#39;t merely base our dependency set on the value of <code>BuildConfig.DEBUG</code>.</p>
 
@@ -124,7 +157,7 @@
 <p>Note that you&#39;ll probably want to add something like this to your Proguard configuration:</p>
 <div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="o">-</span><span class="n">dontwarn</span> <span class="kd">class</span> <span class="nc">org</span><span class="o">.</span><span class="na">khanacademy</span><span class="o">.</span><span class="na">android</span><span class="o">.</span><span class="na">TestApplication</span> <span class="o">{</span> <span class="o">*;</span> <span class="o">}</span>
 </code></pre></div>
-<p><h3  id='The-New-Application-Lifecycle'>The New Application Lifecycle<a class='anchor-wrap' href="#The-New-Application-Lifecycle" title="Permalink to this headline">¶</a></h3 ></p>
+<p><h3  id='The-New-Application-Lifecycle'><a class='implicit' href="#The-New-Application-Lifecycle" title="Permalink to this headline">The New Application Lifecycle</a></h3 ></p>
 
 <p>The only other Application-related hitch we ran into: by default, Robolectric calls <code>onCreate</code> before and <code>onTerminate</code> after every test case. This was causing us problems, since <code>onTerminate</code> isn&#39;t part of the standard Application lifecycle, as you can see from the JavaDoc:</p>
 <div class="highlight"><pre><code class="language-java" data-lang="java"><span class="cm">/**</span>
@@ -147,7 +180,7 @@
 
 <p>I opted for the former, since it was simpler and seemed slightly more true to life (i.e., since it calls <code>onCreate</code> before each test).</p>
 
-<p><h2  id='Shadows'>Shadows<a class='anchor-wrap' href="#Shadows" title="Permalink to this headline">¶</a></h2 ></p>
+<p><h2  id='Shadows'><a class='implicit' href="#Shadows" title="Permalink to this headline">Shadows</a></h2 ></p>
 
 <p>The last snag I ran into was that some of our <code>checkState</code> calls expected parts of the Android SDK to behave slightly differently from the vanilla Robolectric configuration.</p>
 
@@ -160,7 +193,7 @@
 </code></pre></div>
 <p>I expect that other apps might require similar configuration changes.</p>
 
-<p><h2  id='Miscellanea'>Miscellanea<a class='anchor-wrap' href="#Miscellanea" title="Permalink to this headline">¶</a></h2 ></p>
+<p><h2  id='Miscellanea'><a class='implicit' href="#Miscellanea" title="Permalink to this headline">Miscellanea</a></h2 ></p>
 
 <p>Before closing, a few final tricks and tips:</p>
 
@@ -194,7 +227,9 @@
 
 <p>Happy testing!</p>
 
-          <p class="date">Posted on December 8, 2015.</p>
+          <p class="date">
+            Posted on December 8, 2015.
+          </p>
           <div class="hidden-xs">
   <hr />
   <center style="padding-bottom: 20px">

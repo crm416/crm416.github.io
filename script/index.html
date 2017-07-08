@@ -25,8 +25,41 @@
   <body class="index">
     <div class="container-fluid">
       <div class="row">
+  <div class="col-sm-12 hidden-xs">
+    <center>
+      <h1
+        style="font-size:80px; margin-top: 0.5em;margin-bottom:0"
+      >
+        <a class="implicit" href="/">
+          Charlie Marsh
+        </a>
+      </h1>
+      <div style="margin-bottom: 12px">
+        <code style="font-size:18px">
+          <span class="code-red">type</span> <a class="implicit" href="/all/">blog</a> = <span class="code-orange">Post</span> <span class="code-red">of</span> (<span class="code-blue">string</span> <span class="code-red">*</span> <a class="implicit" href="/all/">blog</a>) | <a class="implicit code-orange" href="/">Home</a> | <a class="implicit code-orange" href="/about/">About</a>
+        </code>
+      </div>
+      <a target="_blank" href="mailto:charlie@khanacademy.org">Email</a>
+      &sdot;
+      <a target="_blank" href="http://www.github.com/crm416">GitHub</a>
+      &sdot;
+      <a target="_blank" href="https://twitter.com/crm416">Twitter</a>
+      &sdot;
+      <a target="_blank" href="/static/pdf/Charles_Marsh_CV.pdf">Résumé</a>
+    </center>
+    <hr />
+  </div>
+</div>
+
+      <div class="row">
         <div class="col-sm-10 col-sm-offset-1 col-xs-12">
-          <h1><a class="implicit" href="/">The Bitcoin Script Playground</a></h1>
+          
+          
+          <h1 style="margin-top: 0.25em" id="The-Bitcoin-Script-Playground">
+            <a class="implicit" href="#The-Bitcoin-Script-Playground">
+              The Bitcoin Script Playground
+            </a>
+          </h1>
           <p>This semester, I&#39;ve been taking a course on <a href="http://randomwalker.info/teaching/fall-2014-bitcoin/">Bitcoin and Cryptocurrencies</a>, offered by Princeton&#39;s Center for Information Technology Policy, and co-taught by <a href="http://randomwalker.info/">Arvind Narayanan</a> and <a href="http://www.jbonneau.com/">Joseph Bonneau</a> (with help from <a href="https://www.cs.princeton.edu/%7Efelten/">Ed Felten</a> and <a href="http://www.cs.umd.edu/%7Eamiller/">Andrew Miller</a>).</p>
 
 <p>Inspired by the course, I spent some time this semester on a Bitcoin Script-to-JavaScript compiler and a real-time playground for the browser: the <a href="http://www.crmarsh.com/script-playground/">Script Playground</a>. It&#39;s a great way to familiarize yourself with the semantics of and philosophies behind Bitcoin Script.</p>
@@ -37,7 +70,7 @@
 
 <p>In this post, I&#39;ll explain some of the core principles and functionality behind Script before introducing the Script Playground and a few examples.</p>
 
-<p><h2  id='What-is-Script'>What is Script?<a class='anchor-wrap' href="#What-is-Script" title="Permalink to this headline">¶</a></h2 ></p>
+<p><h2  id='What-is-Script'><a class='implicit' href="#What-is-Script" title="Permalink to this headline">What is Script?</a></h2 ></p>
 
 <p>(If you have a good handle on Script, feel free to <a href="#Why-Build-a-Playground">skip ahead</a>.)</p>
 
@@ -50,7 +83,7 @@
 </code></pre></div>
 <p>Pretty simple.</p>
 
-<p><h3  id='In-the-Context-of-Bitcoin'>In the Context of Bitcoin<a class='anchor-wrap' href="#In-the-Context-of-Bitcoin" title="Permalink to this headline">¶</a></h3 ></p>
+<p><h3  id='In-the-Context-of-Bitcoin'><a class='implicit' href="#In-the-Context-of-Bitcoin" title="Permalink to this headline">In the Context of Bitcoin</a></h3 ></p>
 
 <p>Script is used to verify that the spender of some Bitcoins actually owns them. In other words, scripts validate transactions.</p>
 
@@ -58,7 +91,7 @@
 
 <p>To validate the spending of Bitcoins, miners concatenate the <em>ScriptSig</em> and <em>ScriptPubKey</em>. If the concatenated program is valid, the transaction is valid, and vice-versa. For this reason, these scripts are sometimes referred to as the &quot;unlocking&quot; and &quot;locking&quot; scripts, respectively, as the <em>ScriptPubKey</em> is provided to lock some Bitcoins to an address, and the <em>ScriptSig</em>, to unlock them in the future.</p>
 
-<p><h3  id='Simple-By-Design'>Simple By Design<a class='anchor-wrap' href="#Simple-By-Design" title="Permalink to this headline">¶</a></h3 ></p>
+<p><h3  id='Simple-By-Design'><a class='implicit' href="#Simple-By-Design" title="Permalink to this headline">Simple By Design</a></h3 ></p>
 
 <p>Script is <a href="https://en.bitcoin.it/wiki/Script">purposefully</a> not Turing-complete. It contains no loops (it&#39;s only form of control flow is through if-else statements) and the instruction set is limited to the bare necessities: stack manipulation, arithmetic, cryptography, and little else.</p>
 
@@ -68,7 +101,7 @@
 
 <p>At the very least, these miners would be incurring an unnecessary cost, as Script&#39;s simplicity is sufficient for covering most of what we want to do in transaction validation. This cost would make mining less attractive, and as the attractivity of mining is crucial to maintaining a high hash rate across the network (and thus securing the network), this simplicity is a good thing.</p>
 
-<p><h3  id='In-Practice'>In Practice<a class='anchor-wrap' href="#In-Practice" title="Permalink to this headline">¶</a></h3 ></p>
+<p><h3  id='In-Practice'><a class='implicit' href="#In-Practice" title="Permalink to this headline">In Practice</a></h3 ></p>
 
 <p>In practice, Bitcoin scripts typically take one of a handful of forms, e.g.:</p>
 
@@ -79,7 +112,7 @@
 
 <p>In fact, miners will <a href="https://bitcoin.org/en/developer-guide#non-standard-transactions">reject</a> transactions that veer from the list of standard Script formats. In Bitcoin jargon, these are referred to as &quot;non-standard transactions&quot;.</p>
 
-<p><h2  id='Why-Build-a-Playground'>Why Build a Playground?<a class='anchor-wrap' href="#Why-Build-a-Playground" title="Permalink to this headline">¶</a></h2 ></p>
+<p><h2  id='Why-Build-a-Playground'><a class='implicit' href="#Why-Build-a-Playground" title="Permalink to this headline">Why Build a Playground?</a></h2 ></p>
 
 <p>Script is an interesting facet of Bitcoin.</p>
 
@@ -89,7 +122,7 @@
 
 <p>For these reasons, I wanted to make it possible to play with Script in the most accessible of settings: the browser. The finished product is available <a href="http://www.crmarsh.com/script-playground/">here</a>, with the source free to view on <a href="https://github.com/crm416/script">GitHub</a>. You can also download it as the <a href="https://www.npmjs.com/package/scriptjs">bitcoin-script</a> package from npm.</p>
 
-<p><h3  id='Functionality'>Functionality<a class='anchor-wrap' href="#Functionality" title="Permalink to this headline">¶</a></h3 ></p>
+<p><h3  id='Functionality'><a class='implicit' href="#Functionality" title="Permalink to this headline">Functionality</a></h3 ></p>
 
 <p>My implementation of Script covers all of the enabled opcodes listed on the <a href="https://en.bitcoin.it/wiki/Script">Bitcoin Wiki</a>, apart from the reserved words, altstack commands, pseudo-words, and <code>OP_CODESEPARATOR</code>. In particular, it&#39;s worth noting that my implementation allows for the use of disabled commands, like <code>OP_MUL</code>, by passing in <code>true</code> as the second argument to any of the exported functions. (The Script Playground has this behavior enabled by default.)</p>
 
@@ -110,13 +143,13 @@
 <li>A permalink button for generating shareable URLs with your scripts embedded, creating a GitHub gist-like experience.</li>
 </ul>
 
-<p><h3  id='Technology'>Technology<a class='anchor-wrap' href="#Technology" title="Permalink to this headline">¶</a></h3 ></p>
+<p><h3  id='Technology'><a class='implicit' href="#Technology" title="Permalink to this headline">Technology</a></h3 ></p>
 
 <p>The Script playground compiles Script programs down to JavaScript using  <a href="http://zaach.github.io/jison/">Jison</a>, a JavaScript parser generator, with the grammar defined <a href="https://github.com/crm416/script/blob/master/lib/script.jison">here</a>. The implementation is built to run in Node, and is transpiled for use in the browser with Browserify.</p>
 
 <p>The live editor itself is based on my friend <a href="http://www.joelburget.com/">Joel Burget&#39;s</a> <a href="https://github.com/joelburget/react-live-editor">react-live-editor</a>, which is in-turn based on <a href="http://www.codemirror.net/">CodeMirror</a> for real-time updates and editing.</p>
 
-<p><h3  id='An-Example-Testing-for-Primality'>An Example: Testing for Primality<a class='anchor-wrap' href="#An-Example-Testing-for-Primality" title="Permalink to this headline">¶</a></h3 ></p>
+<p><h3  id='An-Example-Testing-for-Primality'><a class='implicit' href="#An-Example-Testing-for-Primality" title="Permalink to this headline">An Example: Testing for Primality</a></h3 ></p>
 
 <p>Because my implementation is built for Node, it&#39;s really easy to play around with Script using all the expressive power of JavaScript.</p>
 
@@ -172,7 +205,7 @@
 
 <p>But by computing all the primes in advance, we defeat the purpose, as all the work is being done twice: once by the individual that issues the challenge, and once by the individual that solves it.</p>
 
-<p><h3  id='Avoiding-Precomputation'>Avoiding Precomputation<a class='anchor-wrap' href="#Avoiding-Precomputation" title="Permalink to this headline">¶</a></h3 ></p>
+<p><h3  id='Avoiding-Precomputation'><a class='implicit' href="#Avoiding-Precomputation" title="Permalink to this headline">Avoiding Precomputation</a></h3 ></p>
 
 <p>What commands would it take, then, to write a <em>ScriptPubKey</em> that doesn&#39;t need to precompute primes?</p>
 
@@ -221,7 +254,9 @@
 
 <p class="note">Thanks to <a target="_blank" href="http://www.shubhro.com">Shubhro Saha</a> for his feedback on a draft of this post.</p>
 
-          <p class="date">Posted on December 16, 2014.</p>
+          <p class="date">
+            Posted on December 16, 2014.
+          </p>
           <div class="hidden-xs">
   <hr />
   <center style="padding-bottom: 20px">

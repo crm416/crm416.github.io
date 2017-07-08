@@ -25,8 +25,41 @@
   <body class="index">
     <div class="container-fluid">
       <div class="row">
+  <div class="col-sm-12 hidden-xs">
+    <center>
+      <h1
+        style="font-size:80px; margin-top: 0.5em;margin-bottom:0"
+      >
+        <a class="implicit" href="/">
+          Charlie Marsh
+        </a>
+      </h1>
+      <div style="margin-bottom: 12px">
+        <code style="font-size:18px">
+          <span class="code-red">type</span> <a class="implicit" href="/all/">blog</a> = <span class="code-orange">Post</span> <span class="code-red">of</span> (<span class="code-blue">string</span> <span class="code-red">*</span> <a class="implicit" href="/all/">blog</a>) | <a class="implicit code-orange" href="/">Home</a> | <a class="implicit code-orange" href="/about/">About</a>
+        </code>
+      </div>
+      <a target="_blank" href="mailto:charlie@khanacademy.org">Email</a>
+      &sdot;
+      <a target="_blank" href="http://www.github.com/crm416">GitHub</a>
+      &sdot;
+      <a target="_blank" href="https://twitter.com/crm416">Twitter</a>
+      &sdot;
+      <a target="_blank" href="/static/pdf/Charles_Marsh_CV.pdf">Résumé</a>
+    </center>
+    <hr />
+  </div>
+</div>
+
+      <div class="row">
         <div class="col-sm-10 col-sm-offset-1 col-xs-12">
-          <h1><a class="implicit" href="/">Learning Android in Production</a></h1>
+          
+          
+          <h1 style="margin-top: 0.25em" id="Learning-Android-in-Production">
+            <a class="implicit" href="#Learning-Android-in-Production">
+              Learning Android in Production
+            </a>
+          </h1>
           <p>Back in August, a few weeks before I&#39;d joined <a href="https://www.khanacademy.org">Khan Academy</a> full-time, our Head of Engineering, <a href="http://bjk5.com/">Ben Kamens</a>, shot me an email asking if I had any interest in working on the <a href="https://play.google.com/store/apps/details?id=org.khanacademy.android">Android</a> team.</p>
 
 <p>I&#39;d never touched Android before, but I was pleasantly surprised to see that email, since the vision of bringing Khan Academy to Android devices had intrigued me for a while. If you imagine a world in which every student, everywhere has access to a free, world-class tutor in their pocket, Android is a big part of it. Joining the team struck me as a fantastic opportunity for impact.</p>
@@ -45,7 +78,7 @@
 
 <!--break-->
 
-<p><h2  id='Ramping-up'>Ramping up<a class='anchor-wrap' href="#Ramping-up" title="Permalink to this headline">¶</a></h2 ></p>
+<p><h2  id='Ramping-up'><a class='implicit' href="#Ramping-up" title="Permalink to this headline">Ramping up</a></h2 ></p>
 
 <p>In this post, <strong>I&#39;d like to draw on some of the lessons I&#39;ve learned from my experience—that of ramping up on Android development in the context of a <em>professional</em>, <em>production</em> application</strong>; one that consisted of thousands of lines of code and relied on dozens of then-mysterious technologies on the day I arrived.</p>
 
@@ -55,7 +88,7 @@
 
 <p>(Oh, and as a caveat: My best resource, by far, has been my wonderful colleagues at Khan Academy, who have gone out of their way to help me ramp up. I can&#39;t thank them enough for all their help, from the pairing sessions to the code reviews to the pats on the back. The best advice I can give any learner is to surround yourself with great people. But for the rest of this post, I&#39;ll try to stick to things that are actionable on an individual level.)</p>
 
-<p><h2  id='The-OnDemand-Learning-Problem'>The On-Demand Learning Problem<a class='anchor-wrap' href="#The-OnDemand-Learning-Problem" title="Permalink to this headline">¶</a></h2 ></p>
+<p><h2  id='The-OnDemand-Learning-Problem'><a class='implicit' href="#The-OnDemand-Learning-Problem" title="Permalink to this headline">The On-Demand Learning Problem</a></h2 ></p>
 
 <p>To start, I&#39;d like to draw a distinction between what I see as two very different learning scenarios.</p>
 
@@ -75,7 +108,7 @@
 
 <p>If you are taking the Google approach, then, the ideal situation is that one of the few high-quality blogs (like <a href="http://blog.danlew.net/">Dan Lew&#39;s</a>) has covered the topic you&#39;re working on and provided a realistic, elegant solution with strong backwards compatibility and a focus on foundational understanding. Of course, that&#39;s something of a rarity.</p>
 
-<p><h3  id='Whats-up-Docs'>What&#39;s up, Docs?<a class='anchor-wrap' href="#Whats-up-Docs" title="Permalink to this headline">¶</a></h3 ></p>
+<p><h3  id='Whats-up-Docs'><a class='implicit' href="#Whats-up-Docs" title="Permalink to this headline">What&#39;s up, Docs?</a></h3 ></p>
 
 <p>The other natural place to turn to for this kind of on-demand insight would be the Android docs. And they&#39;re decent, albeit fragmented in their own way, given that there&#39;s <a href="https://developer.android.com/training/index.html">Training</a>, <a href="https://developer.android.com/guide/index.html">API Guides</a>, the <a href="https://developer.android.com/reference/android/app/ActionBar.html">Class Overviews</a> in the API reference, and the <a href="http://android-developers.blogspot.com/">Developer Blog</a>.</p>
 
@@ -83,7 +116,7 @@
 
 <p>I don&#39;t want to sell the docs too short—I&#39;ve found some satisfying answers in well-written Class Overviews, and when you <em>do</em> find a good piece of documentation, the understanding it imparts will usually beat out that of a StackOverflow answer—but they&#39;re far from sufficient in <em>every</em> case.</p>
 
-<p><h3  id='Going-Straight-to-the-Source'>Going Straight to the Source<a class='anchor-wrap' href="#Going-Straight-to-the-Source" title="Permalink to this headline">¶</a></h3 ></p>
+<p><h3  id='Going-Straight-to-the-Source'><a class='implicit' href="#Going-Straight-to-the-Source" title="Permalink to this headline">Going Straight to the Source</a></h3 ></p>
 
 <p>Luckily for us, Android is <a href="https://source.android.com/source/index.html">open source</a>. Which means that whenever you&#39;re confused, you have the option to step into the source and figure things out on your own, bypassing Google and/or the docs altogether.</p>
 
@@ -95,7 +128,7 @@
 
 <p>I typically access the Android source through Android Studio directly (&#39;Find Usages&#39; will take you there, and will even decompile classes from the <a href="http://android-developers.blogspot.com/2015/05/android-design-support-library.html">Design Support Library</a>). Alternatively, <a href="http://androidxref.com/">AndroidXRef</a> is useful for performing generalized symbol search across the Android Open Source Project, as is Roman Nurik&#39;s <a href="https://chrome.google.com/webstore/detail/android-sdk-search/hgcbffeicehlpmgmnhnkjbjoldkfhoin?hl=en">Android SDK Search</a> Chrome plugin, which adds SDK search functionality to your Chrome Omnibox.</p>
 
-<p><h2  id='Ongoing-Learning-Conference-Talks--Podcasts'>Ongoing Learning: Conference Talks &amp; Podcasts<a class='anchor-wrap' href="#Ongoing-Learning-Conference-Talks--Podcasts" title="Permalink to this headline">¶</a></h2 ></p>
+<p><h2  id='Ongoing-Learning-Conference-Talks--Podcasts'><a class='implicit' href="#Ongoing-Learning-Conference-Talks--Podcasts" title="Permalink to this headline">Ongoing Learning: Conference Talks &amp; Podcasts</a></h2 ></p>
 
 <p>In addition to relying more and more on the source (and less and less on Google), I&#39;ve also put a premium on engaging in ongoing learning efforts from Week 1.</p>
 
@@ -123,11 +156,11 @@
 
 <p>If you find the right resources, you can create an incredible feedback loop whereby listening to experts will help you improve as a developer, and improving as a developer will make what they have to say more accessible and more interesting.</p>
 
-<p><h2  id='Tooling'>Tooling<a class='anchor-wrap' href="#Tooling" title="Permalink to this headline">¶</a></h2 ></p>
+<p><h2  id='Tooling'><a class='implicit' href="#Tooling" title="Permalink to this headline">Tooling</a></h2 ></p>
 
 <p>Every new technology seems to bring with it additional tools to be mastered. Thankfully, with Android, there&#39;s really just one: <a href="https://developer.android.com/tools/studio/index.html">Android Studio</a>.</p>
 
-<p><h3  id='Mastering-Android-Studio'>Mastering Android Studio<a class='anchor-wrap' href="#Mastering-Android-Studio" title="Permalink to this headline">¶</a></h3 ></p>
+<p><h3  id='Mastering-Android-Studio'><a class='implicit' href="#Mastering-Android-Studio" title="Permalink to this headline">Mastering Android Studio</a></h3 ></p>
 
 <p>If you&#39;ve worked with the IntelliJ IDEA platform before, then you&#39;ll Android Studio to be familiar. If you haven&#39;t, then let me just say: it&#39;s incredible. And its navigational and refactoring commands will make you so, so much more productive. (I say this as a Sublime convert.)</p>
 
@@ -144,7 +177,7 @@
 
 <p><em>Aside: Beyond Android Studio, the only other software I use is <a href="genymotion.com">Genymotion</a> (a replacement for the default Android emulator) and, occasionally, <a href="https://facebook.github.io/stetho/">Stetho</a> (a debug bridge built by Facebook that lets you debug your app via Chrome DevTools).</em></p>
 
-<p><h3  id='Cutting-Down-on-Build-Time'>Cutting Down on Build Time<a class='anchor-wrap' href="#Cutting-Down-on-Build-Time" title="Permalink to this headline">¶</a></h3 ></p>
+<p><h3  id='Cutting-Down-on-Build-Time'><a class='implicit' href="#Cutting-Down-on-Build-Time" title="Permalink to this headline">Cutting Down on Build Time</a></h3 ></p>
 
 <p>Finally, I want to recommend that newcomers—especially those learning in a production setting—focus on cutting down build time.</p>
 
@@ -161,7 +194,7 @@
 
 <p><em>Aside: <a href="https://sites.google.com/a/android.com/tools/tech-docs/instant-run">Instant Run</a> may solve this problem yet, though there&#39;s still something to be said for testing your code in isolated environments.</em></p>
 
-<p><h2  id='Whats-Next'>What&#39;s Next<a class='anchor-wrap' href="#Whats-Next" title="Permalink to this headline">¶</a></h2 ></p>
+<p><h2  id='Whats-Next'><a class='implicit' href="#Whats-Next" title="Permalink to this headline">What&#39;s Next</a></h2 ></p>
 
 <p>Two weeks ago, we had our Khan Academy mobile team summit, where we took some time as a team to brainstorm, strategize, and catch up. As we began to form our vision for the year ahead, I was struck by the distinct feeling that, for me, the training wheels are off. And to feel that way after just a few weeks is pretty great. (Again: thanks and credit to my team for making that possible.)</p>
 
@@ -171,7 +204,9 @@
 
 <p class="note">Thanks to <a target="_blank" href="http://www.shubhro.com">Shubhro Saha</a> and Ben Komalo for providing feedback on earlier drafts of this post.</p>
 
-          <p class="date">Posted on November 30, 2015.</p>
+          <p class="date">
+            Posted on November 30, 2015.
+          </p>
           <div class="hidden-xs">
   <hr />
   <center style="padding-bottom: 20px">

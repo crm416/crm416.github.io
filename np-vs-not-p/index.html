@@ -25,15 +25,48 @@
   <body class="index">
     <div class="container-fluid">
       <div class="row">
+  <div class="col-sm-12 hidden-xs">
+    <center>
+      <h1
+        style="font-size:80px; margin-top: 0.5em;margin-bottom:0"
+      >
+        <a class="implicit" href="/">
+          Charlie Marsh
+        </a>
+      </h1>
+      <div style="margin-bottom: 12px">
+        <code style="font-size:18px">
+          <span class="code-red">type</span> <a class="implicit" href="/all/">blog</a> = <span class="code-orange">Post</span> <span class="code-red">of</span> (<span class="code-blue">string</span> <span class="code-red">*</span> <a class="implicit" href="/all/">blog</a>) | <a class="implicit code-orange" href="/">Home</a> | <a class="implicit code-orange" href="/about/">About</a>
+        </code>
+      </div>
+      <a target="_blank" href="mailto:charlie@khanacademy.org">Email</a>
+      &sdot;
+      <a target="_blank" href="http://www.github.com/crm416">GitHub</a>
+      &sdot;
+      <a target="_blank" href="https://twitter.com/crm416">Twitter</a>
+      &sdot;
+      <a target="_blank" href="/static/pdf/Charles_Marsh_CV.pdf">Résumé</a>
+    </center>
+    <hr />
+  </div>
+</div>
+
+      <div class="row">
         <div class="col-sm-10 col-sm-offset-1 col-xs-12">
-          <h1><a class="implicit" href="/">NP != NOT-P</a></h1>
+          
+          
+          <h1 style="margin-top: 0.25em" id="NP-!=-NOT-P">
+            <a class="implicit" href="#NP-!=-NOT-P">
+              NP != NOT-P
+            </a>
+          </h1>
           <p>When I first started learning about algorithmic complexity and intractability, I remember struggling with the concept of P vs. NP (<a href="http://web.mit.edu/newsoffice/2009/explainer-pnp.html">a primer</a>). Part of this, I now realize, was due to the confusing acronyms that have been assigned to the problem: when I see P and learn that it refers to “problems solvable in polynomial time”, I immediately assume that NP must refer to <strong>non</strong>-“problems solvable in polynomial time,” i.e., problems for which a solution cannot be found in polynomial time. </p>
 
 <p>The thing is, that’s not actually the definition of NP: the N does not stand for <strong>not</strong>, it stands for <strong>non-deterministic</strong>. NP is not <strong>not</strong>-P; it’s <strong>non-deterministic</strong>-P.</p>
 
 <p>To be more specific: P is the set of problems whose solution can be <strong>found</strong> in polynomial time; NP is the set of problems whose solution can be *<em>verified *</em>in polynomial time.</p>
 
-<p><h2  id='SAT'>SAT<a class='anchor-wrap' href="#SAT" title="Permalink to this headline">¶</a></h2 ></p>
+<p><h2  id='SAT'><a class='implicit' href="#SAT" title="Permalink to this headline">SAT</a></h2 ></p>
 
 <p>Lets look at these definitions in action. Take SAT, which is defined as, “given a statement in conjunctive normal form, can you find a satisfying assignment?” For example, if I give you the statement (A || B) &amp;&amp; (!C), one solution would be (A = true), (B = true), (C = false), because this assignment satisfies the statement.</p>
 
@@ -41,7 +74,7 @@
 
 <p>Hopefully that makes things a little clearer.</p>
 
-<p><h2  id='P--NP'>P = NP?<a class='anchor-wrap' href="#P--NP" title="Permalink to this headline">¶</a></h2 ></p>
+<p><h2  id='P--NP'><a class='implicit' href="#P--NP" title="Permalink to this headline">P = NP?</a></h2 ></p>
 
 <p>The P = NP? Problem is one of the Clay Mathematical Institute’s Millenium Prizes: if you solve it, you get $1,000,000 (so it must be important). The question boils down to this: are all problesm in NP also in P? I.e., for all problems whose solutions we can <strong>verify</strong> in polynomial time, does there exist a way to <strong>find</strong> a solution in polynomial time?</p>
 
@@ -55,7 +88,7 @@
 
 <p><img class="center" src="http://media.tumblr.com/tumblr_mdujkwenwP1rzq63x.png"></p>
 
-<p><h2  id='So-which-one-is-it'>So which one is it?<a class='anchor-wrap' href="#So-which-one-is-it" title="Permalink to this headline">¶</a></h2 ></p>
+<p><h2  id='So-which-one-is-it'><a class='implicit' href="#So-which-one-is-it" title="Permalink to this headline">So which one is it?</a></h2 ></p>
 
 <p>This is (almost indisputably) the most important open problem in computer science. If P = NP, then there would be countless problems which were once intractable, yet would now be deemed easily solvable—suddenly, all of these very, very, very difficult problems in NP that were seen as exponentially hard would be solvable in polynomial time.</p>
 
@@ -71,7 +104,9 @@
 
 <p>Right now, the industry leans heavily towards P != NP, but the problem is still open and no one has come up with a sufficient proof to claim the Millenium Prize. Personally, I tend to agree with Aaronson and the like—but I’d love to be shocked.</p>
 
-          <p class="date">Posted on November 21, 2012.</p>
+          <p class="date">
+            Posted on November 21, 2012.
+          </p>
           <div class="hidden-xs">
   <hr />
   <center style="padding-bottom: 20px">

@@ -25,8 +25,41 @@
   <body class="index">
     <div class="container-fluid">
       <div class="row">
+  <div class="col-sm-12 hidden-xs">
+    <center>
+      <h1
+        style="font-size:80px; margin-top: 0.5em;margin-bottom:0"
+      >
+        <a class="implicit" href="/">
+          Charlie Marsh
+        </a>
+      </h1>
+      <div style="margin-bottom: 12px">
+        <code style="font-size:18px">
+          <span class="code-red">type</span> <a class="implicit" href="/all/">blog</a> = <span class="code-orange">Post</span> <span class="code-red">of</span> (<span class="code-blue">string</span> <span class="code-red">*</span> <a class="implicit" href="/all/">blog</a>) | <a class="implicit code-orange" href="/">Home</a> | <a class="implicit code-orange" href="/about/">About</a>
+        </code>
+      </div>
+      <a target="_blank" href="mailto:charlie@khanacademy.org">Email</a>
+      &sdot;
+      <a target="_blank" href="http://www.github.com/crm416">GitHub</a>
+      &sdot;
+      <a target="_blank" href="https://twitter.com/crm416">Twitter</a>
+      &sdot;
+      <a target="_blank" href="/static/pdf/Charles_Marsh_CV.pdf">Résumé</a>
+    </center>
+    <hr />
+  </div>
+</div>
+
+      <div class="row">
         <div class="col-sm-10 col-sm-offset-1 col-xs-12">
-          <h1><a class="implicit" href="/">Setting up Your OCaml Development Environment on OS X</a></h1>
+          
+          
+          <h1 style="margin-top: 0.25em" id="Setting-up-Your-OCaml-Development-Environment-on-OS-X">
+            <a class="implicit" href="#Setting-up-Your-OCaml-Development-Environment-on-OS-X">
+              Setting up Your OCaml Development Environment on OS X
+            </a>
+          </h1>
           <p>Last fall, I began exploring the subject of functional programming as part of <a href="http://www.cs.princeton.edu/%7Edpw/">Professor David Walker’s</a> <a href="http://www.cs.princeton.edu/%7Edpw/courses/cos326-12/info.php">COS 326 at Princeton</a>. Throughout the course, we did all of our programing in OCaml. I also spent the past spring using OCaml for my CS Independent Work. So in total, I’ve spent a reasonable amount of time around the language, and I think it’s fantastic: it’s got a great module system, plenty of useful open source tools, etc.</p>
 
 <p>But OCaml isn’t <em>that</em> widely used. And as a result, there aren’t very many good write-ups out there for setting up an OCaml development environment.</p>
@@ -35,7 +68,7 @@
 
 <!--break-->
 
-<p><h2  id='Getting-the-OCaml-Source-Code'>Getting the OCaml Source Code<a class='anchor-wrap' href="#Getting-the-OCaml-Source-Code" title="Permalink to this headline">¶</a></h2 ></p>
+<p><h2  id='Getting-the-OCaml-Source-Code'><a class='implicit' href="#Getting-the-OCaml-Source-Code" title="Permalink to this headline">Getting the OCaml Source Code</a></h2 ></p>
 
 <p>To start, there are a few ways to get the actual source code for the OCaml language.</p>
 
@@ -67,11 +100,11 @@ $ sh ./opam_installer.sh /usr/local/bin
   <span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="o">;;</span>
 <span class="o">-</span> <span class="o">:</span> <span class="kt">int</span> <span class="o">=</span> <span class="mi">5</span></code></pre></figure>
 
-<p><h2  id='Setting-up-Your-Development-Environment'>Setting up Your Development Environment<a class='anchor-wrap' href="#Setting-up-Your-Development-Environment" title="Permalink to this headline">¶</a></h2 ></p>
+<p><h2  id='Setting-up-Your-Development-Environment'><a class='implicit' href="#Setting-up-Your-Development-Environment" title="Permalink to this headline">Setting up Your Development Environment</a></h2 ></p>
 
 <p>Next, you’ll want a high-quality editor that’s well integrated with the OCaml language. I’ve played around with three different editors/environments, all of which have had their pros and cons. Anyway, the process for setting up such environments is as follows:</p>
 
-<p><h3  id='Emacs-with-Tuareg-Mode'>Emacs (with Tuareg Mode)<a class='anchor-wrap' href="#Emacs-with-Tuareg-Mode" title="Permalink to this headline">¶</a></h3 ></p>
+<p><h3  id='Emacs-with-Tuareg-Mode'><a class='implicit' href="#Emacs-with-Tuareg-Mode" title="Permalink to this headline">Emacs (with Tuareg Mode)</a></h3 ></p>
 
 <p>Professor Walker was a big fan of playing around in the OCaml toplevel within the IDE. That is, loading your current module into the OCaml toplevel and playing around without having to leave the text editor. To do that, you need Tuareg mode. Follow these instructions:</p>
 
@@ -94,7 +127,7 @@ $ wget https://forge.ocamlcore.org/frs/download.php/514/tuareg-2.0.4.tgz
 
 <p>Restart Emacs and Tuareg mode should be up and running. There are a number of useful commands for opening up the OCaml toplevel—<a href="http://www.ocamlpro.com/files/tuareg-mode.pdf">here’s</a> a good cheat sheet.</p>
 
-<p><h3  id='Eclipse-with-OcaIDE'>Eclipse (with OcaIDE)<a class='anchor-wrap' href="#Eclipse-with-OcaIDE" title="Permalink to this headline">¶</a></h3 ></p>
+<p><h3  id='Eclipse-with-OcaIDE'><a class='implicit' href="#Eclipse-with-OcaIDE" title="Permalink to this headline">Eclipse (with OcaIDE)</a></h3 ></p>
 
 <p>OcaIDE is an OCaml plugin for Eclipse. It works reasonably well, with auto-completion across packages and all those cute tricks. Here are some step-by-step instructions for setting it up:</p>
 
@@ -129,15 +162,17 @@ $ make: *** [a1] Error 1
 
 <p><em>NOTE: if you&#39;re using OPAM, then you&#39;ll have to go to properties (CTRL+,) –&gt; OcaIDE –&gt; Paths. Then, go to ~/.opam/4.00.1/bin, type &#39;pwd&#39; (you need the full path, rather than &#39;~&#39;) and paste the whole path into the ‘OCaml Binaries Directory’ field. Hit apply.</em></p>
 
-<p><h3  id='Sublime-Text'>Sublime Text<a class='anchor-wrap' href="#Sublime-Text" title="Permalink to this headline">¶</a></h3 ></p>
+<p><h3  id='Sublime-Text'><a class='implicit' href="#Sublime-Text" title="Permalink to this headline">Sublime Text</a></h3 ></p>
 
 <p>Sublime Text is great. It’s quick, sexy, and lightweight, with plenty of room for customization. There’s an unlimited free trial available <a href="http://www.sublimetext.com/2">here</a>. It doesn’t have any particular integration with OCaml (although it does provide correct syntax highlighting for your .ml and .mli files), but there’s a fantastic setup tutorial available <a href="http://blog.alexmaccaw.com/sublime-text">here</a> that describes how to get started and recommends some baseline packages.</p>
 
-<p><h2  id='In-Conclusion'>In Conclusion<a class='anchor-wrap' href="#In-Conclusion" title="Permalink to this headline">¶</a></h2 ></p>
+<p><h2  id='In-Conclusion'><a class='implicit' href="#In-Conclusion" title="Permalink to this headline">In Conclusion</a></h2 ></p>
 
 <p>OCaml is a great language, and I wish it were more widely proliferated. Hopefully, this post will help you get developing as quickly as possible—if anything is unclear, just email me at <a href="mailto:crmarsh@princeton.edu">crmarsh@princeton.edu</a> and I’ll do my best to help you debug.</p>
 
-          <p class="date">Posted on May 29, 2013.</p>
+          <p class="date">
+            Posted on May 29, 2013.
+          </p>
           <div class="hidden-xs">
   <hr />
   <center style="padding-bottom: 20px">

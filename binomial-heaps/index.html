@@ -25,9 +25,42 @@
   <body class="index">
     <div class="container-fluid">
       <div class="row">
+  <div class="col-sm-12 hidden-xs">
+    <center>
+      <h1
+        style="font-size:80px; margin-top: 0.5em;margin-bottom:0"
+      >
+        <a class="implicit" href="/">
+          Charlie Marsh
+        </a>
+      </h1>
+      <div style="margin-bottom: 12px">
+        <code style="font-size:18px">
+          <span class="code-red">type</span> <a class="implicit" href="/all/">blog</a> = <span class="code-orange">Post</span> <span class="code-red">of</span> (<span class="code-blue">string</span> <span class="code-red">*</span> <a class="implicit" href="/all/">blog</a>) | <a class="implicit code-orange" href="/">Home</a> | <a class="implicit code-orange" href="/about/">About</a>
+        </code>
+      </div>
+      <a target="_blank" href="mailto:charlie@khanacademy.org">Email</a>
+      &sdot;
+      <a target="_blank" href="http://www.github.com/crm416">GitHub</a>
+      &sdot;
+      <a target="_blank" href="https://twitter.com/crm416">Twitter</a>
+      &sdot;
+      <a target="_blank" href="/static/pdf/Charles_Marsh_CV.pdf">Résumé</a>
+    </center>
+    <hr />
+  </div>
+</div>
+
+      <div class="row">
         <div class="col-sm-10 col-sm-offset-1 col-xs-12">
-          <h1><a class="implicit" href="/">Binomial Heaps: Merge Better</a></h1>
-          <p><h2  id='Merge-Better'>Merge Better<a class='anchor-wrap' href="#Merge-Better" title="Permalink to this headline">¶</a></h2 ></p>
+          
+          
+          <h1 style="margin-top: 0.25em" id="Binomial-Heaps:-Merge-Better">
+            <a class="implicit" href="#Binomial-Heaps:-Merge-Better">
+              Binomial Heaps: Merge Better
+            </a>
+          </h1>
+          <p><h2  id='Merge-Better'><a class='implicit' href="#Merge-Better" title="Permalink to this headline">Merge Better</a></h2 ></p>
 
 <p>The other day, I was introduced to a really cool data structure: the binomial heap. You might be familiar with <a href="http://en.wikipedia.org/wiki/Binary_heap">binary heaps</a>, which use a binary tree to keep items in heap order; but binomial heaps are a little more obscure. As you would expect, they too retain heap order and are often used in implementing priority queues. However, the advantage of a binomial heap is that it supports <strong>log(n) merging</strong> given two binomial heaps.</p>
 
@@ -37,7 +70,7 @@
 
 <p>In short: <strong>with a binomial heap, you earn faster merging, but give up the O(1) find-min of a binary heap</strong>.</p>
 
-<p><h2  id='How-It-Works-Binomial-Trees'>How It Works: Binomial Trees<a class='anchor-wrap' href="#How-It-Works-Binomial-Trees" title="Permalink to this headline">¶</a></h2 ></p>
+<p><h2  id='How-It-Works-Binomial-Trees'><a class='implicit' href="#How-It-Works-Binomial-Trees" title="Permalink to this headline">How It Works: Binomial Trees</a></h2 ></p>
 
 <p>A binomial <em>heap</em> is made up of a list of binomial <em>trees</em>, so we’ll first discuss the latter structure, which I find to be the particularly ingenious component. A binomial tree is a recursive data structure: a tree of degree zero is just a single node and a tree of degree k is two trees of degree k-1, connected.</p>
 
@@ -55,17 +88,17 @@
 
 <p>The great thing about a binomial tree is that we can merge two binomial trees of the same degree in constant time to produce a binomial tree of degree one higher! This is relatively straightforward when viewed in the context of the list above: if we have two trees of degree 2, we can just connect them and call it a tree of degree 3.</p>
 
-<p><h2  id='So-Whats-a-Binomial-Heap'>So What’s a Binomial Heap?<a class='anchor-wrap' href="#So-Whats-a-Binomial-Heap" title="Permalink to this headline">¶</a></h2 ></p>
+<p><h2  id='So-Whats-a-Binomial-Heap'><a class='implicit' href="#So-Whats-a-Binomial-Heap" title="Permalink to this headline">So What’s a Binomial Heap?</a></h2 ></p>
 
 <p>As stated above, a binomial heap is just a list of binomial trees. How many binomial trees, you ask? Well, assume we have n items; recall that any decimal number n can be expressed with a unique binary representation; note that a binomial tree of degree k has 2^k items; thus, for a binomial heap with n items, we can use a binomial tree of degree k for every position in n’s binary representation in which we see a 1 (rather than a 0). That was kind of verbose, so here’s an example:</p>
 
 <p>If we have a heap with 13 items, we can express this in binary as 1101. This would translate to a binary tree of degree 3, a tree of degree 2, and a tree of degree 0 (with 2^3 + 2^2 + 2^0 = 8 + 4 + 1 items respectively = 13 total items).</p>
 
-<p><h2  id='Merging-with-Binomial-Heaps'>Merging with Binomial Heaps<a class='anchor-wrap' href="#Merging-with-Binomial-Heaps" title="Permalink to this headline">¶</a></h2 ></p>
+<p><h2  id='Merging-with-Binomial-Heaps'><a class='implicit' href="#Merging-with-Binomial-Heaps" title="Permalink to this headline">Merging with Binomial Heaps</a></h2 ></p>
 
 <p>We can use the binary analogy to explain the Log N merge operation as well. Merging two binomial heaps is really just binary addition: for each digit i, if both heaps have a tree of degree i, then we merge them and carry-over the resulting tree of degree i + 1, carrying this process through. Since each merge is constant, and heaps of N items have at most Log N binary digits, we’re performing Log N constant-time tree merges for our heap merge—this gives us the Log N merge operation we were looking for.</p>
 
-<p><h2  id='Beyond-merging-insert-findmin-etc'>Beyond merging: insert, find-min, etc.<a class='anchor-wrap' href="#Beyond-merging-insert-findmin-etc" title="Permalink to this headline">¶</a></h2 ></p>
+<p><h2  id='Beyond-merging-insert-findmin-etc'><a class='implicit' href="#Beyond-merging-insert-findmin-etc" title="Permalink to this headline">Beyond merging: insert, find-min, etc.</a></h2 ></p>
 
 <p>The other operations are not too difficult to surmise. To insert, we can just merge two heaps: the original heap into which we want to insert, and a heap of a single item (the item we want to insert). Since merge is Log N, insert will be Log N as well.</p>
 
@@ -73,13 +106,15 @@
 
 <p>For example: we might have one tree whose root element is 5 and every element below the root is &lt; 5; and we might have another tree whose root element is 100 and every element below the root is &gt; 100. These are valid to have in the same heap—but we have no way of knowing which tree’s root is the minimum until we’ve assessed all Log N trees that compose the heap. Therefore, we need to look at Log N items before we can return a min.</p>
 
-<p><h2  id='Conclusion'>Conclusion<a class='anchor-wrap' href="#Conclusion" title="Permalink to this headline">¶</a></h2 ></p>
+<p><h2  id='Conclusion'><a class='implicit' href="#Conclusion" title="Permalink to this headline">Conclusion</a></h2 ></p>
 
 <p>This really just skims the surface of binomial heaps—there’s still delete-min, decrease-key, etc. I’m in the process of writing an OCaml implementation of the data structure, and I’ll post here when it’s completed.</p>
 
 <p>By the way, the diagrams above were drawn from <a href="http://www.cs.princeton.edu/%7Ewayne/cs423/lectures/heaps-4up.pdf" title="Binomial Heaps">this presentation</a> (Princeton CS 423), which is definitely worth looking through if you need some solid visual enforcement.</p>
 
-          <p class="date">Posted on November 3, 2012.</p>
+          <p class="date">
+            Posted on November 3, 2012.
+          </p>
           <div class="hidden-xs">
   <hr />
   <center style="padding-bottom: 20px">

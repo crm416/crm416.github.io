@@ -25,8 +25,41 @@
   <body class="index">
     <div class="container-fluid">
       <div class="row">
+  <div class="col-sm-12 hidden-xs">
+    <center>
+      <h1
+        style="font-size:80px; margin-top: 0.5em;margin-bottom:0"
+      >
+        <a class="implicit" href="/">
+          Charlie Marsh
+        </a>
+      </h1>
+      <div style="margin-bottom: 12px">
+        <code style="font-size:18px">
+          <span class="code-red">type</span> <a class="implicit" href="/all/">blog</a> = <span class="code-orange">Post</span> <span class="code-red">of</span> (<span class="code-blue">string</span> <span class="code-red">*</span> <a class="implicit" href="/all/">blog</a>) | <a class="implicit code-orange" href="/">Home</a> | <a class="implicit code-orange" href="/about/">About</a>
+        </code>
+      </div>
+      <a target="_blank" href="mailto:charlie@khanacademy.org">Email</a>
+      &sdot;
+      <a target="_blank" href="http://www.github.com/crm416">GitHub</a>
+      &sdot;
+      <a target="_blank" href="https://twitter.com/crm416">Twitter</a>
+      &sdot;
+      <a target="_blank" href="/static/pdf/Charles_Marsh_CV.pdf">Résumé</a>
+    </center>
+    <hr />
+  </div>
+</div>
+
+      <div class="row">
         <div class="col-sm-10 col-sm-offset-1 col-xs-12">
-          <h1><a class="implicit" href="/">Reviewing Code from Both Sides</a></h1>
+          
+          
+          <h1 style="margin-top: 0.25em" id="Reviewing-Code-from-Both-Sides">
+            <a class="implicit" href="#Reviewing-Code-from-Both-Sides">
+              Reviewing Code from Both Sides
+            </a>
+          </h1>
           <p>At Khan Academy, code review is a key step in our engineering workflow—we use it as a mechanism for quality control, context sharing, and more. (See: <a href="https://sites.google.com/a/khanacademy.org/forge/for-developers/code-review-policy#TOC-Why-have-code-reviews-" target="_blank">Code reviews at Khan Academy</a>.)</p>
 
 <p>In making the jump from university (I graduated in June) to Real Engineering™, code review was one of my weak points. I hardly knew anything about it. At school, you never review code. On the job, you&#39;re reviewing daily.</p>
@@ -37,7 +70,7 @@
 
 <p>In particular: reading code in a code review tool (we use <a href="http://phabricator.org/" target="_blank">Phabricator</a>) leads me to make different observations than when reading code in an IDE.</p>
 
-<p><h3  id='Reviewing-in-Phabricator'>Reviewing in Phabricator<a class='anchor-wrap' href="#Reviewing-in-Phabricator" title="Permalink to this headline">¶</a></h3 ></p>
+<p><h3  id='Reviewing-in-Phabricator'><a class='implicit' href="#Reviewing-in-Phabricator" title="Permalink to this headline">Reviewing in Phabricator</a></h3 ></p>
 
 <p>When reviewing in Phabricator, my comments tend towards smaller issues, be they style nits or more serious edits that nonetheless span just a handful of lines.</p>
 
@@ -45,7 +78,7 @@
 
 <p>Yet, as a result of this focused presentation, simple oversights (leftover <code>console.log</code> statements et al.) are made much more obvious in the review tool than in an IDE, since they&#39;re surrounded by just a handful of changed lines and/or highlighted, rather than camouflaged within monotonous files.</p>
 
-<p><h3  id='Reviewing-in-an-IDE'>Reviewing in an IDE<a class='anchor-wrap' href="#Reviewing-in-an-IDE" title="Permalink to this headline">¶</a></h3 ></p>
+<p><h3  id='Reviewing-in-an-IDE'><a class='implicit' href="#Reviewing-in-an-IDE" title="Permalink to this headline">Reviewing in an IDE</a></h3 ></p>
 
 <p>When reviewing in Android Studio or even Sublime, I find it easier to identify opportunities for higher-level refactors and broader structural changes, since I can see the changed files in full, navigate with ease, and, more generally, rely on the same instincts I use when <em>writing</em> code.</p>
 
@@ -53,7 +86,7 @@
 
 <p>As an added bonus: an IDE can point out changes that your eyes would be strained to detect, like the ability to convert an instance variable to a local variable (though these should probably be caught by a linter anyway).</p>
 
-<p><h3  id='A-Wholistic-Review'>A Wholistic Review<a class='anchor-wrap' href="#A-Wholistic-Review" title="Permalink to this headline">¶</a></h3 ></p>
+<p><h3  id='A-Wholistic-Review'><a class='implicit' href="#A-Wholistic-Review" title="Permalink to this headline">A Wholistic Review</a></h3 ></p>
 
 <p>Of course, these are generalizations, and as I&#39;ve grown, the lines have blurred. (In particular, my ability to make high-level observations on the basis of a Phrabicator-read alone has improved—a progression that&#39;s also been influenced by increased familiarity with the codebase.)</p>
 
@@ -72,7 +105,9 @@
 
 <p class="note">Thanks to <a target="_blank" href="http://www.shubhro.com">Shubhro Saha</a> for providing feedback on an earlier draft of this post.</p>
 
-          <p class="date">Posted on February 22, 2016.</p>
+          <p class="date">
+            Posted on February 22, 2016.
+          </p>
           <div class="hidden-xs">
   <hr />
   <center style="padding-bottom: 20px">

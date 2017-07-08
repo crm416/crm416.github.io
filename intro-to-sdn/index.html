@@ -25,13 +25,46 @@
   <body class="index">
     <div class="container-fluid">
       <div class="row">
+  <div class="col-sm-12 hidden-xs">
+    <center>
+      <h1
+        style="font-size:80px; margin-top: 0.5em;margin-bottom:0"
+      >
+        <a class="implicit" href="/">
+          Charlie Marsh
+        </a>
+      </h1>
+      <div style="margin-bottom: 12px">
+        <code style="font-size:18px">
+          <span class="code-red">type</span> <a class="implicit" href="/all/">blog</a> = <span class="code-orange">Post</span> <span class="code-red">of</span> (<span class="code-blue">string</span> <span class="code-red">*</span> <a class="implicit" href="/all/">blog</a>) | <a class="implicit code-orange" href="/">Home</a> | <a class="implicit code-orange" href="/about/">About</a>
+        </code>
+      </div>
+      <a target="_blank" href="mailto:charlie@khanacademy.org">Email</a>
+      &sdot;
+      <a target="_blank" href="http://www.github.com/crm416">GitHub</a>
+      &sdot;
+      <a target="_blank" href="https://twitter.com/crm416">Twitter</a>
+      &sdot;
+      <a target="_blank" href="/static/pdf/Charles_Marsh_CV.pdf">Résumé</a>
+    </center>
+    <hr />
+  </div>
+</div>
+
+      <div class="row">
         <div class="col-sm-10 col-sm-offset-1 col-xs-12">
-          <h1><a class="implicit" href="/">Rule Optimization in Software-Defined Networks</a></h1>
+          
+          
+          <h1 style="margin-top: 0.25em" id="Rule-Optimization-in-Software-Defined-Networks">
+            <a class="implicit" href="#Rule-Optimization-in-Software-Defined-Networks">
+              Rule Optimization in Software-Defined Networks
+            </a>
+          </h1>
           <p>I&#39;m doing some independent work this semester with Professor David Walker, with whom I took functional programming last semester. My project is being implemented functionally, however the main focus is on rule optimization in network routers; specifically, routers within software-defined networks (SDNs).</p>
 
 <!--break-->
 
-<p><h2  id='SDNs'>SDNs<a class='anchor-wrap' href="#SDNs" title="Permalink to this headline">¶</a></h2 ></p>
+<p><h2  id='SDNs'><a class='implicit' href="#SDNs" title="Permalink to this headline">SDNs</a></h2 ></p>
 
 <p>The difference between SDNs and traditional networks lies in the positioning and functionality of the control plane: typically, when you buy a bunch of routers from Cisco, they’re implemented as a control plane and a data plane, where the former decides (at a high level) where packets should go, and the latter actually processes the packets as they come in and ships them off according to the former’s directions. SDNs, on the other hand, strip away the control plane, creating a single master controller that communicates with every router, where the routers are now just data planes.</p>
 
@@ -41,7 +74,7 @@
 
 <p>There are a ton of potential advantages to this type of networking. To give you a taste: say you’re trying to figure out how to get from New York to Miami. With traditional networks, you’re stuck on the ground in a swamp, asking nearby travellers if they can lend you some information. With SDNs, you’re looking down at the world from a high level, as if you have the world mapped out—finding a path is trivial.</p>
 
-<p><h2  id='Rule-Optimization'>Rule Optimization<a class='anchor-wrap' href="#Rule-Optimization" title="Permalink to this headline">¶</a></h2 ></p>
+<p><h2  id='Rule-Optimization'><a class='implicit' href="#Rule-Optimization" title="Permalink to this headline">Rule Optimization</a></h2 ></p>
 
 <p>Each router in the network is implemented as a <em>flow table</em>, which is a set of {<em>pattern, action}</em> pairs. Each pattern matches on some field of the incoming packets and, if it finds a correct match, the action is performed (where the actions are things like <em>forward to port 5</em> or <em>drop from network</em>).</p>
 
@@ -49,7 +82,7 @@
 
 <p>The hardware that implements this matching is known as TCAM. It works in parallel to perform O(1) matching, but it makes up in cost what it gives you in speed—that is, you can’t get much of it because it’s highly expensive. As a consequence, you want to use as few rules as possible in your router.</p>
 
-<p><h2  id='A-Family-of-Algorithms'>A Family of Algorithms<a class='anchor-wrap' href="#A-Family-of-Algorithms" title="Permalink to this headline">¶</a></h2 ></p>
+<p><h2  id='A-Family-of-Algorithms'><a class='implicit' href="#A-Family-of-Algorithms" title="Permalink to this headline">A Family of Algorithms</a></h2 ></p>
 
 <p>That’s where my work comes in: I’m trying to develop a family of algorithms that optimizes the number of rules necessary in a given flow table. Included in this family would be:</p>
 
@@ -61,13 +94,15 @@
 
 <p>These problems have been progressed to various degrees: the first is solved (and I’ve implemented the solution); the second is considered NP-complete for more than two fields, but a good approximate solution exists (which I’ve also implemented); and the third has not received much attention, which perhaps makes it the most exciting.</p>
 
-<p><h2  id='Going-Forward'>Going Forward<a class='anchor-wrap' href="#Going-Forward" title="Permalink to this headline">¶</a></h2 ></p>
+<p><h2  id='Going-Forward'><a class='implicit' href="#Going-Forward" title="Permalink to this headline">Going Forward</a></h2 ></p>
 
 <p>I’ve only been working on this project for a few weeks, but already it makes me more excited about the prospect of academia. The problem I’m trying to solve here is small enough that I’ve been able to gather and read all the relevant papers, with which I’m now comfortable enough to reference by author names. I’ve really dived into the task, and I’m incredibly excited to (hopefully) contribute something to the open problem.</p>
 
 <p>I’ll be posting here about my work as I progress through the semester; for reference, it all culminates in a poster session in early March.</p>
 
-          <p class="date">Posted on February 25, 2013.</p>
+          <p class="date">
+            Posted on February 25, 2013.
+          </p>
           <div class="hidden-xs">
   <hr />
   <center style="padding-bottom: 20px">

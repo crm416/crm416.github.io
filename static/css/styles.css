@@ -75,18 +75,6 @@ a {
       color: #60d9ef !important;
       border-bottom: none; }
 
-a.anchor-wrap {
-  color: white !important;
-  font-size: 1em;
-  margin-left: 6px;
-  padding: 0 4px 0 4px;
-  text-decoration: none !important;
-  border-bottom: none; }
-  a.anchor-wrap:hover {
-    background-color: #ccc;
-    color: white !important;
-    border-bottom: none; }
-
 /* Code snippets */
 pre, code, kbd, samp, .match-list {
   font-family: 'Source Code Pro', sans-serif; }
@@ -205,37 +193,3 @@ div.read-more {
 
 .note {
   color: grey; }
-
-/* Specific sidebar wrappers */
-#wrapper {
-  padding-left: 245px;
-  transition: all 0.4s ease 0s; }
-
-#sidebar-wrapper {
-  margin-left: -245px;
-  left: 245px;
-  position: fixed;
-  z-index: 1000;
-  transition: all 0.4s ease 0s; }
-
-#page-content-wrapper {
-  width: 100%; }
-
-@media (max-width: 950px) {
-  #wrapper {
-    padding-left: 0; }
-
-  #sidebar-wrapper {
-    left: 0; }
-
-  #wrapper.active {
-    position: relative;
-    left: 245px; }
-
-  #wrapper.active #sidebar-wrapper {
-    left: 245px;
-    width: 245px;
-    transition: all 0.4s ease 0s; } }
-.col-fixed {
-  width: 200px;
-  float: left; }

@@ -25,8 +25,41 @@
   <body class="index">
     <div class="container-fluid">
       <div class="row">
+  <div class="col-sm-12 hidden-xs">
+    <center>
+      <h1
+        style="font-size:80px; margin-top: 0.5em;margin-bottom:0"
+      >
+        <a class="implicit" href="/">
+          Charlie Marsh
+        </a>
+      </h1>
+      <div style="margin-bottom: 12px">
+        <code style="font-size:18px">
+          <span class="code-red">type</span> <a class="implicit" href="/all/">blog</a> = <span class="code-orange">Post</span> <span class="code-red">of</span> (<span class="code-blue">string</span> <span class="code-red">*</span> <a class="implicit" href="/all/">blog</a>) | <a class="implicit code-orange" href="/">Home</a> | <a class="implicit code-orange" href="/about/">About</a>
+        </code>
+      </div>
+      <a target="_blank" href="mailto:charlie@khanacademy.org">Email</a>
+      &sdot;
+      <a target="_blank" href="http://www.github.com/crm416">GitHub</a>
+      &sdot;
+      <a target="_blank" href="https://twitter.com/crm416">Twitter</a>
+      &sdot;
+      <a target="_blank" href="/static/pdf/Charles_Marsh_CV.pdf">Résumé</a>
+    </center>
+    <hr />
+  </div>
+</div>
+
+      <div class="row">
         <div class="col-sm-10 col-sm-offset-1 col-xs-12">
-          <h1><a class="implicit" href="/">Rendering React Components on the Server</a></h1>
+          
+          
+          <h1 style="margin-top: 0.25em" id="Rendering-React-Components-on-the-Server">
+            <a class="implicit" href="#Rendering-React-Components-on-the-Server">
+              Rendering React Components on the Server
+            </a>
+          </h1>
           <p>I love working with React. Like, a little too much (no thanks to my (amazing) internship at Khan Academy, where we use React in buckets).</p>
 
 <p>For a recent side project, I wanted to render my React components on the server, rather than the client (this is often abbreviated as &quot;server-side rendering&quot;, or SSR, for short).</p>
@@ -44,16 +77,16 @@
 
 <!--break-->
 
-<p><h2  id='The-Basics'>The Basics<a class='anchor-wrap' href="#The-Basics" title="Permalink to this headline">¶</a></h2 ></p>
+<p><h2  id='The-Basics'><a class='implicit' href="#The-Basics" title="Permalink to this headline">The Basics</a></h2 ></p>
 
-<p><h3  id='Static-markup'>Static markup<a class='anchor-wrap' href="#Static-markup" title="Permalink to this headline">¶</a></h3 ></p>
+<p><h3  id='Static-markup'><a class='implicit' href="#Static-markup" title="Permalink to this headline">Static markup</a></h3 ></p>
 
 <p>Let&#39;s start with the static case, in which the rendered components we send to the client won&#39;t need to re-render in any way.</p>
 
 <p>React provides a method, <code>renderComponentToStaticMarkup</code>, that takes a React component and returns its HTML markup as a string. This is super useful for server-side rendering, as you can simply pass the method output into a templating engine and send the client the resulting HTML page. For example, if you&#39;re using Handlebars, you can render your component to static markup and send it down in the <code>markup</code> variable as such:</p>
 <div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div&gt;</span>{{{ markup }}}<span class="nt">&lt;/div&gt;</span>
 </code></pre></div>
-<p><h3  id='Reactive-components'>Reactive components<a class='anchor-wrap' href="#Reactive-components" title="Permalink to this headline">¶</a></h3 ></p>
+<p><h3  id='Reactive-components'><a class='implicit' href="#Reactive-components" title="Permalink to this headline">Reactive components</a></h3 ></p>
 
 <p>But it&#39;s rare that you really want your components to be static. Why&#39;s that? Static components can&#39;t respond to non-trivial user interaction, update <code>state</code>, re-render, etc. They&#39;re totally passive and, err, static.</p>
 
@@ -63,7 +96,7 @@
 
 <p>How so? <strong>The key is to (ostensibly) re-render the component on the client as soon as the page has loaded</strong>. Bear with me.</p>
 
-<p><h3  id='An-Example'>An Example<a class='anchor-wrap' href="#An-Example" title="Permalink to this headline">¶</a></h3 ></p>
+<p><h3  id='An-Example'><a class='implicit' href="#An-Example" title="Permalink to this headline">An Example</a></h3 ></p>
 
 <p>Let&#39;s say that we have a React component, <code>Item</code>, with one prop (called <code>initialCount</code>) and one piece of state (called <code>count</code>). The component initializes <code>count</code> with <code>initialCount</code> and increments it on-click. Here&#39;s a bare-bones version:</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">Item</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nx">createClass</span><span class="p">({</span>
@@ -110,7 +143,7 @@
 
 <p>This is the best of both worlds: <strong>we get all the benefits of server-side rendering while maintaining truly reactive React components</strong>.</p>
 
-<p><h3  id='Syncing-Props'>Syncing Props<a class='anchor-wrap' href="#Syncing-Props" title="Permalink to this headline">¶</a></h3 ></p>
+<p><h3  id='Syncing-Props'><a class='implicit' href="#Syncing-Props" title="Permalink to this headline">Syncing Props</a></h3 ></p>
 
 <p>A key phrase there: we need to render <code>Item</code> with the same props on the client and server (as evidenced by the last code snippet, above). That&#39;s a little frustrating, but not terribly difficult to do. A few viable approaches include:</p>
 
@@ -174,7 +207,7 @@
 <li><p><em>Passing the initial props down as a <code>window</code>-level variable.</em> Relatively straightforward, given the explanations above.</p></li>
 </ol>
 
-<p><h3  id='Browserifying'>Browserifying<a class='anchor-wrap' href="#Browserifying" title="Permalink to this headline">¶</a></h3 ></p>
+<p><h3  id='Browserifying'><a class='implicit' href="#Browserifying" title="Permalink to this headline">Browserifying</a></h3 ></p>
 
 <p>One other thing: of course, your client page will need to have access to the actual JSX files that make up your React components (along with React itself). This is typically done by creating a Browserify (or Webpack) bundle and adding a <code>&lt;script&gt;</code> tag to your React component that loads said bundle.</p>
 
@@ -202,7 +235,7 @@
     <span class="nx">external</span><span class="o">:</span> <span class="nx">shared</span>
 <span class="p">}));</span>
 </code></pre></div>
-<p><h2  id='How-does-it-all-work'>How does it all work?<a class='anchor-wrap' href="#How-does-it-all-work" title="Permalink to this headline">¶</a></h2 ></p>
+<p><h2  id='How-does-it-all-work'><a class='implicit' href="#How-does-it-all-work" title="Permalink to this headline">How does it all work?</a></h2 ></p>
 
 <p>Now that we have a good sense for how to render server-side, it&#39;s worth stepping through some React source to understand <em>why</em> it works this way.</p>
 
@@ -248,7 +281,7 @@
 
 <p>For example, if we render <code>Item({ initialCount: 5 })</code> on the server, it&#39;ll turn it into HTML markup, calculate a checksum, and append it to the outermost DOM node. Then, when we call <code>React.renderComponent(Item({ initialCount: 5 }), container)</code> on the client, it checks if the markup generated by <code>Item({ initialCount: 5 })</code> matches the checksum (which it does) and simply returns (rather than re-rendering).</p>
 
-<p><h2  id='Gotchas'>Gotchas<a class='anchor-wrap' href="#Gotchas" title="Permalink to this headline">¶</a></h2 ></p>
+<p><h2  id='Gotchas'><a class='implicit' href="#Gotchas" title="Permalink to this headline">Gotchas</a></h2 ></p>
 
 <p>A few things to keep in mind:</p>
 
@@ -267,7 +300,7 @@
 <li><p>To avoid re-rendering, the markup generated by the client and server must be <em>completely</em> identical. That means, for example, that you can&#39;t pass down the initial props in a <code>&lt;script&gt;</code> tag <em>only</em> on the server; otherwise, the checksums won&#39;t match up. As a rule of thumb, avoid any checks for <code>(typeof window !== &#39;undefined&#39;)</code> or whatnot when writing rendering-related code.</p></li>
 </ul>
 
-<p><h2  id='Resources--Acknowledgements'>Resources &amp; Acknowledgements<a class='anchor-wrap' href="#Resources--Acknowledgements" title="Permalink to this headline">¶</a></h2 ></p>
+<p><h2  id='Resources--Acknowledgements'><a class='implicit' href="#Resources--Acknowledgements" title="Permalink to this headline">Resources &amp; Acknowledgements</a></h2 ></p>
 
 <p>Here are some resources I found helpful (and referenced above):</p>
 
@@ -280,7 +313,9 @@
 
 <p>Finally, thanks to <a href="http://benalpert.com/">Ben Alpert</a> (<a href="https://twitter.com/soprano">@soprano</a>) for his feedback on a draft of this post.</p>
 
-          <p class="date">Posted on August 12, 2014.</p>
+          <p class="date">
+            Posted on August 12, 2014.
+          </p>
           <div class="hidden-xs">
   <hr />
   <center style="padding-bottom: 20px">

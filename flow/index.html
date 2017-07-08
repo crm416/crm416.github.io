@@ -25,8 +25,41 @@
   <body class="index">
     <div class="container-fluid">
       <div class="row">
+  <div class="col-sm-12 hidden-xs">
+    <center>
+      <h1
+        style="font-size:80px; margin-top: 0.5em;margin-bottom:0"
+      >
+        <a class="implicit" href="/">
+          Charlie Marsh
+        </a>
+      </h1>
+      <div style="margin-bottom: 12px">
+        <code style="font-size:18px">
+          <span class="code-red">type</span> <a class="implicit" href="/all/">blog</a> = <span class="code-orange">Post</span> <span class="code-red">of</span> (<span class="code-blue">string</span> <span class="code-red">*</span> <a class="implicit" href="/all/">blog</a>) | <a class="implicit code-orange" href="/">Home</a> | <a class="implicit code-orange" href="/about/">About</a>
+        </code>
+      </div>
+      <a target="_blank" href="mailto:charlie@khanacademy.org">Email</a>
+      &sdot;
+      <a target="_blank" href="http://www.github.com/crm416">GitHub</a>
+      &sdot;
+      <a target="_blank" href="https://twitter.com/crm416">Twitter</a>
+      &sdot;
+      <a target="_blank" href="/static/pdf/Charles_Marsh_CV.pdf">Résumé</a>
+    </center>
+    <hr />
+  </div>
+</div>
+
+      <div class="row">
         <div class="col-sm-10 col-sm-offset-1 col-xs-12">
-          <h1><a class="implicit" href="/">Exploring Flow, Facebook's Type Checker for JavaScript</a></h1>
+          
+          
+          <h1 style="margin-top: 0.25em" id="Exploring-Flow,-Facebook's-Type-Checker-for-JavaScript">
+            <a class="implicit" href="#Exploring-Flow,-Facebook's-Type-Checker-for-JavaScript">
+              Exploring Flow, Facebook's Type Checker for JavaScript
+            </a>
+          </h1>
           <p>At September&#39;s <a href="https://www.facebook.com/atscale2014">@Scale conference</a>, Facebook introduced <a href="http://flowtype.org/">Flow</a>, a static type checker for JavaScript.</p>
 
 <p>The stated goal of Flow is to &quot;find errors in JavaScript code with little programmer effort&quot;. To paraphrase project lead <a href="http://www.cs.umd.edu/%7Eavik/">Avik Chaudhuri</a>: Flow aims to enforce the benefits of a type system while maintaing the &quot;feel&quot; of JavaScript.</p>
@@ -43,7 +76,7 @@
 
 <p>If you have specific questions about <a href="#Interfaces">interfaces</a>, <a href="#Transforms">transforms</a>, <a href="#Objects">object annotations</a>, or <a href="#Globals">globals</a>, feel free to skip ahead.</p>
 
-<p><h2  id='My-Playground'>My Playground<a class='anchor-wrap' href="#My-Playground" title="Permalink to this headline">¶</a></h2 ></p>
+<p><h2  id='My-Playground'><a class='implicit' href="#My-Playground" title="Permalink to this headline">My Playground</a></h2 ></p>
 
 <p>Briefly: <a href="https://github.com/chenglou/RCSS">RCSS</a> is an experiment in writing CSS with JavaScript, similar to how one might replace HTML with JSX. It&#39;s intended to be used with React or another front-end framework.</p>
 
@@ -51,7 +84,7 @@
 
 <p>With that covered, I&#39;ll start by discussing Flow&#39;s server model before getting into some of the intricacies of Flow interfaces.</p>
 
-<p><h2  id='Server-Architecture'>Server Architecture<a class='anchor-wrap' href="#Server-Architecture" title="Permalink to this headline">¶</a></h2 ></p>
+<p><h2  id='Server-Architecture'><a class='implicit' href="#Server-Architecture" title="Permalink to this headline">Server Architecture</a></h2 ></p>
 
 <p>Flow is centered around a server architecture, which allows for <a href="http://flowtype.org/docs/about-flow.html">online</a> type checking. So, to start, Flow scans your entire project—or, at least, any files marked with the <a href="http://flowtype.org/docs/new-project.html#typechecking-your-files">pragma</a>, as Flow&#39;s type checking is opt-in. When you later change a file, Flow can intelligently type check the paths in the code that were affected by this change, rather than rescanning the entire project. This leads to big performance gains.</p>
 
@@ -61,7 +94,7 @@
 
 <p>I really, really appreciated the ease that came with running Flow—the feedback loop is incredibly tight. This was one of the major selling points to me coming in to the project and the hype was validated.</p>
 
-<p><h2  id='Interfaces'>Interfaces<a class='anchor-wrap' href="#Interfaces" title="Permalink to this headline">¶</a></h2 ></p>
+<p><h2  id='Interfaces'><a class='implicit' href="#Interfaces" title="Permalink to this headline">Interfaces</a></h2 ></p>
 
 <p>Flow allows you to provide a folder of interface files to be used during type checking, identified with:</p>
 <div class="highlight"><pre><code class="language-text" data-lang="text">flow start --lib path/to/interfaces/
@@ -98,7 +131,7 @@ flow start --lib path/to/interfaces/
 
 <p>I&#39;m not trying to be overly critical of Flow—all of these issues are fixable and there are indications that they <em>will</em> be fixed (as evidenced by the GitHub issues referenced above). But for those experimenting with Flow in the meantime, it&#39;s very, very good to be aware of them.</p>
 
-<p><h2  id='Globals'>Globals<a class='anchor-wrap' href="#Globals" title="Permalink to this headline">¶</a></h2 ></p>
+<p><h2  id='Globals'><a class='implicit' href="#Globals" title="Permalink to this headline">Globals</a></h2 ></p>
 
 <p>There isn&#39;t a great way to deal with globals in Flow. Here, I&#39;m specifically talking about anything that would be on <code>window</code> in the browser or <code>global</code> in Node.</p>
 
@@ -119,7 +152,7 @@ flow start --lib path/to/interfaces/
 </code></pre></div>
 <p>I prefer the former. (Surprisingly, putting this declaration in my interface file didn&#39;t work.)</p>
 
-<p><h2  id='Transforms'>Transforms<a class='anchor-wrap' href="#Transforms" title="Permalink to this headline">¶</a></h2 ></p>
+<p><h2  id='Transforms'><a class='implicit' href="#Transforms" title="Permalink to this headline">Transforms</a></h2 ></p>
 
 <p>Per the <a href="http://flowtype.org/docs/running.html#_">docs</a>, you need to use Facebook&#39;s <a href="https://www.npmjs.com/package/react-tools">JSX transformer</a> to strip away Flow&#39;s type annotations.</p>
 
@@ -137,7 +170,7 @@ flow start --lib path/to/interfaces/
 </code></pre></div>
 <p>This transpilation step, while somewhat inconvenient, is now the status quo for a lot of JS tooling.</p>
 
-<p><h3  id='Commented-Annotations-The-Future'>Commented Annotations: The Future?<a class='anchor-wrap' href="#Commented-Annotations-The-Future" title="Permalink to this headline">¶</a></h3 ></p>
+<p><h3  id='Commented-Annotations-The-Future'><a class='implicit' href="#Commented-Annotations-The-Future" title="Permalink to this headline">Commented Annotations: The Future?</a></h3 ></p>
 
 <p>That said, there&#39;s been some interesting <a href="https://github.com/facebook/flow/issues/3">discussion on GitHub</a> about removing this transpilation step for Flow through the use of formatted comments.</p>
 
@@ -165,7 +198,7 @@ flow start --lib path/to/interfaces/
 </code></pre></div>
 <p>While the core team has noted that this should be considered <a href="https://github.com/facebook/flow/issues/3#issuecomment-63569368">experimental</a>, some commenters have suggested performing this transformation in-place and using the output annotations for type checking. There are good ideas in that thread and I&#39;m excited to see what the Flow team produces.</p>
 
-<p><h2  id='Objects'>Objects<a class='anchor-wrap' href="#Objects" title="Permalink to this headline">¶</a></h2 ></p>
+<p><h2  id='Objects'><a class='implicit' href="#Objects" title="Permalink to this headline">Objects</a></h2 ></p>
 
 <p>In Flow, there are a few ways to annotate an object. The most basic, as you might guess, is to add an annotation to the object literal at the time of creation:</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">foo</span><span class="o">:</span> <span class="p">{</span> <span class="nx">x</span><span class="o">:</span> <span class="nx">number</span><span class="p">;</span> <span class="nx">y</span><span class="o">:</span> <span class="nx">string</span> <span class="p">}</span> <span class="o">=</span> <span class="p">{</span>
@@ -206,7 +239,7 @@ flow start --lib path/to/interfaces/
   <span class="nx">y</span><span class="o">:</span> <span class="mi">5</span>
 <span class="p">};</span>
 </code></pre></div>
-<p><h3  id='Unannotated-Objects'>Unannotated Objects<a class='anchor-wrap' href="#Unannotated-Objects" title="Permalink to this headline">¶</a></h3 ></p>
+<p><h3  id='Unannotated-Objects'><a class='implicit' href="#Unannotated-Objects" title="Permalink to this headline">Unannotated Objects</a></h3 ></p>
 
 <p>Without annotations, the typing on objects becomes pretty loose, as you&#39;d expect—it&#39;s hard to enforce type safety on an object that you know nothing about.</p>
 
@@ -239,7 +272,7 @@ flow start --lib path/to/interfaces/
 </code></pre></div>
 <p>Note that the error here comes on the final line, so Flow lets us overwrite <code>foo.z</code> with a string, but later enforces that its type should be <code>number</code>. Odd. I think this is a bug, but the general point is that I wouldn&#39;t rely on unannotated objects.</p>
 
-<p><h3  id='Maps'>Maps<a class='anchor-wrap' href="#Maps" title="Permalink to this headline">¶</a></h3 ></p>
+<p><h3  id='Maps'><a class='implicit' href="#Maps" title="Permalink to this headline">Maps</a></h3 ></p>
 
 <p>Tucked away in the Flow docs is an <a href="http://flowtype.org/docs/objects.html#objects-as-maps">interesting note</a> about treating objects as key-value maps.</p>
 
@@ -295,7 +328,7 @@ flow start --lib path/to/interfaces/
 <p>(I&#39;ve documented this behavior on <a href="https://github.com/facebook/flow/issues/187">GitHub</a>.)</p></li>
 </ol>
 
-<p><h2  id='Type-Reuse'>Type Reuse<a class='anchor-wrap' href="#Type-Reuse" title="Permalink to this headline">¶</a></h2 ></p>
+<p><h2  id='Type-Reuse'><a class='implicit' href="#Type-Reuse" title="Permalink to this headline">Type Reuse</a></h2 ></p>
 
 <p>Lastly, I want to talk a bit about type reuse (across files) in Flow.</p>
 
@@ -341,7 +374,7 @@ flow start --lib path/to/interfaces/
 
 <p>Things improve when you use <a href="http://flowtype.org/docs/classes.html">ES6 Classes</a>, as the classes can be exported and their types reused with ease.</p>
 
-<p><h2  id='In-Conclusion'>In Conclusion<a class='anchor-wrap' href="#In-Conclusion" title="Permalink to this headline">¶</a></h2 ></p>
+<p><h2  id='In-Conclusion'><a class='implicit' href="#In-Conclusion" title="Permalink to this headline">In Conclusion</a></h2 ></p>
 
 <p>I had a positive experience with Flow and look forward to using it again. Admittedly, though, the project felt raw, with a few &#39;gotchas&#39; scattered throughout the codebase.</p>
 
@@ -349,7 +382,7 @@ flow start --lib path/to/interfaces/
 
 <p>Even better, many of the issues I described here have already been noted by the community, which seems to be growing and going strong. If Flow is run half as well as React, I&#39;m sure it will continue to prosper as an open-source project.</p>
 
-<p><h2  id='Appendix-Other-Cool-Features'>Appendix: Other Cool Features<a class='anchor-wrap' href="#Appendix-Other-Cool-Features" title="Permalink to this headline">¶</a></h2 ></p>
+<p><h2  id='Appendix-Other-Cool-Features'><a class='implicit' href="#Appendix-Other-Cool-Features" title="Permalink to this headline">Appendix: Other Cool Features</a></h2 ></p>
 
 <p>If you&#39;re interested, here are some other cool features of Flow that I didn&#39;t spend much time on in this post:</p>
 
@@ -363,7 +396,9 @@ flow start --lib path/to/interfaces/
 
 <p class="note">Thanks to <a target="_blank" href="http://www.shubhro.com">Shubhro Saha</a> for his feedback on a draft of this post.</p>
 
-          <p class="date">Posted on December 12, 2014.</p>
+          <p class="date">
+            Posted on December 12, 2014.
+          </p>
           <div class="hidden-xs">
   <hr />
   <center style="padding-bottom: 20px">

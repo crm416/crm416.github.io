@@ -25,8 +25,41 @@
   <body class="index">
     <div class="container-fluid">
       <div class="row">
+  <div class="col-sm-12 hidden-xs">
+    <center>
+      <h1
+        style="font-size:80px; margin-top: 0.5em;margin-bottom:0"
+      >
+        <a class="implicit" href="/">
+          Charlie Marsh
+        </a>
+      </h1>
+      <div style="margin-bottom: 12px">
+        <code style="font-size:18px">
+          <span class="code-red">type</span> <a class="implicit" href="/all/">blog</a> = <span class="code-orange">Post</span> <span class="code-red">of</span> (<span class="code-blue">string</span> <span class="code-red">*</span> <a class="implicit" href="/all/">blog</a>) | <a class="implicit code-orange" href="/">Home</a> | <a class="implicit code-orange" href="/about/">About</a>
+        </code>
+      </div>
+      <a target="_blank" href="mailto:charlie@khanacademy.org">Email</a>
+      &sdot;
+      <a target="_blank" href="http://www.github.com/crm416">GitHub</a>
+      &sdot;
+      <a target="_blank" href="https://twitter.com/crm416">Twitter</a>
+      &sdot;
+      <a target="_blank" href="/static/pdf/Charles_Marsh_CV.pdf">Résumé</a>
+    </center>
+    <hr />
+  </div>
+</div>
+
+      <div class="row">
         <div class="col-sm-10 col-sm-offset-1 col-xs-12">
-          <h1><a class="implicit" href="/">PhantomJS: Common Gotchas for Beginners</a></h1>
+          
+          
+          <h1 style="margin-top: 0.25em" id="PhantomJS:-Common-Gotchas-for-Beginners">
+            <a class="implicit" href="#PhantomJS:-Common-Gotchas-for-Beginners">
+              PhantomJS: Common Gotchas for Beginners
+            </a>
+          </h1>
           <p>Over the summer, I had a pet project to automate <a href="https://github.com/geuis/helium-css">Helium.js</a>, a tool for identifying unused style elements in your CSS. Currently, in order to generate a Helium report, you need to add some JavaScript to your webpage, open up your web browser, navigate to the page, and click on some buttons.</p>
 
 <p>My goal was to automate the process using a headless browser <em>(that is, a browser that runs without a GUI, allowing you to navigate the web and interact with web pages from your terminal)</em>. In this case, I chose to use <a href="http://phantomjs.org">PhantomJS</a>.</p>
@@ -41,7 +74,7 @@
 
 <p><em>Note: that PhantomJS is often used in tandem with <a href="http://casperjs.org">CasperJS</a>; it&#39;s possible that some of what follows is made easier with Casper, namely, navigating webpages. But I think these gotchas are still valid, even in the face of Casper.</em></p>
 
-<p><h2  id='Code-Context'>Code Context<a class='anchor-wrap' href="#Code-Context" title="Permalink to this headline">¶</a></h2 ></p>
+<p><h2  id='Code-Context'><a class='implicit' href="#Code-Context" title="Permalink to this headline">Code Context</a></h2 ></p>
 
 <p>Perhaps the first gotcha is that there are really two contexts in your PhantomJS program: firstly, the PhantomJS program itself; secondly, the webpage open in your headless browser, i.e., access to the DOM. (This is important for subsequent gotchas.)</p>
 
@@ -49,7 +82,7 @@
 
 <p>A litmus test: if you&#39;re using jQuery, you&#39;re in the latter context.</p>
 
-<p><h2  id='Pageevaluate'>Page.evaluate<a class='anchor-wrap' href="#Pageevaluate" title="Permalink to this headline">¶</a></h2 ></p>
+<p><h2  id='Pageevaluate'><a class='implicit' href="#Pageevaluate" title="Permalink to this headline">Page.evaluate</a></h2 ></p>
 
 <p>With that in mind, one of the first questions that I asked myself, when using PhantomJS: &quot;How can I execute JavaScript <em>on</em> the given webpage itself?&quot; In other words, I wanted to somehow mess around with the webpage using jQuery, and I couldn&#39;t figure out how to actually execute code in the context of the page.</p>
 
@@ -63,7 +96,7 @@
 
 <p>You could then use <code>foo</code> in your PhantomJS program, successfully extracting the value from the webpage. <em>Note: return values are limited to simple objects, rather than, say, functions.</em></p>
 
-<p><h2  id='IncludeJs-and-InjectJs'>IncludeJs and InjectJs<a class='anchor-wrap' href="#IncludeJs-and-InjectJs" title="Permalink to this headline">¶</a></h2 ></p>
+<p><h2  id='IncludeJs-and-InjectJs'><a class='implicit' href="#IncludeJs-and-InjectJs" title="Permalink to this headline">IncludeJs and InjectJs</a></h2 ></p>
 
 <p>Actually, the code snippet above might not work as expected. I&#39;ll repeat it here for clarity:</p>
 
@@ -85,7 +118,7 @@
     <span class="c1">// ...</span>
 <span class="p">});</span></code></pre></figure>
 
-<p><h2  id='Consolelogging-from-your-web-browser'>Console.logging from your web browser<a class='anchor-wrap' href="#Consolelogging-from-your-web-browser" title="Permalink to this headline">¶</a></h2 ></p>
+<p><h2  id='Consolelogging-from-your-web-browser'><a class='implicit' href="#Consolelogging-from-your-web-browser" title="Permalink to this headline">Console.logging from your web browser</a></h2 ></p>
 
 <p>Similarly, I was often frustrated by the inability to display information logged by my webpage. Recall the split between the context of your PhantomJS program and the webpage open in your headless browser. Well, if you type <code>console.log(&quot;Hello, World!&quot;)</code> in your PhantomJS program, that will be printed to your terminal. If, however, your webpage tries to log the same message, it will pass by unnoticed! So if your webpage prints a bunch of traces to the console, you&#39;ll never see &#39;em.</p>
 
@@ -103,7 +136,7 @@
 
 <p>For more, see my <a href="http://stackoverflow.com/questions/18115888/phantomjs-not-returning-results/18131369#18131369">StackOverflow answer</a>.</p>
 
-<p><h2  id='waitForjs'>waitFor.js<a class='anchor-wrap' href="#waitForjs" title="Permalink to this headline">¶</a></h2 ></p>
+<p><h2  id='waitForjs'><a class='implicit' href="#waitForjs" title="Permalink to this headline">waitFor.js</a></h2 ></p>
 
 <p>PhantomJS beginners constantly ask how they can wait for something to appear on their webpage before acting. For example, maybe they want a banner to appear and then extract some text from it. Say &quot;#foo&quot; is now a div that loads a few seconds after the page has appeared. If you simply use the following code, you&#39;ll get unexpected results, as the banner may not be loaded at the time of query:</p>
 
@@ -135,11 +168,13 @@
     <span class="p">});</span>
 <span class="p">});</span></code></pre></figure>
 
-<p><h2  id='Going-Forward'>Going Forward<a class='anchor-wrap' href="#Going-Forward" title="Permalink to this headline">¶</a></h2 ></p>
+<p><h2  id='Going-Forward'><a class='implicit' href="#Going-Forward" title="Permalink to this headline">Going Forward</a></h2 ></p>
 
 <p>There&#39;s a lot more to PhantomJS than I&#39;ve managed to go through in this post. And I&#39;m personally excited to check out CasperJS at some point in the future, which seems great as well (in particular, for unit testing). But hopefully the tips and gotchas described in this post can be helpful for beginners.</p>
 
-          <p class="date">Posted on September 13, 2013.</p>
+          <p class="date">
+            Posted on September 13, 2013.
+          </p>
           <div class="hidden-xs">
   <hr />
   <center style="padding-bottom: 20px">

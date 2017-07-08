@@ -25,8 +25,41 @@
   <body class="index">
     <div class="container-fluid">
       <div class="row">
+  <div class="col-sm-12 hidden-xs">
+    <center>
+      <h1
+        style="font-size:80px; margin-top: 0.5em;margin-bottom:0"
+      >
+        <a class="implicit" href="/">
+          Charlie Marsh
+        </a>
+      </h1>
+      <div style="margin-bottom: 12px">
+        <code style="font-size:18px">
+          <span class="code-red">type</span> <a class="implicit" href="/all/">blog</a> = <span class="code-orange">Post</span> <span class="code-red">of</span> (<span class="code-blue">string</span> <span class="code-red">*</span> <a class="implicit" href="/all/">blog</a>) | <a class="implicit code-orange" href="/">Home</a> | <a class="implicit code-orange" href="/about/">About</a>
+        </code>
+      </div>
+      <a target="_blank" href="mailto:charlie@khanacademy.org">Email</a>
+      &sdot;
+      <a target="_blank" href="http://www.github.com/crm416">GitHub</a>
+      &sdot;
+      <a target="_blank" href="https://twitter.com/crm416">Twitter</a>
+      &sdot;
+      <a target="_blank" href="/static/pdf/Charles_Marsh_CV.pdf">Résumé</a>
+    </center>
+    <hr />
+  </div>
+</div>
+
+      <div class="row">
         <div class="col-sm-10 col-sm-offset-1 col-xs-12">
-          <h1><a class="implicit" href="/">A Human-Friendly API for Wikipedia</a></h1>
+          
+          
+          <h1 style="margin-top: 0.25em" id="A-Human-Friendly-API-for-Wikipedia">
+            <a class="implicit" href="#A-Human-Friendly-API-for-Wikipedia">
+              A Human-Friendly API for Wikipedia
+            </a>
+          </h1>
           <p><strong>Motivation:</strong> There&#39;s a lot of information on Wikipedia, and people want to use it. Sometimes, these people are programmers; and sometimes, their customers aren&#39;t computers.</p>
 
 <p>I needed to parse some information from Wikipedia programatically and present it in a human-readable format, i.e., for clients. I found that a bunch of other people had similar issues (e.g., <a href="http://stackoverflow.com/questions/120061/fetch-a-wikipedia-article-with-python?lq=1">here</a> and <a href="http://stackoverflow.com/questions/4452102/how-to-get-plain-text-out-of-wikipedia?rq=1">here</a>), so I&#39;ve <a href="https://github.com/crm416/quizzler/blob/master/src/wiki.py">open-sourced my solution</a>.</p>
@@ -35,7 +68,7 @@
 
 <p><em>Note: this module is currently housed within a larger project; I&#39;ll be writing more on that later.</em></p>
 
-<p><h2  id='How-It-Works'>How It Works<a class='anchor-wrap' href="#How-It-Works" title="Permalink to this headline">¶</a></h2 ></p>
+<p><h2  id='How-It-Works'><a class='implicit' href="#How-It-Works" title="Permalink to this headline">How It Works</a></h2 ></p>
 
 <p>To start, we need to understand the current Wikipedia API, the so-called <em>MediaWiki API</em>. The <a href="http://www.mediawiki.org/wiki/API:Main_page">documentation</a> is fairly comprehensive, although it&#39;s not easy to find what you&#39;re looking for in those dense pages.</p>
 
@@ -61,7 +94,7 @@
 </code></pre></div>
 <p>Where <em>cleanWikiSection</em> is reponsible for removing extraneous information from the page itself, and <em>cleanHTMLSection</em> is responsible for converting the HTML to plaintext.</p>
 
-<p><h2  id='BeautifulSoup-Traversing-the-Parse-Tree'>BeautifulSoup: Traversing the Parse Tree<a class='anchor-wrap' href="#BeautifulSoup-Traversing-the-Parse-Tree" title="Permalink to this headline">¶</a></h2 ></p>
+<p><h2  id='BeautifulSoup-Traversing-the-Parse-Tree'><a class='implicit' href="#BeautifulSoup-Traversing-the-Parse-Tree" title="Permalink to this headline">BeautifulSoup: Traversing the Parse Tree</a></h2 ></p>
 
 <p>In some cases, <em>wikipedia.py</em> also uses BeautifulSoup to explore the target page. For example, say we want to extract information from the table below (again, from Michael Jordan&#39;s Wikipedia page.)</p>
 
@@ -72,11 +105,13 @@
 <p>The output for MJ&#39;s table is as follows:</p>
 <div class="highlight"><pre><code class="language-python" data-lang="python"><span class="p">[(</span><span class="s">&#39;Born&#39;</span><span class="p">,</span> <span class="s">&#39;February 17, 1963&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;Nationality&#39;</span><span class="p">,</span> <span class="s">&#39;American&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;Listed height&#39;</span><span class="p">,</span> <span class="s">&#39;6ft6in&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;Listed weight&#39;</span><span class="p">,</span> <span class="s">&#39;216lb&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;High school&#39;</span><span class="p">,</span> <span class="s">&#39;Emsley A. Laney&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;College&#39;</span><span class="p">,</span> <span class="s">&#39;North Carolina&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;NBA Draft&#39;</span><span class="p">,</span> <span class="s">&#39;1984 / Round: 1 / Pick: 3rd overall&#39;</span><span class="p">),</span> <span class="o">...</span><span class="p">]</span>
 </code></pre></div>
-<p><h2  id='In-Conclusion'>In Conclusion<a class='anchor-wrap' href="#In-Conclusion" title="Permalink to this headline">¶</a></h2 ></p>
+<p><h2  id='In-Conclusion'><a class='implicit' href="#In-Conclusion" title="Permalink to this headline">In Conclusion</a></h2 ></p>
 
 <p>Feel free to fork, comment, criticise, or (best of all) get in touch. This was created as a sub-project and is by no means perfect, but I certainly hope it can be useful to some.</p>
 
-          <p class="date">Posted on June 16, 2013.</p>
+          <p class="date">
+            Posted on June 16, 2013.
+          </p>
           <div class="hidden-xs">
   <hr />
   <center style="padding-bottom: 20px">

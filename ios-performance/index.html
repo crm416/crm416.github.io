@@ -25,15 +25,48 @@
   <body class="index">
     <div class="container-fluid">
       <div class="row">
+  <div class="col-sm-12 hidden-xs">
+    <center>
+      <h1
+        style="font-size:80px; margin-top: 0.5em;margin-bottom:0"
+      >
+        <a class="implicit" href="/">
+          Charlie Marsh
+        </a>
+      </h1>
+      <div style="margin-bottom: 12px">
+        <code style="font-size:18px">
+          <span class="code-red">type</span> <a class="implicit" href="/all/">blog</a> = <span class="code-orange">Post</span> <span class="code-red">of</span> (<span class="code-blue">string</span> <span class="code-red">*</span> <a class="implicit" href="/all/">blog</a>) | <a class="implicit code-orange" href="/">Home</a> | <a class="implicit code-orange" href="/about/">About</a>
+        </code>
+      </div>
+      <a target="_blank" href="mailto:charlie@khanacademy.org">Email</a>
+      &sdot;
+      <a target="_blank" href="http://www.github.com/crm416">GitHub</a>
+      &sdot;
+      <a target="_blank" href="https://twitter.com/crm416">Twitter</a>
+      &sdot;
+      <a target="_blank" href="/static/pdf/Charles_Marsh_CV.pdf">Résumé</a>
+    </center>
+    <hr />
+  </div>
+</div>
+
+      <div class="row">
         <div class="col-sm-10 col-sm-offset-1 col-xs-12">
-          <h1><a class="implicit" href="/">iOS Performance: Shadows with Bezier Paths</a></h1>
+          
+          
+          <h1 style="margin-top: 0.25em" id="iOS-Performance:-Shadows-with-Bezier-Paths">
+            <a class="implicit" href="#iOS-Performance:-Shadows-with-Bezier-Paths">
+              iOS Performance: Shadows with Bezier Paths
+            </a>
+          </h1>
           <p>I spent some time yesterday fixing some performance issues related to <a href="https://itunes.apple.com/us/app/everycollegecal/id554462715?mt=8">EveryCollegeCal</a> (my iOS app). Basically, I was seeing very slow, choppy segues between the first two views (one of which is a welcome screen, the other a table view). On top of that, the scrolling performance of the latter view was equally gross.</p>
 
 <p>In the end, the fixes were not too involved—i.e., they didn’t involve a spectacular amount of code (of course, this can’t be said of all performance issues, so I count myself lucky). And there were only two necessary changes: the choppy segues were fixed by swapping out my glossy button library, which was apparently very inefficient. But the second change demonstrates something cool about iOS performance tweaks: while they’re often subtle, the under-the-hood explanations are always logical.</p>
 
 <!--break-->
 
-<p><h2  id='Drop-Shadows'>Drop Shadows<a class='anchor-wrap' href="#Drop-Shadows" title="Permalink to this headline">¶</a></h2 ></p>
+<p><h2  id='Drop-Shadows'><a class='implicit' href="#Drop-Shadows" title="Permalink to this headline">Drop Shadows</a></h2 ></p>
 
 <p>I thought for a while that my poor scrolling performance was due to the cells themselves, which use resizable assets to create a gradient background. But after rolling the app with certain features of the table disabled, <strong>I figured out that the issue was caused by the drop shadow in my cells’ accessories—such a tiny detail.</strong></p>
 
@@ -57,7 +90,9 @@
 
 <p>This is a great example of iOS performance tweaks: subtle, but logical.</p>
 
-          <p class="date">Posted on November 24, 2012.</p>
+          <p class="date">
+            Posted on November 24, 2012.
+          </p>
           <div class="hidden-xs">
   <hr />
   <center style="padding-bottom: 20px">
