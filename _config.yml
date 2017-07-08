@@ -7,4 +7,8 @@ gems:
 author:
   name: 'Charlie Marsh'
   email: 'charlie@khanacademy.org'
-exclude: ['node_modules', 'package.json', 'README.md', yarn.lock']
+exclude:
+  - node_modules
+  - package.json
+  - README.md
+  - yarn.lock
