@@ -1,11 +1,9 @@
 ---
 layout: post
-title:  "Rule Optimization in Software-Defined Networks"
-date:   2013-02-25
+title: "Rule Optimization in Software-Defined Networks"
+date: 2013-02-25
 permalink: intro-to-sdn/
 ---
-
-# Rule Optimization in Software-Defined Networks
 
 I'm doing some independent work this semester with Professor David Walker, with whom I took functional programming last semester. My project is being implemented functionally, however the main focus is on rule optimization in network routers; specifically, routers within software-defined networks (SDNs).
 

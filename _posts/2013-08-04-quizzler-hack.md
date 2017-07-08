@@ -1,11 +1,9 @@
 ---
 layout: post
-title:  "Quizzler: NLP-based Quiz Question Generation"
-date:   2013-08-04
+title: "Quizzler: NLP-based Quiz Question Generation"
+date: 2013-08-04
 permalink: hack/
 ---
-
-# Quizzler
 
 <p style="color:rgb(130,130,130)">Update: Quizzler was built as my entry into the Facebook Summer of Hack Hackathon in August 2013 and was selected as the winning hack. Thanks to Facebook for hosting a great event.</p>
 

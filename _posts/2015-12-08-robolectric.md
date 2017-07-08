@@ -6,8 +6,6 @@ description: "A collection of tips and tricks for getting around your Robolectri
 permalink: configuring-robolectric/
 ---
 
-# Getting up and Running with Robolectric
-
 [Robolectric](http://robolectric.org/) is a useful tool for testing code that touches parts of the Android SDK _without building to a device_, made possible by Robolectric's reimplementation and "de-fanging" of parts of the Android SDK, which allows them to run on a regular JVM, rather than an emulator.
 
 I recently integrated Robolectric into our app at [Khan Academy](https://play.google.com/store/apps/details?id=org.khanacademy.android)—we've been looking into ways to let us write more and more efficient tests, and Robolectric fit the bill nicely (at least for some cases—many tests are best left as functional or integration tests; but I won't get into that here).

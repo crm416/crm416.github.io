@@ -1,25 +1,13 @@
 <!DOCTYPE html>
-{% include header.html %}
-
+  {% include header.html %}
   <body class="index">
-
     <div class="container-fluid">
       <div class="row">
-        <div class="col-sm-3 hidden-xs">
-          <div class="row">
-            <div class="col-sm-offset-1 col-sm-11">
-              <div style="position:fixed">
-                {% include sidebar.html %}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-sm-9">
+        <div class="col-sm-10 col-sm-offset-1 col-xs-12">
+          <h1><a class="implicit" href="/">{% if page.short_title %}{{ page.short_title }}{% else %}{{ page.title }}{% endif %}</a></h1>
           {{ content }}
           <p class="date">Posted on {{ page.date | date: "%B %-d, %Y" }}.</p>
-          {% include rss.html %}
-          <div class="read-more visible-xs" style="text-align:center; margin-top:0; margin-bottom:25px"><a href="/">Home</a></div>
+          {% include footer.html %}
         </div>
       </div>
     </div>

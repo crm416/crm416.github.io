@@ -5,8 +5,6 @@ date:   2012-10-31
 permalink: intro-to-ocaml/
 ---
 
-# First Thoughts on OCaml
-
 <p style="color:rgb(130,130,130)">N.B.: I wrote this post a few weeks after first using OCaml. Before that, 90% of my programing had been in Java. Looking back on these notes, perhaps a more accurate title would be "First Thoughts on a Functional Language After Only Knowing OOP", or something along those lines. But for posterity, I'll leave it as-is.</p>
 
 I’ve been learning to program in OCaml for one of my courses this semester ([COS 326: Functional Programming](http://www.cs.princeton.edu/~dpw/courses/cos326-12/info.php "COS 326")) and I can't remember the last time I was this excited about anything CS-related. Learning to program functionally is like learning to program all over again.

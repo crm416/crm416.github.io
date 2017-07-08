@@ -5,8 +5,6 @@ date:   2012-11-13
 permalink: ios-graphing/
 ---
 
-# A Dynamic Graphing Interface for iOS
-
 This weekend was HackPrinceton, our school’s biannual hackathon run by the E Club (find out more [here](http://hackprinceton.com "HackPrinceton"), including the list of [winners](http://hackprinceton.com/results/ "HackPrinceton results")!). Unfortunately, a commitment on Saturday precluded my full-fledged participation; however, I managed to pump out a small tool on Friday: a dynamic graphing (note: **graphing**, not graphical) interface for iOS.
 
 I’m not exactly sure how I’m going to use it, but the essence of the class is that it allows the client to create 3-D bar graphs (similar to Excel’s 3-D graphing modes) and feed the graphs data over time; as the data is received, the graphs resize themselves and adjust the axes as necessary.

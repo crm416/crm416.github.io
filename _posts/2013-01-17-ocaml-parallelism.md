@@ -1,11 +1,9 @@
 ---
 layout: post
-title:  "True Parallelism in OCaml"
-date:   2013-01-17
+title: "True Parallelism in OCaml"
+date: 2013-01-17
 permalink: ocaml-parallelism/
 ---
-
-# True Parallelism in OCaml
 
 OCaml provides a nice [library for multi-threading](http://caml.inria.fr/pub/docs/manual-ocaml-4.00/libref/Thread.html). Problem is, according to my professor, under the hood, **OCaml doesn't actually employ any parallelism at all!** In truth, the compiler just interleaves instructions in a way that has the same computational effect as multi-threading, barring the 2x speed-up.
 

@@ -1,11 +1,9 @@
 ---
 layout: post
-title:  "Setting up Your OCaml Development Environment on OS X"
-date:   2013-05-29
+title: "Setting up Your OCaml Development Environment on OS X"
+date: 2013-05-29
 permalink: ocaml-dev-environment/
 ---
-
-# Setting up Your OCaml Development Environment on OS X
 
 Last fall, I began exploring the subject of functional programming as part of [Professor David Walker’s](http://www.cs.princeton.edu/~dpw/) [COS 326 at Princeton](http://www.cs.princeton.edu/~dpw/courses/cos326-12/info.php). Throughout the course, we did all of our programing in OCaml. I also spent the past spring using OCaml for my CS Independent Work. So in total, I’ve spent a reasonable amount of time around the language, and I think it’s fantastic: it’s got a great module system, plenty of useful open source tools, etc.
 

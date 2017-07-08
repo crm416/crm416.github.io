@@ -6,8 +6,6 @@ description: "A focus on reproducibility tends to result in the most high-value 
 permalink: test-plans/
 ---
 
-# Writing a Reproducible Test Plan
-
 In my [last post](http://www.crmarsh.com/code-review), I wrote about improving as a code reviewer. In this post, I'll focus on a skill that, like code reviewing, is: (1) an important part of Real Engineering™, and (2) almost completely foreign to engineers coming straight out of school.
 
 That is: **writing a good test plan**.

@@ -1,36 +1,37 @@
 - company: Khan Academy
+  title: Senior Software Engineer
+  team: Independent Learning Team
+  dates: November 2016-Present
+  img: /static/img/about/Khan_logo.png
+
+- company: Khan Academy
   title: Software Engineer
   team: Mobile Team
-  dates: Present
-  description: Bringing a free, world-class education to Android devices everywhere.
+  dates: September 2015-November 2016
   img: /static/img/about/Khan_logo.png
 
 - company: Khan Academy
   title: Software Engineer (Intern)
   team: Content Tools Team
   dates: Summer 2014
-  description: Created interactive exercise tools based on React.
   img: /static/img/about/Khan_logo.png
 
 - company: Microsoft
   title: Software Development Engineer (Intern)
   team: Core Ranking Team
   dates: Summer 2013
-  description: Developed visualization tools to observe machine learning algorithms in real-time on massive datasets.
   img: /static/img/about/Microsoft_logo.png
 
 - company: Facebook
   title: Market Development Intern
   team: Mobile Products
   dates: Summer 2012
-  description:
   img: /static/img/about/Facebook_logo.png
 
 - company: Toptal
   title: Head of Content
   team: ""
   dates: 2013-2014
-  description: Grew the <a href="http://www.toptal.com/blog">Toptal Engineering Blog</a> from scratch to hundreds of thousands of unique visitors, contributing to the editing, graphic design, and SEO processes.
   img: /static/img/about/Toptal_logo.png
 
 - company: Princeton

@@ -1,11 +1,10 @@
 ---
 layout: post
 title: What Makes a 'Good' Class? Lessons Learned from Four Years at Princeton
+short_title: "What Makes a 'Good' Class?"
 date: 2014-12-05
 permalink: good-classes/
 ---
-
-# What Makes a 'Good' Class?
 
 I'm approaching my final semester at Princeton and course selection is coming up quickly. This has prompted some introspection: it's the last time I'll choose courses and that comes with some responsibility. Suddenly, here I am, with four slots remaining and a laundry list of subjects and professors left to experience.
 

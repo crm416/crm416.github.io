@@ -5,8 +5,6 @@ date: 2013-06-16
 permalink: wikipedia/
 ---
 
-# A Human-Friendly API for Wikipedia
-
 **Motivation:** There's a lot of information on Wikipedia, and people want to use it. Sometimes, these people are programmers; and sometimes, their customers aren't computers.
 
 I needed to parse some information from Wikipedia programatically and present it in a human-readable format, i.e., for clients. I found that a bunch of other people had similar issues (e.g., [here](http://stackoverflow.com/questions/120061/fetch-a-wikipedia-article-with-python?lq=1) and [here](http://stackoverflow.com/questions/4452102/how-to-get-plain-text-out-of-wikipedia?rq=1)), so I've [open-sourced my solution](https://github.com/crm416/quizzler/blob/master/src/wiki.py).

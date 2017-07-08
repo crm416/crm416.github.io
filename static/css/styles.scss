@@ -10,7 +10,7 @@ $darkblue:#0000aa;
 
 body {
     font-family:'Open Sans',sans-serif;
-    color:rgb(60,60,60);
+    color:rgba(0,0,0,0.8) !important;
     font-size:100%;
 }
 
@@ -39,8 +39,11 @@ blockquote:before {
 h1, h2, h3, h4, p {
     font-family:'Open Sans',sans-serif;
     line-height:1.2em;
-    font-weight:100;
     margin-top:1em;
+}
+
+h1, h2, h3, h4 {
+    font-weight: bold;
 }
 
 li {
@@ -60,15 +63,17 @@ p {
 
 h1 {
     font-size:50px;
-    color:rgb(0,0,0);
+    font-weight: bold;
 }
 
 h2 {
     font-size:28px;
+
 }
 
 h3 {
     font-size:22px;
+
 }
 
 hr {
@@ -123,12 +128,19 @@ a.anchor-wrap {
 
 pre, code, kbd, samp, .match-list {
     font-family: 'Source Code Pro', sans-serif;
+}
+
+code {
+    background-color: transparent;
+}
+
+pre, kbd, samp, .match-list {
     border-radius:3px;
     background-color: #F8F8F8;
     border: 1px solid #CCC;
 }
 
-pre , code, kbd, samp {
+pre, code, kbd, samp {
     color: #000;
     font-size: 0.88em;
 }
@@ -155,7 +167,7 @@ code { padding: 0 3px 0 3px; font-size:14px}
 }
 
 .match-list {
-    padding: 0 3px 0 3px;
+    padding: 5px 12px;
 }
 
 .match-list li {

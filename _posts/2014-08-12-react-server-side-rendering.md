@@ -6,8 +6,6 @@ description: "A guide to server-side rendering with React, starting from first p
 permalink: react-ssr/
 ---
 
-# Rendering React Components on the Server
-
 I love working with React. Like, a little too much (no thanks to my (amazing) internship at Khan Academy, where we use React in buckets).
 
 For a recent side project, I wanted to render my React components on the server, rather than the client (this is often abbreviated as "server-side rendering", or SSR, for short).

@@ -6,8 +6,6 @@ description: "Code review is critical to our engineering culture at Khan Academy
 permalink: code-review/
 ---
 
-# Reviewing Code from Both Sides
-
 At Khan Academy, code review is a key step in our engineering workflow—we use it as a mechanism for quality control, context sharing, and more. (See: <a href="https://sites.google.com/a/khanacademy.org/forge/for-developers/code-review-policy#TOC-Why-have-code-reviews-" target="_blank">Code reviews at Khan Academy</a>.)
 
 In making the jump from university (I graduated in June) to Real Engineering™, code review was one of my weak points. I hardly knew anything about it. At school, you never review code. On the job, you're reviewing daily.

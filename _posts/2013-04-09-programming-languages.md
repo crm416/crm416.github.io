@@ -1,12 +1,9 @@
 ---
 layout: post
-title:  "Kernighan: Programming Languages and the Solutions They Suggest"
-date:   2013-04-09
+title: "Kernighan: Programming Languages and the Solutions They Suggest"
+date: 2013-04-09
 permalink: programming-languages/
 ---
-
-
-# Kernighan: Programming Languages and the Solutions They Suggest
 
 I’m in Brian Kernighan’s Advanced Programming Techniques class at Princeton (COS 333). He’s a brilliant guy with an absurdly rich history in the field of programming. One of my favorite aspects of his lectures is that he constantly drops in little anecdotes from throughout his career (From today’s class: “Oh, I remember when I got Bjarne [Stroustrup] to let me override the comma operator in C++; I’m probably the only person that’s ever used that feature” (there are some juicier tales involving duping governmental figures of significant authority and limited computer skills, but such stories best not leave the classroom)). 
 

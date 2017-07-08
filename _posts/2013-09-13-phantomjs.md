@@ -1,12 +1,11 @@
 ---
 layout: post
-title:  "Getting Started with PhantomJS: Common Gotchas for Beginners"
-date:   2013-09-13
+title: "Getting Started with PhantomJS: Common Gotchas for Beginners"
+short_title: "PhantomJS: Common Gotchas for Beginners"
+date: 2013-09-13
 permalink: phantomjs/
 description: "Considering PhantomJS? Save yourself hours of troublesome debugging and indecipherable error messages by avoiding these common errors, mistakes, and misunderstandings."
 ---
-
-# PhantomJS: Common Gotchas for Beginners
 
 Over the summer, I had a pet project to automate [Helium.js](https://github.com/geuis/helium-css), a tool for identifying unused style elements in your CSS. Currently, in order to generate a Helium report, you need to add some JavaScript to your webpage, open up your web browser, navigate to the page, and click on some buttons.
 

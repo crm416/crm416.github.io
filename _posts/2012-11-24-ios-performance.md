@@ -1,11 +1,9 @@
 ---
 layout: post
-title:  "iOS Performance: Shadows with Bezier Paths"
-date:   2012-11-24
+title: "iOS Performance: Shadows with Bezier Paths"
+date: 2012-11-24
 permalink: ios-performance/
 ---
-
-# iOS Performance: Shadows with Bezier Paths
 
 I spent some time yesterday fixing some performance issues related to [EveryCollegeCal](https://itunes.apple.com/us/app/everycollegecal/id554462715?mt=8) (my iOS app). Basically, I was seeing very slow, choppy segues between the first two views (one of which is a welcome screen, the other a table view). On top of that, the scrolling performance of the latter view was equally gross.
 

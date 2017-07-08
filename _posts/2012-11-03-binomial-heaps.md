@@ -1,11 +1,10 @@
 ---
 layout: post
 title:  "An Introduction to Binomial Heaps: Merge Better"
+short_title: "Binomial Heaps: Merge Better"
 date:   2012-11-03
 permalink: binomial-heaps/
 ---
-
-# Binomial Heaps: Merge Better
 
 {% anchor h2 %}Merge Better{% endanchor %}
 

@@ -1,11 +1,10 @@
 ---
 layout: post
-title:  "Compiling to JavaScript: A Case-by-Case Guide to the *Scripts"
-date:   2013-09-19
+page_title: "Compiling to JavaScript: A Case-by-Case Guide to the *Scripts"
+title: "Compiling to JS: Comparing TypeScript, CoffeeScript, etc."
+date: 2013-09-19
 permalink: compiling-to-js/
 ---
-
-# Compiling to JS: Comparing TypeScript, CoffeeScript, etc.
 
 It seems like all the cool languages these days are compiling to JavaScript. (I joke, but replace 'cool' with 'relevant' and you might have a reasonable heuristic for evaluating the modernity of a programming language.)
 

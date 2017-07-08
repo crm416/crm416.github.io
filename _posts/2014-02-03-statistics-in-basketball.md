@@ -1,11 +1,9 @@
 ---
 layout: post
-title:  "Statistics in Basketball: What's a \"Good\" Player?"
-date:   2014-02-03
+title: "Statistics in Basketball: What's a \"Good\" Player?"
+date: 2014-02-03
 permalink: statistics-in-basketball/
 ---
-
-# Statistics in Basketball: What's a "Good" Player?
 
 I just finished Bill Simmons's absolute masterpiece and basketball Bible aptly titled _The Book of Basketball_ (TBOB).
 

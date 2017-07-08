@@ -1,11 +1,9 @@
 ---
 layout: post
-title:  "A Guide to CS Independent Work at Princeton"
-date:   2014-02-03
+title: "A Guide to CS Independent Work at Princeton"
+date: 2014-02-03
 permalink: independent-work/
 ---
-
-# A Guide to CS Independent Work at Princeton
 
 Last Spring, I did a semester of independent work (IW) with professor [David Walker](https://www.cs.princeton.edu/~dpw/). My project was focused on rule optimization in Software-Defined Networks (more [here](/intro_to_sdn/)), and it was probably the greatest learning experience of my Princeton career (so far).
 

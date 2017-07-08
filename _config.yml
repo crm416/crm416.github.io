@@ -4,3 +4,6 @@ highlighter: pygments
 excerpt_separator: <!--break-->
 gems:
   - jekyll-sitemap
+author:
+  name: "Charlie Marsh"
+  email: "charlie@khanacademy.org"
