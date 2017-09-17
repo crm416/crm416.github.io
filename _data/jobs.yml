@@ -1,7 +1,13 @@
+- company: Cedar
+  title: Engineering Lead
+  team: ""
+  dates: September 2017-Present
+  img: /static/img/about/Cedar_logo.png
+
 - company: Khan Academy
   title: Senior Software Engineer
   team: Independent Learning Team
-  dates: November 2016-Present
+  dates: November 2016-August 2017
   img: /static/img/about/Khan_logo.png
 
 - company: Khan Academy

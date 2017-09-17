@@ -18,34 +18,20 @@
       <div class="row">
         <div class="col-sm-10 col-sm-offset-1 col-xs-12">
           <h1><a class="implicit" href="/">About</a></h1>
-          I work as a senior software engineer and engineering lead at <a target="_blank" href="https://www.khanacademy.org">Khan Academy</a>.<br><br>
+          (Or see my <a target="_blank" href="/static/pdf/Charlie_Marsh_Resume.pdf">résumé</a>.)<br><br>
 
-          In my time at Khan Academy, I've hopped around the stack, contributing to our mobile native (mostly Android), web, and mobile web products, and writing code across the front-end (React et al) and back-end (Python on App Engine). Today, I help lead the Independent Learning team, which focuses on self-directed learning on Khan Academy.<br><br>
+          I work as an Engineering Lead at Cedar, a small healthcare technology company based in New York City.<br><br>
 
-          Before joining Khan Academy, I studied Computer Science at Princeton University, graduating in June 2015 as the student in top academic standing in my major. In my four years at Princeton, I interned as a software engineer at <a target="_blank" href="https://www.microsoft.com">Microsoft</a> and (surprise) <a target="_blank" href="https://www.khanacademy.org">Khan Academy</a>.<br><br>
+          Before Cedar, I was at <a target="_blank" href="https://www.khanacademy.org">Khan Academy</a>, where I joined as an intern and left a few years later as a Senior Software Engineer and Engineering Lead.<br><br>
 
-          My academic interests have shifted over time, from functional programming (I've done research under <a target="_blank" href="http://www.cs.princeton.edu/~dpw/">Professor David Walker</a>), to machine learning, to computational linguistics (my senior thesis on noun compounds was advised by <a target="_blank" href="https://en.wikipedia.org/wiki/Christiane_Fellbaum">Professor Christiane Fellbaum</a>).<br><br>
+          In my time at Khan Academy, I hopped around the stack, contributing to the mobile native, web, and mobile web products, and writing code across the front-end (React et al) and back-end (Python, on App Engine). For the last year or so of my time there, I helped lead the Independent Learning team, responsible for the cross-stack ownership and development of Khan Academy's self-directed learner experience. It was an incredible, and incredibly rewarding, experience.<br><br>
+
+          I studied Computer Science at Princeton University, graduating in June 2015 as the student in top academic standing in my major. In my four years at Princeton, I interned as a software engineer at <a target="_blank" href="https://www.microsoft.com">Microsoft</a> and (surprise) <a target="_blank" href="https://www.khanacademy.org">Khan Academy</a>.<br><br>
+
+          My academic interests have shifted over time, from functional programming (I've done research under <a target="_blank" href="http://www.cs.princeton.edu/~dpw/">Professor David Walker</a>), to machine learning, to computational linguistics (my senior thesis on noun compounds was advised by <a target="_blank" href="https://en.wikipedia.org/wiki/Christiane_Fellbaum">Professor Christiane Fellbaum</a>). Today, I'm focused on learning as much as I can about the healthcare space (a relatively new interest) and building software (a somewhat older one).<br><br>
 
           I try to write, though I don't publish as often as I'd like. My technical blog posts have been featured in Python Weekly, JavaScript Weekly, on the front page of Hacker News, and elsewhere.<br>
 
-          <h2>Where I've Worked</h2>
-          Or see my <a target="_blank" href="/static/pdf/Charles_Marsh_CV.pdf">résumé</a>, which is both more detailed and more likely to be up-to-date.
-          <section style="margin-top: 20px">
-            <table style="border-collapse:separate; border-spacing:10px">
-              {% for job in site.data.jobs %}
-              <tr>
-                <td rowspan="2" align="center"><div><img class="icon" src="{{ job.img }}" alt="{{ job.company }}" align="middle"></div></td>
-                <td style="font-weight:bold">{{ job.company }}</td>
-              </tr>
-              <tr>
-                <td>{{ job.title }} [{{ job.dates }}]</td>
-              </tr>
-              {% unless forloop.last %}
-                <tr class="spacer"><td></td></tr>
-              {% endunless %}
-              {% endfor %}
-            </table>
-          </section>
           {% include footer.html %}
         </div>
       </div>
