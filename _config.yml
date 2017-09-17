@@ -6,7 +6,7 @@ gems:
   - jekyll-sitemap
 author:
   name: 'Charlie Marsh'
-  email: 'charlie@khanacademy.org'
+  email: 'charlie.r.marsh@gmail.com'
 exclude:
   - Gemfile
   - Gemfile.lock
